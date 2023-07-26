@@ -1,0 +1,15 @@
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Addon
+metadata:
+  name: workload-addon
+spec:
+  backupTasks:
+    - name: workload-backup
+      singleton: false
+      function: workload-backup
+      driver: Restic #Restic, WalG
+  restoreTasks:
+    - name: workload-restore
+      singleton: false
+      function: workload-restore
+      driver: Restic

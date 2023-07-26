@@ -1,0 +1,28 @@
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Function
+metadata:
+  name: workload-backup
+spec:
+  image: anisurrahman75/workload:ab41893_linux_amd64
+  args:
+  - backup
+  - --scratchDir=/tmp
+  - --namespace=${namespace:=default}
+  - --backupSession=${backupSession:=}
+  - --taskName=${taskName:=}
+
+---
+
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Function
+metadata:
+  name: workload-restore
+spec: 
+  image: anisurrahman75/workload:ab41893_linux_amd64
+  args:
+  - restore
+  - --namespace=${namespace:=default}
+  - --restoreSession=${restoreSession:=}
+  - --snapshotName=${snapshotName:=}
+  - --taskName=${taskName:=}
+
