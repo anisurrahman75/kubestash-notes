@@ -1,0 +1,31 @@
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Function
+metadata:
+  name: kubedb-manifest-backup
+spec: 
+  image: anisurrahman75/kubedb-manifest:update-km-version_linux_amd64
+  args:
+  - backup
+  - --namespace=${namespace:=default}
+  - --backupSession=${backupSession:=}
+---
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Function
+metadata:
+  name: kubedb-manifest-restore
+spec:
+  image: anisurrahman75/kubedb-manifest:update-km-version_linux_amd64
+  args:
+  - restore
+  - --namespace=${namespace:=default}
+  - --restoreSession=${restoreSession:=}
+  - --restoreNamespace=${restoreNamespace:=default}
+  - --mongoYaml=${mongoYaml:=true}
+  - --mongoName=${mongoDBName:=}
+  - --pgYaml=${pgYaml:=true}
+  - --pgName=${pgName:=}
+  - --authSecretYaml=${authSecretYaml:=true}
+  - --authSecretName=${authSecretName:=}
+  - --configSecretYaml=${configSecretYaml:=true}
+  - --configSecretName=${configSecretName:=}
+  - --snapshotName=${snapshotName:=}
