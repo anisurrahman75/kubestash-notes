@@ -1,9 +1,9 @@
 apiVersion: addons.kubestash.com/v1alpha1
 kind: Function
 metadata:
-  name: workload-backup
+  name: pvc-backup
 spec:
-  image: anisurrahman75/workload:faa0072_linux_amd64
+  image: anisurrahman75/pvc:implementation_linux_amd64
   args:
   - backup
   - --scratchDir=/tmp
@@ -11,21 +11,18 @@ spec:
   - --backupSession=${backupSession:=}
   - --taskName=${taskName:=}
   - --paths=${paths:=}
-  - --exclude=${exclude:=}
 
 ---
 
 apiVersion: addons.kubestash.com/v1alpha1
 kind: Function
 metadata:
-  name: workload-restore
+  name: pvc-restore
 spec: 
-  image: anisurrahman75/workload:faa0072_linux_amd64
+  image: anisurrahman75/pvc:implementation_linux_amd64
   args:
   - restore
   - --namespace=${namespace:=default}
   - --restoreSession=${restoreSession:=}
   - --snapshotName=${snapshotName:=}
   - --taskName=${taskName:=}
-  - --exclude=${exclude:=}
-  - --include=${include:=}

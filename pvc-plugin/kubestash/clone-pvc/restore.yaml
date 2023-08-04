@@ -1,0 +1,33 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: RestoreSession
+metadata:
+  name: clone-pvc-restoresession
+  namespace: default
+spec:
+  dataSource:
+    repository: demo-storage-0
+    snapshot: latest
+    encryptionSecret:
+      name: encry-secret # some addon may not support encryption
+      namespace: default
+  addon:
+    name: clone-pvc-addon
+    tasks:
+    - name: clone-pvc-restore
+      params:
+        paths: /stash/data
+      targetVolumes:
+
+        volumeMounts:
+        - name: /stash/data
+          mountPath: /stash/data
+
+        volumeClaimTemplates:
+        - metadata:
+            name: /stash/data  # In Resolver func Need to Create PVC by this Name.
+          spec:
+            accessModes: [ "ReadWriteOnce" ]
+            storageClassName: "standard"
+            resources:
+              requests:
+                storage: 2Gi

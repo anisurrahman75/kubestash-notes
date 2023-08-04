@@ -41,10 +41,9 @@ spec:
             targetVolumes:
              volumeMounts:
              - name: www
-               mountPath: /usr/share/nginx/html
+               mountPath: /usr/share/nginx/html 
             params:
-             paths:
-              value: /usr/share/nginx/html
+             paths: /usr/share/nginx/html
         jobTemplate:
           spec: 
             securityContext: 
