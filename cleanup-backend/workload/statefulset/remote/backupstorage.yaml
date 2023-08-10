@@ -1,15 +1,16 @@
 apiVersion: storage.kubestash.com/v1alpha1
 kind: BackupStorage
 metadata:
-  name: pvc-storage
-  namespace: demo
+  name: s3-storage
 spec:
   storage:
-    provider: local
-    local:
-      mountPath: /pvc/data
-      persistentVolumeClaim:
-        claimName: pvc-claim
+    provider: s3
+    s3:
+      bucket: kubestash
+      region: us-east-1
+      endpoint: us-east-1.linodeobjects.com
+      secret: s3-secret
+      prefix: sunny
   usagePolicy:
     allowedNamespaces:
       from: All

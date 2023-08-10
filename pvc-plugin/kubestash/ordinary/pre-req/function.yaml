@@ -14,15 +14,15 @@ spec:
 
 ---
 
-apiVersion: addons.kubestash.com/v1alpha1
-kind: Function
-metadata:
-  name: pvc-restore
-spec: 
-  image: anisurrahman75/pvc:implementation_linux_amd64
-  args:
-  - restore
-  - --namespace=${namespace:=default}
-  - --restoreSession=${restoreSession:=}
-  - --snapshotName=${snapshotName:=}
-  - --taskName=${taskName:=}
+# apiVersion: addons.kubestash.com/v1alpha1
+# kind: Function
+# metadata:
+#   name: pvc-restore
+# spec: 
+#   image: anisurrahman75/pvc:implementation_linux_amd64
+#   args:
+#   - restore
+#   - --namespace=${namespace:=default}
+#   - --restoreSession=${restoreSession:=}
+#   - --snapshotName=${snapshotName:=}
+#   - --taskName=${taskName:=}

@@ -2,7 +2,7 @@ apiVersion: storage.kubestash.com/v1alpha1
 kind: BackupStorage
 metadata:
   name: host-storage
-  namespace: demo
+  # namespace: demo
 spec:
   storage:
     provider: local

@@ -1,0 +1,31 @@
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Function
+metadata:
+  name: pvc-backup
+spec:
+  image: anisurrahman75/pvc:implementation_linux_amd64
+  args:
+  - backup
+  - --scratchDir=/tmp
+  - --namespace=${namespace:=default}
+  - --backupSession=${backupSession:=}
+  - --taskName=${taskName:=}
+  - --paths=${paths:=}
+
+---
+
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Function
+metadata:
+  name: pvc-restore
+spec: 
+  image: anisurrahman75/pvc:implementation_linux_amd64
+  args:
+  - restore
+  - --namespace=${namespace:=default}
+  - --restoreSession=${restoreSession:=}
+  - --snapshotName=${snapshotName:=}
+  - --taskName=${taskName:=}
+  - --taskName=${taskName:=}
+  - --exclude=${exclude:=}
+  - --include=${include:=}

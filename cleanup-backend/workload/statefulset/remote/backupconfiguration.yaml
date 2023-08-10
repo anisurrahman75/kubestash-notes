@@ -41,7 +41,7 @@ spec:
             targetVolumes:
              volumeMounts:
              - name: www
-               mountPath: /usr/share/nginx/html 
+               mountPath: /usr/share/nginx/html
             params:
              paths: /usr/share/nginx/html
         jobTemplate:

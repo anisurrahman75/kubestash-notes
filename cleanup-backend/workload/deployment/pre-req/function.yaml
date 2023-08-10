@@ -3,7 +3,7 @@ kind: Function
 metadata:
   name: workload-backup
 spec:
-  image: anisurrahman75/workload:faa0072_linux_amd64
+  image: anisurrahman75/workload:faa0072-dirty_linux_amd64
   args:
   - backup
   - --scratchDir=/tmp
@@ -20,7 +20,7 @@ kind: Function
 metadata:
   name: workload-restore
 spec: 
-  image: anisurrahman75/workload:faa0072_linux_amd64
+  image: anisurrahman75/workload:faa0072-dirty_linux_amd64
   args:
   - restore
   - --namespace=${namespace:=default}

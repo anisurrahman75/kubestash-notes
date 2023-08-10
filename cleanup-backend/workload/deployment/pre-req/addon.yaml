@@ -17,3 +17,7 @@ spec:
       singleton: false
       function: workload-restore
       driver: Restic
+      parameters:
+      - name: paths
+      - name: include
+      - name: exclude
