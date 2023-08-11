@@ -1,15 +1,11 @@
 ---------------Working---------
 -> Implement pvc addon for backup and restore
--> 
-
-
-
-
-
-
-
-
+-> Implement Clone worload-volume to pvc
+	
+	
 ---------------Task-------------
 -> Restore Workload Data using pvc restore addon
 	- it work's
-->  
+->  How i get replicas,
+	- Me: Get snapshots:status:component to count replicas
+	 

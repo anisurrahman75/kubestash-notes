@@ -1,14 +1,14 @@
 apiVersion: core.kubestash.com/v1alpha1
 kind: RestoreSession
 metadata:
-  name: pvc-restoresession
+  name: sample-restoresession
   namespace: default
 spec:
   target:
-    apiGroup:
-    kind: PersistentVolumeClaim
-    name: host-pvc
+    apiGroup: apps
+    kind: StatefulSet
     namespace: default
+    name: web
   dataSource:
     repository: demo-storage-0
     snapshot: latest
@@ -16,6 +16,8 @@ spec:
       name: encry-secret # some addon may not support encryption
       namespace: default
   addon:
-    name: pvc-addon
+    name: workload-addon
     tasks:
-    - name: pvc-restore
+    - name: workload-restore
+      params:
+        paths: /usr/share/nginx/html

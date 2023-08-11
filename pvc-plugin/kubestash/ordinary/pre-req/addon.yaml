@@ -14,19 +14,14 @@ spec:
       parameters:
       - name: paths
         default: /stash/data
-  # restoreTasks:
-  #   - name: pvc-restore
-  #     singleton: false
-  #     function: pvc-restore
-  #     driver: Restic
-  #     volumeMounts:
-  #     - name:  stash-volume
-  #       mountPath: /stash/data
-  #     volumeTemplate:
-  #     - name: stash-volume
-  #       source:
-  #         persistentVolumeClaim:
-  #           claimName: host-pvc
+  restoreTasks:
+    - name: pvc-restore
+      singleton: false
+      function: pvc-restore
+      driver: Restic
+      volumeMounts:
+      - name:  stash-volume
+        mountPath: /stash/data
               
 
 

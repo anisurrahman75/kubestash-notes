@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: testing
+  namespace: default
+  labels:
+    app: test-app
+spec:
+  template:
+    metadata:
+      labels:
+        name: test-app
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        command:
+        - sleep
+        - "3600"
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - name: source-data
+          mountPath: /source/data
+      terminationGracePeriodSeconds: 10
+      restartPolicy: Always
+      volumes:
+      - name: source-data
+        hostPath:
+          path: /test/source/data
+  selector:
+    matchLabels:
+      name: test-app

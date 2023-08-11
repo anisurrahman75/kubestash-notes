@@ -21,7 +21,7 @@ spec:
       namespace: default
   sessions:
   - name: pvc-backup
-    sessionHistoryLimit: 50
+    sessionHistoryLimit: 2
     scheduler: # CronJob specification
       schedule: "*/2 * * * *"
       jobTemplate: # Comes from batch/v1 JobTemplateSpec

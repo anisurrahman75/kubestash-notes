@@ -6,7 +6,7 @@ spec:
   restoreTasks:
     - name: clone-pvc-restore
       singleton: false
-      function: pvc-restore
+      function: clone-pvc-restore
       driver: Restic
       parameters:
       - name: paths

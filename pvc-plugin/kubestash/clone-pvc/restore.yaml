@@ -14,17 +14,13 @@ spec:
     name: clone-pvc-addon
     tasks:
     - name: clone-pvc-restore
-    
-      # params:
-      #   paths: /stash/data
-
       targetVolumes:
         volumeMounts:
         - name: stash-data
           mountPath: /stash/data
         volumeClaimTemplates:
         - metadata:
-            name: stash-data  # In Resolver func Need to Create PVC by this Name.
+            name: stash-data-${POD_ORDINAL} # In Resolver func Need to Create PVC by this Name.
           spec:
             accessModes: [ "ReadWriteOnce" ]
             storageClassName: "standard"
