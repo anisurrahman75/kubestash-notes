@@ -10,7 +10,7 @@ spec:
     name: host-pvc
     namespace: default
   dataSource:
-    repository: demo-storage-0
+    repository: pvc
     snapshot: latest
     encryptionSecret:
       name: encry-secret # some addon may not support encryption

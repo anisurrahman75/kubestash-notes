@@ -3,14 +3,16 @@ kind: PersistentVolume
 metadata:
   name: host-pv
   labels:
-    app: host
+    type: local
 spec:
+  storageClassName: manual
   capacity:
-    storage: 1Gi
+    storage: 10Gi
   accessModes:
-  - ReadWriteMany
+    - ReadWriteOnce
   hostPath:
     path: "/stash-test"
+
 
 ---
 
@@ -19,12 +21,12 @@ kind: PersistentVolumeClaim
 metadata:
   name: host-pvc
 spec:
+  storageClassName: manual
   accessModes:
-  - ReadWriteMany
-  storageClassName: ""
+    - ReadWriteOnce
   resources:
     requests:
-      storage: 1Gi
-  selector:
-    matchLabels:
-      app: host
+      storage: 3Gi
+
+---
+

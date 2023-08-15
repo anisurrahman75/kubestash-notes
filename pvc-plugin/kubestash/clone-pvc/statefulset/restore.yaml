@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   dataSource:
-    repository: demo-storage-0
+    repository: statefulset-backup
     snapshot: latest
     encryptionSecret:
       name: encry-secret # some addon may not support encryption
@@ -16,11 +16,21 @@ spec:
     - name: clone-pvc-restore
       targetVolumes:
         volumeMounts:
-        - name: stash-data
-          mountPath: /stash/data
+        - name:  restore-data-restore-demo
+          mountPath:  /source/data
+        - name:  restore-config-restore-demo
+          mountPath:  /source/config  
         volumeClaimTemplates:
         - metadata:
-            name: stash-data-${POD_ORDINAL} # In Resolver func Need to Create PVC by this Name.
+            name: restore-data-restore-demo-${POD_ORDINAL} # In Resolver func Need to Create PVC by this Name.
+          spec:
+            accessModes: [ "ReadWriteOnce" ]
+            storageClassName: "standard"
+            resources:
+              requests:
+                storage: 2Gi
+        - metadata:
+            name: restore-config-restore-demo-${POD_ORDINAL} # In Resolver func Need to Create PVC by this Name.
           spec:
             accessModes: [ "ReadWriteOnce" ]
             storageClassName: "standard"

@@ -1,15 +1,16 @@
 kind: Pod
 apiVersion: v1
 metadata:
-  name: demo-pod-1
+  name: restore-pod-1
 spec:
   containers:
-  - name: ubuntu
-    image: ubuntu
+  - name: busybox
+    image: busybox
+    command: ["/bin/sh", "-c","sleep 3000"]
     volumeMounts:
     - name: my-volume
       mountPath: /sample/data
   volumes:
   - name: my-volume
     persistentVolumeClaim:
-      claimName: host-pvc
+      claimName: csi-do-test-pvc-restore

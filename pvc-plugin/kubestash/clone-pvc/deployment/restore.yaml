@@ -1,0 +1,39 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: RestoreSession
+metadata:
+  name: clone-pvc-restoresession-deployment
+  namespace: default
+spec:
+  dataSource:
+    repository: deployment-backup
+    snapshot: latest
+    encryptionSecret:
+      name: encry-secret # some addon may not support encryption
+      namespace: default
+  addon:
+    name: clone-pvc-addon
+    tasks:
+    - name: clone-pvc-restore
+      targetVolumes:
+        volumeMounts:
+        - name:  restore-data
+          mountPath:  /source/data
+        - name:  restore-config
+          mountPath:  /source/config  
+        volumeClaimTemplates:
+        - metadata:
+            name: restore-data
+          spec:
+            accessModes: [ "ReadWriteOnce" ]
+            storageClassName: "standard"
+            resources:
+              requests:
+                storage: 2Gi
+        - metadata:
+            name: restore-config
+          spec:
+            accessModes: [ "ReadWriteOnce" ]
+            storageClassName: "standard"
+            resources:
+              requests:
+                storage: 2Gi

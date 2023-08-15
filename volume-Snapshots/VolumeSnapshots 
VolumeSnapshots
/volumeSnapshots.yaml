@@ -1,0 +1,8 @@
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshot
+metadata:
+  name: csi-do-test-snapshot
+spec:
+  volumeSnapshotClassName: linode-block-storage-retain
+  source:
+    persistentVolumeClaimName: csi-do-test-pvc

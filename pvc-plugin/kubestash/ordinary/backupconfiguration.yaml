@@ -21,15 +21,15 @@ spec:
       namespace: default
   sessions:
   - name: pvc-backup
-    sessionHistoryLimit: 2
+    sessionHistoryLimit: 
     scheduler: # CronJob specification
       schedule: "*/2 * * * *"
       jobTemplate: # Comes from batch/v1 JobTemplateSpec
         backoffLimit: 1
     repositories: # volume & volumeMount strategy.
-    - name: demo-storage-0
+    - name: pvc
       backend: s3-storage
-      directory: /dep/sts
+      directory: /pvc
       encryptionSecret:
        name: encry-secret # some addon may not support encryption
        namespace: default

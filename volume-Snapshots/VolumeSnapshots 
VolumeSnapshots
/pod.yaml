@@ -1,15 +1,16 @@
 kind: Pod
 apiVersion: v1
 metadata:
-  name: demo-pod-1
+  name: pod-1
 spec:
   containers:
-  - name: ubuntu
-    image: ubuntu
+  - name: busybox
+    image: busybox
+    # command: ["/bin/sh", "-c","echo 'hello from pod 1.' > /sample/data/hello.txt && sleep 3000"]
     volumeMounts:
     - name: my-volume
       mountPath: /sample/data
   volumes:
   - name: my-volume
     persistentVolumeClaim:
-      claimName: host-pvc
+      claimName: csi-pvc
