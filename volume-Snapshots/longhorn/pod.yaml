@@ -1,0 +1,16 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: pod-1
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    command: ["/bin/sh", "-c","sleep 3000"]
+    volumeMounts:
+    - name: my-volume
+      mountPath: /sample
+  volumes:
+  - name: my-volume
+    persistentVolumeClaim:
+      claimName: restore-test-vol
