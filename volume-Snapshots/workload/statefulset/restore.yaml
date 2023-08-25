@@ -1,0 +1,27 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: RestoreSession
+metadata:
+  name: restore-pvc-from-volumesnapshot
+  namespace: default
+spec:
+  dataSource:
+    repository: sts-volume-snapshot
+    snapshot: latest
+    encryptionSecret:
+      name: encry-secret # some addon may not support encryption
+      namespace: default
+  addon:
+    name: volume-snapshot-addon
+    tasks:
+    - name: workload-volume-snapshot-restore
+      targetVolumes:  
+        volumeClaimTemplates:
+        - metadata:
+            name: restore-data-restore-demo-${POD_ORDINAL} # In Resolver func Need to Create PVC by this Name.
+          spec:
+            accessModes: [ "ReadWriteOnce" ]
+            storageClassName: "longhorn"
+            resources:
+              requests:
+                storage: 2Gi
+            

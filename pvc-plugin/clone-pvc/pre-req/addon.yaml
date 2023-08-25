@@ -1,0 +1,10 @@
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Addon
+metadata:
+  name: clone-pvc-addon
+spec:
+  restoreTasks:
+    - name: clone-pvc-restore
+      singleton: false
+      function: clone-pvc-restore
+      driver: Restic

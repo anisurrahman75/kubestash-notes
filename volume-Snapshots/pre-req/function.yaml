@@ -1,0 +1,12 @@
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Function
+metadata:
+  name: volume-snapshots
+spec:
+  image: anisurrahman75/volume-snapshotter:volume-snapshotter_linux_amd64
+  args:
+  - backup
+  - --scratchDir=/tmp
+  - --namespace=${namespace:=default}
+  - --backupSession=${backupSession:=}
+  - --snapshotClassName=${snapshotClassName:=}

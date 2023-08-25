@@ -1,0 +1,17 @@
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Addon
+metadata:
+  name: volume-snapshot-addon
+spec:
+  backupTasks:
+    - name: workload-volume-snapshot-backup
+      function: volume-snapshots
+      singleton: true
+      driver: VolumeSnapshotter
+      parameters:
+      - name: snapshotClassName
+  restoreTasks:
+    - name: workload-volume-snapshot-restore
+      function: volume-snapshots
+      singleton: true
+      driver: VolumeSnapshotter

@@ -1,0 +1,16 @@
+apiVersion: storage.kubestash.com/v1alpha1
+kind: BackupStorage
+metadata:
+  name: pvc-storage
+spec:
+  storage:
+    provider: local
+    local:
+      mountPath: /pvc/data
+      persistentVolumeClaim:
+        claimName: pvc-claim
+  usagePolicy:
+    allowedNamespaces:
+      from: All
+  default: true 
+  deletionPolicy: WipeOut

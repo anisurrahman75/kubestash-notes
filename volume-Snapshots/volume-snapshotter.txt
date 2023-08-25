@@ -1,0 +1,61 @@
+
+-------------------------Volume Snapshotter-----------------------
+
+--> Where does we give snapShotClassName....?
+	--> Stash: In Taget Option.
+	--> KubeStash: In addon path Section.
+
+--> Does Snapshots create for VolumeSnapshots..?
+	--> Yes created.
+
+--> How to apply retentionPolicy for VolumeSnapshots..? 
+	-->
+
+--> From Where restoreSession TargetVolume resolve..
+	-->
+
+--> How to identfy restoreSession is volumeSnapshooter type.
+	-->
+
+---------------------------------------------------------Status---------------------
+
+
+--------------Deployment------------------
+
+components:
+    deployment:
+      driver: volumeSnapshot
+      duration: 8.49381624s
+      phase: Succeeded
+      error: 
+      volumeSnapshotsStats:
+      - volumeSnapshotName: {pvcName-timeStamp}
+      	pvcName: {pvcName}
+      	
+------------Statefulset---------------
+
+components:
+    pod-0:
+      driver: volumeSnapshot
+      duration: 8.49381624s
+      phase: Succeeded
+      error: 
+      volumeSnapshotsStats:
+      - volumeSnapshotName: {pvcName-timeStamp}
+      	pvcName: {pvcName}
+
+	  - volumeSnapshotName: {pvcName-timeStamp}
+	    pvcName: {pvcName}
+
+    pod-1:
+      driver: volumeSnapshot
+      duration: 8.49381624s
+      phase: Succeeded
+      error: 
+      volumeSnapshotsStats:
+      - volumeSnapshotName: {pvcName-timeStamp}
+      	pvcName: {pvcName}
+
+	  - volumeSnapshotName: {pvcName-timeStamp}
+	    pvcName: {pvcName}
+

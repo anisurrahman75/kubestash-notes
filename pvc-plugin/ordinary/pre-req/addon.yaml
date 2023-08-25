@@ -1,0 +1,39 @@
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Addon
+metadata:
+  name: pvc-addon
+spec:
+  backupTasks:
+    - name: pvc-backup
+      function: pvc-backup
+      singleton: true
+      driver: Restic 
+      parameters:
+      - name: paths
+        default: /stash/data #  This path will be backup
+      volumeMounts:
+      - name: stash-volume
+        mountPath: /stash/data
+      volumeTemplate:
+      - name: stash-volume
+        source:
+          persistentVolumeClaim:
+            claimName: ${PVC_NAME}
+  restoreTasks:
+    - name: pvc-restore
+      singleton: false
+      function: pvc-restore
+      driver: Restic
+      volumeMounts:
+      - name: stash-volume
+        mountPath: /stash/data
+      volumeTemplate:
+      - name: stash-volume
+        source:
+          persistentVolumeClaim:
+            claimName: ${PVC_NAME}
+              
+
+
+
+      
