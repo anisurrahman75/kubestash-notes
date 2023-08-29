@@ -5,13 +5,14 @@ metadata:
 spec:
   backupTasks:
     - name: workload-volume-snapshot-backup
-      function: volume-snapshots
+      function: volume-snapshots-backup
       singleton: true
       driver: VolumeSnapshotter
       parameters:
       - name: snapshotClassName
   restoreTasks:
     - name: workload-volume-snapshot-restore
-      function: volume-snapshots
+      function: volume-snapshots-restore
       singleton: true
       driver: VolumeSnapshotter
+

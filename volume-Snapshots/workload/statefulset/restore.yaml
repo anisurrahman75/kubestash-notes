@@ -1,7 +1,7 @@
 apiVersion: core.kubestash.com/v1alpha1
 kind: RestoreSession
 metadata:
-  name: restore-pvc-from-volumesnapshot
+  name: restore-sts-pvc-from-volumesnapshot
   namespace: default
 spec:
   dataSource:
@@ -17,11 +17,19 @@ spec:
       targetVolumes:  
         volumeClaimTemplates:
         - metadata:
-            name: restore-data-restore-demo-${POD_ORDINAL} # In Resolver func Need to Create PVC by this Name.
+            name: restore-data-restore-demo-${POD_ORDINAL} 
           spec:
             accessModes: [ "ReadWriteOnce" ]
             storageClassName: "longhorn"
             resources:
               requests:
-                storage: 2Gi
+                storage: 1Gi
+        - metadata:
+            name: restore-config-restore-demo-${POD_ORDINAL}
+          spec:
+            accessModes: [ "ReadWriteOnce" ]
+            storageClassName: "longhorn"
+            resources:
+              requests:
+                storage: 1Gi
             

@@ -23,13 +23,13 @@ spec:
   - name: deployment-volume-snapshot-backup
     sessionHistoryLimit: 
     scheduler: # CronJob specification
-      schedule: "*/1 * * * *"
+      schedule: "*/2 * * * *"
       jobTemplate: # Comes from batch/v1 JobTemplateSpec
         backoffLimit: 1
     repositories: # volume & volumeMount strategy.
     - name: deployment-volume-snapshot
       backend: s3-storage
-      directory: /volume-snapshot
+      directory: /dep-volume-snapshot
       encryptionSecret:
        name: encry-secret # some addon may not support encryption
        namespace: default
@@ -39,7 +39,7 @@ spec:
       tasks:
       - name: workload-volume-snapshot-backup
         params:
-          snapshotClassName: create-this
+          snapshotClassName: longhorn
       jobTemplate:
         spec: 
           securityContext: 

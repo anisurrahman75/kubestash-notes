@@ -59,3 +59,14 @@ components:
 	  - volumeSnapshotName: {pvcName-timeStamp}
 	    pvcName: {pvcName}
 
+------------------Restore Status------------------
+
+components:
+	pod-0:
+		phase:
+		duration:
+		error:
+	pod-1:
+		phase:
+		duration:
+		error:
