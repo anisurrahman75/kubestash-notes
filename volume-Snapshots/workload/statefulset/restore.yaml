@@ -17,18 +17,18 @@ spec:
       targetVolumes:  
         volumeClaimTemplates:
         - metadata:
-            name: restore-data-restore-demo-${POD_ORDINAL} 
+            name: restore-data-${POD_ORDINAL} 
           spec:
             accessModes: [ "ReadWriteOnce" ]
-            storageClassName: "longhorn"
+            storageClassName: "csi-standard"
             resources:
               requests:
                 storage: 1Gi
         - metadata:
-            name: restore-config-restore-demo-${POD_ORDINAL}
+            name: restore-config-${POD_ORDINAL}
           spec:
             accessModes: [ "ReadWriteOnce" ]
-            storageClassName: "longhorn"
+            storageClassName: "csi-standard-wait"
             resources:
               requests:
                 storage: 1Gi

@@ -23,7 +23,7 @@ spec:
   - name: sts-volume-snapshot-backup
     sessionHistoryLimit: 
     scheduler: # CronJob specification
-      schedule: "*/2 * * * *"
+      schedule: "*/10 * * * *"
       jobTemplate: # Comes from batch/v1 JobTemplateSpec
         backoffLimit: 1
     repositories: # volume & volumeMount strategy.
@@ -39,7 +39,7 @@ spec:
       tasks:
       - name: workload-volume-snapshot-backup
         params:
-          snapshotClassName: longhorn
+          snapshotClassName: csi-snapshot-class
       jobTemplate:
         spec: 
           securityContext: 

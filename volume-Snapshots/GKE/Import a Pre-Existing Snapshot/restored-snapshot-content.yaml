@@ -1,0 +1,13 @@
+apiVersion: snapshot.storage.k8s.io/v1beta1
+kind: VolumeSnapshotContent
+metadata:
+  name: restored-snapshot-content
+spec:
+  deletionPolicy: Retain
+  driver: pd.csi.storage.gke.io
+  source:
+    snapshotHandle: projects/<provide_your_PROJECT_ID >/global/snapshots/<provide_your_snapshots_name_found_in_cloud_console>
+  volumeSnapshotRef:
+    kind: VolumeSnapshot
+    name: restored-snapshot
+    namespace: default
