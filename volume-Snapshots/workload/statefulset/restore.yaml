@@ -20,7 +20,7 @@ spec:
             name: restore-data-${POD_ORDINAL} 
           spec:
             accessModes: [ "ReadWriteOnce" ]
-            storageClassName: "csi-standard"
+            storageClassName: "csi-standard-immediate"
             resources:
               requests:
                 storage: 1Gi

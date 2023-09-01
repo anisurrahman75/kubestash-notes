@@ -8,4 +8,21 @@
 	- it work's
 ->  How i get replicas,
 	- Me: Get snapshots:status:component to count replicas
-	 
+
+
+
+
+----------------------webminer--------------------------------
+
+Title: 
+PVC Backup, Restore, and Workload Volume Cloning with KubeStash
+
+Description: 
+In our expanding interactions with Stash enterprise clients, we've encountered captivating use cases that extend beyond the scope of our existing APIs. To address these scenarios comprehensively, we have introduced KubeStash. Within this process, we have refined the procedure to backup and restore workloads.
+
+Here’s a sneak preview of the webinar:
+- Unveiling Enhancements for PVC Backup, Restore and Workload Volume Cloning
+- Streamlined PVC Backup Process
+- Effortless Restore PVC and Workload Volume Cloning Procedure 
+- Live Walk-through and Demonstration
+- Q&A Session
