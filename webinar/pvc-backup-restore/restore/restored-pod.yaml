@@ -1,0 +1,39 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: restored-demo-pod-1
+  namespace: demo
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    command: ["/bin/sh", "-c","sleep 3000"]
+    volumeMounts:
+    - name: my-volume
+      mountPath: /sample/data
+      subPath: pod-1/data
+  volumes:
+  - name: my-volume
+    persistentVolumeClaim:
+      claimName: restored-demo-pvc
+
+---
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: restored-demo-pod-2
+  namespace: demo
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    command: ["/bin/sh", "-c","sleep 3000"]
+    volumeMounts:
+    - name: my-volume
+      mountPath: /sample/data
+      subPath: pod-2/data
+  volumes:
+  - name: my-volume
+    persistentVolumeClaim:
+      claimName: restored-demo-pvc

@@ -1,16 +1,3 @@
----------------Working---------
--> Implement pvc addon for backup and restore
--> Implement Clone worload-volume to pvc
-	
-	
----------------Task-------------
--> Restore Workload Data using pvc restore addon
-	- it work's
-->  How i get replicas,
-	- Me: Get snapshots:status:component to count replicas
-
-----------------------Webminer--------------------------------
-
 Title: 
 PVC Backup, Restore, and Workload Volume Cloning with KubeStash
 
@@ -28,10 +15,11 @@ Here's a sneak preview of the webinar agenda:
 
 Webinar:
 
-Intro:
-		In our previous webinar we have introduce KubeStash for provide a comprehensive solutions of Kubernetes Backup and Recovery. 
-	As part of this initiative, we've add a new feature of backup and restore PVC, and cloning workload volumes.
+Intro: 
+	Hello, I am anisur rahman,working as a software enginner in appscode.In our previous webinar we have introduced KubeStash for provides a comprehensive Kubernetes Backup and Recovery solutions. As part of this initiative, we've continously adding some new features. In this webinar I am presenting  newly added  features as PVC backup, restore, and workload volume cloning using kubestash.
 
 
+
+If you are using a PVC that can be mounted in multiple workloads, you might want to backup the PVC independently of the workloads.This webinar gives you an overview of how stand-alone PVC backup and restore process works in KubeStash.
 
 

@@ -22,4 +22,5 @@ spec:
   - restore
   - --namespace=${namespace:=default}
   - --restoreSession=${restoreSession:=}
-  - --snapshotName=${snapshotName:=}  
+  - --snapshotName=${snapshotName:=}
+  - --restoreTask=${restoreTask:=}  
