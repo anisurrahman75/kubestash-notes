@@ -1,0 +1,17 @@
+
+Webinar:
+
+
+Hello everyone, I am anisur rahman,working as a software enginner at appscode. In this webinar I am presenting a features in our kubestash project as PVC backup, restore, and workload volume cloning.
+
+
+If you are using a PVC that can be mounted in multiple workloads, you might want to backup the PVC independently of the workloads.This diagram gives you an overview of how a stand-alone PVC backup process works in KubeStash.
+
+
+At first, let’s prepare our target PVC. Here, I are going to create a PersistentVolume (PV) that will use HostPath as storage. Then, going to create our target  PVC that will bind with the PV. Then, we are going to mount this PVC in two different pods. Each pod will generate a sample file into the PVC.
+
+-----------------------Section 2----------------------------
+
+lets see what the problem volume-cloning feature solved.If you backup your workload volume using kubestash. then you might want to  restore this workload volume into pvcs. You can provide a template for PVC in RestoreSession.This diagram will gives you an overview how volume-cloning feature worked in kubestash.
+
+

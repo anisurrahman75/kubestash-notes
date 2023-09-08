@@ -1,16 +1,15 @@
 apiVersion: storage.kubestash.com/v1alpha1
 kind: BackupStorage
 metadata:
-  name: s3-storage
+  name: gcs-storage
+  namespace: demo
 spec:
   storage:
-    provider: s3
-    s3:
+    provider: gcs
+    gcs:
       bucket: kubestash
-      region: us-east-1
-      endpoint: us-east-1.linodeobjects.com
-      secret: s3-secret
-      prefix: sunny
+      prefix: webinar
+      secret: gcs-secret 
   usagePolicy:
     allowedNamespaces:
       from: All

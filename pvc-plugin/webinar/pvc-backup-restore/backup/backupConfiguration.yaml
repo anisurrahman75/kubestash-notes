@@ -2,23 +2,23 @@ apiVersion: core.kubestash.com/v1alpha1
 kind: BackupConfiguration
 metadata:
   name: pvc-backup
-  namespace: demo
+  namespace: default
 spec:
   target:
     apiGroup:
     kind: PersistentVolumeClaim
     name: demo-pvc
-    namespace: demo
+    namespace: default
   backends:
   - name: s3-storage
     storageRef:
       apiGroup: storage.kubestash.com
-      namespace: demo
+      namespace: default
       kind: BackupStorage
       name: s3-storage
     retentionPolicy:
       name: demo-retention
-      namespace: demo
+      namespace: default
   sessions:
   - name: pvc-backup
     sessionHistoryLimit: 
@@ -32,7 +32,7 @@ spec:
       directory: /pvc-backup
       encryptionSecret:
        name: encry-secret 
-       namespace: demo
+       namespace: default
       deletionPolicy: WipeOut 
     addon:
       name: pvc-addon

@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: example-pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Mi
+  dataSourceRef:
+    apiGroup: hello.example.com
+    kind: Hello
+    name: example-hello
+  volumeMode: Filesystem

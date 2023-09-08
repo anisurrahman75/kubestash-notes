@@ -2,7 +2,7 @@ kind: Pod
 apiVersion: v1
 metadata:
   name: demo-pod-1
-  namespace: demo
+  namespace: default
 spec:
   containers:
   - name: busybox
@@ -23,7 +23,7 @@ kind: Pod
 apiVersion: v1
 metadata:
   name: demo-pod-2
-  namespace: demo
+  namespace: default
 spec:
   containers:
   - name: busybox

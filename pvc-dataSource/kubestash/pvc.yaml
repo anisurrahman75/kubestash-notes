@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: example-pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Mi
+  dataSourceRef:
+    apiGroup: storage.kubestash.com
+    kind: Snapshot
+    name: <snapshots_name>
+    
+  volumeMode: Filesystem
+  volumeName: # Controller neds to patch this with new create PV
