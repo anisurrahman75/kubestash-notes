@@ -1,0 +1,60 @@
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Addon
+metadata:
+  name: volume-snapshot-addon
+spec:
+  backupTasks:
+    - name: workload-volume-snapshot-backup
+      function: volume-snapshots-backup
+      singleton: true
+      driver: VolumeSnapshotter
+      parameters:
+      - name: snapshotClassName
+  restoreTasks:
+    - name: workload-volume-snapshot-restore
+      function: volume-snapshots-restore
+      singleton: true
+      driver: VolumeSnapshotter
+
+---
+
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Function
+metadata:
+  name: volume-snapshots-backup
+spec:
+  image: anisurrahman75/volume-snapshotter:volume-snapshotter_linux_amd64
+  args:
+  - backup
+  - --namespace=${namespace:=default}
+  - --backupsession=${backupsession:=}
+  - --snapshotclassname=${snapshotclassname:=}
+
+---
+
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Function
+metadata:
+  name: volume-snapshots-restore
+spec: 
+  image: anisurrahman75/volume-snapshotter:volume-snapshotter_linux_amd64
+  args:
+  - restore
+  - --namespace=${namespace:=default}
+  - --restoresession=${restoresession:=}
+  - --snapshot=${snapshotname:=}
+  - --restoretask=${restoretask:=}  
+
+---
+
+apiVersion: storage.kubestash.com/v1alpha1
+kind: RetentionPolicy
+metadata:
+  name: demo-retention
+spec:
+  maxRetentionPeriod: 2mo
+  successfulSnapshots:
+    last: 2
+  usagePolicy:
+    allowedNamespaces:
+      from: All

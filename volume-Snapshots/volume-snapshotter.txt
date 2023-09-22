@@ -41,11 +41,11 @@ components:
       phase: Succeeded
       error: 
       volumeSnapshotsStats:
-      - volumeSnapshotName: {pvcName-timeStamp}
-      	pvcName: {pvcName}
+	      - volumeSnapshotName: {pvcName-timeStamp}
+	      	pvcName: {pvcName}
 
-	  - volumeSnapshotName: {pvcName-timeStamp}
-	    pvcName: {pvcName}
+			  - volumeSnapshotName: {pvcName-timeStamp}
+			    pvcName: {pvcName}
 
     pod-1:
       driver: volumeSnapshot
@@ -53,11 +53,11 @@ components:
       phase: Succeeded
       error: 
       volumeSnapshotsStats:
-      - volumeSnapshotName: {pvcName-timeStamp}
-      	pvcName: {pvcName}
+	      - volumeSnapshotName: {pvcName-timeStamp}
+	      	pvcName: {pvcName}
 
-	  - volumeSnapshotName: {pvcName-timeStamp}
-	    pvcName: {pvcName}
+		  	- volumeSnapshotName: {pvcName-timeStamp}
+		    pvcName: {pvcName}
 
 ------------------Restore Status------------------
 

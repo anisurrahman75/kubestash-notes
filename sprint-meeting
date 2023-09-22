@@ -1,30 +1,40 @@
-Volume-Snapshooter
----> Volume-Snapshooter Okay.
----> Apply retentionPolicy for volume-snapshotter okay.
+
+-------------------------------------------------------------------------------------------------------------------
+--->Work-Done
+	---> Volume-Snapshooter Okay.
+	---> Apply retentionPolicy for volume-snapshotter okay.
+	---> Ask slack about PVC custom-datasource
 
 ---> Ques?
 	--> Which version volume-snapshots does we use in kubestash..
-	--> In Stash:
-	--> Stash detect version first, then call any operation by this corresponding version.
+			--> In Stash:
+			--> Stash detect version first, then call any operation by this corresponding version.
+	-->
 
-PVC
+	
+
+----------------PVC----------------------------
 --> if <STORAGECLASS=csi-standard-wait> PVC status: = pending, then PVC wait for any workload to use this PVC.
 --> if <STORAGECLASS=csi-standard-immidiate> PVC status: = Bound
 
+--------------PVC-DataSource------------------------
 
+---> DataSource:
+		-> can we provide here custom object?
+			-> yes, is it possible, using volume-populator
+		-> if we provide unvalid datasource:
+			-> = Pending
 
-PVC-> 
+ 
 necessary link:
-
 - https://kubernetes.io/blog/2022/05/16/volume-populators-beta/
 - https://kubernetes.io/blog/2021/08/30/volume-populators-redesigned/
 - https://github.com/kubernetes-csi/lib-volume-populator/tree/master/example/hello-populator
-
----> datasource:
-		-> can we provide here custom object?
-		-> yes, is it possible, using volume-populator
 
 ---> How volume-populator controller works:
 	--> https://openebs.io/blog/life-cycle-of-pvc-with-volume-populator 
 
 
+
+
+------------------------------------------------------------------------------------------------------------------------------

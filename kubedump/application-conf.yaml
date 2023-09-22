@@ -1,0 +1,46 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: BackupConfiguration
+metadata:
+  name: application-resources-backup
+spec:
+  target:  
+    apiGroup: apps
+    kind: StatefulSet
+    namespace: default
+    name: kubestash-sts
+  backends:
+    - name: s3-storage
+      storageRef:
+        apiGroup: storage.kubestash.com
+        namespace: default
+        kind: BackupStorage
+        name: s3-storage
+      retentionPolicy:
+        name: kubedump-rp
+        namespace: default
+  sessions:
+    - name: application-resources-backup
+      sessionHistoryLimit: 3
+      scheduler:
+        schedule: "*/2 * * * *"
+        successfulJobsHistoryLimit: 1
+        failedJobsHistoryLimit: 1
+        jobTemplate:
+          backoffLimit: 1
+      repositories:
+        - name: s3-repo-application
+          backend: s3-storage
+          directory: /kubedump/application
+          deletionPolicy: WipeOut
+          encryptionSecret:
+           name: encry-secret # some addon may not support encryption
+           namespace: default
+      addon:
+        name: kubedump-kubernetes-resources-addon
+        tasks:
+          - name: kubernetes-resources-backup
+            params:
+              includeDependants: "true"
+        jobTemplate:
+          spec:
+            serviceAccountName: cluster-resource-reader      

@@ -12,6 +12,4 @@ spec:
     apiGroup: storage.kubestash.com
     kind: Snapshot
     name: <snapshots_name>
-    
   volumeMode: Filesystem
-  volumeName: # Controller neds to patch this with new create PV

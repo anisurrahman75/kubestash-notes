@@ -1,0 +1,50 @@
+
+---
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Function
+metadata:
+  name: kubedump-kubernetes-resources-backup
+spec: 
+  image: anisurrahman75/kubedump:kubedump-implementation_linux_amd64
+  args:
+  - backup
+  - --scratch-dir=/tmp
+  - --enable-cache=${ENABLE_CACHE:=true}
+  - --sanitize=${sanitize:=true}
+  - --label-selector=${labelSelector:=}
+  - --include-dependants=${includeDependants:=false}
+  - --namespace=${namespace:=default}
+  - --backupsession=${backupSession:=}
+
+---
+
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Addon
+metadata:
+  name: kubedump-kubernetes-resources-addon
+spec:
+  backupTasks:
+    - name: kubernetes-resources-backup
+      function: kubedump-kubernetes-resources-backup
+      singleton: true
+      driver: Restic
+      parameters:
+      - name: labelSelector
+      - name: includeDependants
+        default: "false"
+      - name: sanitize
+        default: "true"
+
+---
+
+apiVersion: storage.kubestash.com/v1alpha1
+kind: RetentionPolicy
+metadata:
+  name: kubedump-rp
+spec:
+  maxRetentionPeriod: 2mo
+  successfulSnapshots:
+    last: 10
+  usagePolicy:
+    allowedNamespaces:
+      from: All

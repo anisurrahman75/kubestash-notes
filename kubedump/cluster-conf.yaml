@@ -1,0 +1,40 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: BackupConfiguration
+metadata:
+  name: cluster-resources-backup
+spec:
+  backends:
+    - name: s3-storage
+      storageRef:
+        apiGroup: storage.kubestash.com
+        namespace: default
+        kind: BackupStorage
+        name: s3-storage
+      retentionPolicy:
+        name: kubedump-rp
+        namespace: default
+  sessions:
+    - name: cluster-resources-backup
+      sessionHistoryLimit: 3
+      scheduler:
+        schedule: "*/2 * * * *"
+        successfulJobsHistoryLimit: 1
+        failedJobsHistoryLimit: 1
+        jobTemplate:
+          backoffLimit: 1
+      repositories:
+        - name: s3-repo
+          backend: s3-storage
+          directory: /kubedump/cluster
+          encryptionSecret:
+           name: encry-secret # some addon may not support encryption
+           namespace: default
+      addon:
+        name: kubedump-kubernetes-resources-addon
+        tasks:
+          - name: kubernetes-resources-backup
+            params:
+              labelSelector: "app.kubernetes.io/instance=kubestash"
+        jobTemplate:
+          spec:
+            serviceAccountName: cluster-resource-reader

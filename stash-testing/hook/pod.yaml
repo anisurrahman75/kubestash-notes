@@ -1,0 +1,20 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: posthook-test-demo-pod-1
+  namespace: demo
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    command: # ["/bin/sh", "-c","Current time: $(date) > /source/data/data.txt && sleep 3000"]
+        - /bin/sh
+        - -c
+        - "echo I am Post Backup Hook.> /source/data/data.txt && sleep 3000"
+    volumeMounts:
+    - name: my-volume
+      mountPath: /source/data
+  volumes:
+  - name: my-volume
+    persistentVolumeClaim:
+      claimName: stash-sample-data

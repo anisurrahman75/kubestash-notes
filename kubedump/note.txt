@@ -1,0 +1,8 @@
+ 
+Download :
+-->./bin/kubectl-kubestash-linux-amd64 download s3-repo-namespace-namespace-resoter-resources-backup-1694609640 --destination=$HOME/Downloads/Namespace
+
+
+ ---> get ServerPreferredResources List using Kubectl
+    : kubectl api-resources --api-group='' --verbs=list
+ --->

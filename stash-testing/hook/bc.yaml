@@ -1,0 +1,48 @@
+apiVersion: stash.appscode.com/v1beta1
+kind: BackupConfiguration
+metadata:
+  name: deployment-backup
+  namespace: demo
+spec:
+  backupHistoryLimit: 10
+  repository:
+    name: gcs-repo
+  schedule: "*/5 * * * *"
+  hooks:
+    postBackup:   
+      executionPolicy: OnFinalRetryFailure
+      httpPost:
+        host: hooks.slack.com
+        path: /services/T05TKHV9DKN/B05U64YQ14Y/Z9p3U8vmjjg82NFA5eMeJrMu
+        port: 443
+        scheme: HTTPS
+        httpHeaders:
+          - name: Content-Type
+            value: application/json
+        body: |
+          {{- $msg := dict  "type" "mrkdwn" "text" (printf "Backup failed for %s/%s Status: %s." .Namespace .Target.Name .Status.Phase) -}}
+          {
+            "blocks": [
+                {
+                  "type": "section",
+                  "text": {{ toJson $msg }}
+                }
+              ]
+          } 
+  target:
+    ref:
+      apiVersion: apps/v1
+      kind: Deployment
+      name: stash-demo
+    volumeMounts:
+    - name: source-data
+      mountPath: /source/data
+    paths:
+    - /source/data
+  retryConfig:
+    maxRetry: 3
+    delay: 30s
+  retentionPolicy:
+    name: 'keep-last-5'
+    keepLast: 5
+    prune: true
