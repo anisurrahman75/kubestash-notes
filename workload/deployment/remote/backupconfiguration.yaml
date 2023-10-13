@@ -27,9 +27,9 @@ spec:
         jobTemplate: # Comes from batch/v1 JobTemplateSpec
           backoffLimit: 1
       repositories: # volume & volumeMount strategy.
-        - name: demo-storage-0
+        - name: deployent
           backend: s3-storage
-          directory: /dep/sts-0
+          directory: /dep
           encryptionSecret:
            name: encry-secret # some addon may not support encryption
            namespace: default
@@ -40,7 +40,7 @@ spec:
           - name: workload-backup
             targetVolumes:
             params:
-             paths: /source/data
+             paths: /source/data,/source/config
         jobTemplate:
           spec: 
             securityContext: 

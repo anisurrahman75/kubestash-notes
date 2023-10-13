@@ -1,0 +1,20 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: another-test-pod
+spec:
+  securityContext:
+    runAsUser: 0 
+    runAsGroup: 0
+  containers:
+  - name: test-pod
+    image: ubuntu:latest
+    command: ["/bin/sh", "-c"," sleep 3000"]
+    volumeMounts:
+    - name: my-volume
+      mountPath: /sssstash/data
+  volumes:
+  - name: my-volume
+    persistentVolumeClaim:
+      claimName: prime-1de85eee-c866-4173-a958-805077963867
+      

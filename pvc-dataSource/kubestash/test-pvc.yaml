@@ -1,0 +1,37 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: need-to-bound
+spec:
+  accessModes:
+  - ReadWriteOnce
+  # storageClassName: rancer-standard-immediate
+  resources:
+    requests:
+      storage: 1Gi
+  volumeMode: Filesystem
+  dataSourceRef:
+    apiGroup: storage.kubestash.com
+    kind: Snapshot
+    name: pvc-pvc-backup-pvc-backup-1695818400
+
+
+---
+
+kind: Pod
+apiVersion: v1
+metadata:
+  name: bound-pod
+  namespace: default
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    command: ["/bin/sh", "-c","echo 'hello from pod 1.' > /sample/data/hello.txt && sleep 3000"]
+    volumeMounts:
+    - name: my-volume
+      mountPath: /sample/data
+  volumes:
+  - name: my-volume
+    persistentVolumeClaim:
+      claimName: need-to-bound

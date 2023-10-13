@@ -35,7 +35,6 @@ spec:
         args: 
         - |
           echo "sample_data" > /source/data/data.txt
-          echo "config_data" > /source/config/config.cfg
           sleep 3000
         image: registry.k8s.io/nginx-slim:0.8
         ports:
@@ -44,8 +43,20 @@ spec:
         volumeMounts:
         - name: source-data
           mountPath: /source/data
-        - name: source-config
-          mountPath: /source/config  
+          
+      - name: copy-nginx
+        command: ["/bin/sh", "-c"]
+        args: 
+        - |
+          echo "sample_data_copy" > /source/data/data.txt
+          sleep 3000
+        image: registry.k8s.io/nginx-slim:0.8
+        ports:
+        - containerPort: 80
+          name: web
+        volumeMounts:
+        - name: copy-source-data
+          mountPath: /source/data  
   volumeClaimTemplates:
   - metadata:
       name: source-data
@@ -55,7 +66,7 @@ spec:
         requests:
           storage: 1Gi
   - metadata:
-      name: source-config
+      name: copy-source-data
     spec:
       accessModes: [ "ReadWriteOnce" ]
       resources:

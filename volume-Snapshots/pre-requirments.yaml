@@ -27,8 +27,8 @@ spec:
   args:
   - backup
   - --namespace=${namespace:=default}
-  - --backupsession=${backupsession:=}
-  - --snapshotclassname=${snapshotclassname:=}
+  - --backupsession=${backupSession:=}
+  - --snapshot-class-name=${snapshotClassName:=}
 
 ---
 
@@ -41,9 +41,9 @@ spec:
   args:
   - restore
   - --namespace=${namespace:=default}
-  - --restoresession=${restoresession:=}
-  - --snapshot=${snapshotname:=}
-  - --restoretask=${restoretask:=}  
+  - --restoresession=${restoreSession:=}
+  - --snapshot=${snapshot:=}
+  - --task-name=${taskName:=}  
 
 ---
 

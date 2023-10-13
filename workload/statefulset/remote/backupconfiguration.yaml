@@ -8,7 +8,7 @@ spec:
     apiGroup: apps
     kind: StatefulSet
     namespace: default
-    name: web
+    name: kubestash-statefulset
   backends:
     - name: s3-storage
       storageRef:
@@ -27,9 +27,9 @@ spec:
         jobTemplate: # Comes from batch/v1 JobTemplateSpec
           backoffLimit: 1
       repositories: # volume & volumeMount strategy.
-        - name: demo-storage-0
+        - name: statefulset-backup
           backend: s3-storage
-          directory: /dep/sts
+          directory: /statefulset
           encryptionSecret:
            name: encry-secret # some addon may not support encryption
            namespace: default
@@ -37,9 +37,9 @@ spec:
       addon:
         name: workload-addon
         tasks:
-          - name: workload-backup
+          - name: workload-backup 
             params:
-             paths: /source/data,source/config
+             paths: /source/data,/source/config
         jobTemplate:
           spec: 
             securityContext: 

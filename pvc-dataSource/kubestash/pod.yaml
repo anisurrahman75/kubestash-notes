@@ -2,6 +2,7 @@ kind: Pod
 apiVersion: v1
 metadata:
   name: demo-pod-1
+  namespace: default
 spec:
   containers:
   - name: busybox
@@ -10,7 +11,10 @@ spec:
     volumeMounts:
     - name: my-volume
       mountPath: /sample/data
+  securityContext:
+    runAsUser: 0 
+    runAsGroup: 0
   volumes:
   - name: my-volume
     persistentVolumeClaim:
-      claimName: host-pvc
+      claimName: example-pvc

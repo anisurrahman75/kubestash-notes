@@ -1,0 +1,59 @@
+apiVersion: storage.kubestash.com/v1alpha1
+kind: Snapshot
+metadata:
+  creationTimestamp: "2023-09-25T12:28:00Z"
+  finalizers:
+  - kubestash.com/cleanup
+  generation: 1
+  name: pvc-pvc-backup-pvc-backup-1695644880
+  namespace: default
+  ownerReferences:
+  - apiVersion: storage.kubestash.com/v1alpha1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Repository
+    name: pvc
+    uid: 83d5becc-5ea3-4f39-be75-ded927fc2e12
+  resourceVersion: "27253"
+  uid: bda9f721-1cc5-4630-b440-ac38d3a4c68d
+spec:
+  appRef:
+    kind: PersistentVolumeClaim
+    name: host-pvc
+    namespace: default
+  backupSession: pvc-backup-pvc-backup-1695644880
+  deletionPolicy: Delete
+  repository: pvc
+  session: pvc-backup
+  snapshotID: ck8npk7tahbc73aq7egg
+  type: FullBackup
+status:
+  components:
+    pvc:
+      driver: Restic
+      duration: 5.171130733s
+      integrity: true
+      path: repository/pvc-backup/pvc
+      phase: Succeeded
+      resticStats:
+      - hostPath: /stash/data
+        id: 0ffb3797ca45e1dcdee5efe9db47663d9a13900edba6a5d754ea73e72b03709f
+        size: 0 B
+        uploaded: 716 B
+      size: 551 B
+  conditions:
+  - lastTransitionTime: "2023-09-25T12:28:01Z"
+    message: Recent snapshot list updated successfully
+    reason: SuccessfullyUpdatedRecentSnapshotList
+    status: "True"
+    type: RecentSnapshotListUpdated
+  - lastTransitionTime: "2023-09-25T12:28:28Z"
+    message: Metadata uploaded to backend successfully
+    reason: SuccessfullyUploadedSnapshotMetadata
+    status: "True"
+    type: SnapshotMetadataUploaded
+  integrity: true
+  phase: Succeeded
+  size: 551 B
+  snapshotTime: "2023-09-25T12:28:22Z"
+  totalComponents: 

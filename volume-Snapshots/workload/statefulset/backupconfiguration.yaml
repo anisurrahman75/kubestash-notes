@@ -15,7 +15,7 @@ spec:
       apiGroup: storage.kubestash.com
       namespace: default
       kind: BackupStorage
-      name: s3-storage
+      name: s3-storage-vs
     retentionPolicy:
       name: demo-retention
       namespace: default
@@ -39,7 +39,7 @@ spec:
       tasks:
       - name: workload-volume-snapshot-backup
         params:
-          snapshotClassName: csi-snapshot-class
+          snapshotClassName: csi-gce-pd-snapshot-class
       jobTemplate:
         spec: 
           securityContext: 

@@ -1,0 +1,71 @@
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Function
+metadata:
+  name: workload-backup
+spec:
+  image: anisurrahman75/workload:082ef12_linux_amd64
+  args:
+  - backup
+  - --scratchDir=/tmp
+  - --namespace=${namespace:=default}
+  - --backupSession=${backupSession:=}
+  - --paths=${paths:=}
+  - --exclude=${exclude:=}
+
+---
+
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Function
+metadata:
+  name: workload-restore
+spec: 
+  image: anisurrahman75/workload:082ef12_linux_amd64
+  args:
+  - restore
+  - --namespace=${namespace:=default}
+  - --restoreSession=${restoreSession:=}
+  - --snapshotName=${snapshotName:=}
+  - --exclude=${exclude:=}
+  - --include=${include:=}
+
+---
+
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Addon
+metadata:
+  name: workload-addon
+spec:
+  backupTasks:
+    - name: workload-backup
+      singleton: false
+      function: workload-backup
+      driver: Restic #Restic, WalG
+      parameters:
+      - name: paths
+      - name: include
+      - name: exclude
+  restoreTasks:
+    - name: workload-restore
+      singleton: false
+      function: workload-restore
+      driver: Restic
+      parameters:
+      - name: paths
+      - name: include
+      - name: exclude
+
+---
+
+apiVersion: storage.kubestash.com/v1alpha1
+kind: RetentionPolicy
+metadata:
+  name: demo-retention
+spec:
+  maxRetentionPeriod: 2mo
+  successfulSnapshots:
+    last: 10
+  failedSnapshots:
+    last: 10 
+  usagePolicy:
+    allowedNamespaces:
+      from: All

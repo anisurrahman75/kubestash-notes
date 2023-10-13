@@ -3,7 +3,7 @@ kind: Function
 metadata:
   name: pvc-backup
 spec:
-  image: anisurrahman75/pvc:4f7ec84_linux_amd64
+  image: anisurrahman75/pvc:cd5dfcc_linux_amd64
   args:
   - backup
   - --scratchDir=/tmp
@@ -18,7 +18,7 @@ kind: Function
 metadata:
   name: pvc-restore
 spec: 
-  image: anisurrahman75/pvc:4f7ec84_linux_amd64
+  image: anisurrahman75/pvc:cd5dfcc_linux_amd64
   args:
   - restore
   - --namespace=${namespace:=default}
@@ -32,7 +32,7 @@ kind: Function
 metadata:
   name: workload-backup
 spec:
-  image: anisurrahman75/workload:082ef12_linux_amd64
+  image: anisurrahman75/pvc:cd5dfcc_linux_amd64
   args:
   - backup
   - --scratchDir=/tmp

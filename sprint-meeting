@@ -1,8 +1,11 @@
 
 -------------------------------------------------------------------------------------------------------------------
 --->Work-Done
-	---> Volume-Snapshooter Okay.
-	---> Apply retentionPolicy for volume-snapshotter okay.
+	---> Volume-Snapshooter Okay. -- Apply retentionPolicy for volume-snapshotter okay.
+	---> Finish KubeDump ( cluster, application, namespace )
+	---> Finish Stash new execution Policy for Post-Backup
+	---> 
+
 	---> Ask slack about PVC custom-datasource
 
 ---> Ques?
@@ -13,28 +16,35 @@
 
 	
 
-----------------PVC----------------------------
+----------------PVC StorageClass----------------------------
 --> if <STORAGECLASS=csi-standard-wait> PVC status: = pending, then PVC wait for any workload to use this PVC.
 --> if <STORAGECLASS=csi-standard-immidiate> PVC status: = Bound
 
 --------------PVC-DataSource------------------------
 
----> DataSource:
+---> DataSourceRef:
 		-> can we provide here custom object?
 			-> yes, is it possible, using volume-populator
-		-> if we provide unvalid datasource:
-			-> = Pending
+		-> if we provide unvalid datasourceRef:
+			-> = Pending : `waiting for a volume to be created, either by external provisioner "driver.longhorn.io" or manually created by system administrator`
 
- 
+
+
+
+
+
 necessary link:
 - https://kubernetes.io/blog/2022/05/16/volume-populators-beta/
 - https://kubernetes.io/blog/2021/08/30/volume-populators-redesigned/
 - https://github.com/kubernetes-csi/lib-volume-populator/tree/master/example/hello-populator
+- https://github.com/kubernetes/enhancements/blob/master/keps/sig-storage/1495-volume-populators/README.md#proposal
 
 ---> How volume-populator controller works:
 	--> https://openebs.io/blog/life-cycle-of-pvc-with-volume-populator 
 
 
+-----------------------------------------------------------------------------------------------------------------------------
 
-
-------------------------------------------------------------------------------------------------------------------------------
+Word Done: 
+	--> Finish Writting Controller For volume populator
+	--> 

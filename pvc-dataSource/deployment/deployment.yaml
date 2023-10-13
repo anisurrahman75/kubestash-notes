@@ -2,26 +2,40 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: source-data
+  annotations:
+        populator.kubestash.com/app-name: kubestash-deployment
 spec:
   accessModes:
     - ReadWriteOnce
-  # storageClassName: standard
   resources:
     requests:
       storage: 2Gi
+  dataSourceRef:
+        apiGroup: storage.kubestash.com
+        kind: Snapshot
+        name: deployent-deployment-backup-workload-backup-1696935960
+
 ---
+
 kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: source-config
+  annotations:
+        populator.kubestash.com/app-name: kubestash-deployment
 spec:
   accessModes:
     - ReadWriteOnce
-  # storageClassName: standard
   resources:
     requests:
       storage: 2Gi
+  dataSourceRef:
+        apiGroup: storage.kubestash.com
+        kind: Snapshot
+        name: deployent-deployment-backup-workload-backup-1696935960
+
 ---
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -40,9 +54,11 @@ spec:
       name: busybox
     spec:
       containers:
-      - args: ["echo sample_data > /source/data/data.txt; echo config_data > /source/config/config.cfg && sleep 3000"]
+      - image: busybox
         command: ["/bin/sh", "-c"]
-        image: busybox
+        args:
+        - |
+          sleep 3000
         imagePullPolicy: IfNotPresent
         name: busybox
         volumeMounts:

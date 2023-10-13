@@ -48,7 +48,7 @@ spec:
       resources:
         requests:
           storage: 1Gi
-      storageClassName: csi-standard-immediate
+      storageClassName: csi-gce-pd
   - metadata:
       name: source-config
     spec:
@@ -56,4 +56,4 @@ spec:
       resources:
         requests:
           storage: 1Gi
-      storageClassName: csi-standard-immediate
+      storageClassName: csi-gce-pd

@@ -7,9 +7,9 @@ spec:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 10Mi
+      storage: 1Gi
   dataSourceRef:
     apiGroup: storage.kubestash.com
     kind: Snapshot
-    name: <snapshots_name>
+    name: pvc-pvc-backup-pvc-backup-1695818400
   volumeMode: Filesystem

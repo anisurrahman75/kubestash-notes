@@ -1,0 +1,6 @@
+----------------------------------------PVC--------
+
+--> stand alone pvc restore
+	-->
+--> pod takes much time to go  running state
+	-->

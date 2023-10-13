@@ -1,7 +1,7 @@
 apiVersion: storage.kubestash.com/v1alpha1
 kind: BackupStorage
 metadata:
-  name: s3-storage-vs
+  name: s3-storage
 spec:
   storage:
     provider: s3
@@ -10,7 +10,7 @@ spec:
       region: us-east-1
       endpoint: us-east-1.linodeobjects.com
       secret: s3-secret
-      prefix: sunny-vs
+      prefix: sunny
   usagePolicy:
     allowedNamespaces:
       from: All

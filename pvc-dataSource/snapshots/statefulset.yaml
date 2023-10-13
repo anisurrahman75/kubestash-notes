@@ -1,0 +1,80 @@
+apiVersion: storage.kubestash.com/v1alpha1
+kind: Snapshot
+metadata:
+  creationTimestamp: "2023-09-25T09:56:00Z"
+  finalizers:
+  - kubestash.com/cleanup
+  generation: 1
+  name: statefulset-backup-statefulset-bckup-workload-backup-1695635760
+  namespace: default
+  ownerReferences:
+  - apiVersion: storage.kubestash.com/v1alpha1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Repository
+    name: statefulset-backup
+    uid: 31b02a9f-13eb-4894-80d7-7c7c5c1d1471
+  resourceVersion: "18479"
+  uid: 375b2731-c21c-42b9-869d-599036eb4287
+spec:
+  appRef:
+    apiGroup: apps
+    kind: StatefulSet
+    name: kubestash-statefulset
+    namespace: default
+  backupSession: statefulset-backup-workload-backup-1695635760
+  deletionPolicy: Delete
+  repository: statefulset-backup
+  session: workload-backup
+  snapshotID: ck8lic7tahbc73aq7eeg
+  type: FullBackup
+status:
+  components:
+    pod-0:
+      driver: Restic
+      duration: 10.468245525s
+      integrity: true
+      path: repository/workload-backup/pod-0
+      phase: Succeeded
+      resticStats:
+      - hostPath: /source/data
+        id: 10f3a2fe77460cbd29e15faa009c346521e69bd92d7a5ef51cfad23e7c5c36ae
+        size: 0 B
+        uploaded: 1004 B
+      - hostPath: /source/config
+        id: 6adfd05d02425f2a1b29544453c67318bc4f93b4d7e91eb2519d0660680e2a28
+        size: 0 B
+        uploaded: 993 B
+      size: 1.476 KiB
+    pod-1:
+      driver: Restic
+      duration: 10.491645362s
+      integrity: true
+      path: repository/workload-backup/pod-1
+      phase: Succeeded
+      resticStats:
+      - hostPath: /source/data
+        id: b2206d54bc57d0586aeee805ba6a1f5601f61e219c0fb60ef5f9223cd51ba747
+        size: 0 B
+        uploaded: 1001 B
+      - hostPath: /source/config
+        id: 52eceeaf2942bc07cc1b97cfd0f38bf359afc11c737f13ebd6d4760a0949e9df
+        size: 0 B
+        uploaded: 990 B
+      size: 1.476 KiB
+  conditions:
+  - lastTransitionTime: "2023-09-25T09:56:00Z"
+    message: Recent snapshot list updated successfully
+    reason: SuccessfullyUpdatedRecentSnapshotList
+    status: "True"
+    type: RecentSnapshotListUpdated
+  - lastTransitionTime: "2023-09-25T09:56:44Z"
+    message: Metadata uploaded to backend successfully
+    reason: SuccessfullyUploadedSnapshotMetadata
+    status: "True"
+    type: SnapshotMetadataUploaded
+  integrity: true
+  phase: Succeeded
+  size: 2.951 KiB
+  snapshotTime: "2023-09-25T09:56:43Z"
+  totalComponents: 2

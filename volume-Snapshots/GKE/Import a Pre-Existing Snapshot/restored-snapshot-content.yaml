@@ -6,7 +6,7 @@ spec:
   deletionPolicy: Retain
   driver: pd.csi.storage.gke.io
   source:
-    snapshotHandle: projects/<provide_your_PROJECT_ID >/global/snapshots/<provide_your_snapshots_name_found_in_cloud_console>
+    snapshotHandle: projects/appscode-testing/global/snapshots/snapshot-38e8ce15-24ef-40db-a5a8-a615d3b61678
   volumeSnapshotRef:
     kind: VolumeSnapshot
     name: restored-snapshot

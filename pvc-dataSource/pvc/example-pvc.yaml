@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: example-pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+      
+  dataSourceRef:
+    apiGroup: storage.kubestash.com
+    kind: Snapshot
+    name: pvc-pvc-backup-pvc-backup-1695818400
+  volumeMode: Filesystem
