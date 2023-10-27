@@ -1,0 +1,35 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: example-pvc
+spec:
+  accessModes:
+  - ReadWriteOnce
+  storageClassName: csi-gce-pd
+
+  resources:
+    requests:
+      storage: 1Gi
+      
+  dataSourceRef:
+    apiGroup: storage.kubestash.com
+    kind: Snapshot
+    name: pvc-pvc-backup-pvc-backup-1697782681
+  volumeMode: Filesystem
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-pod-1
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    command: ["/bin/sh", "-c","sleep 3000"]
+    volumeMounts:
+    - name: my-volume
+      mountPath: /sample/data
+  volumes:
+  - name: my-volume
+    persistentVolumeClaim:
+      claimName: example-pvc

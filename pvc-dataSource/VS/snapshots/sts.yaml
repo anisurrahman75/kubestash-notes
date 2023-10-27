@@ -1,0 +1,62 @@
+ apiVersion: storage.kubestash.com/v1alpha1
+kind: Snapshot
+metadata:
+  creationTimestamp: "2023-10-17T05:58:01Z"
+  finalizers:
+  - kubestash.com/cleanup
+  generation: 1
+  name: sts-volume-snapshot-volume-snapslume-snapshot-backup-1697522281
+  namespace: default
+  ownerReferences:
+  - apiVersion: storage.kubestash.com/v1alpha1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Repository
+    name: sts-volume-snapshot
+    uid: f930629e-f192-4eba-8c72-db9e6d244bb1
+  resourceVersion: "89104"
+  uid: 2c963378-0bf8-4c43-88eb-acc5e7c680ff
+spec:
+  appRef:
+    apiGroup: apps
+    kind: StatefulSet
+    name: kubestash-sts
+    namespace: default
+  backupSession: volume-snapshot-backup-sts-volume-snapshot-backup-1697522281
+  deletionPolicy: Delete
+  repository: sts-volume-snapshot
+  session: sts-volume-snapshot-backup
+  snapshotID: ckn24qaf8qbs73c2h0fg
+  type: FullBackup
+status:
+  components:
+    pod-0:
+      driver: VolumeSnapshotter
+      phase: Succeeded
+      volumeSnapshotterStats:
+      - pvcName: source-data-kubestash-sts-0
+        volumeSnapshotName: source-data-kubestash-sts-0-1697522281
+      - pvcName: source-config-kubestash-sts-0
+        volumeSnapshotName: source-config-kubestash-sts-0-1697522281
+    pod-1:
+      driver: VolumeSnapshotter
+      phase: Succeeded
+      volumeSnapshotterStats:
+      - pvcName: source-data-kubestash-sts-1
+        volumeSnapshotName: source-data-kubestash-sts-1-1697522281
+      - pvcName: source-config-kubestash-sts-1
+        volumeSnapshotName: source-config-kubestash-sts-1-1697522281
+  conditions:
+  - lastTransitionTime: "2023-10-17T05:58:01Z"
+    message: Recent snapshot list updated successfully
+    reason: SuccessfullyUpdatedRecentSnapshotList
+    status: "True"
+    type: RecentSnapshotListUpdated
+  - lastTransitionTime: "2023-10-17T05:58:21Z"
+    message: Metadata uploaded to backend successfully
+    reason: SuccessfullyUploadedSnapshotMetadata
+    status: "True"
+    type: SnapshotMetadataUploaded
+  phase: Succeeded
+  snapshotTime: "2023-10-17T05:58:21Z"
+  totalComponents: 2

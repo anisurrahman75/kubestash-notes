@@ -23,7 +23,7 @@ kind: Function
 metadata:
   name: volume-snapshots-backup
 spec:
-  image: anisurrahman75/volume-snapshotter:volume-snapshotter_linux_amd64
+  image: anisurrahman75/volume-snapshotter:f69f61ab_linux_amd64
   args:
   - backup
   - --namespace=${namespace:=default}
@@ -37,7 +37,7 @@ kind: Function
 metadata:
   name: volume-snapshots-restore
 spec: 
-  image: anisurrahman75/volume-snapshotter:volume-snapshotter_linux_amd64
+  image: anisurrahman75/volume-snapshotter:f69f61ab_linux_amd64
   args:
   - restore
   - --namespace=${namespace:=default}
@@ -54,7 +54,7 @@ metadata:
 spec:
   maxRetentionPeriod: 2mo
   successfulSnapshots:
-    last: 2
+    last: 10
   usagePolicy:
     allowedNamespaces:
       from: All

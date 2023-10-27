@@ -40,7 +40,7 @@ spec:
           - name: workload-backup
             targetVolumes:
             params:
-             paths: /source/data,/source/config
+             paths: /source/data,/source/config,/copy/source/data,/copy/source/config
         jobTemplate:
           spec: 
             securityContext: 

@@ -31,33 +31,39 @@ spec:
     spec:
       containers:
       - name: nginx
-        command: ["/bin/sh", "-c"]
-        args: 
-        - |
-          echo "sample_data" > /source/data/data.txt
-          echo "config_data" > /source/config/config.cfg
-          sleep 3000
         image: registry.k8s.io/nginx-slim:0.8
         ports:
         - containerPort: 80
           name: web
         volumeMounts:
-        - name: source-data
+        - name: restore-source-data
           mountPath: /source/data
-        - name: source-config
+        - name: restore-source-config
           mountPath: /source/config  
   volumeClaimTemplates:
   - metadata:
-      name: source-data
+      name: restore-source-data
+      annotations:
+        populator.kubestash.com/app-name: kubestash-statefulset
     spec:
       accessModes: [ "ReadWriteOnce" ]
       resources:
         requests:
           storage: 1Gi
+      dataSourceRef:
+        apiGroup: storage.kubestash.com
+        kind: Snapshot
+        name: sts-volume-snapshot-volume-snapslume-snapshot-backup-1697631241
   - metadata:
-      name: source-config
+      name: restore-source-config
+      annotations:
+        populator.kubestash.com/app-name: kubestash-statefulset
     spec:
       accessModes: [ "ReadWriteOnce" ]
       resources:
         requests:
           storage: 1Gi
+      dataSourceRef:
+        apiGroup: storage.kubestash.com
+        kind: Snapshot
+        name: sts-volume-snapshot-volume-snapslume-snapshot-backup-1697631241

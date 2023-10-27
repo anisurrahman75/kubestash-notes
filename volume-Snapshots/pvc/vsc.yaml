@@ -1,0 +1,15 @@
+apiVersion: snapshot.storage.k8s.io/v1
+kind: VolumeSnapshotContent
+metadata:
+  name: snapcontent-080c8705-cebe-4ce7-bba5-9f94c127d580
+spec:
+  deletionPolicy: Delete
+  driver: pd.csi.storage.gke.io
+  source:
+    volumeHandle: projects/appscode-testing/zones/us-central1-c/disks/pvc-986112d9-25b1-46db-a386-a40a24299e32
+  volumeSnapshotClassName: csi-gce-pd-snapshot-class
+  volumeSnapshotRef:
+    apiVersion: snapshot.storage.k8s.io/v1
+    kind: VolumeSnapshot
+    name: host-pvc-1697714521
+    namespace: default

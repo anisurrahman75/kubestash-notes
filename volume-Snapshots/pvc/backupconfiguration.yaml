@@ -39,7 +39,7 @@ spec:
       tasks:
       - name: workload-volume-snapshot-backup
         params:
-          snapshotClassName: create-this
+          snapshotClassName: csi-gce-pd-snapshot-class
       jobTemplate:
         spec: 
           securityContext: 

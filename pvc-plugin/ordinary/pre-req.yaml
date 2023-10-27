@@ -1,4 +1,28 @@
 apiVersion: addons.kubestash.com/v1alpha1
+kind: Function
+metadata:
+  name: pvc-backup
+spec:
+  image: anisurrahman75/pvc:v0.1.0-rc.0_linux_amd64
+  args:
+  - backup
+  - --namespace=${namespace:=default}
+  - --backupsession=${backupSession:=}
+  - --paths=${paths:=}
+---
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Function
+metadata: 
+  name: pvc-restore
+spec: 
+  image: anisurrahman75/pvc:v0.1.0-rc.0_linux_amd64
+  args:
+  - restore
+  - --namespace=${namespace:=default}
+  - --restoresession=${restoreSession:=}
+  - --snapshot=${snapshot:=}
+---
+apiVersion: addons.kubestash.com/v1alpha1
 kind: Addon
 metadata:
   name: pvc-addon
@@ -32,8 +56,15 @@ spec:
         source:
           persistentVolumeClaim:
             claimName: ${PVC_NAME}
-              
-
-
-
-      
+---
+apiVersion: storage.kubestash.com/v1alpha1
+kind: RetentionPolicy
+metadata:
+  name: demo-retention
+spec:
+  maxRetentionPeriod: 2mo
+  successfulSnapshots:
+    last: 2
+  usagePolicy:
+    allowedNamespaces:
+      from: All

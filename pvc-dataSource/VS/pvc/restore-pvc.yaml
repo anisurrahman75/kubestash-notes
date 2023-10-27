@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: host-pvc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 3Gi
+  dataSourceRef:
+    apiGroup: storage.kubestash.com
+    kind: Snapshot
+    name: pvc-volume-snapshot-pvc-volume-slume-snapshot-backup-1697779743
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: demo-pod-1
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    command: ["/bin/sh", "-c","sleep 3000"]
+    volumeMounts:
+    - name: my-volume
+      mountPath: /sample/data
+  volumes:
+  - name: my-volume
+    persistentVolumeClaim:
+      claimName: host-pvc

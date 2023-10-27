@@ -8,14 +8,14 @@ spec:
     apiGroup: apps
     kind: StatefulSet
     namespace: default
-    name: kubestash-sts
+    name: kubestash-statefulset
   backends:
   - name: s3-storage
     storageRef:
       apiGroup: storage.kubestash.com
       namespace: default
       kind: BackupStorage
-      name: s3-storage-vs
+      name: s3-storage
     retentionPolicy:
       name: demo-retention
       namespace: default
