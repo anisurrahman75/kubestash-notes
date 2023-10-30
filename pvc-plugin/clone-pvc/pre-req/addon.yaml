@@ -5,6 +5,6 @@ metadata:
 spec:
   restoreTasks:
     - name: clone-pvc-restore
-      singleton: false
+      singleton: false 
       function: clone-pvc-restore
       driver: Restic

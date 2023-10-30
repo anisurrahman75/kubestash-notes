@@ -1,0 +1,41 @@
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Function
+metadata:
+  name: kubedump-kubernetes-resources-backup
+spec: 
+  image: anisurrahman75/kubedump:kubedump-implementation_linux_amd64
+  args:
+  - backup
+  - --scratch-dir=/tmp
+  - --enable-cache=${ENABLE_CACHE:=true}
+  - --sanitize=${sanitize:=true}
+  - --label-selector=${labelSelector:=}
+  - --include-dependants=${includeDependants:=false}
+  - --namespace=${namespace:=default}
+  - --backupsession=${backupSession:=}
+
+---
+
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Addon
+metadata:
+  name: kubedump-kubernetes-resources-addon
+spec:
+  backupTasks:
+    - name: kubernetes-resources-backup
+      function: kubedump-kubernetes-resources-backup
+      singleton: true
+      driver: Restic
+      parameters:
+      - name: labelSelector
+        default: ""
+        usage: Specify a label selector to filter the resources.
+        required: false
+      - name: sanitize
+        default: "true"
+        usage: Specify whether to remove the decorators from the resource YAML.
+        required: false
+      - name: includeDependants
+        default: "false"
+        usage: Specify whether to backup the dependants object along with their parent.
+        required: false
