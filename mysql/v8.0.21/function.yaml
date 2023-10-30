@@ -1,0 +1,27 @@
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Function
+metadata:
+  name: mysql-backup-5-7-25
+spec:
+  image: anisurrahman75/mysql:refactor_8.0.21_linux_amd64
+  args:
+  - backup
+  - --scratchDir=${scratchDir:=/tmp}
+  - --namespace=${namespace:=default}
+  - --backupsession=${backupSession:=}
+  - --mysql-args=${args:=}
+---
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Function
+metadata:
+  name: mysql-restore-5-7-25
+spec: 
+  image: anisurrahman75/mysql:refactor_8.0.21_linux_amd64
+  args:
+  - restore
+  - --scratchDir=${scratchDir:=/tmp}
+  - --namespace=${namespace:=default}
+  - --restoresession=${restoreSession:=}
+  - --snapshot=${snapshotName:=}
+  - --mysql-args=${args:=}
+
