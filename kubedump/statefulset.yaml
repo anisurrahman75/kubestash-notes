@@ -16,7 +16,7 @@ spec:
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: kubestash-sts
+  name: kubestash-statefulset
   # namespace: demo
 spec:
   serviceName: "nginx"
@@ -31,7 +31,13 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: registry.k8s.io/nginx-slim:0.8
+        command: ["/bin/sh", "-c"]
+        args: 
+        - |
+          echo "sample_data" > /source/data/data.txt
+          echo "config_data" > /source/config/config.cfg
+          sleep 3000
+        image: busybox:latest
         ports:
         - containerPort: 80
           name: web

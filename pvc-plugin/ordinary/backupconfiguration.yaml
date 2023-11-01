@@ -10,10 +10,10 @@ spec:
     name: host-pvc
     namespace: default
   backends:
-  - name: s3-storage
+  - name: gcs-storage
     storageRef:
       namespace: default
-      name: s3-storage
+      name: gcs-storage
     retentionPolicy:
       name: demo-retention
       namespace: default
@@ -26,7 +26,7 @@ spec:
         backoffLimit: 1
     repositories: # volume & volumeMount strategy.
     - name: pvc
-      backend: s3-storage
+      backend: gcs-storage
       directory: /pvc-backup
       encryptionSecret:
        name: encry-secret # some addon may not support encryption

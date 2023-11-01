@@ -7,14 +7,12 @@ spec:
     apiGroup: apps
     kind: StatefulSet
     namespace: default
-    name: kubestash-sts
+    name: kubestash-statefulset
   backends:
-    - name: s3-storage
+    - name: gcs-storage
       storageRef:
-        apiGroup: storage.kubestash.com
         namespace: default
-        kind: BackupStorage
-        name: s3-storage
+        name: gcs-storage
       retentionPolicy:
         name: kubedump-rp
         namespace: default
@@ -28,8 +26,8 @@ spec:
         jobTemplate:
           backoffLimit: 1
       repositories:
-        - name: s3-repo-application
-          backend: s3-storage
+        - name: gcs-repo-application
+          backend: gcs-storage
           directory: /kubedump/application
           deletionPolicy: WipeOut
           encryptionSecret:

@@ -1,5 +1,4 @@
 
----
 apiVersion: addons.kubestash.com/v1alpha1
 kind: Function
 metadata:

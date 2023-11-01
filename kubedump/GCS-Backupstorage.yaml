@@ -1,0 +1,16 @@
+apiVersion: storage.kubestash.com/v1alpha1
+kind: BackupStorage
+metadata:
+  name: gcs-storage
+spec:
+  storage:
+    provider: gcs
+    gcs:
+      bucket: kubestash
+      prefix: sunny
+      secret: gcs-secret 
+  usagePolicy:
+    allowedNamespaces:
+      from: All
+  default: true # Use this BackupStorage as the default
+  deletionPolicy: WipeOut # One of: WipeOut, Delete
