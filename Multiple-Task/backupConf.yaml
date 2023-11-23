@@ -1,14 +1,14 @@
 apiVersion: core.kubestash.com/v1alpha1
 kind: BackupConfiguration
 metadata:
-  name: pvc-backup
-  namespace: demo
+  name: pvc-full-backup
+  namespace: default
 spec:
   target:
     apiGroup:
     kind: PersistentVolumeClaim
     name: host-pvc
-    namespace: demo
+    namespace: default
   backends:
   - name: s3-storage
     storageRef:
@@ -25,21 +25,22 @@ spec:
       jobTemplate: # Comes from batch/v1 JobTemplateSpec
         backoffLimit: 1
     repositories: # volume & volumeMount strategy.
-    - name: pvc-demo
+    - name: pvc
       backend: s3-storage
-      directory: /pvc-backup-demo
+      directory: /pvc-backup-repo
       encryptionSecret:
        name: encry-secret # some addon may not support encryption
        namespace: default
-      deletionPolicy: WipeOut 
+      deletionPolicy: WipeOut
     addon:
       name: pvc-addon
       tasks:
       - name: PhysicalBackup
+      - name: VolumeSnapshot
       jobTemplate:
         spec: 
           securityContext: 
-            runAsUser: 0
+            runAsUser: 0 
     retryConfig:
       maxRetry: 2
       delay: 1m

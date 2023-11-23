@@ -3,6 +3,6 @@ kind: VolumeSnapshot
 metadata:
   name: snapshot-source-pvc
 spec:
-  volumeSnapshotClassName: csi-gce-pd-snapshot-class
+  # volumeSnapshotClassName: csi-gce-pd-snapshot-class
   source:
     persistentVolumeClaimName: source-pvc

@@ -1,0 +1,11 @@
+apiVersion: storage.kubestash.com/v1alpha1
+kind: RetentionPolicy
+metadata:
+  name: demo-retention
+spec:
+  maxRetentionPeriod: 2mo
+  successfulSnapshots:
+    last: 2
+  usagePolicy:
+    allowedNamespaces:
+      from: All

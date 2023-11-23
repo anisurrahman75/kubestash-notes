@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx
-  # namespace: demo
+  namespace: demo
   labels:
     app: nginx
 spec:
@@ -17,10 +17,10 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: kubestash-statefulset
-  # namespace: demo
+  namespace: demo
 spec:
   serviceName: "nginx"
-  replicas: 2
+  replicas: 3
   selector:
     matchLabels:
       app: nginx
@@ -38,8 +38,8 @@ spec:
         volumeMounts:
         - name: restore-source-data
           mountPath: /source/data
-        - name: restore-source-config
-          mountPath: /source/config  
+        # - name: restore-source-config
+        #   mountPath: /source/config  
   volumeClaimTemplates:
   - metadata:
       name: restore-source-data
@@ -53,17 +53,17 @@ spec:
       dataSourceRef:
         apiGroup: storage.kubestash.com
         kind: Snapshot
-        name: sts-volume-snapshot-volume-snapslume-snapshot-backup-1697631241
-  - metadata:
-      name: restore-source-config
-      annotations:
-        populator.kubestash.com/app-name: kubestash-statefulset
-    spec:
-      accessModes: [ "ReadWriteOnce" ]
-      resources:
-        requests:
-          storage: 1Gi
-      dataSourceRef:
-        apiGroup: storage.kubestash.com
-        kind: Snapshot
-        name: sts-volume-snapshot-volume-snapslume-snapshot-backup-1697631241
+        name: demo-storage-0-sample-backup-sts-minute-backup-cycle-1700563441
+  # - metadata:
+  #     name: restore-source-config
+  #     annotations:
+  #       populator.kubestash.com/app-name: kubestash-statefulset
+  #   spec:
+  #     accessModes: [ "ReadWriteOnce" ]
+  #     resources:
+  #       requests:
+  #         storage: 1Gi
+  #     dataSourceRef:
+  #       apiGroup: storage.kubestash.com
+  #       kind: Snapshot
+  #       name: statefulset-backup-statefulset-bckup-workload-backup-1699355160

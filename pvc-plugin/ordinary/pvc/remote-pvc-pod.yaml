@@ -3,9 +3,9 @@ kind: PersistentVolumeClaim
 metadata:
   name: host-pvc
 spec:
-  storageClassName: premium-rwo
+  # storageClassName: premium-rwo
   accessModes:
-    - ReadOnlyMany
+    - ReadWriteOnce
   resources:
     requests:
       storage: 3Gi

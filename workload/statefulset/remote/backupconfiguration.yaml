@@ -12,9 +12,7 @@ spec:
   backends:
     - name: s3-storage
       storageRef:
-        apiGroup: storage.kubestash.com
         namespace: default
-        kind: BackupStorage
         name: s3-storage
       retentionPolicy:
         name: demo-retention
@@ -37,7 +35,7 @@ spec:
       addon:
         name: workload-addon
         tasks:
-          - name: workload-backup 
+          - name: PhysicalBackup 
             params:
              paths: /source/data,/source/config
         jobTemplate:

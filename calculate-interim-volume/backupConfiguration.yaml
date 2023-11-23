@@ -1,24 +1,21 @@
 apiVersion: core.kubestash.com/v1alpha1
 kind: BackupConfiguration
 metadata:
-  name: db-backup
-  namespace: demo
+  name: es-db-backup
 spec:
   target:
     apiGroup: kubedb.com
     kind: Elasticsearch
-    namespace: demo
-    name: es-quickstart
+    namespace: default
+    name: sample-es
   backends:
-  - name: s3-backend
+  - name: s3-storage
     storageRef:
-      apiGroup: storage.kubestash.com
-      namespace: demo
-      kind: BackupStorage
       name: s3-storage
+      namespace: default
     retentionPolicy:
-      name: sample-retention-policy
-      namespace: demo
+      name: demo-retention
+      namespace: default
   sessions:
   - name: frequent-backup
     sessionHistoryLimit: 10
@@ -30,27 +27,27 @@ spec:
         backoffLimit: 1
     repositories:
     - name: s3-repo-es
-      backend: s3-backend
+      backend: s3-storage
       directory: /sample/kubestashs/elastic
       encryptionSecret:
         name: encry-secret # some addon may not support encryption
-        namespace: demo
+        namespace: default
     addon:
-      name: elasticsearch
+      name: elasticsearch-addon-interim
       tasks:
-      - name: backup-es
-      
+      - name: LogicalBackup
+        addonVolumes:
+        - name: ${INTERIM_VOLUME}
+          source:
+            volumeClaimTemplate:
+              spec:
+                accessModes:
+                - ReadWriteOnce
+                resources:
+                  requests:
+                    storage: 10Gi
       jobTemplate:
         spec:
           securityContext:
             runAsUser: 0
             runAsGroup: 0
-    #     targetVolumes:
-    #       volumeMounts:
-    #       - name: source-data
-    #         mountPath: /source/data
-    #     params:
-    #       paths: /source/data
-    # retryConfig:
-    #   maxRetry: 2
-    #   delay: 1m

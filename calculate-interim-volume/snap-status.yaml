@@ -1,0 +1,30 @@
+status:
+  components:
+    pvc:
+      driver: Restic
+      duration: 11.706880095s
+      integrity: true
+      path: repository/pvc-backup/pvc
+      phase: Succeeded
+      resticStats:
+      - hostPath: /stash/data
+        id: 6ed82eac384f6e5419f5c5e5a7c330efa2b992ab2a6c20cd877a704efe8c1fba
+        size: 9.313 GiB
+        uploaded: 1.963 MiB
+      size: 1.082 KiB
+  conditions:
+  - lastTransitionTime: "2023-11-02T10:50:00Z"
+    message: Recent snapshot list updated successfully
+    reason: SuccessfullyUpdatedRecentSnapshotList
+    status: "True"
+    type: RecentSnapshotListUpdated
+  - lastTransitionTime: "2023-11-02T10:50:34Z"
+    message: Metadata uploaded to backend successfully
+    reason: SuccessfullyUploadedSnapshotMetadata
+    status: "True"
+    type: SnapshotMetadataUploaded
+  integrity: true
+  phase: Succeeded
+  size: 1.081 KiB
+  snapshotTime: "2023-11-02T10:50:33Z"
+  totalComponents: 1

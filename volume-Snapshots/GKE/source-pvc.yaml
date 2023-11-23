@@ -5,7 +5,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: csi-gce-pd
+  # storageClassName: csi-gce-pd
   resources:
     requests:
       storage: 1Gi

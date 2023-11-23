@@ -1,0 +1,28 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: RestoreSession
+metadata:
+  name: es-restoresession
+  namespace: default
+spec:
+  target:
+    apiGroup: kubedb.com
+    kind: Elasticsearch
+    namespace: default
+    name: sample-es
+  dataSource:
+    repository: s3-repo-es
+    snapshot: s3-repo-es-es-db-backup-frequent-backup-1699873920
+    encryptionSecret:
+      name: encry-secret # some addon may not support encryption
+      namespace: default
+  addon:
+    name: elasticsearch-addon-interim
+    tasks:
+    - name: LogicalBackupRestore
+      addonVolumes:
+        - name: ${INTERIM_VOLUME}
+          source:
+            volumeClaimTemplate:
+              spec:
+                accessModes:
+                - ReadWriteOnce
