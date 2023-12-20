@@ -1,0 +1,46 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: test-pod
+  namespace: demo
+spec:
+  containers:
+  - image: ubuntu:latest
+    command: ["/bin/sh", "-c"]
+    args: 
+    - |
+      echo "Hello i am from retention-policy-container"
+    imagePullPolicy: IfNotPresent
+    name: retention-policy-manager
+    resources: {}
+    volumeMounts:
+    - mountPath: /pvc/data
+      name: host-storage
+  initContainers:
+  - image: ubuntu:latest
+    command: ["/bin/sh", "-c"]
+    args: 
+    - |
+      echo "Hello i am from logicalbackup-0"
+    imagePullPolicy: IfNotPresent
+    name: logicalbackup-0
+    resources: {}
+    volumeMounts:
+    - mountPath: /kubestash-data
+      name: kubestash-data-volume
+    - mountPath: /kubestash-tmp
+      name: kubestash-tmp-volume
+    - mountPath: /pvc/data
+      name: host-storage
+  restartPolicy: Never
+  securityContext:
+    runAsUser: 0
+  volumes:
+  - name: kubestash-data-volume
+    persistentVolumeClaim:
+      claimName: host-pvc
+  - emptyDir: {}
+    name: kubestash-tmp-volume
+  - name: host-storage
+    persistentVolumeClaim:
+      claimName: kubestash-pvc

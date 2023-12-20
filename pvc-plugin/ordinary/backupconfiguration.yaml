@@ -7,39 +7,48 @@ spec:
   target:
     apiGroup:
     kind: PersistentVolumeClaim
-    name: host-pvc
+    name: backup-target-pvc
     namespace: demo
   backends:
-  - name: s3-storage
+  - name: pvc-backend
     storageRef:
-      namespace: default
-      name: s3-storage
+      namespace: demo
+      name: azure-storage
     retentionPolicy:
       name: demo-retention
-      namespace: default
+      namespace: demo
   sessions:
   - name: pvc-backup
     sessionHistoryLimit: 3
     scheduler: # CronJob specification
-      schedule: "*/2 * * * *"
+      schedule: "*/1 * * * *"
       jobTemplate: # Comes from batch/v1 JobTemplateSpec
         backoffLimit: 1
     repositories: # volume & volumeMount strategy.
-    - name: pvc-demo
-      backend: s3-storage
+    - name: pvc-demo-azure
+      backend: pvc-backend
       directory: /pvc-backup-demo
       encryptionSecret:
        name: encry-secret # some addon may not support encryption
-       namespace: default
+       namespace: demo
       deletionPolicy: WipeOut 
     addon:
       name: pvc-addon
       tasks:
-      - name: PhysicalBackup
+      - name: LogicalBackup
+      containerRuntimeSettings:
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
       jobTemplate:
         spec: 
           securityContext: 
-            runAsUser: 0
+            runAsUser: 65535
+            runAsNonRoot: true
+            seccompProfile:
+              type: RuntimeDefault
     retryConfig:
-      maxRetry: 2
+      maxRetry: 0
       delay: 1m

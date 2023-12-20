@@ -2,12 +2,12 @@ apiVersion: core.kubestash.com/v1alpha1
 kind: BackupConfiguration
 metadata:
   name: statefulset-backup
-  namespace: default
+  namespace: demo
 spec:
   target:
     apiGroup: apps
     kind: StatefulSet
-    namespace: default
+    namespace: demo
     name: kubestash-statefulset
   backends:
     - name: s3-storage

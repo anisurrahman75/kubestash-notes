@@ -9,14 +9,14 @@ spec:
     local:
       mountPath: /pvc/data
       persistentVolumeClaim:
-        claimName: kubestash-pvc
+        claimName: storage-pvc
   usagePolicy:
     allowedNamespaces:
       from: All
   default: false 
   deletionPolicy: WipeOut
-  # runtimeSettings:
-  #   pod:
-  #     securityContext:
-  #       runAsUser: 65534
-  #       fsGroup: 65534
+  runtimeSettings:
+    pod:
+      securityContext:
+        fsGroup: 65535
+        

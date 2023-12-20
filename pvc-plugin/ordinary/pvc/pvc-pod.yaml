@@ -1,25 +1,7 @@
-# apiVersion: v1
-# kind: PersistentVolume
-# metadata:
-#   name: host-pv
-#   labels:
-#     type: local
-# spec:
-#   storageClassName: manual
-#   capacity:
-#     storage: 10Gi
-#   accessModes:
-#     - ReadWriteOnce
-#   hostPath:
-#     path: "/stash-test"
-
-
-# ---
-
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: host-pvc
+  name: backup-target-pvc
   namespace: demo
 spec:
   # storageClassName: manual
@@ -27,24 +9,37 @@ spec:
     - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi
+      storage: 2Gi
 ---
-kind: Pod
 apiVersion: v1
+kind: Pod
 metadata:
-  name: demo-pod-1
+  name: demo-pod
   namespace: demo
 spec:
+  securityContext:
+    runAsUser: 65535
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault
+
   containers:
-  - name: ubuntu
-    image: ubuntu
-    command: ["/bin/sh", "-c","truncate -s 10GB sample/data/10gi.gb && sleep 3000"]
+  - name: busybox
+    image: busybox
+    command: ["/bin/sh", "-c"]
+    args: 
+    - |
+      echo "sample_data" > /target/mountpath/data.txt
+      sleep 3000
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+          - ALL
     volumeMounts:
     - name: my-volume
-      mountPath: /sample/data
+      mountPath: /target/mountpath
   volumes:
   - name: my-volume
     persistentVolumeClaim:
-      claimName: host-pvc
-
-
+      claimName: backup-target-pvc

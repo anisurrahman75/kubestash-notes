@@ -36,16 +36,16 @@ spec:
       name: elasticsearch-addon-interim
       tasks:
       - name: LogicalBackup
-        addonVolumes:
-        - name: ${INTERIM_VOLUME}
-          source:
-            volumeClaimTemplate:
-              spec:
-                accessModes:
-                - ReadWriteOnce
-                resources:
-                  requests:
-                    storage: 10Gi
+        # addonVolumes:
+        # - name: ${INTERIM_VOLUME}
+        #   source:
+        #     volumeClaimTemplate:
+        #       spec:
+        #         accessModes:
+        #         - ReadWriteOnce
+        #         resources:
+        #           requests:
+        #             storage: 10Gi
       jobTemplate:
         spec:
           securityContext:

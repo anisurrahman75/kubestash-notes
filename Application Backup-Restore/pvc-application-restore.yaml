@@ -13,4 +13,4 @@ spec:
   addon:
     name: pvc-addon
     tasks:
-    - name: 
+    - name: pvc-application-restore

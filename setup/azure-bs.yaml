@@ -1,0 +1,18 @@
+apiVersion: storage.kubestash.com/v1alpha1
+kind: BackupStorage
+metadata:
+  name: azure-storage
+  namespace: demo
+spec:
+  storage:
+    provider: azure
+    azure:
+      storageAccount: kubestash
+      container: kubestash-qa
+      prefix: sunny
+      secret: azure-secret
+  usagePolicy:
+    allowedNamespaces:
+      from: All
+  default: true 
+  deletionPolicy: WipeOut

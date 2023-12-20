@@ -2,6 +2,7 @@ apiVersion: storage.kubestash.com/v1alpha1
 kind: BackupStorage
 metadata:
   name: s3-storage
+  namespace: demo
 spec:
   storage:
     provider: s3
@@ -16,15 +17,3 @@ spec:
       from: All
   default: true 
   deletionPolicy: WipeOut
----
-apiVersion: storage.kubestash.com/v1alpha1
-kind: RetentionPolicy
-metadata:
-  name: demo-retention
-spec:
-  maxRetentionPeriod: 2mo
-  successfulSnapshots:
-    last: 2
-  usagePolicy:
-    allowedNamespaces:
-      from: All

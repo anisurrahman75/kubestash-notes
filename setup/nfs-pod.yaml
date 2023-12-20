@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    run: ubuntu
+  name: ubuntu
+spec:
+  containers:
+  - image: ubuntu:latest
+    command: ["/bin/sh", "-c"," sleep 3000"]
+    name: ubuntu
+    volumeMounts:
+    - name: nfs-vol
+      mountPath: /var/nfs # The mountpoint inside the container
+  volumes:
+  - name: nfs-vol
+    nfs:
+      server: 192.168.0.28 # IP to our NFS server
+      path: /NFS/backups # The exported directory

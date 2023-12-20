@@ -1,7 +1,8 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: restore-host-pvc
+  name: restored-pvc
+  namespace: demo
 spec:
   accessModes:
     - ReadWriteOnce
@@ -14,6 +15,7 @@ kind: Pod
 apiVersion: v1
 metadata:
   name: restore-demo-pod-1
+  namespace: demo
 spec:
   containers:
   - name: busybox
@@ -21,8 +23,8 @@ spec:
     command: ["/bin/sh", "-c","sleep 3000"]
     volumeMounts:
     - name: my-volume
-      mountPath: /sample/data
+      mountPath: /target/mountpath
   volumes:
   - name: my-volume
     persistentVolumeClaim:
-      claimName: restore-host-pvc
+      claimName: restored-pvc

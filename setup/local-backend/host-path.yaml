@@ -1,0 +1,21 @@
+apiVersion: storage.kubestash.com/v1alpha1
+kind: BackupStorage
+metadata:
+  name: local-storage-with-hostpath
+  namespace: demo
+spec:
+  storage:
+    provider: local
+    local:
+      mountPath: /safe/data
+      hostPath:
+        path: /data/kubestash-test/storage
+  usagePolicy:
+    allowedNamespaces:
+      from: All
+  default: true
+  deletionPolicy: WipeOut
+  runtimeSettings:
+    pod:
+      securityContext:
+        runAsUser: 0
