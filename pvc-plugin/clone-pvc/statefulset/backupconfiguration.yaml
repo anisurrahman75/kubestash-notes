@@ -10,15 +10,13 @@ spec:
     namespace: demo
     name: kubestash-statefulset
   backends:
-    - name: s3-storage
+    - name: gcs-storage
       storageRef:
-        apiGroup: storage.kubestash.com
-        namespace: default
-        kind: BackupStorage
-        name: s3-storage
+        namespace: demo
+        name: gcs-storage
       retentionPolicy:
         name: demo-retention
-        namespace: default
+        namespace: demo
   sessions:
     - name: workload-backup
       sessionHistoryLimit: 50
@@ -28,16 +26,16 @@ spec:
           backoffLimit: 1
       repositories: # volume & volumeMount strategy.
         - name: statefulset-backup
-          backend: s3-storage
+          backend: gcs-storage
           directory: /statefulset
           encryptionSecret:
            name: encry-secret # some addon may not support encryption
-           namespace: default
+           namespace: demo
           deletionPolicy: WipeOut 
       addon:
         name: workload-addon
         tasks:
-          - name: workload-backup 
+          - name: LogicalBackup 
             params:
              paths: /source/data,/source/config
         jobTemplate:

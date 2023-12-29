@@ -1,0 +1,35 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: RestoreSession
+metadata:
+  name: restore-sts-pvc-from-volumesnapshot
+  namespace: demo
+spec:
+  dataSource:
+    repository: sts-volume-snapshot
+    snapshot: latest
+    encryptionSecret:
+      name: encry-secret # some addon may not support encryption
+      namespace: demo
+  addon:
+    name: pvc-addon
+    tasks:
+    - name: VolumeSnapshotRestore
+      targetVolumes:  
+        volumeClaimTemplates:
+        - metadata:
+            name: restore-data-restore-statefulset-${POD_ORDINAL} 
+          spec:
+            accessModes: [ "ReadWriteOnce" ]
+            storageClassName: "csi-gce-pd"
+            resources:
+              requests:
+                storage: 1Gi
+        - metadata:
+            name: restore-config-restore-statefulset-${POD_ORDINAL}
+          spec:
+            accessModes: [ "ReadWriteOnce" ]
+            storageClassName: "csi-gce-pd"
+            resources:
+              requests:
+                storage: 1Gi
+            

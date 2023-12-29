@@ -1,0 +1,41 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: restore-target-pvc
+  namespace: demo
+spec:
+  # storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: restore-pod
+  namespace: demo
+spec:
+  securityContext:
+    runAsUser: 65535
+    runAsNonRoot: true
+    seccompProfile:
+      type: RuntimeDefault
+
+  containers:
+  - name: busybox
+    image: busybox
+    command: ["/bin/sh", "-c","sleep 3000"]
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+          - ALL
+    volumeMounts:
+    - name: my-volume
+      mountPath: /target/mountpath
+  volumes:
+  - name: my-volume
+    persistentVolumeClaim:
+      claimName: restore-target-pvc

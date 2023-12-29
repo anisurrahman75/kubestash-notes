@@ -7,7 +7,7 @@ spec:
   target:
     apiGroup:
     kind: PersistentVolumeClaim
-    name: restored-pvc
+    name: restore-target-pvc
     namespace: demo
   dataSource:
     repository: pvc-demo-gcs
@@ -19,7 +19,16 @@ spec:
     name: pvc-addon
     tasks:
     - name: LogicalBackupRestore
-    jobTemplate:
-        spec: 
-          securityContext: 
-            runAsUser: 0
+  runtimeSettings:
+    pod:
+      securityContext:
+        runAsUser: 65535
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+    container:
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+            - ALL

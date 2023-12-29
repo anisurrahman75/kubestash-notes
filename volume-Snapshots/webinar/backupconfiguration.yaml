@@ -1,16 +1,16 @@
 apiVersion: core.kubestash.com/v1alpha1
 kind: BackupConfiguration
 metadata:
-  name: pvc-backup
+  name: volume-snapshot-backup
   namespace: demo
 spec:
   target:
-    apiGroup:
-    kind: PersistentVolumeClaim
-    name: backup-target-pvc
+    apiGroup: apps
+    kind: StatefulSet
     namespace: demo
+    name: target-statefulset
   backends:
-  - name: pvc-backend
+  - name: gcs-storage
     storageRef:
       namespace: demo
       name: gcs-storage
@@ -18,37 +18,30 @@ spec:
       name: demo-retention
       namespace: demo
   sessions:
-  - name: pvc-backup
-    sessionHistoryLimit: 3
+  - name: sts-volume-snapshot-backup
+    sessionHistoryLimit: 
     scheduler: # CronJob specification
-      schedule: "*/1 * * * *"
+      schedule: "*/3 * * * *"
       jobTemplate: # Comes from batch/v1 JobTemplateSpec
         backoffLimit: 1
     repositories: # volume & volumeMount strategy.
-    - name: pvc-demo-gcs
-      backend: pvc-backend
-      directory: /pvc-backup-demo
+    - name: sts-volume-snapshot
+      backend: gcs-storage
+      directory: /sts-volume-snapshot
       encryptionSecret:
        name: encry-secret # some addon may not support encryption
        namespace: demo
       deletionPolicy: WipeOut 
     addon:
-      name: pvc-addon
+      name: workload-addon
       tasks:
-      - name: LogicalBackup
-      containerRuntimeSettings:
-        securityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop:
-              - ALL
+      - name: VolumeSnapshot
+        params:
+          volumeSnapshotClassName: csi-gce-pd-snapshot-class
       jobTemplate:
         spec: 
           securityContext: 
-            runAsUser: 65535
-            runAsNonRoot: true
-            seccompProfile:
-              type: RuntimeDefault
+            runAsUser: 0
     retryConfig:
-      maxRetry: 0
+      maxRetry: 2
       delay: 1m

@@ -24,6 +24,18 @@ spec:
       schedule: "*/1 * * * *"
       jobTemplate: # Comes from batch/v1 JobTemplateSpec
         backoffLimit: 1
+        template:
+          spec:
+            securityContext:
+              runAsUser: 65535
+              runAsNonRoot: true
+              seccompProfile:
+                type: RuntimeDefault
+            containerSecurityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                  - ALL
     repositories: # volume & volumeMount strategy.
     - name: pvc-demo-gcs
       backend: pvc-backend
