@@ -19,7 +19,3 @@ spec:
     name: pvc-addon
     tasks:
     - name: LogicalBackupRestore
-    jobTemplate:
-        spec: 
-          securityContext: 
-            runAsUser: 0

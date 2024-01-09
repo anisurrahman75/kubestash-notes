@@ -1,14 +1,14 @@
 apiVersion: core.kubestash.com/v1alpha1
 kind: BackupConfiguration
 metadata:
-  name: db-backup
+  name: postgres-db-backup
   namespace: demo
 spec:
   target:
     apiGroup: kubedb.com
-    kind: MongoDB
+    kind: Postgres
     namespace: demo
-    name: sample-mongodb
+    name: sample-postgres
   backends:
     - name: gcs-backend
       storageRef:
@@ -27,13 +27,13 @@ spec:
         jobTemplate:
           backoffLimit: 1
       repositories:
-        - name: gcs-repo
+        - name: gcs-postgres-repo
           backend: gcs-backend
-          directory: /mongo
+          directory: /postgres
           encryptionSecret:
            name: encry-secret
            namespace: demo
       addon:
-        name: mongodb-addon
+        name: postgres-addon
         tasks:
           - name: LogicalBackup

@@ -30,7 +30,7 @@ spec:
           directory: /statefulset
           encryptionSecret:
            name: encry-secret # some addon may not support encryption
-           namespace: demo
+           namespace: default
           deletionPolicy: WipeOut 
       addon:
         name: workload-addon

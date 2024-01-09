@@ -1,21 +1,21 @@
 apiVersion: core.kubestash.com/v1alpha1
 kind: RestoreSession
 metadata:
-  name: mongodb-restoresession
+  name: postgres-restoresession
   namespace: demo
 spec:
   target:
-    name: restored-mongodb
+    name: restored-postgres
     namespace: demo
     apiGroup: kubedb.com
-    kind: MongoDB
+    kind: Postgres
   dataSource:
+    repository: gcs-postgres-repo
     snapshot: latest
-    repository: gcs-repo
     encryptionSecret:
       name: encry-secret 
       namespace: demo
   addon:
-    name: mongodb-addon
+    name: postgres-addon
     tasks:
       - name: LogicalBackupRestore

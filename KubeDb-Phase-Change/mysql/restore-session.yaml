@@ -1,0 +1,22 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: RestoreSession
+metadata:
+  name: mysql-restoresession
+  namespace: demo
+spec:
+  target:
+    name: restored-mysql
+    namespace: demo
+    apiGroup: kubedb.com
+    kind: MySQL
+  dataSource:
+    repository: gcs-mysql-repo
+    snapshot: latest
+    encryptionSecret:
+      name: encry-secret 
+      namespace: demo
+  addon:
+    name: mysql-addon
+    tasks:
+      - name: LogicalBackupRestore
+## anisurrahman75/mysql-restic-plugin:v0.4.0-beta.0_8.0.21_linux_amd64

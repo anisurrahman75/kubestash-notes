@@ -2,10 +2,11 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: host-pvc
+  namespace: demo
 spec:
   # storageClassName: premium-rwo
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
   resources:
     requests:
       storage: 3Gi
@@ -14,6 +15,7 @@ kind: Pod
 apiVersion: v1
 metadata:
   name: demo-pod-1
+  namespace: demo
 spec:
   containers:
   - name: busybox

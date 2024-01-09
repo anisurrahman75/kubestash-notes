@@ -4,7 +4,7 @@ metadata:
   name: backup-target-pvc
   namespace: demo
 spec:
-  # storageClassName: manual
+  # storageClassName: nfs
   accessModes:
     - ReadWriteOnce
   resources:
@@ -17,12 +17,6 @@ metadata:
   name: demo-pod
   namespace: demo
 spec:
-  securityContext:
-    runAsUser: 65535
-    runAsNonRoot: true
-    seccompProfile:
-      type: RuntimeDefault
-
   containers:
   - name: busybox
     image: busybox
@@ -43,3 +37,6 @@ spec:
   - name: my-volume
     persistentVolumeClaim:
       claimName: backup-target-pvc
+
+
+

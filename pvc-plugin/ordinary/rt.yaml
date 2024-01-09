@@ -6,7 +6,7 @@ metadata:
 spec:
   maxRetentionPeriod: 2mo
   successfulSnapshots:
-    last: 20
+    last: 2
   usagePolicy:
     allowedNamespaces:
       from: All
