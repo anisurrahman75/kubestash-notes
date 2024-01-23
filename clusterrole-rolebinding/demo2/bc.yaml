@@ -2,35 +2,35 @@ apiVersion: core.kubestash.com/v1alpha1
 kind: BackupConfiguration
 metadata:
   name: pvc-backup
-  namespace: demo
+  namespace: demo2
 spec:
   target:
     apiGroup:
     kind: PersistentVolumeClaim
     name: backup-target-pvc
-    namespace: demo
+    namespace: demo1
   backends:
   - name: pvc-backend
     storageRef:
       namespace: demo
-      name: gcs-storage
+      name: nfs-storage
     retentionPolicy:
       name: demo-retention
-      namespace: demo
+      namespace: demo3
   sessions:
   - name: two-minutes-backup
     sessionHistoryLimit: 3
     scheduler: # CronJob specification
-      schedule: "*/2 * * * *"
+      schedule: "*/1 * * * *"
       jobTemplate: # Comes from batch/v1 JobTemplateSpec
         backoffLimit: 0
     repositories: # volume & volumeMount strategy.
-    - name: pvc-demo-gcs
+    - name: pvc-demo-pvc
       backend: pvc-backend
       directory: /backup-target-pvc
       encryptionSecret:
        name: encry-secret # some addon may not support encryption
-       namespace: demo
+       namespace: demo4
       deletionPolicy: WipeOut
     addon:
       name: pvc-addon

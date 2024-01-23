@@ -1,11 +1,11 @@
 apiVersion: core.kubestash.com/v1alpha1
 kind: RestoreSession
 metadata:
-  name: restore-sts-pvc-from-volumesnapshot
+  name: restore-pvc-from-volumesnapshot
   namespace: demo
 spec:
   dataSource:
-    repository: sts-volume-snapshot-driver-vs
+    repository: pvc-demo-volume-snapshot
     snapshot: latest
     encryptionSecret:
       name: encry-secret # some addon may not support encryption
@@ -17,19 +17,11 @@ spec:
       targetVolumes:  
         volumeClaimTemplates:
         - metadata:
-            name: restore-data-${POD_ORDINAL} 
+            name: restore-data-restore-pvc 
           spec:
             accessModes: [ "ReadWriteOnce" ]
-            storageClassName: "csi-gce-pd"
+            storageClassName: "csi-standard-immediate"
             resources:
               requests:
-                storage: 1Gi
-        - metadata:
-            name: restore-config-${POD_ORDINAL}
-          spec:
-            accessModes: [ "ReadWriteOnce" ]
-            storageClassName: "csi-gce-pd"
-            resources:
-              requests:
-                storage: 1Gi
+                storage: 10Gi
             

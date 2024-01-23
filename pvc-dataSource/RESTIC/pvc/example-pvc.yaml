@@ -2,8 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: example-pvc
-  annotations:
-        populator.kubestash.com/app-name: kubestash-statefulset
+  namespace: demo
 spec:
   accessModes:
   - ReadWriteOnce
@@ -11,18 +10,18 @@ spec:
 
   resources:
     requests:
-      storage: 3Gi
-      
+      storage: 10Gi
   dataSourceRef:
     apiGroup: storage.kubestash.com
     kind: Snapshot
-    name: pvc-pvc-backup-pvc-backup-169348560
+    name: pvc-demo-gcs-pvc-backup-two-minutes-backup-1705315440
   volumeMode: Filesystem
 ---
 apiVersion: v1
 kind: Pod
 metadata:
   name: restore-pod-1
+  namespace: demo
 spec:
   containers:
   - name: busybox

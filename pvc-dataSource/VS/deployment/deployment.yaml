@@ -14,7 +14,7 @@ spec:
   dataSourceRef:
     apiGroup: storage.kubestash.com
     kind: Snapshot
-    name: deployment-demo-gcs-deployment-bup-deployment-backup-1705315920
+    name: deployment-volume-snapshot-volumlume-snapshot-backup-1705332120
 ---
 kind: PersistentVolumeClaim
 apiVersion: v1
@@ -32,7 +32,7 @@ spec:
   dataSourceRef:
     apiGroup: storage.kubestash.com
     kind: Snapshot
-    name: deployment-demo-gcs-deployment-bup-deployment-backup-1705315920
+    name: deployment-volume-snapshot-volumlume-snapshot-backup-1705332120
 ---
 # kind: PersistentVolumeClaim
 # apiVersion: v1

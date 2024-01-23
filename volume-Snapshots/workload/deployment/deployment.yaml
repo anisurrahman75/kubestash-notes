@@ -2,11 +2,11 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: source-data
-  # namespace: demo
+  namespace: demo
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: longhorn
+  storageClassName: csi-gce-pd
   resources:
     requests:
       storage: 2Gi
@@ -15,11 +15,11 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: source-config
-  # namespace: demo
+  namespace: demo
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: longhorn
+  storageClassName: csi-gce-pd
   resources:
     requests:
       storage: 2Gi
@@ -30,7 +30,7 @@ metadata:
   labels:
     app: kubestash-deployment
   name: kubestash-deployment
-  # namespace: demo
+  namespace: demo
 spec:
   replicas: 1
   selector:

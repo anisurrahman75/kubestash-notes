@@ -1,23 +1,21 @@
 apiVersion: core.kubestash.com/v1alpha1
 kind: RestoreSession
 metadata:
-  name: sample-restoresession
-  namespace: default
+  name: statefulset-restoresession
+  namespace: demo
 spec:
   target:
     apiGroup: apps
     kind: StatefulSet
-    namespace: default
-    name: web
+    namespace: demo
+    name: kubestash-restore-statefulset
   dataSource:
-    repository: demo-storage-0
+    repository: statefulset-demo-gcs
     snapshot: latest
     encryptionSecret:
       name: encry-secret # some addon may not support encryption
-      namespace: default
+      namespace: demo
   addon:
     name: workload-addon
     tasks:
-    - name: workload-restore
-      params:
-        paths: /usr/share/nginx/html
+    - name: LogicalBackupRestore

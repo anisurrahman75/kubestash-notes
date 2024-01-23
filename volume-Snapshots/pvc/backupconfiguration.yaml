@@ -2,23 +2,21 @@ apiVersion: core.kubestash.com/v1alpha1
 kind: BackupConfiguration
 metadata:
   name: pvc-volume-snapshot-backup
-  namespace: default
+  namespace: demo
 spec:
   target:
     apiGroup:
     kind: PersistentVolumeClaim
-    name: host-pvc
-    namespace: default
+    name: target-pvc
+    namespace: demo
   backends:
-  - name: s3-storage
+  - name: gcs-storage
     storageRef:
-      apiGroup: storage.kubestash.com
-      namespace: default
-      kind: BackupStorage
-      name: s3-storage
+      namespace: demo
+      name: gcs-storage
     retentionPolicy:
       name: demo-retention
-      namespace: default
+      namespace: demo
   sessions:
   - name: pvc-volume-snapshot-backup
     sessionHistoryLimit: 
@@ -27,19 +25,16 @@ spec:
       jobTemplate: # Comes from batch/v1 JobTemplateSpec
         backoffLimit: 1
     repositories: # volume & volumeMount strategy.
-    - name: pvc-volume-snapshot
-      backend: s3-storage
+    - name: pvc-demo-volume-snapshot
+      backend: gcs-storage
       directory: /pvc-volume-snapshot
-      encryptionSecret:
-       name: encry-secret # some addon may not support encryption
-       namespace: default
       deletionPolicy: WipeOut 
     addon:
-      name: volume-snapshot-addon
+      name: pvc-addon
       tasks:
-      - name: workload-volume-snapshot-backup
+      - name: VolumeSnapshot
         params:
-          snapshotClassName: csi-gce-pd-snapshot-class
+          volumeSnapshotClassName: longhorn 
       jobTemplate:
         spec: 
           securityContext: 

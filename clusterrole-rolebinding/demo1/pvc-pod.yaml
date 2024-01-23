@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: backup-target-pvc
+  namespace: demo1
+spec:
+  storageClassName: standard
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-pod
+  namespace: demo1
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    command: ["/bin/sh", "-c"]
+    args: 
+    - |
+      echo "sample_data" > /target/mountpath/data.txt
+      sleep 3000
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+          - ALL
+    volumeMounts:
+    - name: my-volume
+      mountPath: /target/mountpath
+  volumes:
+  - name: my-volume
+    persistentVolumeClaim:
+      claimName: backup-target-pvc
+
+
+

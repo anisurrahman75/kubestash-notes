@@ -48,12 +48,12 @@ spec:
       name: pvc-addon
       tasks:
       - name: LogicalBackup
-      containerRuntimeSettings:
-        securityContext:
-          allowPrivilegeEscalation: false
-          capabilities:
-            drop:
-              - ALL
+      # containerRuntimeSettings:
+      #   securityContext:
+      #     allowPrivilegeEscalation: false
+      #     capabilities:
+      #       drop:
+      #         - ALL
       jobTemplate:
         spec: 
           securityContext: 
@@ -61,6 +61,11 @@ spec:
             runAsNonRoot: true
             seccompProfile:
               type: RuntimeDefault
+          containerSecurityContext:
+              allowPrivilegeEscalation: false
+              capabilities:
+                drop:
+                  - ALL
     retryConfig:
       maxRetry: 0
       delay: 1m

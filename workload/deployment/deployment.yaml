@@ -2,6 +2,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: source-data
+  namespace: demo
 spec:
   accessModes:
     - ReadWriteOnce
@@ -14,6 +15,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: source-config
+  namespace: demo
 spec:
   accessModes:
     - ReadWriteOnce
@@ -22,29 +24,31 @@ spec:
     requests:
       storage: 2Gi
 ---
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: copy-source-data
-spec:
-  accessModes:
-    - ReadWriteOnce
-  # storageClassName: standard
-  resources:
-    requests:
-      storage: 2Gi
----
-kind: PersistentVolumeClaim
-apiVersion: v1
-metadata:
-  name: copy-source-config
-spec:
-  accessModes:
-    - ReadWriteOnce
-  # storageClassName: standard
-  resources:
-    requests:
-      storage: 2Gi
+# kind: PersistentVolumeClaim
+# apiVersion: v1
+# metadata:
+#   name: copy-source-data
+#   namespace: demo
+# spec:
+#   accessModes:
+#     - ReadWriteOnce
+#   # storageClassName: standard
+#   resources:
+#     requests:
+#       storage: 2Gi
+# ---
+# kind: PersistentVolumeClaim
+# apiVersion: v1
+# metadata:
+#   name: copy-source-config
+#   namespace: demo
+# spec:
+#   accessModes:
+#     - ReadWriteOnce
+#   # storageClassName: standard
+#   resources:
+#     requests:
+#       storage: 2Gi
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -52,6 +56,7 @@ metadata:
   labels:
     app: stash-demo
   name: kubestash-deployment
+  namespace: demo
 spec:
   replicas: 1
   selector:
@@ -68,8 +73,6 @@ spec:
         -  |
            echo sample_data > /source/data/data.txt
            echo config_data > /source/config/config.cfg
-           echo copy_sample_data > copy/source/data/data.txt
-           echo copy_config_data > copy/source/config/config.cfg
            sleep 3000
         command: ["/bin/sh", "-c"]
         image: busybox
@@ -81,10 +84,10 @@ spec:
         - mountPath: /source/config
           name: source-config
 
-        - mountPath: copy/source/data
-          name: copy-source-data
-        - mountPath: copy/source/config
-          name: copy-source-config
+        # - mountPath: copy/source/data
+        #   name: copy-source-data
+        # - mountPath: copy/source/config
+        #   name: copy-source-config
       restartPolicy: Always
       volumes:
       - name: source-data
@@ -93,9 +96,9 @@ spec:
       - name: source-config
         persistentVolumeClaim:
           claimName: source-config
-      - name: copy-source-data
-        persistentVolumeClaim:
-          claimName: copy-source-data
-      - name: copy-source-config
-        persistentVolumeClaim:
-          claimName: copy-source-config
+      # - name: copy-source-data
+      #   persistentVolumeClaim:
+      #     claimName: copy-source-data
+      # - name: copy-source-config
+      #   persistentVolumeClaim:
+      #     claimName: copy-source-config

@@ -20,7 +20,7 @@ metadata:
   namespace: demo
 spec:
   serviceName: "nginx"
-  replicas: 3
+  replicas: 2
   selector:
     matchLabels:
       app: nginx
@@ -38,8 +38,8 @@ spec:
         volumeMounts:
         - name: restore-source-data
           mountPath: /source/data
-        # - name: restore-source-config
-        #   mountPath: /source/config  
+        - name: restore-source-config
+          mountPath: /source/config  
   volumeClaimTemplates:
   - metadata:
       name: restore-source-data
@@ -47,23 +47,25 @@ spec:
         populator.kubestash.com/app-name: kubestash-statefulset
     spec:
       accessModes: [ "ReadWriteOnce" ]
+      storageClassName: csi-standard
       resources:
         requests:
           storage: 1Gi
       dataSourceRef:
         apiGroup: storage.kubestash.com
         kind: Snapshot
-        name: demo-storage-0-sample-backup-sts-minute-backup-cycle-1700563441
-  # - metadata:
-  #     name: restore-source-config
-  #     annotations:
-  #       populator.kubestash.com/app-name: kubestash-statefulset
-  #   spec:
-  #     accessModes: [ "ReadWriteOnce" ]
-  #     resources:
-  #       requests:
-  #         storage: 1Gi
-  #     dataSourceRef:
-  #       apiGroup: storage.kubestash.com
-  #       kind: Snapshot
-  #       name: statefulset-backup-statefulset-bckup-workload-backup-1699355160
+        name: gcs-repository-statefulset-volumshot-frequent-backup-1705925160
+  - metadata:
+      name: restore-source-config
+      annotations:
+        populator.kubestash.com/app-name: kubestash-statefulset
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: csi-standard
+      resources:
+        requests:
+          storage: 1Gi
+      dataSourceRef:
+        apiGroup: storage.kubestash.com
+        kind: Snapshot
+        name: gcs-repository-statefulset-volumshot-frequent-backup-1705925160

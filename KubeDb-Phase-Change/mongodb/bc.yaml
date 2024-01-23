@@ -8,7 +8,7 @@ spec:
     apiGroup: kubedb.com
     kind: MongoDB
     namespace: demo
-    name: sample-mongodb
+    name: mg-replicaset
   backends:
     - name: gcs-backend
       storageRef:
@@ -19,21 +19,21 @@ spec:
         namespace: demo
   sessions:
     - name: frequent-backup
-      sessionHistoryLimit: 3
+      sessionHistoryLimit: 0
       scheduler:
-        schedule: "*/1 * * * *"
-        successfulJobsHistoryLimit: 1
-        failedJobsHistoryLimit: 1
+        schedule: "*/2 * * * *"
+        successfulJobsHistoryLimit: 0
+        failedJobsHistoryLimit: 0
         jobTemplate:
-          backoffLimit: 1
+          backoffLimit: 0
       repositories:
         - name: gcs-mongo-repo
           backend: gcs-backend
           directory: /mongo
           encryptionSecret:
-           name: encry-secret
+           name: encrypt-secret
            namespace: demo
       addon:
         name: mongodb-addon
         tasks:
-          - name: LogicalBackup
+          - name: logical-backup

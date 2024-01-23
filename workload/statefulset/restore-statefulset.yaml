@@ -16,7 +16,7 @@ spec:
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: kubestash-statefulset
+  name: kubestash-restore-statefulset
   namespace: demo
 spec:
   serviceName: "nginx"
@@ -34,8 +34,6 @@ spec:
         command: ["/bin/sh", "-c"]
         args: 
         - |
-          echo "sample_data" > /source/data/data.txt
-          echo "config_data" > /source/config/config.cfg
           sleep 3000
         image: registry.k8s.io/nginx-slim:0.8
         ports:
@@ -54,7 +52,6 @@ spec:
       resources:
         requests:
           storage: 1Gi
-      storageClassName: csi-gce-pd
   - metadata:
       name: source-config
     spec:
@@ -62,4 +59,3 @@ spec:
       resources:
         requests:
           storage: 1Gi
-      storageClassName: csi-gce-pd

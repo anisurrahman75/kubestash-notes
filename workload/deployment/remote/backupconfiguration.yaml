@@ -2,45 +2,43 @@ apiVersion: core.kubestash.com/v1alpha1
 kind: BackupConfiguration
 metadata:
   name: deployment-backup
-  namespace: default
+  namespace: demo
 spec:
   target:
     apiGroup: apps
     kind: Deployment
-    namespace: default
+    namespace: demo
     name: kubestash-deployment
   backends:
-    - name: s3-storage
+    - name: gcs-storage
       storageRef:
-        apiGroup: storage.kubestash.com
-        namespace: default
-        kind: BackupStorage
-        name: s3-storage
+        namespace: demo
+        name: gcs-storage
       retentionPolicy:
         name: demo-retention
-        namespace: default
+        namespace: demo
   sessions:
-    - name: workload-backup
+    - name: deployment-backup
       sessionHistoryLimit: 5
       scheduler: # CronJob specification
         schedule: "*/2 * * * *"
         jobTemplate: # Comes from batch/v1 JobTemplateSpec
           backoffLimit: 1
       repositories: # volume & volumeMount strategy.
-        - name: deployent
-          backend: s3-storage
-          directory: /dep
+        - name: deployment-demo-gcs
+          backend: gcs-storage
+          directory: /deployment
           encryptionSecret:
            name: encry-secret # some addon may not support encryption
-           namespace: default
+           namespace: demo
           deletionPolicy: WipeOut
       addon:
         name: workload-addon
         tasks:
-          - name: workload-backup
+          - name: LogicalBackup
             targetVolumes:
             params:
-             paths: /source/data,/source/config,/copy/source/data,/copy/source/config
+             paths: /source/data,/source/config
         jobTemplate:
           spec: 
             securityContext: 

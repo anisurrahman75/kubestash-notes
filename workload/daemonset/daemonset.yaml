@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: kubestash-daemonset
+  namespace: demo
+  labels:
+    app: test-app
+spec:
+  template:
+    metadata:
+      labels:
+        name: test-app
+    spec:
+      containers:
+      - args:
+        -  |
+           echo sample_data > /source/data/data.txt
+           echo config_data > /source/config/config.cfg
+           sleep 3000
+        command: ["/bin/sh", "-c"]
+        image: busybox
+        name: busybox
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - name: source-data
+          mountPath: /source/data
+      terminationGracePeriodSeconds: 10
+      restartPolicy: Always
+      volumes:
+      - name: source-data
+        hostPath:
+          path: /test/source/data
+  selector:
+    matchLabels:
+      name: test-app
