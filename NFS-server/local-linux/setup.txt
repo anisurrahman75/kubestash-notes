@@ -1,0 +1,29 @@
+-------------Configure NFS server--------------
+--> Create NFS share Dir
+	- sudo mkdir /NFS-SERVER
+	- sudo chown -R nobody:nogroup /NFS-SERVER/
+	- sudo chmod 777 /NFS-SERVER/
+	- cd /NFS-SERVER
+	- sudo mkdir backup-dir-1
+	- sudo mkdir backup-dir-2
+
+--> Install NFS
+	- sudo apt update
+	- sudo apt install nfs-kernel-server
+
+--> nano /etc/exports
+	/NFS-SERVER/backup-dir-1 *(rw,sync,no_subtree_check)
+	/NFS-SERVER/backup-dir-2 *(rw,sync,no_subtree_check)
+
+--> Check server running
+	- sudo systemctl status nfs-kernel-server
+
+--------------Configure NFS client--------------
+--> Create NFS client Dir
+	- mkdir ~/NFS-ClIENT
+	- cd /NFS-ClIENT
+	- mkdir backup-dir-1
+	- mkdir backup-dir-2
+
+- sudo mount 192.168.0.28:/NFS-SERVER/backup-dir-1/ /home/anisur/NFS-CLIENT/backup-dir-1/
+- sudo mount 192.168.0.28:/NFS-SERVER/backup-dir-2/ /home/anisur/NFS-CLIENT/backup-dir-2/

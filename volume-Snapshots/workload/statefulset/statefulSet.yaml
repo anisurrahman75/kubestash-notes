@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx
-  namespace: demo
+  namespace: a
   labels:
     app: nginx
 spec:
@@ -17,7 +17,7 @@ apiVersion: apps/v1
 kind: StatefulSet
 metadata:
   name: kubestash-statefulset
-  namespace: demo
+  namespace: a
 spec:
   serviceName: "nginx"
   replicas: 2
@@ -54,7 +54,7 @@ spec:
       resources:
         requests:
           storage: 1Gi
-      storageClassName: csi-gce-pd
+      # storageClassName: csi-standard-immediate
   - metadata:
       name: source-config
     spec:
@@ -62,4 +62,4 @@ spec:
       resources:
         requests:
           storage: 1Gi
-      storageClassName: csi-gce-pd
+      # storageClassName: csi-standard-immediate

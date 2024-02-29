@@ -2,7 +2,7 @@ apiVersion: storage.kubestash.com/v1alpha1
 kind: BackupStorage
 metadata:
   name: gcs-storage
-  namespace: demo
+  namespace: demo 
 spec:
   storage:
     provider: gcs
@@ -11,7 +11,7 @@ spec:
       prefix: demo
       secretName: gcs-secret 
   usagePolicy:
-    allowedNamespaces:
+    allowedNamespaces: 
       from: All
   default: true # Use this BackupStorage as the default
   deletionPolicy: WipeOut # One of: WipeOut, Delete

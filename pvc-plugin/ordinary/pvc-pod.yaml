@@ -4,7 +4,7 @@ metadata:
   name: backup-target-pvc
   namespace: demo
 spec:
-  # storageClassName: nfs
+  # storageClassName: csi-standard-immediate
   accessModes:
     - ReadWriteOnce
   resources:
@@ -19,17 +19,18 @@ metadata:
 spec:
   containers:
   - name: busybox
-    image: busybox
+    image: ubuntu
     command: ["/bin/sh", "-c"]
     args: 
     - |
       echo "sample_data" > /target/mountpath/data.txt
-      sleep 3000
+      sleep 30000
     securityContext:
-      allowPrivilegeEscalation: false
-      capabilities:
-        drop:
-          - ALL
+      # allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: false
+      # capabilities:
+      #   drop:
+      #     - ALL
     volumeMounts:
     - name: my-volume
       mountPath: /target/mountpath
@@ -37,6 +38,3 @@ spec:
   - name: my-volume
     persistentVolumeClaim:
       claimName: backup-target-pvc
-
-
-

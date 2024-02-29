@@ -5,7 +5,7 @@ metadata:
   namespace: demo
 spec:
   manifestOptions:
-    restoreNamespace: demo2
+    restoreNamespace: demo
     mongoDB:
       db: true
       dbName: new-mongodb
@@ -14,11 +14,11 @@ spec:
       configSecret: true
   dataSource:
     snapshot: latest
-    repository: s3-repo
+    repository: gcs-mongo-repo
     encryptionSecret:
-      name: encry-secret 
+      name: encry-secret
       namespace: demo
   addon:
-    name: kubedb-manifest-addon
+    name: mongodb-addon
     tasks:
       - name: manifest-restore

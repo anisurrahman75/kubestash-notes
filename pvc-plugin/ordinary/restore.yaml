@@ -10,16 +10,13 @@ spec:
     name: restored-pvc
     namespace: demo
   dataSource:
+    namespace: demo
     repository: pvc-demo-gcs
     snapshot: latest
     encryptionSecret:
-      name: encry-secret # some addon may not support encryption
+      name: encryption-secret # some addon may not support encryption
       namespace: demo
   addon:
     name: pvc-addon
     tasks:
-    - name: LogicalBackupRestore
-    # jobTemplate:
-    #     spec: 
-    #       securityContext: 
-    #         runAsUser: 2000
+    - name: logical-backup-restore

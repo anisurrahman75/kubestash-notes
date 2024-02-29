@@ -27,13 +27,13 @@ spec:
         jobTemplate:
           backoffLimit: 1
       repositories:
-        - name: gcs-mysql-repo
+        - name: gcs-mysql-repo2
           backend: gcs-backend
-          directory: /mysql
+          directory: /mysql2
           encryptionSecret:
-           name: encry-secret
-           namespace: demo
+           name: encryption-secret
+           namespace: d
       addon:
         name: mysql-addon
         tasks:
-          - name: LogicalBackup
+          - name: logical-backup

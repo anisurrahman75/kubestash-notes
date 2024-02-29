@@ -7,7 +7,7 @@ spec:
   target:
     apiGroup: apps
     kind: StatefulSet
-    namespace: demo
+    namespace: a
     name: kubestash-statefulset
   backends:
   - name: gcs-storage
@@ -29,15 +29,15 @@ spec:
       backend: gcs-storage
       directory: /sts-volume-snapshot-vs
       encryptionSecret:
-       name: encry-secret # some addon may not support encryption
+       name: encryption-secret # some addon may not support encryption
        namespace: demo
       deletionPolicy: WipeOut 
     addon:
       name: workload-addon
       tasks:
-      - name: VolumeSnapshot
-        params:
-          # snapshotClassName: csi-gce-pd-snapshot-class
+      - name: volume-snapshot
+        # params:
+        #   volumeSnapshotClassName: csi-snapshot-class
       jobTemplate:
         spec: 
           securityContext: 

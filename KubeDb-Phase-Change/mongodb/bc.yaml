@@ -21,17 +21,17 @@ spec:
     - name: frequent-backup
       sessionHistoryLimit: 0
       scheduler:
-        schedule: "*/2 * * * *"
+        schedule: "*/1 * * * *"
         successfulJobsHistoryLimit: 0
         failedJobsHistoryLimit: 0
         jobTemplate:
           backoffLimit: 0
       repositories:
-        - name: gcs-mongo-repo
+        - name: gcs-mongo-repo2
           backend: gcs-backend
-          directory: /mongo
+          directory: /mongo2
           encryptionSecret:
-           name: encrypt-secret
+           name: encryption-secret
            namespace: demo
       addon:
         name: mongodb-addon

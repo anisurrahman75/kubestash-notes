@@ -14,13 +14,13 @@ spec:
 kind: Pod
 apiVersion: v1
 metadata:
-  name: restore-demo-pod-1
+  name: restore-demo-pod
   namespace: demo
 spec:
   containers:
   - name: busybox
-    image: busybox
-    command: ["/bin/sh", "-c","sleep 3000"]
+    image: ubuntu
+    command: ["/bin/sh", "-c","sleep 30000"]
     volumeMounts:
     - name: my-volume
       mountPath: /target/mountpath

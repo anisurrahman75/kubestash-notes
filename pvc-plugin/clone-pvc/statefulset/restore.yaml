@@ -2,13 +2,14 @@ apiVersion: core.kubestash.com/v1alpha1
 kind: RestoreSession
 metadata:
   name: clone-pvc-restoresession
-  namespace: demo
+  namespace: demo-test
 spec:
   dataSource:
+    namespace: demo
     repository: statefulset-backup
     snapshot: latest
     encryptionSecret:
-      name: encry-secret # some addon may not support encryption
+      name: encryption-secret # some addon may not support encryption
       namespace: demo
   addon:
     name: pvc-addon

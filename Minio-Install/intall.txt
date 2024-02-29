@@ -1,0 +1,20 @@
+## Install MinIo:
+- kubectl krew update
+- kubectl krew install minio
+- kubectl minio init
+
+Port Forward:
+- kubectl minio proxy
+
+
+Create Bucket tenant:
+- kubectl minio tenant create tenant1 \
+	--servers 1 \
+	--volumes 4 \
+	--capacity 1Gi \
+	--namespace tenant1
+	--storage-class local-path
+
+- Create bucket Using port forward
+- Endpoint must be in http. (resolve SVC)
+- 

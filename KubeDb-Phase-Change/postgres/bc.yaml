@@ -27,13 +27,13 @@ spec:
         jobTemplate:
           backoffLimit: 1
       repositories:
-        - name: gcs-postgres-repo
+        - name: gcs-postgres-repo2
           backend: gcs-backend
-          directory: /postgres
+          directory: /postgres2
           encryptionSecret:
-           name: encry-secret
+           name: encryption-secret
            namespace: demo
       addon:
         name: postgres-addon
         tasks:
-          - name: LogicalBackup
+          - name: logical-backup

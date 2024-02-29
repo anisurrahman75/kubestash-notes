@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx
-  namespace: demo
+  namespace: demo-test
   labels:
     app: nginx
 spec:
@@ -12,12 +12,14 @@ spec:
   clusterIP: None
   selector:
     app: nginx
+
 ---
+
 apiVersion: apps/v1
 kind: StatefulSet
 metadata:
-  name: kubestash-statefulset
-  namespace: demo
+  name: kubestash-restore-statefulset
+  namespace: demo-test
 spec:
   serviceName: "nginx"
   replicas: 2
@@ -31,45 +33,56 @@ spec:
     spec:
       containers:
       - name: nginx
-        image: registry.k8s.io/nginx-slim:0.8
         command: ["/bin/sh", "-c"]
         args: 
         - |
           sleep 3000
+        image: registry.k8s.io/nginx-slim:0.8
         ports:
         - containerPort: 80
           name: web
         volumeMounts:
-        - name: restore-source-data
+        - name: source-data
           mountPath: /source/data
-        - name: restore-source-config
+        - name: source-config
           mountPath: /source/config  
   volumeClaimTemplates:
   - metadata:
-      name: restore-source-data
-      annotations:
-        populator.kubestash.com/app-name: kubestash-statefulset
+      name: source-data
     spec:
       accessModes: [ "ReadWriteOnce" ]
       resources:
         requests:
           storage: 1Gi
-      storageClassName: csi-gce-pd
-      dataSourceRef:
-        apiGroup: storage.kubestash.com
-        kind: Snapshot
-        name: sts-volume-snapshot-driver-vs-voe-snapshot-backup-vs-1707307080
   - metadata:
-      name: restore-source-config
-      annotations:
-        populator.kubestash.com/app-name: kubestash-statefulset
+      name: source-config
     spec:
       accessModes: [ "ReadWriteOnce" ]
       resources:
         requests:
           storage: 1Gi
-      storageClassName: csi-gce-pd
-      dataSourceRef:
-        apiGroup: storage.kubestash.com
-        kind: Snapshot
-        name: sts-volume-snapshot-driver-vs-voe-snapshot-backup-vs-1707307080
+
+---
+
+apiVersion: core.kubestash.com/v1alpha1
+kind: RestoreSession
+metadata:
+  name: statefulset-restoresession
+  namespace: demo-test-2
+spec:
+  target:
+    apiGroup: apps
+    kind: StatefulSet
+    namespace: demo-test
+    name: kubestash-restore-statefulset
+  dataSource:
+    namespace: demo
+    repository: statefulset-demo-gcs
+    snapshot: latest
+    encryptionSecret:
+      name: encryption-secret # some addon may not support encryption
+      namespace: demo
+  addon:
+    name: workload-addon
+    tasks:
+    - name: logical-backup-restore

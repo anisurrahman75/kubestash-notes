@@ -1,18 +1,20 @@
 apiVersion: storage.kubestash.com/v1alpha1
 kind: BackupStorage
 metadata:
-  name: s3-storage
+  name: minio-storage
+  namespace: demo
 spec:
   storage:
     provider: s3
     s3:
       bucket: kubestash
+      endpoint: http://minio.tenant1.svc.cluster.local:80
+      secretName: minio-secret
       region: us-east-1
-      endpoint: us-east-1.linodeobjects.com
-      secret: s3-secret
-      prefix: sunny
+      prefix: demo
+      insecureTLS: true
   usagePolicy:
     allowedNamespaces:
       from: All
-  default: true 
+  default: false
   deletionPolicy: WipeOut

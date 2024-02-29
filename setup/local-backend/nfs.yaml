@@ -10,7 +10,7 @@ spec:
       mountPath: /nfs/data
       nfs:
         server: 192.168.0.28 # IP to our NFS server
-        path: /NFS/backups # The exported directory
+        path: /NFS-SERVER/backup-dir-1 # The exported directory
   usagePolicy:
     allowedNamespaces:
       from: All
@@ -19,4 +19,4 @@ spec:
   runtimeSettings:
     pod:
       securityContext:
-        fsGroup: 65535
+        fsGroup: 65534

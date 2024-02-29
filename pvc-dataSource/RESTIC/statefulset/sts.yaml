@@ -47,25 +47,25 @@ spec:
         populator.kubestash.com/app-name: kubestash-statefulset
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: csi-standard
+      storageClassName: csi-gce-pd
       resources:
         requests:
           storage: 1Gi
       dataSourceRef:
         apiGroup: storage.kubestash.com
         kind: Snapshot
-        name: gcs-repository-statefulset-volumshot-frequent-backup-1705925160
+        name: statefulset-demo-gcs-statefulsetckup-workload-backup-1706095080
   - metadata:
       name: restore-source-config
       annotations:
         populator.kubestash.com/app-name: kubestash-statefulset
     spec:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: csi-standard
+      storageClassName: csi-gce-pd
       resources:
         requests:
           storage: 1Gi
       dataSourceRef:
         apiGroup: storage.kubestash.com
         kind: Snapshot
-        name: gcs-repository-statefulset-volumshot-frequent-backup-1705925160
+        name: statefulset-demo-gcs-statefulsetckup-workload-backup-1706095080

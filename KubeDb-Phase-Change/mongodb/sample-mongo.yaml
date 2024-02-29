@@ -10,7 +10,7 @@ spec:
   replicas: 2
   storageType: Durable
   storage:
-    storageClassName: "standard"
+    # storageClassName: "standard"
     accessModes:
     - ReadWriteOnce
     resources:

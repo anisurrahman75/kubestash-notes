@@ -1,7 +1,7 @@
 apiVersion: storage.kubestash.com/v1alpha1
 kind: BackupStorage
 metadata:
-  name: gcs-storage
+  name: s3-storage
   namespace: demo
 spec:
   storage:

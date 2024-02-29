@@ -4,6 +4,7 @@ metadata:
   labels:
     app: stash-demo
   name: kubestash-deployment
+  namespace: demo
 spec:
   replicas: 1
   selector:
@@ -32,7 +33,7 @@ spec:
       volumes:
       - name: source-data
         persistentVolumeClaim:
-          claimName: source-data
+          claimName: restored-source-data
       - name: source-config
         persistentVolumeClaim:
-          claimName: source-config
+          claimName: restored-source-config

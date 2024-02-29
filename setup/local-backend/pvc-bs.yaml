@@ -1,15 +1,15 @@
 apiVersion: storage.kubestash.com/v1alpha1
 kind: BackupStorage
 metadata:
-  name: pvc-storage
+  name: gcs-storage
   namespace: demo
 spec:
   storage:
     provider: local
     local:
-      mountPath: /pvc/data
+      mountPath: /target/mountpath/pvc
       persistentVolumeClaim:
-        claimName: storage-pvc
+        claimName: backup-target-pvc
   usagePolicy:
     allowedNamespaces:
       from: All

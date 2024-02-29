@@ -10,7 +10,7 @@ spec:
     resources:
       requests:
         storage: 1Gi
-    storageClassName: standard
+         
   storageType: Durable
   terminationPolicy: Delete
   version: 7.2.3

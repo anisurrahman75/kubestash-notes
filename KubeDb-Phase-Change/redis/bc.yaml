@@ -27,13 +27,13 @@ spec:
         jobTemplate:
           backoffLimit: 1
       repositories:
-        - name: gcs-redis-repo
+        - name: gcs-redis-repo2
           backend: gcs-backend
-          directory: /redis
+          directory: /redis2
           encryptionSecret:
-           name: encry-secret
+           name: encryption-secret
            namespace: demo
       addon:
         name: redis-addon
         tasks:
-          - name: LogicalBackup
+          - name: logical-backup

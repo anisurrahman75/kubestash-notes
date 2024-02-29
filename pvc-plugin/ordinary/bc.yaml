@@ -18,10 +18,28 @@ spec:
       name: demo-retention
       namespace: demo
   sessions:
-  - name: two-minutes-backup
+  # - name: two-minutes-backup
+  #   sessionHistoryLimit: 3
+  #   scheduler: # CronJob specification
+  #     schedule: "*/2 * * * *"
+  #     jobTemplate: # Comes from batch/v1 JobTemplateSpec
+  #       backoffLimit: 0
+  #   repositories: # volume & volumeMount strategy.
+  #   - name: pvc-demo-gcs
+  #     backend: pvc-backend
+  #     directory: /backup-target-pvc
+  #     encryptionSecret:
+  #      name: encry-secret # some addon may not support encryption
+  #      namespace: demo
+  #     deletionPolicy: WipeOut 
+  #   addon:
+  #     name: pvc-addon
+  #     tasks:
+  #     - name: logical-backup
+  - name: three-minutes-backup
     sessionHistoryLimit: 3
     scheduler: # CronJob specification
-      schedule: "*/2 * * * *"
+      schedule: "*/1 * * * *"
       jobTemplate: # Comes from batch/v1 JobTemplateSpec
         backoffLimit: 0
     repositories: # volume & volumeMount strategy.
@@ -29,9 +47,9 @@ spec:
       backend: pvc-backend
       directory: /backup-target-pvc
       encryptionSecret:
-       name: encry-secret # some addon may not support encryption
+       name: encryption-secret # some addon may not support encryption
        namespace: demo
-      deletionPolicy: WipeOut
+      deletionPolicy: WipeOut 
     addon:
       name: pvc-addon
       tasks:

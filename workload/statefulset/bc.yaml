@@ -29,7 +29,7 @@ spec:
           backend: gcs-storage
           directory: /statefulset
           encryptionSecret:
-           name: encry-secret # some addon may not support encryption
+           name: encryption-secret # some addon may not support encryption
            namespace: demo
           deletionPolicy: WipeOut 
       addon:
