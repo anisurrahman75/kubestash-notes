@@ -24,7 +24,7 @@ spec:
     args: 
     - |
       echo "sample_data" > /target/mountpath/data.txt
-      sleep 30000
+      sleep 3000
     securityContext:
       # allowPrivilegeEscalation: false
       readOnlyRootFilesystem: false
@@ -38,3 +38,6 @@ spec:
   - name: my-volume
     persistentVolumeClaim:
       claimName: backup-target-pvc
+
+
+

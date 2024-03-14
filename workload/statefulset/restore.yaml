@@ -13,9 +13,9 @@ spec:
     repository: statefulset-demo-gcs
     snapshot: latest
     encryptionSecret:
-      name: encry-secret # some addon may not support encryption
+      name: encrypt-secret # some addon may not support encryption
       namespace: demo
   addon:
     name: workload-addon
     tasks:
-    - name: LogicalBackupRestore
+    - name: logical-backup-restore

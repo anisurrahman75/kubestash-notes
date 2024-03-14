@@ -9,7 +9,7 @@ spec:
     repository: statefulset-backup
     snapshot: latest
     encryptionSecret:
-      name: encryption-secret # some addon may not support encryption
+      name: encrypt-secret # some addon may not support encryption
       namespace: demo
   addon:
     name: pvc-addon
