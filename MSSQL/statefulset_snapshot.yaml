@@ -1,0 +1,86 @@
+apiVersion: storage.kubestash.com/v1alpha1
+kind: Snapshot
+metadata:
+  creationTimestamp: "2024-03-27T17:42:01Z"
+  finalizers:
+  - kubestash.com/cleanup
+  generation: 1
+  labels:
+    kubestash.com/app-ref-kind: StatefulSet
+    kubestash.com/app-ref-name: kubestash-statefulset
+    kubestash.com/app-ref-namespace: demo
+    kubestash.com/repo-name: statefulset-demo-gcs
+  name: statefulset-demo-gcs-statefulsetckup-workload-backup-1711561321
+  namespace: demo
+  ownerReferences:
+  - apiVersion: storage.kubestash.com/v1alpha1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Repository
+    name: statefulset-demo-gcs
+    uid: 74331179-ec50-469c-8df7-8d4c1bfce978
+  resourceVersion: "427325"
+  uid: 4068daf3-8197-4c76-879f-b2694ceda753
+spec:
+  appRef:
+    apiGroup: apps
+    kind: StatefulSet
+    name: kubestash-statefulset
+    namespace: demo
+  backupSession: statefulset-backup-workload-backup-1711561321
+  deletionPolicy: Delete
+  repository: statefulset-demo-gcs
+  session: workload-backup
+  snapshotID: 01HT0G2AMCE15J4FMMRYX5A5TB
+  type: FullBackup
+  version: v1
+status:
+  components:
+    dump-pod-0:
+      driver: Restic
+      duration: 17.821436842s
+      integrity: true
+      path: repository/v1/workload-backup/dump-pod-0
+      phase: Succeeded
+      resticStats:
+      - hostPath: /source/data
+        id: a355ae99cbd0963740eb3bdf831247719faba789b52bb9e9f21d87ffbb716f88
+        size: 12 B
+        uploaded: 1.354 KiB
+      - hostPath: /source/config
+        id: a9aea61fe043e3c675364e62120773c74baff83f53c47633d3b026e876dabf45
+        size: 12 B
+        uploaded: 1.345 KiB
+      size: 1.798 KiB
+    dump-pod-1:
+      driver: Restic
+      duration: 16.274453316s
+      integrity: true
+      path: repository/v1/workload-backup/dump-pod-1
+      phase: Succeeded
+      resticStats:
+      - hostPath: /source/data
+        id: 26a930514278869fe642247ba192f49e02ef5dd9682e3b1dcd395ded53395319
+        size: 12 B
+        uploaded: 1.354 KiB
+      - hostPath: /source/config
+        id: e2387ee956e951125b6693d7931ffc7728abdf0de083a825b5979a4f094adb0f
+        size: 12 B
+        uploaded: 1.345 KiB
+      size: 1.796 KiB
+  conditions:
+  - lastTransitionTime: "2024-03-27T17:42:01Z"
+    message: Recent snapshot list updated successfully
+    reason: SuccessfullyUpdatedRecentSnapshotList
+    status: "True"
+    type: RecentSnapshotListUpdated
+  - lastTransitionTime: "2024-03-27T17:42:45Z"
+    message: Metadata uploaded to backend successfully
+    reason: SuccessfullyUploadedSnapshotMetadata
+    status: "True"
+    type: SnapshotMetadataUploaded
+  integrity: true
+  phase: Succeeded
+  size: 3.594 KiB
+  snapshotTime: "2024-03-27T17:42:01Z"
+  totalComponents: 2

@@ -1,0 +1,2 @@
+
+-- There is no options to provide port while connection to a mssql database, we can provide port by comma seperate with ip addpress or svc. Ex. -S demo.svc.loca,1445

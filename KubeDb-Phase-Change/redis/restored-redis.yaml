@@ -10,9 +10,34 @@ spec:
     resources:
       requests:
         storage: 1Gi
-    storageClassName: standard
+    # storageClassName: standard
   init:
     waitForInitialRestore: true
   storageType: Durable
   terminationPolicy: Delete
   version: 7.2.3
+
+
+---
+
+apiVersion: core.kubestash.com/v1alpha1
+kind: RestoreSession
+metadata:
+  name: redis-restoresession
+  namespace: demo
+spec:
+  target:
+    name: restored-redis
+    namespace: demo
+    apiGroup: kubedb.com
+    kind: redis
+  dataSource:
+    repository: gcs-redis-repo2
+    snapshot: latest
+    encryptionSecret:
+      name: encryption-secret 
+      namespace: demo
+  addon:
+    name: redis-addon
+    tasks:
+      - name: logical-backup-restore

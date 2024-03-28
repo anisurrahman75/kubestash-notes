@@ -1,0 +1,86 @@
+---------------------backup----------------------
+
+USE SQLTestDB;
+GO
+-- Full backup
+BACKUP DATABASE SQLTestDB
+TO DISK = '/var/opt/mssql/data/backups/SQLTestDB.bak'
+   WITH FORMAT,
+      MEDIANAME = 'SQLServerBackups',
+      NAME = 'Full Backup of SQLTestDB';
+GO
+-- Differential backup
+BACKUP DATABASE SQLTestDB  
+   TO DISK = '/var/opt/mssql/data/backups/SQLTestDB.DIF'
+   WITH DIFFERENTIAL;  
+GO  
+-- Log backup
+BACKUP LOG SQLTestDB
+   TO DISK = '/var/opt/mssql/data/backups/SQLTestDB.trn'
+GO
+
+-----------Restore----------
+
+RESTORE DATABASE SQLTestDB
+    FROM DISK = '/var/opt/mssql/data/backups/SQLTestDB.bak'
+    WITH FILE = 1,
+    NORECOVERY;
+
+use [SQLTestDB]
+SELECT * FROM SQLTest
+GO
+-- Database 'SQLTestDB' cannot be opened. It is in the middle of a restore.
+
+
+-- restoring diff backup 
+use [master]
+RESTORE DATABASE SQLTestDB
+    FROM DISK = '/var/opt/mssql/data/backups/SQLTestDB.DIF'
+    WITH FILE = 1,
+    NORECOVERY;
+
+use [master]
+RESTORE LOG SQLTestDB
+    FROM DISK = '/var/opt/mssql/data/backups/SQLTestDB.trn'
+    WITH FILE = 1, 
+    NORECOVERY;
+
+
+-- If try to restore after recover:
+-- Msg 3117, Level 16, State 1, Line 2
+-- The log or differential backup cannot be restored because no files are ready to rollforward.
+-- Msg 3013, Level 16, State 1, Line 2
+-- RESTORE LOG is terminating abnormally.
+
+
+--- We have to recover the database later.
+-- first we have to perform restoration of the full backup then -> diff backup -> log backup 
+
+RESTORE DATABASE SQLTestDB WITH RECOVERY;
+
+
+
+
+
+
+
+
+
+
+
+To
+prepare the secondary database, You can do the following tasks.
+Take
+a full and transaction log backup on the primary replica
+Restore
+these backup in the secondary replica in NORECOVERY mode
+
+
+
+EXEC msdb.dbo.sp_delete_database_backuphistory @database_name = N'AgDB1'
+GO
+USE
+[master]
+GO
+DROP DATABASE [AgDB1]
+GO

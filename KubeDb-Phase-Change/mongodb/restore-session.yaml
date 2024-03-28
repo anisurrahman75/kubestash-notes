@@ -11,7 +11,7 @@ spec:
     kind: MongoDB
   dataSource:
     snapshot: latest
-    repository: gcs-mongo-repo2
+    repository: gcs-mongo-repo
     encryptionSecret:
       name: encrypt-secret 
       namespace: demo

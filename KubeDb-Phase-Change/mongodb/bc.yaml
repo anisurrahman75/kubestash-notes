@@ -27,9 +27,9 @@ spec:
         jobTemplate:
           backoffLimit: 0
       repositories:
-        - name: gcs-mongo-repo2
+        - name: gcs-mongo-repo
           backend: gcs-backend
-          directory: /mongo2
+          directory: /mongo
           encryptionSecret:
            name: encrypt-secret
            namespace: demo

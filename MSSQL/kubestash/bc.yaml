@@ -1,14 +1,14 @@
 apiVersion: core.kubestash.com/v1alpha1
 kind: BackupConfiguration
 metadata:
-  name: mysql-db-backup
+  name: mssql-db-backup
   namespace: demo
 spec:
   target:
     apiGroup: kubedb.com
-    kind: MySQL
+    kind: MsSQL
     namespace: demo
-    name: sample-mysql
+    name: sample
   backends:
     - name: gcs-backend
       storageRef:
@@ -27,13 +27,13 @@ spec:
         jobTemplate:
           backoffLimit: 1
       repositories:
-        - name: gcs-mysql-repo2
+        - name: gcs-mssql-repo
           backend: gcs-backend
-          directory: /mysql2
+          directory: /mssql
           encryptionSecret:
            name: encrypt-secret
            namespace: demo
       addon:
-        name: mysql-addon
+        name: mssql-addon
         tasks:
           - name: logical-backup

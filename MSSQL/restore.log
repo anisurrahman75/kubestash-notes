@@ -1,0 +1,25 @@
+-------------primary pod--------------------------
+
+1> RESTORE DATABASE AgDB1 FROM DISK = '/var/opt/mssql/data/sunny-retores/AgDB1.bak' WITH FILE = 1, NORECOVERY;
+2> go
+Msg 3104, Level 16, State 1, Server sample-msssql-0, Line 1
+RESTORE cannot operate on database 'AgDB1' because it is configured for database mirroring or has joined an availability group. If you intend to restore the database, use ALTER DATABASE to remove mirroring or to remove the database from its availability group.
+Msg 3013, Level 16, State 1, Server sample-msssql-0, Line 1
+RESTORE DATABASE is terminating abnormally.
+
+---------Tried after remove the database from its availability group
+
+Msg 3154, Level 16, State 4, Server sample-0, Line 1
+The backup set holds a backup of a database other than the existing 'AgDB1' database.
+Msg 3013, Level 16, State 1, Server sample-0, Line 1
+RESTORE DATABASE is terminating abnormally.
+
+
+-----------secondary pod--------------------------
+
+Msg 3059, Level 16, State 2, Server sample-msssql-1, Line 1
+This BACKUP or RESTORE command is not supported on a database mirror or secondary replica.
+Msg 3013, Level 16, State 1, Server sample-msssql-1, Line 1
+RESTORE DATABASE is terminating abnormally.
+
+

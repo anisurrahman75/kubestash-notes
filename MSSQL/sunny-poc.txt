@@ -1,0 +1,22 @@
+
+
+USE MASTER;
+GO
+
+CREATE DATABASE sunny;
+GO
+
+use sunny;
+
+CREATE TABLE Data (ID INT, NAME NVARCHAR(255), AGE INT);
+
+INSERT INTO Data(ID, Name, Age) VALUES (1, 'John Doe', 25), (2, 'Jane Smith', 30), (3, 'Bob Johnson', 22);
+
+
+BACKUP DATABASE master TO DISK = '/tmp/master.bak' WITH FORMAT, NAME = 'Full Backup';
+
+RESTORE DATABASE master FROM DISK = '/tmp/master.bak' WITH FILE = 1, NORECOVERY, REPLACE;
+
+
+
+sqlcmd -S localhost -U SA -Q BACKUP DATABASE AgDB1 TO DISK = '/tmp/tempdb.bak' WITH FORMAT, MEDIANAME = 'SQLServerBackups', NAME = 'Full Backup'
