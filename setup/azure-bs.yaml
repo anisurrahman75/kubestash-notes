@@ -7,10 +7,10 @@ spec:
   storage:
     provider: azure
     azure:
-      storageAccount: kubestash
-      container: kubestash-qa
+      storageAccount: kubestashqa
+      container: kubestashqa
       prefix: sunny
-      secret: azure-secret
+      secretName: azure-secret
   usagePolicy:
     allowedNamespaces:
       from: All

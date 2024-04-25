@@ -8,12 +8,12 @@ spec:
     apiGroup: kubedb.com
     kind: MsSQL
     namespace: demo
-    name: sample
+    name: sample-mssql
   backends:
-    - name: gcs-backend
+    - name: azure-backend
       storageRef:
         namespace: demo
-        name: gcs-storage
+        name: azure-storage
       retentionPolicy:
         name: demo-retention
         namespace: demo
@@ -21,14 +21,14 @@ spec:
     - name: frequent-backup
       sessionHistoryLimit: 3
       scheduler:
-        schedule: "*/1 * * * *"
+        schedule: "*/3 * * * *"
         successfulJobsHistoryLimit: 1
         failedJobsHistoryLimit: 1
         jobTemplate:
           backoffLimit: 1
       repositories:
-        - name: gcs-mssql-repo
-          backend: gcs-backend
+        - name: azure-mssql-repo
+          backend: azure-backend
           directory: /mssql
           encryptionSecret:
            name: encrypt-secret
@@ -37,3 +37,7 @@ spec:
         name: mssql-addon
         tasks:
           - name: logical-backup
+            params:
+             # databases: agdb1, agdb2
+             # args:
+             interimStorage: demo/azure-storage

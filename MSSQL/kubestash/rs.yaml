@@ -1,0 +1,25 @@
+
+apiVersion: core.kubestash.com/v1alpha1
+kind: RestoreSession
+metadata:
+  name: sample-mssql-restore
+  namespace: demo
+spec:
+  target:
+    apiGroup: kubedb.com
+    kind: MsSQL
+    namespace: demo
+    name: restored-sample-mssql
+  dataSource:
+    snapshot: latest
+    repository: azure-mssql-repo
+    encryptionSecret:
+      name: encrypt-secret 
+      namespace: demo
+  addon:
+    name: mssql-addon
+    tasks:
+      - name: logical-backup-restore
+        params:
+          databases: agdb1,agdb2
+          interimStorage: demo/azure-storage

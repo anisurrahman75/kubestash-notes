@@ -13,6 +13,9 @@ spec:
         - name: args
           usage: Arguments to be passed to the dump command.
           required: false
+        - name: databases
+          usage: List of databases to backup.
+          required: false
         - name: enableCache
           usage: Enable or disable caching. Disabling caching may impact backup performance.
           required: false
@@ -21,6 +24,41 @@ spec:
           usage: Directory for holding temporary files and restic cache.
           required: false
           default: /kubestash-tmp
+        - name: interimStorage
+          usage:  Intermediate backupStorage to store backup/restore file.
+          required: true
+      volumeTemplate:
+        - name: kubestash-tmp-volume
+          usage: Holds temporary files and restic cache.
+          source:
+            emptyDir: {}
+      volumeMounts:
+        - name: kubestash-tmp-volume
+          mountPath: /kubestash-tmp
+  restoreTasks:
+    - name: logical-backup-restore
+      function: mssql-restore
+      driver: Restic
+      executor: Job
+      singleton: true
+      parameters:
+        - name: args
+          usage: Arguments to be passed to the dump command.
+          required: false
+        - name: databases
+          usage: List of databases to restore.
+          required: false
+        - name: enableCache
+          usage: Enable or disable caching. Disabling caching may impact backup performance.
+          required: false
+          default: "true"
+        - name: scratchDir
+          usage: Directory for holding temporary files and restic cache.
+          required: false
+          default: /kubestash-tmp
+        - name: interimStorage
+          usage:  Intermediate backupStorage to store backup/restore file.
+          required: true
       volumeTemplate:
         - name: kubestash-tmp-volume
           usage: Holds temporary files and restic cache.

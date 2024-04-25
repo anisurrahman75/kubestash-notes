@@ -11,7 +11,7 @@ spec:
       region: us-east-1
       endpoint: us-east-1.linodeobjects.com
       secretName: s3-secret
-      prefix: demo
+      prefix: sunny
   usagePolicy:
     allowedNamespaces:
       from: All

@@ -1,4 +1,5 @@
 
+sqlcmd -S localhost -U SA -No
 
 USE MASTER;
 GO
@@ -13,10 +14,15 @@ CREATE TABLE Data (ID INT, NAME NVARCHAR(255), AGE INT);
 INSERT INTO Data(ID, Name, Age) VALUES (1, 'John Doe', 25), (2, 'Jane Smith', 30), (3, 'Bob Johnson', 22);
 
 
-BACKUP DATABASE master TO DISK = '/tmp/master.bak' WITH FORMAT, NAME = 'Full Backup';
+--------------------mkfifo----------------------------
 
-RESTORE DATABASE master FROM DISK = '/tmp/master.bak' WITH FILE = 1, NORECOVERY, REPLACE;
+BACKUP DATABASE sunny TO DISK = '/var/opt/sunny-backup/mkfifo/fifo' WITH FORMAT, NAME = 'Full Backup';
+
+RESTORE DATABASE sunny FROM DISK = '/var/opt/sunny-backup/mkfifo/backup.bak' WITH FILE = 1, NORECOVERY, REPLACE;
+
+RESTORE DATABASE sunny WITH RECOVERY;
+
+sqlcmd -S localhost -U SA -No -Q "BACKUP DATABASE sunny TO DISK = '/var/opt/sunny-backup/mkfifo/fifo' WITH FORMAT, NAME = 'Full Backup'"
 
 
-
-sqlcmd -S localhost -U SA -Q BACKUP DATABASE AgDB1 TO DISK = '/tmp/tempdb.bak' WITH FORMAT, MEDIANAME = 'SQLServerBackups', NAME = 'Full Backup'
+SELECT COUNT(ID) FROM data;
