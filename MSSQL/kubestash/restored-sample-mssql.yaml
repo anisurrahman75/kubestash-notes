@@ -36,3 +36,13 @@ spec:
       requests:
         storage: 1Gi
   terminationPolicy: Delete # Halt
+
+
+
+
+
+
+
+
+
+

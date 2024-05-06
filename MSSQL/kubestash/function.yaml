@@ -13,6 +13,7 @@ spec:
   - --mssql-args=${args:=}
   - --databases=${databases:=}
   - --interim-storage=${interimStorage:=}
+  - --interim-data-dir=${interimDataDir:=}
   image: anisurrahman75/mssql-restic-plugin:init-backup-restore_linux_amd64
 
 ---
@@ -33,4 +34,5 @@ spec:
   - --mssql-args=${args:=}
   - --databases=${databases:=}
   - --interim-storage=${interimStorage:=}
+  - --interim-data-dir=${interimDataDir:=}
   image: anisurrahman75/mssql-restic-plugin:init-backup-restore_linux_amd64

@@ -6,14 +6,14 @@ metadata:
 spec:
   target:
     apiGroup: kubedb.com
-    kind: MsSQL
+    kind: MSSQLServer
     namespace: demo
     name: sample-mssql
   backends:
-    - name: azure-backend
+    - name: s3-backend
       storageRef:
         namespace: demo
-        name: azure-storage
+        name: s3-storage
       retentionPolicy:
         name: demo-retention
         namespace: demo
@@ -21,14 +21,14 @@ spec:
     - name: frequent-backup
       sessionHistoryLimit: 3
       scheduler:
-        schedule: "*/3 * * * *"
+        schedule: "*/1 * * * *"
         successfulJobsHistoryLimit: 1
         failedJobsHistoryLimit: 1
         jobTemplate:
           backoffLimit: 1
       repositories:
-        - name: azure-mssql-repo
-          backend: azure-backend
+        - name: s3-mssql-repo
+          backend: s3-backend
           directory: /mssql
           encryptionSecret:
            name: encrypt-secret
@@ -38,6 +38,13 @@ spec:
         tasks:
           - name: logical-backup
             params:
-             # databases: agdb1, agdb2
-             # args:
+             databases: dummy
+             args: WITH FORMAT, COMPRESSION
              interimStorage: demo/azure-storage
+            addonVolumes:
+              - name: kubestash-interim-volume
+                source:
+                  volumeClaimTemplate:
+                    spec:
+                      accessModes:
+                      - ReadWriteOnce

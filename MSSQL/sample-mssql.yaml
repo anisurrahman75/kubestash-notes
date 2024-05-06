@@ -1,5 +1,5 @@
 apiVersion: kubedb.com/v1alpha2
-kind: MsSQL
+kind: MSSQLServer
 metadata:
   name: sample-mssql
   namespace: demo
@@ -21,6 +21,7 @@ spec:
       databases:
         - AgDB1
         - AgDB2
+        - Dummy
   leaderElection:
     period: 100ms
     electionTick: 10
@@ -29,7 +30,7 @@ spec:
     transferLeadershipTimeout: 60s
   storageType: Durable
   storage:
-    storageClassName: "linode-block-storage"
+    # storageClassName: "linode-block-storage"
     accessModes:
     - ReadWriteOnce
     resources:

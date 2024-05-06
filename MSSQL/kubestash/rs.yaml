@@ -1,4 +1,3 @@
-
 apiVersion: core.kubestash.com/v1alpha1
 kind: RestoreSession
 metadata:
@@ -7,9 +6,9 @@ metadata:
 spec:
   target:
     apiGroup: kubedb.com
-    kind: MsSQL
+    kind: MSSQLServer
     namespace: demo
-    name: restored-sample-mssql
+    name: sample-mssql
   dataSource:
     snapshot: latest
     repository: azure-mssql-repo
@@ -21,5 +20,13 @@ spec:
     tasks:
       - name: logical-backup-restore
         params:
-          databases: agdb1,agdb2
+          databases: dummy
           interimStorage: demo/azure-storage
+          # args: WITH RECOVERY, REPLACE
+        addonVolumes:
+          - name: kubestash-interim-volume
+            source:
+              volumeClaimTemplate:
+                spec:
+                  accessModes:
+                  - ReadWriteOnce
