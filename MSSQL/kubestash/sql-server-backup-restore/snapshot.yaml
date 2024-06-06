@@ -1,0 +1,10 @@
+status:
+  components:
+    dump:
+      driver: WalG
+      phase: Succeeded
+      walgStats:
+        Id: 
+        Duration:
+        Databases: []
+        TimeStamp:

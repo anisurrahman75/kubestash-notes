@@ -8,11 +8,11 @@ spec:
     provider: s3
     s3:
       bucket: kubestash
-      endpoint: http://minio.tenant1.svc.cluster.local:80
+      endpoint: http://minio.demo.svc.cluster.local:80
       secretName: minio-secret
       region: us-east-1
       prefix: demo
-      insecureTLS: true
+      # insecureTLS: true
   usagePolicy:
     allowedNamespaces:
       from: All

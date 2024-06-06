@@ -8,7 +8,7 @@ spec:
     provider: gcs
     gcs:
       bucket: kubestash-qa
-      prefix: demo
+      prefix: sunny
       secretName: gcs-secret 
   usagePolicy:
     allowedNamespaces: 

@@ -8,7 +8,7 @@ spec:
   successfulSnapshots:
     last: 2
   failedSnapshots:
-    last: 2
+    last: 1
   usagePolicy:
     allowedNamespaces:
       from: All

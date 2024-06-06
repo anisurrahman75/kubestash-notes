@@ -7,14 +7,9 @@ spec:
   - backup
   - --namespace=${namespace:=default}
   - --backupsession=${backupSession:=}
-  - --enable-cache=${enableCache:=}
-  - --scratch-dir=${scratchDir:=}
   - --wait-timeout=${waitTimeout:=300}
-  - --mssql-args=${args:=}
   - --databases=${databases:=}
-  - --interim-storage=${interimStorage:=}
-  - --interim-data-dir=${interimDataDir:=}
-  image: anisurrahman75/mssql-restic-plugin:init-backup-restore_linux_amd64
+  image: anisurrahman75/mssqlserver-walg-plugin:walg-backup-restore_linux_amd64
 
 ---
 
@@ -28,11 +23,6 @@ spec:
   - --namespace=${namespace:=default}
   - --restoresession=${restoreSession:=}
   - --snapshot=${snapshot:=}
-  - --enable-cache=${enableCache:=}
-  - --scratch-dir=${scratchDir:=}
   - --wait-timeout=${waitTimeout:=300}
-  - --mssql-args=${args:=}
   - --databases=${databases:=}
-  - --interim-storage=${interimStorage:=}
-  - --interim-data-dir=${interimDataDir:=}
-  image: anisurrahman75/mssql-restic-plugin:init-backup-restore_linux_amd64
+  image: anisurrahman75/mssqlserver-walg-plugin:walg-backup-restore_linux_amd64

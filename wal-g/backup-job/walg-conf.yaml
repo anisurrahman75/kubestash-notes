@@ -1,0 +1,12 @@
+WALG_AZ_PREFIX: "azure://kubestashqa/sunny"
+AZURE_STORAGE_ACCOUNT: "kubestashqa"
+AZURE_STORAGE_ACCESS_KEY: ""
+SQLSERVER_BLOB_CERT_FILE: "/backup/server.crt"
+SQLSERVER_BLOB_KEY_FILE:  "/backup/server.key"
+SQLSERVER_BLOB_LOCK_FILE: "./wal-g.lock"
+SQLSERVER_BLOB_HOSTNAME:  "backup-job-service.demo.svc"
+SQLSERVER_CONNECTION_STRING: "sqlserver://sa:Pa55w0rd!@sample-mssql.demo.svc:1433/instance"
+
+WALG_UPLOAD_CONCURRENCY:   8  # how many block upload requests handle concurrently
+WALG_DOWNLOAD_CONCURRENCY: 8  # how many block read requests handle concurrently 
+WALG_LOG_LEVEL: "DEVEL"

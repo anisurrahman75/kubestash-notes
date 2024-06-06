@@ -1,0 +1,53 @@
+
+
+
+------ Init Container-------------
+- List all stale snapshot's into a shared volume path
+- Pending status will set
+
+-----  Init Container 0 -------------
+backupSession:
+  status:
+    restic: failed
+    vs: pending
+
+  Restic:
+    - manifest: <ignore-error-sms>
+      prune: true, false
+    - dump-0:
+      prune: true, false
+    - dump-1:
+      prune: true, false
+
+
+-----   Init Container 1 -------------
+
+  VS:
+    - pvc-0:
+      prune: true, false
+    - pvc-1:
+      prune: true, false
+
+
+-----   Main Container-------------
+- all repo phase be updates as 'Applied'
+
+
+
+
+--------Naming----------------------
+-Restic: restic-cleaner
+-VS: volume-snapshot-cleaner
+-WalG: walg-cleaner
+
+
+----------------------------------------------------------------------------Implementation--------------------
+
+-------------- Init Container -------------
+
+json:
+  {
+    repo_name: {
+      
+    }
+  }

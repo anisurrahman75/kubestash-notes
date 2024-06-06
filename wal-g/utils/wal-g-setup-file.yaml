@@ -10,7 +10,7 @@ WALG_DOWNLOAD_CONCURRENCY: 8  # how many block read requests handle concurrently
 
 # ------------------------------
 
-# - CREATE LOGIN [backupuser] WITH PASSWORD = 'backuppass1!';
-# - ALTER SERVER ROLE [sysadmin] ADD MEMBER [backupuser];
-# - CREATE CREDENTIAL [https://backup.local/basebackups_005] WITH IDENTITY='SHARED ACCESS SIGNATURE', SECRET = 'does_not_matter';
-# - CREATE CREDENTIAL [https://backup.local/wal_005] WITH IDENTITY='SHARED ACCESS SIGNATURE', SECRET = 'does_not_matter';
+- CREATE LOGIN [backupuser] WITH PASSWORD = 'backuppass1!';
+- ALTER SERVER ROLE [sysadmin] ADD MEMBER [backupuser];
+- CREATE CREDENTIAL [https://backup.local/basebackups_005] WITH IDENTITY='SHARED ACCESS SIGNATURE', SECRET = 'does_not_matter';
+- CREATE CREDENTIAL [https://backup.local/wal_005] WITH IDENTITY='SHARED ACCESS SIGNATURE', SECRET = 'does_not_matter';

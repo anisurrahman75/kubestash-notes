@@ -13,7 +13,8 @@ spec:
   - name: pvc-backend
     storageRef:
       namespace: demo
-      name: gcs-storage
+        #name: s3-storage
+      name : local-storage-with-hostpath
     retentionPolicy:
       name: demo-retention
       namespace: demo
@@ -50,12 +51,12 @@ spec:
        name: encrypt-secret # some addon may not support encryption
        namespace: demo
       deletionPolicy: WipeOut
-    # - name: pvc-demo-gcs2
-    #   backend: pvc-backend
-    #   directory: /backup-target-pvc2
-    #   encryptionSecret:
-    #    name: encrypt-secret # some addon may not support encryption
-    #    namespace: demo
+    # # - name: pvc-demo-gcs2
+  #   #   backend: pvc-backend
+#     #   directory: /backup-target-pvc# 2
+    #   encryptionSecr# et:
+    #    name: encrypt-secret # some addon may not support encry# ption
+    #    namespac# e: demo
     #   deletionPolicy: WipeOut 
     addon:
       name: pvc-addon

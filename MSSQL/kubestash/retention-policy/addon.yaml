@@ -1,0 +1,121 @@
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Addon
+metadata:
+  name: pvc-addon-retention-policy
+spec:
+  backupTasks:
+  - name: logical-backup
+    function: pvc-backup
+    driver: Restic
+    executor: Job
+    singleton: true
+    parameters:
+    - name: paths
+      usage: List of file paths to backup.
+      required: false
+      default: /kubestash-data
+    - name: exclude
+      usage: List of patterns for the files that should be ignored during restore.
+      required: false
+    - name: enableCache
+      usage: Enable or disable caching. Disabling caching may impact backup performance.
+      required: false
+      default: "true"
+    - name: scratchDir
+      usage: Directory for holding temporary files and restic cache.
+      required: false
+      default: /kubestash-tmp
+    volumeTemplate:
+    - name: kubestash-data-volume
+      source:
+        persistentVolumeClaim:
+          claimName: ${PVC_NAME}
+    - name: kubestash-tmp-volume
+      usage: Holds temporary files and restic cache.
+      source:
+        emptyDir: {}
+    volumeMounts:
+    - name: kubestash-data-volume
+      mountPath: /kubestash-data
+    - name: kubestash-tmp-volume
+      mountPath: /kubestash-tmp
+  - name: volume-snapshot
+    function: volumesnapshot-backup
+    singleton: true
+    driver: VolumeSnapshotter
+    parameters:
+      - name: volumeSnapshotClassName
+        usage: The VolumeSnapshotClassName to be used by volumeSnapshot
+        required: false
+  restoreTasks:
+  - name: logical-backup-restore
+    function: pvc-restore
+    driver: Restic
+    executor: Job
+    singleton: true
+    parameters:
+    - name: enableCache
+      usage: Enable or disable caching. Disabling caching may impact backup performance.
+      required: false
+      default: "true"
+    - name: scratchDir
+      usage: Directory for holding temporary files and restic cache.
+      required: false
+      default: /kubestash-tmp
+    volumeTemplate:
+    - name: kubestash-data-volume
+      source:
+        persistentVolumeClaim:
+          claimName: ${PVC_NAME}
+    - name: kubestash-tmp-volume
+      usage: Holds temporary files and restic cache.
+      source:
+        emptyDir: {}
+    volumeMounts:
+    - name: kubestash-data-volume
+      mountPath: /kubestash-data
+    - name: kubestash-tmp-volume
+      mountPath: /kubestash-tmp
+  - name: volume-clone
+    function: pvc-restore
+    driver: Restic
+    executor: Job
+    singleton: false
+    parameters:
+    - name: enableCache
+      usage: Enable or disable caching. Disabling caching may impact backup performance.
+      required: false
+      default: "true"
+    - name: scratchDir
+      usage: Directory for holding temporary files and restic cache.
+      required: false
+      default: /kubestash-tmp
+    volumeTemplate:
+    - name: kubestash-tmp-volume
+      usage: Holds temporary files and restic cache.
+      source:
+        emptyDir: {}
+    volumeMounts:
+    - name: kubestash-tmp-volume
+      mountPath: /kubestash-tmp
+  - name: volume-snapshot-restore
+    function: volumesnapshot-restore
+    driver: VolumeSnapshotter
+    executor: Job
+    singleton: true
+
+  cleanerTasks:
+  - name: restic-cleaner
+    function: restic-cleaner
+    driver: Restic
+    executor: Job
+    singleton: false
+    volumeTemplate:
+    - name: kubestash-tmp-volume
+      usage: Holds temporary files and restic cache.
+      source:
+        emptyDir: {}
+    volumeMounts:
+    - name: kubestash-tmp-volume
+      mountPath: /kubestash-tmp
+

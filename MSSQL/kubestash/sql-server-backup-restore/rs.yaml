@@ -8,10 +8,10 @@ spec:
     apiGroup: kubedb.com
     kind: MSSQLServer
     namespace: demo
-    name: sample-mssql
+    name: mssqlserver-ag
   dataSource:
     snapshot: latest
-    repository: azure-mssql-repo
+    repository: gcs-mssql-repo
     encryptionSecret:
       name: encrypt-secret 
       namespace: demo
@@ -20,13 +20,4 @@ spec:
     tasks:
       - name: logical-backup-restore
         params:
-          databases: dummy
-          interimStorage: demo/azure-storage
-          # args: WITH RECOVERY, REPLACE
-        addonVolumes:
-          - name: kubestash-interim-volume
-            source:
-              volumeClaimTemplate:
-                spec:
-                  accessModes:
-                  - ReadWriteOnce
+          # databases: agdb1

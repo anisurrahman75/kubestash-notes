@@ -1,0 +1,76 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: BackupConfiguration
+metadata:
+  name: mssql-db-backup
+  namespace: demo
+spec:
+  target:
+    apiGroup: kubedb.com
+    kind: MSSQLServer
+    namespace: demo
+    name: sample-mssql
+  backends:
+    - name: azure-backend
+      storageRef:
+        namespace: demo
+        name: azure-storage
+      retentionPolicy:
+        name: demo-retention
+        namespace: demo
+  sessions:
+    - name: frequent-backup
+      sessionHistoryLimit: 3
+      scheduler:
+        schedule: "*/5 * * * *"
+        successfulJobsHistoryLimit: 1
+        failedJobsHistoryLimit: 1
+        jobTemplate:
+          backoffLimit: 1
+      repositories:
+        - name: azure-mssql-repo
+          backend: azure-backend
+          directory: /mssql
+          encryptionSecret:
+           name: encrypt-secret
+           namespace: demo
+      addon:
+        name: mssql-addon
+        jobTemplate:
+          spec:
+            securityContext:
+              runAsUser: 0
+        tasks:
+          - name: logical-backup
+            params:
+             databases: Dummy
+            addonVolumes:
+              - name: kubestash-interim-volume
+                source:
+                  volumeClaimTemplate:
+                    spec:
+                      accessModes:
+                      - ReadWriteOnce
+          - name: manifest-backup
+            params:
+             databases: Dummy
+            addonVolumes:
+              - name: kubestash-interim-volume
+                source:
+                  volumeClaimTemplate:
+                    spec:
+                      accessModes:
+                      - ReadWriteOnce
+
+          - name: volume-snapshot
+            params:
+             databases: Dummy
+            addonVolumes:
+              - name: kubestash-interim-volume
+                source:
+                  volumeClaimTemplate:
+                    spec:
+                      accessModes:
+                      - ReadWriteOnce
+
+
+

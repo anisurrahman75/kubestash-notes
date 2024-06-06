@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: walg-pod
+  namespace: demo
+  labels:
+    app: my-walg
+spec:
+  containers:
+    - name: walg
+      image: anisurrahman75/walg-restic:2.0
+      imagePullPolicy: Always
+      ports:
+        - containerPort: 443
+      volumeMounts:
+        - name: walg-volume
+          mountPath: /backup-data
+  volumes:
+  - name: walg-volume
+    persistentVolumeClaim:
+      claimName: walg-pvc

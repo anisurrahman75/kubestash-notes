@@ -1,0 +1,10 @@
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Function
+metadata:
+  name: restic-retention-policy
+spec:
+  args:
+  - apply-retention-policy
+  - --session-namespace=${namespace:=default}
+  - --session-name=${backupSession:=}
+  image: ghcr.io/anisurrahman75/kubestash:retention-policy_linux_amd64
