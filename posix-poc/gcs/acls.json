@@ -1,0 +1,32 @@
+[
+    {
+      "entity": "project-owners-176319405093",
+      "projectTeam": {
+        "projectNumber": "176319405093",
+        "team": "owners"
+      },
+      "role": "OWNER"
+    },
+    {
+      "entity": "project-editors-176319405093",
+      "projectTeam": {
+        "projectNumber": "176319405093",
+        "team": "editors"
+      },
+      "role": "OWNER"
+    },
+    {
+      "entity": "project-viewers-176319405093",
+      "projectTeam": {
+        "projectNumber": "176319405093",
+        "team": "viewers"
+      },
+      "role": "READER"
+    },
+    {
+      "email": "anisur@appscode-testing.iam.gserviceaccount.com",
+      "entity": "user-anisur@appscode-testing.iam.gserviceaccount.com",
+      "role": "OWNER"
+    }
+  ]
+  
