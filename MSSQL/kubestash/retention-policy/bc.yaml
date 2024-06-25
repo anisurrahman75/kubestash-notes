@@ -14,7 +14,7 @@ spec:
     storageRef:
       namespace: demo
         #name: s3-storage
-      name : local-storage-with-hostpath
+      name : gcs-storage
     retentionPolicy:
       name: demo-retention
       namespace: demo

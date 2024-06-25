@@ -26,7 +26,7 @@ spec:
       name: mssqlserver-issuer
       kind: Issuer
       apiGroup: "cert-manager.io"
-    clientTLS: false
+    clientTLS: true
   storageType: Durable
   storage:
     storageClassName: "standard"
@@ -35,4 +35,4 @@ spec:
     resources:
       requests:
         storage: 1Gi
-  # terminationPolicy: WipeOut
+  deletionPolicy: WipeOut

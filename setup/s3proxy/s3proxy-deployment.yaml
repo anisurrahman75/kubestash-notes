@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: s3proxy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: s3proxy
+  template:
+    metadata:
+      labels:
+        app: s3proxy
+    spec:
+      containers:
+      - name: s3proxy
+        image: andrewgaul/s3proxy
+        ports:
+        - name: s3
+          containerPort: 80
+        env:
+        - name: S3PROXY_AUTHORIZATION
+          value: "aws-v2-or-v4"
+        - name: S3PROXY_IGNORE_UNKNOWN_HEADERS
+          value: "true"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: s3proxy-service
+spec:
+  ports:
+  - name: http
+    port: 80
+    targetPort: s3
+  selector:
+    app: s3proxy
+
+
+# kubectl port-forward service/s3proxy-service 8080:80apt ins
