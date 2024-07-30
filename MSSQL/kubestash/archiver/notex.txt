@@ -1,0 +1,7 @@
+RESTORE HEADERONLY FROM URL = 'https://restore-mssqlserver-ag-restorer.demo.svc/basebackups_005/base_20240725T132815Z/agdb1/blob_000'
+
+
+wal-g log-restore --since base_20240726T060402Z -d agdb1 --until 2024-07-26T23:04:00Z  --config /kubestash-tmp/walg-conf.yaml
+
+
+https://sample-mss-ql-restore.demo.svc/basebackups_005/base_20240726T060402Z/agdb1/blob_000

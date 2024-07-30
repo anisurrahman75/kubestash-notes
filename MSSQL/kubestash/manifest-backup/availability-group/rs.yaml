@@ -1,0 +1,35 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: RestoreSession
+metadata:
+  name: sample-restoresession
+  namespace: demo
+spec:
+  manifestOptions:
+    restoreNamespace: demo
+    msSQLServer:
+      db: true
+      dbName: new-mssqlserver
+      authSecret: false
+      authSecretName: new-authsecret-mssqlserver
+      internalAuth:
+        endpointCert:
+          issuerRef:
+            apiGroup: cert-manager.io
+            name: mssqlserver-issuer
+            kind: Issuer
+      tls:
+        issuerRef:
+          name: mssqlserver-issuer
+          kind: Issuer
+          apiGroup: "cert-manager.io"
+        clientTLS: false
+  dataSource:
+    snapshot: latest
+    repository: gcs-mssql-manifest-repo
+    encryptionSecret:
+      name: encrypt-secret
+      namespace: demo
+  addon:
+    name: mssqlserver-addon
+    tasks:
+      - name: manifest-restore

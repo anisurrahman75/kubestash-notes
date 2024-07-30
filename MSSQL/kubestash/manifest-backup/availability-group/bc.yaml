@@ -1,0 +1,39 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: BackupConfiguration
+metadata:
+  name: mssql-manifest-backup
+  namespace: demo
+spec:
+  target:
+    apiGroup: kubedb.com
+    kind: MSSQLServer
+    namespace: demo
+    name: mssqlserver-ag
+  backends:
+    - name: gcs-backend
+      storageRef:
+        namespace: demo
+        name: gcs-storage
+      retentionPolicy:
+        name: demo-retention
+        namespace: demo
+  sessions:
+    - name: frequent-backup
+      sessionHistoryLimit: 1
+      scheduler:
+        schedule: "*/2 * * * *"
+        successfulJobsHistoryLimit: 1
+        failedJobsHistoryLimit: 1
+        jobTemplate:
+          backoffLimit: 1
+      repositories:
+        - name: gcs-mssql-manifest-repo
+          backend: gcs-backend
+          directory: /mssql-manifest
+          encryptionSecret:
+           name: encrypt-secret
+           namespace: demo
+      addon:
+        name: mssqlserver-addon
+        tasks:
+          - name: manifest-backup

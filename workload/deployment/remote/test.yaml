@@ -1,0 +1,42 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: BackupConfiguration
+metadata:
+  name: ace-db-sunny
+  namespace: ace
+spec:
+  backends:
+  - name: default-backend
+    retentionPolicy:
+      name: keep-1mo
+      namespace: stash
+    storageRef:
+      name: default
+      namespace: stash
+  sessions:
+  - addon:
+      name: postgres-addon
+      tasks:
+      - name: logical-backup
+    name: full-backup
+    repositories:
+    - backend: default-backend-sunny
+      directory: ace/ace-db-sunny
+      encryptionSecret:
+        name: default-encryption-secret
+        namespace: stash
+      name: ace-db-sunny
+    scheduler:
+      jobTemplate:
+        backoffLimit: 1
+        template:
+          controller: {}
+          metadata: {}
+          spec:
+            resources: {}
+      schedule: "*/5 * * * *"
+    sessionHistoryLimit: 2
+  target:
+    apiGroup: kubedb.com
+    kind: Postgres
+    name: ace-db
+    namespace: ace

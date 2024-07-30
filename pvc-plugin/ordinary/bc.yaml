@@ -2,7 +2,7 @@ apiVersion: core.kubestash.com/v1alpha1
 kind: BackupConfiguration
 metadata:
   name: pvc-backup
-  namespace: demo
+  namespace: aa
 spec:
   target:
     apiGroup:
@@ -16,7 +16,7 @@ spec:
       name: gcs-storage
     retentionPolicy:
       name: demo-retention
-      namespace: demo
+      namespace: bb
   sessions:
   # - name: two-minutes-backup
   #   sessionHistoryLimit: 3
@@ -48,7 +48,7 @@ spec:
       directory: /backup-target-pvc
       encryptionSecret:
        name: encrypt-secret # some addon may not support encryption
-       namespace: demo
+       namespace: cc
       deletionPolicy: WipeOut
     # - name: pvc-demo-gcs2
     #   backend: pvc-backend
@@ -61,8 +61,7 @@ spec:
       name: pvc-addon
       tasks:
       - name: logical-backup
-      jobTemplate:
-        spec: 
-          serviceAccountName: bucket-user
-          securityContext: 
-            runAsUser: 0
+      # jobTemplate:
+      #   spec: 
+      #     securityContext: 
+      #       runAsUser: 0

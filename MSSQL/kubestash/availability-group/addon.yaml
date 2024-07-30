@@ -1,10 +1,27 @@
 apiVersion: addons.kubestash.com/v1alpha1
 kind: Addon
 metadata:
-  name: mssql-addon
+  name: mssqlserver-addon
 spec:
   backupTasks:
     - name: logical-backup
+      function: mssql-backup
+      driver: WalG
+      executor: Job
+      singleton: true
+      parameters:
+        - name: databases
+          usage: List of databases to backup.
+          required: false
+      volumeTemplate:
+        - name: kubestash-tmp-volume
+          usage: Holds temporary files and restic cache.
+          source:
+            emptyDir: {}
+      volumeMounts:
+        - name: kubestash-tmp-volume
+          mountPath: /kubestash-tmp
+    - name: full-backup
       function: mssql-backup
       driver: WalG
       executor: Job
@@ -31,6 +48,9 @@ spec:
         - name: databases
           usage: List of databases to restore.
           required: false
+        - name: noRecovery
+          usage: Restore with NO_RECOVERY option
+          required: false  
       volumeTemplate:
         - name: kubestash-tmp-volume
           usage: Holds temporary files and walG cache.

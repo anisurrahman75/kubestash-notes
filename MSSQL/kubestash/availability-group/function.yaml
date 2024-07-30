@@ -25,4 +25,5 @@ spec:
   - --snapshot=${snapshot:=}
   - --wait-timeout=${waitTimeout:=300}
   - --databases=${databases:=}
+  - --no-recovery=${noRecovery:=false}
   image: anisurrahman75/mssqlserver-walg-plugin:walg-backup-restore_linux_amd64

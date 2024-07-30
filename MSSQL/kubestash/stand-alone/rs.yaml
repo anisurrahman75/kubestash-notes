@@ -1,0 +1,25 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: RestoreSession
+metadata:
+  name: sample-mssql-restore
+  namespace: demo
+spec:
+  target:
+    apiGroup: kubedb.com
+    kind: MSSQLServer
+    namespace: demo
+    name: mssql-standalone
+  dataSource:
+    snapshot: latest
+    repository: mssqlserver-ag-full
+  addon:
+    name: mssqlserver-addon
+    jobTemplate:
+      spec:
+        securityContext:
+          runAsUser: 0
+    tasks:
+      - name: logical-backup-restore
+        params:
+          databases: agdb1
+          noRecovery: "true"

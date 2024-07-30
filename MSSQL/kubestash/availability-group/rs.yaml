@@ -11,13 +11,18 @@ spec:
     name: mssqlserver-ag
   dataSource:
     snapshot: latest
-    repository: gcs-mssql-repo
-    encryptionSecret:
-      name: encrypt-secret 
-      namespace: demo
+    repository: mssqlserver-ag-full
+    # encryptionSecret:
+    #   name: encrypt-secret 
+    #   namespace: demo
   addon:
-    name: mssql-addon
+    name: mssqlserver-addon
+    jobTemplate:
+      spec:
+        securityContext:
+          runAsUser: 0
     tasks:
       - name: logical-backup-restore
         params:
-          # databases: agdb1
+          databases: agdb1
+          noRecovery: "true"

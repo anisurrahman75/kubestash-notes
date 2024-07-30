@@ -1,14 +1,14 @@
 apiVersion: core.kubestash.com/v1alpha1
 kind: BackupConfiguration
 metadata:
-  name: mssql-db-backup
+  name: mssql-manifest-backup
   namespace: demo
 spec:
   target:
     apiGroup: kubedb.com
     kind: MSSQLServer
     namespace: demo
-    name: mssqlserver-ag
+    name: mssql-standalone
   backends:
     - name: gcs-backend
       storageRef:
@@ -27,25 +27,13 @@ spec:
         jobTemplate:
           backoffLimit: 1
       repositories:
-        - name: gcs-mssql-repo
+        - name: gcs-mssql-manifest-repo
           backend: gcs-backend
-          directory: /mssql
+          directory: /mssql-manifest
           encryptionSecret:
            name: encrypt-secret
            namespace: demo
-        # - name: gcs-mssql-repo2
-        #   backend: gcs-backend
-        #   directory: /mssql2
-        #   encryptionSecret:
-        #    name: encrypt-secret
-        #    namespace: demo
       addon:
-        name: mssql-addon
-        jobTemplate:
-          spec:
-            securityContext:
-              runAsUser: 0
+        name: mssqlserver-addon
         tasks:
-          - name: logical-backup
-            params:
-             # databases: Dummy
+          - name: manifest-backup

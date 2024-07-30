@@ -1,0 +1,40 @@
+apiVersion: kubedb.com/v1alpha2
+kind: MSSQLServer
+metadata:
+  name: restore-mssqlserver-ag
+  namespace: demo
+spec:
+  init:
+    archiver:
+      encryptionSecret:
+        name: encrypt-secret
+        namespace: demo
+      recoveryTimestamp: "2024-07-26T21:43:41.300216Z"
+      fullDBRepository:
+        name: mssqlserver-ag-full
+        namespace: demo
+  version: "2022-cu12"
+  replicas: 2
+  topology:
+    mode: AvailabilityGroup
+  internalAuth:
+    endpointCert:
+      issuerRef:
+        apiGroup: cert-manager.io
+        name: mssqlserver-issuer
+        kind: Issuer
+  tls:
+    issuerRef:
+      name: mssqlserver-issuer
+      kind: Issuer
+      apiGroup: "cert-manager.io"
+    clientTLS: false
+  storageType: Durable
+  storage:
+    storageClassName: "standard"
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+  deletionPolicy: WipeOut

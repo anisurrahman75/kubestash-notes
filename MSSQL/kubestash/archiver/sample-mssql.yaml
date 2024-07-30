@@ -1,0 +1,49 @@
+apiVersion: kubedb.com/v1alpha2
+kind: MSSQLServer
+metadata:
+  name: mssqlserver-ag
+  namespace: demo
+  labels:
+    archiver: "true"
+spec:
+  healthChecker:
+    timeoutSeconds: 100
+
+  archiver:
+    ref:
+      name: mssqlserverarchiver-sample
+      namespace: demo
+  version: "2022-cu12"
+  replicas: 2
+  authSecret:
+    name: mssqlserver-custom-auth
+    externallyManaged: true
+  topology:
+    mode: AvailabilityGroup
+    availabilityGroup:
+      databases:
+        - agdb1
+        - agdb2
+        - demo
+        - sunny
+  internalAuth:
+    endpointCert:
+      issuerRef:
+        apiGroup: cert-manager.io
+        name: mssqlserver-issuer
+        kind: Issuer
+  tls:
+    issuerRef:
+      name: mssqlserver-issuer
+      kind: Issuer
+      apiGroup: "cert-manager.io"
+    clientTLS: false
+  storageType: Durable
+  storage:
+    storageClassName: "standard"
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+  deletionPolicy: WipeOut
