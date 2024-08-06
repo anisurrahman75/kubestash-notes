@@ -9,7 +9,7 @@ spec:
       encryptionSecret:
         name: encrypt-secret
         namespace: demo
-      recoveryTimestamp: "2024-07-26T21:43:41.300216Z"
+      recoveryTimestamp: "2024-07-31T21:43:41.300216Z"
       fullDBRepository:
         name: mssqlserver-ag-full
         namespace: demo

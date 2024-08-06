@@ -1,0 +1,42 @@
+apiVersion: archiver.kubedb.com/v1alpha1
+kind: PostgresArchiver
+metadata:
+  name: postgresarchiver-sample
+  namespace: demo
+spec:
+  pause: false
+  databases:
+    namespaces:
+      from: Selector
+      selector:
+        matchLabels:
+         kubernetes.io/metadata.name: demo
+    selector:
+      matchLabels:
+        archiver: "true"
+  retentionPolicy:
+    name: demo-retention
+    namespace: demo
+  encryptionSecret: 
+    name: "encrypt-secret"
+    namespace: "demo"  
+  fullBackup:
+    driver: "VolumeSnapshotter"
+    task:
+      params:
+        volumeSnapshotClassName: "longhorn"
+    scheduler:
+      successfulJobsHistoryLimit: 1
+      failedJobsHistoryLimit: 1
+      schedule: "30 * * * *"
+    sessionHistoryLimit: 2
+  manifestBackup:
+    scheduler:
+      successfulJobsHistoryLimit: 1
+      failedJobsHistoryLimit: 1 
+      schedule: "30 * * * *"
+    sessionHistoryLimit: 2
+  backupStorage:
+    ref:
+      name: "s3-storage"
+      namespace: "demo"
