@@ -2,6 +2,7 @@ apiVersion: core.kubestash.com/v1alpha1
 kind: BackupConfiguration
 metadata:
   name: cluster-resources-backup
+  namespace: demo
 spec:
   backends:
     - name: s3-storage
@@ -15,18 +16,19 @@ spec:
     - name: cluster-resources-backup
       sessionHistoryLimit: 3
       scheduler:
-        schedule: "0 12 * * *"
+        # schedule: "0 12 * * *" # Daily once at 12 p.m
+        schedule: "*/5 * * * *"
         successfulJobsHistoryLimit: 1
         failedJobsHistoryLimit: 1
         jobTemplate:
           backoffLimit: 1
       repositories:
-        - name: s3-cluster-resources
+        - name: cluster-resources
           backend: s3-storage
           directory: /manifest/cluster-resources
           encryptionSecret:
-           name: encrypt-secret # some addon may not support encryption
-           namespace: default
+           name: encrypt-secret
+           namespace: demo
       addon:
         name: kubedump-addon
         tasks:

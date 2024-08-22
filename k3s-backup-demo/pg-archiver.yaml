@@ -1,7 +1,7 @@
 apiVersion: archiver.kubedb.com/v1alpha1
-kind: MSSQLServerArchiver
+kind: PostgresArchiver
 metadata:
-  name: mssqlserverarchiver-sample
+  name: postgresarchiver-sample
   namespace: demo
 spec:
   pause: false
@@ -18,32 +18,25 @@ spec:
     name: demo-retention
     namespace: demo
   encryptionSecret: 
-    name: encrypt-secret
-    namespace: demo
+    name: "encrypt-secret"
+    namespace: "demo"  
   fullBackup:
-    driver: WalG
+    driver: "VolumeSnapshotter"
     task:
       params:
-        databases: demo
+        volumeSnapshotClassName: "longhorn"
     scheduler:
       successfulJobsHistoryLimit: 1
       failedJobsHistoryLimit: 1
-      # schedule: "*/30 * * * *"
-      schedule: "0 0 * * *"
+      schedule: "30 * * * *"
     sessionHistoryLimit: 2
-    jobTemplate:
-      spec:
-        securityContext:
-          runAsUser: 0
-  walBackup:
-    runtimeSettings:
-      pod:
-        securityContext:
-          runAsUser: 0
-      container:
-        securityContext:
-          runAsUser: 0
+  manifestBackup:
+    scheduler:
+      successfulJobsHistoryLimit: 1
+      failedJobsHistoryLimit: 1 
+      schedule: "30 * * * *"
+    sessionHistoryLimit: 2
   backupStorage:
     ref:
-      name: gcs-storage
-      namespace: demo
+      name: "s3-storage"
+      namespace: "demo"

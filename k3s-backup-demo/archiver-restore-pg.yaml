@@ -1,0 +1,30 @@
+apiVersion: kubedb.com/v1alpha2
+kind: Postgres
+metadata:
+  name: restore-pg
+  namespace: demo
+spec:
+  init:
+    archiver:
+      encryptionSecret:
+        name: encrypt-secret
+        namespace: demo
+      fullDBRepository:
+        name: demo-pg-full
+        namespace: demo
+      manifestRepository:
+        name: demo-pg-manifest
+        namespace: demo
+      recoveryTimestamp: "2024-08-06T23:43:41.300216Z"
+  version: "13.13"
+  replicas: 3
+  standbyMode: Hot
+  storageType: Durable
+  storage:
+    storageClassName: "longhorn"
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+  terminationPolicy: WipeOut

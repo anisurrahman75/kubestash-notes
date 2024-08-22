@@ -9,20 +9,16 @@ spec:
     msSQLServer:
       db: true
       dbName: new-mssqlserver
-      authSecret: false
+      authSecret: true
       authSecretName: new-authsecret-mssqlserver
-      internalAuth:
-        endpointCert:
-          issuerRef:
-            apiGroup: cert-manager.io
-            name: mssqlserver-issuer
-            kind: Issuer
-      tls:
-        issuerRef:
-          name: mssqlserver-issuer
-          kind: Issuer
-          apiGroup: "cert-manager.io"
-        clientTLS: false
+      internalAuthIssuerRef:
+        apiGroup: cert-manager.io
+        name: mssqlserver-issuer
+        kind: Issuer
+      tlsIssuerRef:
+        name: mssqlserver-issuer
+        kind: Issuer
+        apiGroup: "cert-manager.io"
   dataSource:
     snapshot: latest
     repository: gcs-mssql-manifest-repo

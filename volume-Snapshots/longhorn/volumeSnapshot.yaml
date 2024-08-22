@@ -1,9 +1,9 @@
 apiVersion: snapshot.storage.k8s.io/v1
 kind: VolumeSnapshot
 metadata:
-  name: sayed-backup
+  name: test-vol-backup
   namespace: demo
 spec:
   volumeSnapshotClassName: longhorn
   source:
-    persistentVolumeClaimName: datadir-simple-2-configsvr-0
+    persistentVolumeClaimName: test-vol

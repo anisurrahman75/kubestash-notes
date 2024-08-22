@@ -1,0 +1,11 @@
+apiVersion: appcatalog.appscode.com/v1alpha1
+kind: AppBinding
+metadata:
+  name: db-mysql-appbinding
+  namespace: demo
+spec:
+  clientConfig:
+    url: mysql://db-mysql-stash-test-do-user-165729-0.f.db.ondigitalocean.com:25060?ssl-mode=REQUIRED
+  secret:
+    name: db-mysql-credentials-secret
+  type: mysql

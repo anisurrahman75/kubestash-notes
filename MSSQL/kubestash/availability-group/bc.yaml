@@ -48,4 +48,4 @@ spec:
         tasks:
           - name: logical-backup
             params:
-             # databases: Dummy
+              databases: agdb1

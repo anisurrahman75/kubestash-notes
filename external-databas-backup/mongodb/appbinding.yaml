@@ -1,0 +1,11 @@
+apiVersion: appcatalog.appscode.com/v1alpha1
+kind: AppBinding
+metadata:
+  name: db-mongo-appbinding
+  namespace: demo
+spec:
+  clientConfig:
+    url: mongodb+srv://db-mongodb-stas-test-a09188ae.mongo.ondigitalocean.com:27017/admin?tls=true&authSource=admin&replicaSet=db-mongodb-stas-test
+  secret:
+    name: db-mongo-credentials-secret
+  type: mongodb

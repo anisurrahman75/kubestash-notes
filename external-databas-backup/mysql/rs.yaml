@@ -1,0 +1,17 @@
+apiVersion: stash.appscode.com/v1beta1
+kind: RestoreSession
+metadata:
+  name: sample-mysql-restore
+  namespace: demo
+spec:
+  repository:
+    name: gcs-repo
+  task:
+    name: mysql-restore-8.0.3
+  target:
+    ref:
+      apiVersion: appcatalog.appscode.com/v1alpha1
+      kind: AppBinding
+      name: db-mysql-appbinding
+  rules:
+    - snapshots: [latest]

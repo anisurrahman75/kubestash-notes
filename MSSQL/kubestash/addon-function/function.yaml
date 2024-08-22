@@ -9,6 +9,7 @@ spec:
   - --backupsession=${backupSession:=}
   - --wait-timeout=${waitTimeout:=300}
   - --databases=${databases:=}
+  - --copy-only=${copyOnly:="true"}
   image: anisurrahman75/mssqlserver-walg-plugin:walg-backup-restore_linux_amd64
 
 ---

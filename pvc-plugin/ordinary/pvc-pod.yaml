@@ -18,13 +18,13 @@ metadata:
   namespace: demo
 spec:
   containers:
-  - name: busybox
+  - name: ubuntu
     image: ubuntu
     command: ["/bin/sh", "-c"]
     args: 
     - |
       echo "sample_data" > /target/mountpath/data.txt
-      sleep 3000
+      sleep infinity
     securityContext:
       # allowPrivilegeEscalation: false
       readOnlyRootFilesystem: false

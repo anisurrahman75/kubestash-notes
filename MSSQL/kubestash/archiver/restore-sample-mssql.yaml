@@ -4,14 +4,16 @@ metadata:
   name: restore-mssqlserver-ag
   namespace: demo
 spec:
+  healthChecker:
+    timeoutSeconds: 200
   init:
     archiver:
       encryptionSecret:
         name: encrypt-secret
         namespace: demo
-      recoveryTimestamp: "2024-07-26T21:43:41.300216Z"
+      recoveryTimestamp: "2024-08-14T22:43:41.300216Z"
       fullDBRepository:
-        name: mssqlserver-ag-full
+        name: mssqlserver-ag-full-backup
         namespace: demo
   version: "2022-cu12"
   replicas: 2

@@ -1,16 +1,16 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: restore-sayed-vol
+  name: restore-test-vol
   namespace: demo
 spec:
   accessModes:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 5Gi
+      storage: 1Gi
   storageClassName: longhorn
   dataSource:
-    name: sayed-backup
+    name: test-vol-backup
     kind: VolumeSnapshot
     apiGroup: snapshot.storage.k8s.io

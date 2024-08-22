@@ -8,7 +8,6 @@ metadata:
 spec:
   healthChecker:
     timeoutSeconds: 100
-
   archiver:
     ref:
       name: mssqlserverarchiver-sample
@@ -25,7 +24,6 @@ spec:
         - agdb1
         - agdb2
         - demo
-        - sunny
   internalAuth:
     endpointCert:
       issuerRef:

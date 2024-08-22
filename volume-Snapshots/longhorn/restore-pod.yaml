@@ -14,8 +14,3 @@ spec:
   - name: my-volume
     persistentVolumeClaim:
       claimName: restore-test-vol
-
-
-
-
-      

@@ -13,6 +13,10 @@ spec:
         - name: databases
           usage: List of databases to backup.
           required: false
+        - name: copyOnly
+          usage: Backup with COPY_ONLY option
+          required: false
+          default: "true"
       volumeTemplate:
         - name: kubestash-tmp-volume
           usage: Holds temporary files and restic cache.
@@ -21,9 +25,6 @@ spec:
       volumeMounts:
         - name: kubestash-tmp-volume
           mountPath: /kubestash-tmp
-    
-
-
     - name: manifest-backup
       function: manifest-backup
       driver: Restic
@@ -46,25 +47,27 @@ spec:
       volumeMounts:
         - name: kubestash-tmp-volume
           mountPath: /kubestash-tmp  
-
-
-    - name: full-backup
-      function: mssql-backup
-      driver: WalG
-      executor: Job
-      singleton: true
-      parameters:
-        - name: databases
-          usage: List of databases to backup.
-          required: false
-      volumeTemplate:
-        - name: kubestash-tmp-volume
-          usage: Holds temporary files and restic cache.
-          source:
-            emptyDir: {}
-      volumeMounts:
-        - name: kubestash-tmp-volume
-          mountPath: /kubestash-tmp
+    # - name: full-backup
+    #   function: mssql-backup
+    #   driver: WalG
+    #   executor: Job
+    #   singleton: true
+    #   parameters:
+    #     - name: databases
+    #       usage: List of databases to backup.
+    #       required: false
+    #     - name: copyOnly
+    #       usage: Backup with COPY_ONLY option
+    #       required: false
+    #       default: "true"
+    #   volumeTemplate:
+    #     - name: kubestash-tmp-volume
+    #       usage: Holds temporary files and restic cache.
+    #       source:
+    #         emptyDir: {}
+    #   volumeMounts:
+    #     - name: kubestash-tmp-volume
+    #       mountPath: /kubestash-tmp
   restoreTasks:
     - name: logical-backup-restore
       function: mssql-restore
@@ -78,6 +81,7 @@ spec:
         - name: noRecovery
           usage: Restore with NO_RECOVERY option
           required: false
+          default: "false"
       volumeTemplate:
         - name: kubestash-tmp-volume
           usage: Holds temporary files and walG cache.
@@ -86,10 +90,6 @@ spec:
       volumeMounts:
         - name: kubestash-tmp-volume
           mountPath: /kubestash-tmp
-
-
-
-
     - name: manifest-restore
       function: manifest-restore
       driver: Restic
