@@ -1,0 +1,42 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nfs-example-pod
+spec:
+  containers:
+    - name: nfs-example-container
+      image: nginx:latest
+      volumeMounts:
+        - name: nfs-volume
+          mountPath: /usr/share/nginx/html
+  volumes:
+    - name: nfs-volume
+      nfs:
+        server: 10.128.159.142
+        path: "/"
+
+
+
+# MountVolume.SetUp failed for volume "nfs-storage" : mount failed: exit status 32 Mounting command: mount Mounting arguments: -t nfs 10.98.180.180:/ /var/lib/kubelet/pods/68ef4d32-0b6b-4c60-9dc9-a9e215549809/volumes/kubernetes.io~nfs/nfs-storage 
+# Output: mount: /var/lib/kubelet/pods/68ef4d32-0b6b-4c60-9dc9-a9e215549809/volumes/kubernetes.io~nfs/nfs-storage: bad option; for several filesystems (e.g. nfs, cifs) you might need a /sbin/mount.<type> helper program.
+
+
+You're already using `nfs-csi` storageClass, that means you've already installed nfs-server in your cluster. Let's apply below cmd and check that default `nfs-server` is running:
+
+```bash
+➤ kubectl get all -l app=nfs-server
+NAME                              READY   STATUS    RESTARTS   AGE
+pod/nfs-server-7d5665469f-2nrjm   1/1     Running   0          17m
+
+NAME                 TYPE        CLUSTER-IP       EXTERNAL-IP   PORT(S)            AGE
+service/nfs-server   ClusterIP   10.128.159.142   <none>        2049/TCP,111/UDP   17m
+
+NAME                                    DESIRED   CURRENT   READY   AGE
+replicaset.apps/nfs-server-7d5665469f   1         1         1       17m
+```
+
+If yes, then grap the `CLUSTER-IP` of abobe `service/nfs-server` and add into the `backupStorage` YAML. 
+Before applying delete backupstorage, storage initializer Jobs by following cmd:
+```bash
+$ kubectl delete jobs -n demo --all
+```  

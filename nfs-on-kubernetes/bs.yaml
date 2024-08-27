@@ -1,0 +1,22 @@
+apiVersion: storage.kubestash.com/v1alpha1
+kind: BackupStorage
+metadata:
+  name: nfs-storage
+  namespace: demo
+spec:
+  storage:
+    provider: local
+    local:
+      mountPath: /nfs/data
+      nfs:
+        server: 10.128.159.142 # IP to our NFS server
+        path: "/" # The exported directory
+  usagePolicy:
+    allowedNamespaces:
+      from: All
+  default: false 
+  deletionPolicy: WipeOut
+  runtimeSettings:
+    pod:
+      securityContext:
+        runAsUser: 0

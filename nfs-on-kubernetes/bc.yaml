@@ -1,0 +1,38 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: BackupConfiguration
+metadata:
+  name: postgres-db-backup
+  namespace: demo
+spec:
+  target:
+    apiGroup: kubedb.com
+    kind: Postgres
+    namespace: demo
+    name: sample-postgres
+  backends:
+    - name: nfs-backend
+      storageRef:
+        namespace: demo
+        name: nfs-storage
+      retentionPolicy:
+        name: postgres-retention-policy
+        namespace: demo
+  sessions:
+    - name: frequent-backup
+      scheduler:
+        schedule: "*/1 * * * *"
+      repositories:
+        - name: nfs-postgres-repo
+          backend: nfs-backend
+          directory: /postgres
+          encryptionSecret:
+           name: encrypt-secret
+           namespace: demo
+      addon:
+        name: postgres-addon
+        tasks:
+          - name: logical-backup
+        jobTemplate:
+          spec: 
+            securityContext: 
+              runAsUser: 0

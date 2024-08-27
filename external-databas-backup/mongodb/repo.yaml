@@ -9,3 +9,4 @@ spec:
       bucket: kubestash-qa
       prefix: external-databases/mongo
     storageSecretName: gcs-secret
+  wipeOut: true  

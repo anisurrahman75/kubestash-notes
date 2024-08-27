@@ -1,0 +1,19 @@
+apiVersion: kubedb.com/v1
+kind: MongoDB
+metadata:
+  name: mgo-tls
+  namespace: demo
+spec:
+  version: "6.0.12"
+  sslMode: requireSSL
+  tls:
+    issuerRef:
+      apiGroup: "cert-manager.io"
+      kind: Issuer
+      name: mongo-ca-issuer
+  storage:
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
