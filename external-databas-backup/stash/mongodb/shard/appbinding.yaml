@@ -1,0 +1,18 @@
+apiVersion: appcatalog.appscode.com/v1alpha1
+kind: AppBinding
+metadata:
+  name: db-mongo-appbinding
+  namespace: demo
+spec:
+  parameters:
+    apiVersion: config.kubedb.com/v1alpha1
+    # configServer: cnfRepSet/mongo-sh-configsvr-0.mongo-sh-configsvr-pods.demo.svc:27017,mongo-sh-configsvr-1.mongo-sh-configsvr-pods.demo.svc:27017,mongo-sh-configsvr-2.mongo-sh-configsvr-pods.demo.svc:27017
+    kind: MongoConfiguration
+    replicaSets:
+      host-0: atlas-4ejz8z-shard-0/atlas-4ejz8z-shard-00-00.38r1r.mongodb.net:27017,atlas-4ejz8z-shard-00-01.38r1r.mongodb.net:27017,atlas-4ejz8z-shard-00-02.38r1r.mongodb.net:27017
+      host-1: atlas-4ejz8z-shard-1/atlas-4ejz8z-shard-01-00.38r1r.mongodb.net:27017,atlas-4ejz8z-shard-01-01.38r1r.mongodb.net:27017,atlas-4ejz8z-shard-01-02.38r1r.mongodb.net:27017
+  clientConfig:
+    url: mongodb+srv://stash-test.38r1r.mongodb.net/
+  secret:
+    name: db-mongo-credentials-secret
+  type: mongodb

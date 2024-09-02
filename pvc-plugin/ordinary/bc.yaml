@@ -1,20 +1,36 @@
-apiVersion: stash.appscode.com/v1beta1
+apiVersion: core.kubestash.com/v1alpha1
 kind: BackupConfiguration
 metadata:
-  name: nfs-pvc-backup
+  name: pvc-backup
   namespace: demo
 spec:
-  task:
-    name: pvc-backup
-  repository:
-    name: gcs-repo
-  schedule: "*/5 * * * *"
   target:
-    ref:
-      apiVersion: v1
-      kind: PersistentVolumeClaim
-      name: backup-target-pvc
-  retentionPolicy:
-    name: keep-last-5
-    keepLast: 5
-    prune: true
+    apiGroup:
+    kind: PersistentVolumeClaim
+    name: backup-target-pvc
+    namespace: demo
+  backends:
+  - name: gcs-storage
+    storageRef:
+      namespace: demo
+      name: gcs-storage
+    retentionPolicy:
+      name: demo-retention
+      namespace: demo
+  sessions:
+  - name: frequent-backup
+    sessionHistoryLimit: 
+    scheduler: 
+      schedule: "*/5 * * * *"
+    repositories: 
+    - name: pvc-backup
+      backend: gcs-storage
+      directory: /pvc-backup
+      encryptionSecret:
+       name: encrypt-secret 
+       namespace: demo
+      deletionPolicy: WipeOut 
+    addon:
+      name: pvc-addon
+      tasks:
+      - name: logical-backup

@@ -1,23 +1,32 @@
 apiVersion: stash.appscode.com/v1beta1
 kind: BackupConfiguration
 metadata:
-  name: sample-mysql-backup
+  name: sample-mongo-backup
   namespace: demo
 spec:
+  runtimeSettings:
+    container:
+      securityContext:
+        runAsUser: 0
+        runAsGroup: 0
   schedule: "*/5 * * * *"
   task:
-    name: mysql-backup-8.0.14
-    params:
-    - name: args
-      value: --all-databases --set-gtid-purged=OFF --single-transaction
+    name: mongodb-backup-6.0.5
+    # params:
+    # - name: args
+    #   value: --db=a
   repository:
     name: gcs-repo
   target:
     ref:
       apiVersion: appcatalog.appscode.com/v1alpha1
       kind: AppBinding
-      name: db-mysql-appbinding
+      name: db-mongo-appbinding
   retentionPolicy:
     name: keep-last-5
     keepLast: 5
     prune: true
+
+
+
+

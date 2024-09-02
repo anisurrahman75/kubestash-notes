@@ -1,9 +1,14 @@
 apiVersion: core.kubestash.com/v1alpha1
 kind: BackupConfiguration
 metadata:
-  name: cluster-resources-backup
+  name: postgres-db-backup
   namespace: demo
 spec:
+  target:
+    apiGroup: appcatalog.appscode.com
+    kind: AppBinding
+    name: db-postgresql-appbinding
+    namespace: demo
   backends:
     - name: gcs-backend
       storageRef:
@@ -17,20 +22,18 @@ spec:
       sessionHistoryLimit: 3
       scheduler:
         schedule: "*/5 * * * *"
+        successfulJobsHistoryLimit: 1
+        failedJobsHistoryLimit: 1
         jobTemplate:
           backoffLimit: 1
       repositories:
-        - name: gcs-repository
+        - name: gcs-postgres-repo
           backend: gcs-backend
-          directory: /cluster-manifests
+          directory: /postgres
           encryptionSecret:
-            name: encrypt-secret
-            namespace: demo
-          deletionPolicy: WipeOut
+           name: encrypt-secret
+           namespace: demo
       addon:
-        name: kubedump-addon
+        name: postgres-addon
         tasks:
-          - name: manifest-backup
-        jobTemplate:
-          spec:
-            serviceAccountName: cluster-resource-reader
+          - name: logical-backup

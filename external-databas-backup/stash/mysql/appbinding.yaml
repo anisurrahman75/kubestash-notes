@@ -5,7 +5,7 @@ metadata:
   namespace: demo
 spec:
   clientConfig:
-    url: mysql://db-mysql-stash-test-do-user-165729-0.f.db.ondigitalocean.com:25060?ssl-mode=REQUIRED
+    url: mysql://db-mysql-nyc3-96175-do-user-165729-0.f.db.ondigitalocean.com:25060/defaultdb?ssl-mode=require
   secret:
     name: db-mysql-credentials-secret
   type: mysql

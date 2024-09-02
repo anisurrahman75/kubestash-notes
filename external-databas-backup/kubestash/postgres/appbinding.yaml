@@ -1,0 +1,12 @@
+apiVersion: appcatalog.appscode.com/v1alpha1
+kind: AppBinding
+metadata:
+  name: db-postgresql-appbinding
+  namespace: demo
+spec:
+  clientConfig:
+    url: postgresql://db-postgresql-stash-test-do-user-165729-0.f.db.ondigitalocean.com:25060/defaultdb?sslmode=require
+  secret:
+    name: db-postgresql-credentials-secret
+  type: postgres
+  version: "16.1"

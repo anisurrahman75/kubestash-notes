@@ -5,7 +5,7 @@ metadata:
   namespace: demo
 spec:
   clientConfig:
-    url: mongodb+srv://db-mongodb-nyc3-51766-8d62c6c1.mongo.ondigitalocean.com/admin?tls=true&authSource=admin&replicaSet=db-mongodb-nyc3-51766
+    url: mongodb+srv://stash-test.38r1r.mongodb.net/
   secret:
     name: db-mongo-credentials-secret
   type: mongodb

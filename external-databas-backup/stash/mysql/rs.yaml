@@ -7,7 +7,7 @@ spec:
   repository:
     name: gcs-repo
   task:
-    name: mysql-restore-8.0.3
+    name: mysql-restore-8.0.14
   target:
     ref:
       apiVersion: appcatalog.appscode.com/v1alpha1
