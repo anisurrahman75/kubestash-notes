@@ -1,0 +1,28 @@
+apiVersion: stash.appscode.com/v1beta1
+kind: RestoreSession
+metadata:
+  name: sample-es-restore
+  namespace: demo
+spec:
+  repository:
+    name: s3-repo
+  target:
+    ref:
+      apiVersion: appcatalog.appscode.com/v1alpha1
+      kind: AppBinding
+      name: es-appbinding
+  interimVolumeTemplate:
+    metadata:
+      name: sample-es-restore-tmp-storage
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "linode-block-storage"
+      resources:
+        requests:
+          storage: 1Gi
+  runtimeSettings:
+    pod:
+      securityContext:
+        fsGroup: 65534
+  rules:
+  - snapshots: [latest]
