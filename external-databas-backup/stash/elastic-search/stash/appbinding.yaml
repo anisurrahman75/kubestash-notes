@@ -1,0 +1,26 @@
+apiVersion: appcatalog.appscode.com/v1alpha1
+kind: AppBinding
+metadata:
+  name: es-appbinding
+  namespace: demo
+spec:
+  clientConfig:
+    url: https://db-opensearch-nyc3-45565-do-user-165729-0.f.db.ondigitalocean.com:25060
+  secret:
+    name: es-secret
+  parameters:
+    apiVersion: appcatalog.appscode.com/v1alpha1
+    kind: StashAddon
+    stash:
+      addon:
+        backupTask:
+          name: elasticsearch-backup-7.14.0
+          params:
+          - name: args
+            value: --match=^(?![.])(?!security-auditlog)(?!kubedb-system).+
+        restoreTask:
+          name: elasticsearch-restore-7.14.0
+          params:
+          - name: args
+            value: --match=^(?![.])(?!security-auditlog)(?!kubedb-system).+
+  type: elasticsearch

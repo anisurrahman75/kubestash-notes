@@ -1,0 +1,33 @@
+apiVersion: stash.appscode.com/v1beta1
+kind: BackupConfiguration
+metadata:
+  name: sample-es-backup
+  namespace: demo
+spec:
+  schedule: "*/1 * * * *"
+  task:
+    name: elasticsearch-backup-7.14.0
+  repository:
+    name: s3-repo
+  target:
+    ref:
+      apiVersion: appcatalog.appscode.com/v1alpha1
+      kind: AppBinding
+      name: es-appbinding
+  interimVolumeTemplate:
+    metadata:
+      name: sample-es-backup-tmp-storage
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: "linode-block-storage"
+      resources:
+        requests:
+          storage: 1Gi
+  runtimeSettings:
+    pod:
+      securityContext:
+        fsGroup: 65534
+  retentionPolicy:
+    name: keep-last-5
+    keepLast: 5
+    prune: true
