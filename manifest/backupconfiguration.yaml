@@ -39,6 +39,3 @@ spec:
         name: kubedb-manifest-addon
         tasks:
           - name: manifest-backup
-        # jobTemplate:
-        #   spec:
-        #     serviceAccountName: cross-namespace-target-reader

@@ -9,7 +9,7 @@ spec:
   resources:
     requests:
       storage: 3Gi
-  storageClassName: csi-standard-immediate
+  storageClassName: longhorn
 ---
 kind: Pod
 apiVersion: v1
@@ -20,11 +20,15 @@ spec:
   containers:
   - name: busybox
     image: busybox
-    command: ["/bin/sh", "-c","sleep 3000"]
+    command: ["/bin/sh", "-c"]
+    args: 
+    - |
+      echo "sample_data" > /target/mountpath/data.txt
+      sleep infinity
     volumeMounts:
     - name: my-volume
       mountPath: /sample/data
   volumes:
   - name: my-volume
     persistentVolumeClaim:
-      claimName: restore-config-1
+      claimName: target-pvc

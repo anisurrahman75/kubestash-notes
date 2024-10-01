@@ -1,0 +1,14 @@
+apiVersion: kubedb.com/v1
+kind: Redis
+metadata:
+  name: sample-redis
+  namespace: demo
+spec:
+  version: 6.0.20
+  storageType: Durable
+  storage:
+    accessModes:
+    - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi

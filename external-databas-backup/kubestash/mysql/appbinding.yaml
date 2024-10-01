@@ -1,0 +1,12 @@
+apiVersion: appcatalog.appscode.com/v1alpha1
+kind: AppBinding
+metadata:
+  name: db-mysql-appbinding
+  namespace: demo
+spec:
+  clientConfig:
+    url: mysql://kubestash-test-do-user-165729-0.g.db.ondigitalocean.com:25060/defaultdb?ssl-mode=require
+  secret:
+    name: db-mysql-credentials-secret
+  type: mysql
+  version: "8.0.3"

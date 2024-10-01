@@ -1,0 +1,41 @@
+# Get AVGRoup Name:
+- SELECT name FROM sys.availability_groups;
+
+# Remove From AVGroup
+- ALTER AVAILABILITY GROUP [mssqlserverag] REMOVE DATABASE agdb1;
+
+# Check Removed or not:
+- SELECT * FROM sys.availability_databases_cluster WHERE database_name = 'agdb1';
+
+# Delete Database:
+- DROP DATABASE agdb1;
+
+
+link:
+- https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/automatically-initialize-always-on-availability-group?view=sql-server-ver15#stop-automatic-seeding
+
+- https://learn.microsoft.com/en-us/sql/database-engine/availability-groups/windows/automatic-seeding-secondary-replicas?view=sql-server-ver16&source=recommendations
+
+
+
+-------------Process------------------------
+- ALTER DATABASE [agdb1] SET HADR SUSPEND;
+- ALTER AVAILABILITY GROUP [mssqlserverag] MODIFY REPLICA ON 'mssqlserver-ag-1' WITH (SEEDING_MODE = MANUAL);
+- ALTER AVAILABILITY GROUP [mssqlserverag] REMOVE DATABASE agdb1;
+
+- DROP DATABASE agdb1; 
+
+- ALTER AVAILABILITY GROUP [mssqlserverag] ADD DATABASE agdb1;
+- ALTER DATABASE [agdb1] SET HADR RESUME;
+- ALTER AVAILABILITY GROUP [mssqlserverag] MODIFY REPLICA ON 'mssqlserver-ag-1' WITH (SEEDING_MODE = AUTOMATIC);
+
+
+SELECT name FROM sys.databases;
+
+- /opt/mssql-tools/bin/sqlcmd -S mssqlserver-ag -U sa -P "Pa55w0rd!"
+
+- /opt/mssql-tools/bin/sqlcmd -S mssqlserver-ag-1.mssqlserver-ag-pods.demo.svc.cluster.local -U sa -P "Pa55w0rd!" -Q "USE master; DROP DATABASE agdb1;"
+
+- SELECT database_name FROM sys.availability_databases_cluster WHERE database_name = 'agdb1';
+
+- /opt/mssql-tools/bin/sqlcmd -S mssqlserver-ag-1.mssqlserver-ag-pods.demo.svc.cluster.local -U sa -P "Pa55w0rd!" -Q "USE agdb1; SELECT (SELECT COUNT(*) FROM tblAuthors) AS AuthorCount, (SELECT COUNT(*) FROM tblBooks) AS BookCount;"

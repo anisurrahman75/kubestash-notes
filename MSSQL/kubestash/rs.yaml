@@ -8,10 +8,13 @@ spec:
     apiGroup: kubedb.com
     kind: MSSQLServer
     namespace: demo
-    name: restored-mssqlserver-ag
+    name: mssqlserver-ag
   dataSource:
-    repository: gcs-mssqlserver-ag-repo
     snapshot: latest
+    repository: gcs-mssql-repo
+    # encryptionSecret:
+    #   name: encrypt-secret 
+    #   namespace: demo
   addon:
     name: mssqlserver-addon
     jobTemplate:
@@ -20,3 +23,5 @@ spec:
           runAsUser: 0
     tasks:
       - name: logical-backup-restore
+        params:
+          # databases: agdb1

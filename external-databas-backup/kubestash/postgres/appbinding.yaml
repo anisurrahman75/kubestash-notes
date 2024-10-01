@@ -5,7 +5,7 @@ metadata:
   namespace: demo
 spec:
   clientConfig:
-    url: postgresql://db-postgresql-stash-test-do-user-165729-0.f.db.ondigitalocean.com:25060/defaultdb?sslmode=require
+    url: postgresql://kubestash-test-do-user-165729-0.g.db.ondigitalocean.com:25060/defaultdb?sslmode=require
   secret:
     name: db-postgresql-credentials-secret
   type: postgres

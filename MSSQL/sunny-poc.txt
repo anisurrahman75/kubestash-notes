@@ -1,0 +1,28 @@
+
+sqlcmd -S localhost -U SA -No
+
+USE MASTER;
+GO
+
+CREATE DATABASE sunny;
+GO
+
+use sunny;
+
+CREATE TABLE Data (ID INT, NAME NVARCHAR(255), AGE INT);
+
+INSERT INTO Data(ID, Name, Age) VALUES (1, 'John Doe', 25), (2, 'Jane Smith', 30), (3, 'Bob Johnson', 22);
+
+
+--------------------mkfifo----------------------------
+
+BACKUP DATABASE sunny TO DISK = '/var/opt/sunny-backup/mkfifo/fifo' WITH FORMAT, NAME = 'Full Backup';
+
+RESTORE DATABASE sunny FROM DISK = '/var/opt/sunny-backup/mkfifo/backup.bak' WITH FILE = 1, NORECOVERY, REPLACE;
+
+RESTORE DATABASE sunny WITH RECOVERY;
+
+sqlcmd -S localhost -U SA -No -Q "BACKUP DATABASE sunny TO DISK = '/var/opt/sunny-backup/mkfifo/fifo' WITH FORMAT, NAME = 'Full Backup'"
+
+
+SELECT COUNT(ID) FROM data;
