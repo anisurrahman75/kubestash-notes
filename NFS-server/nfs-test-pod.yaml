@@ -1,0 +1,49 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: nfs-pv
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  csi:
+    driver: nfs.csi.k8s.io
+    volumeHandle: nfs-server.storage.svc.cluster.local/share##
+    volumeAttributes:
+      server: nfs-server.storage.svc.cluster.local
+      share: /
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nfs-pvc
+  namespace: demo
+spec:
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+  volumeName: nfs-pv
+  storageClassName: ""
+---
+kind: Pod
+apiVersion: v1
+metadata:
+  name: demo-pod-1
+  namespace: demo
+spec:
+  containers:
+  - name: busybox
+    image: busybox
+    command: ["/bin/sh", "-c","echo 'hello from pod 1.' > /sample/data/hello.txt && sleep 3000"]
+    volumeMounts:
+    - name: my-volume
+      mountPath: /sample/data
+      subPath: pod-1/data
+  volumes:
+  - name: my-volume
+    persistentVolumeClaim:
+      claimName: nfs-pvc

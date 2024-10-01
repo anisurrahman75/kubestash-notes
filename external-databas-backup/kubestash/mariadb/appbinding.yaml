@@ -1,0 +1,36 @@
+## ------------------AWS MariaDB tested--------------------
+# apiVersion: appcatalog.appscode.com/v1alpha1
+# kind: AppBinding
+# metadata:
+#   name: db-mariadb-appbinding
+#   namespace: demo
+# spec:
+#   clientConfig:
+#     url: mariadb://kubestash-mariadb.cmvvdhsxf0rw.us-east-1.rds.amazonaws.com:3306
+#   secret:
+#     name: db-mariadb-credentials-secret
+#   type: mariadb
+#   version: "10.11.6"
+
+
+apiVersion: appcatalog.appscode.com/v1alpha1
+kind: AppBinding
+metadata:
+  name: db-mariadb-appbinding
+  namespace: demo
+spec:
+  clientConfig:
+    service:
+      scheme: http
+      namespace: mariadb
+      name: mariadb
+      port: 3306
+  secret:
+    name: db-mariadb-credentials-secret
+  type: mariadb
+  version: "11.4.3"
+
+
+## kubectl get secret --namespace mariadb mariadb -o jsonpath="{.data.mariadb-root-password}" | base64 -d
+## export MYSQL_PWD=""
+## mariadb -h mariadb.mariadb.svc.cluster.local -uroot -p my_database

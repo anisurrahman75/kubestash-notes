@@ -1,0 +1,30 @@
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Function
+metadata:
+  name: mssql-backup
+spec:
+  args:
+  - backup
+  - --namespace=${namespace:=default}
+  - --backupsession=${backupSession:=}
+  - --wait-timeout=${waitTimeout:=300}
+  - --databases=${databases:=}
+  # - --tlsSecretName=${tlsSecretName:=}
+  image: anisurrahman75/mssqlserver-walg-plugin:walg-backup-restore_linux_amd64
+
+---
+
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Function
+metadata:
+  name: mssql-restore
+spec:
+  args:
+  - restore
+  - --namespace=${namespace:=default}
+  - --restoresession=${restoreSession:=}
+  - --snapshot=${snapshot:=}
+  - --wait-timeout=${waitTimeout:=300}
+  - --databases=${databases:=}
+  # - --tlsSecretName=${tlsSecretName:=}
+  image: anisurrahman75/mssqlserver-walg-plugin:walg-backup-restore_linux_amd64

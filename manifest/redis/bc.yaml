@@ -1,14 +1,14 @@
 apiVersion: core.kubestash.com/v1alpha1
 kind: BackupConfiguration
 metadata:
-  name: postgres-db-backup
+  name: redis-manifest-backup
   namespace: demo
 spec:
   target:
-    apiGroup: appcatalog.appscode.com
-    kind: AppBinding
-    name: db-postgresql-appbinding
+    apiGroup: kubedb.com
+    kind: Redis
     namespace: demo
+    name: sample-redis
   backends:
     - name: gcs-backend
       storageRef:
@@ -19,23 +19,21 @@ spec:
         namespace: demo
   sessions:
     - name: frequent-backup
-      sessionHistoryLimit: 3
+      sessionHistoryLimit: 1
       scheduler:
-        schedule: "*/5 * * * *"
+        schedule: "*/2 * * * *"
         successfulJobsHistoryLimit: 1
         failedJobsHistoryLimit: 1
         jobTemplate:
           backoffLimit: 1
       repositories:
-        - name: gcs-postgres-repo
+        - name: gcs-redis-manifest-repo
           backend: gcs-backend
-          directory: /postgres
+          directory: /redis-manifest
           encryptionSecret:
            name: encrypt-secret
            namespace: demo
       addon:
-        name: postgres-addon
+        name: redis-addon
         tasks:
-          - name: logical-backup
-            params:
-              args: -l defaultdb --exclude-database template1 --exclude-database _dodb --no-role-passwords
+          - name: manifest-backup

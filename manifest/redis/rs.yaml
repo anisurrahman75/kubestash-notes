@@ -1,0 +1,23 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: RestoreSession
+metadata:
+  name: sample-restoresession
+  namespace: demo
+spec:
+  manifestOptions:
+    restoreNamespace: demo
+    redis:
+      db: true
+      dbName: new-sample-redis
+      authSecret: true
+      authSecretName: new-authsecret-redis
+  dataSource:
+    snapshot: latest
+    repository: gcs-redis-manifest-repo
+    encryptionSecret:
+      name: encrypt-secret
+      namespace: demo
+  addon:
+    name: redis-addon
+    tasks:
+      - name: manifest-restore

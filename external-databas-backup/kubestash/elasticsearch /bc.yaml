@@ -1,13 +1,13 @@
 apiVersion: core.kubestash.com/v1alpha1
 kind: BackupConfiguration
 metadata:
-  name: postgres-db-backup
+  name: elasticsearch-db-backup
   namespace: demo
 spec:
   target:
     apiGroup: appcatalog.appscode.com
     kind: AppBinding
-    name: db-postgresql-appbinding
+    name: db-elasticsearch-appbinding
     namespace: demo
   backends:
     - name: gcs-backend
@@ -27,15 +27,15 @@ spec:
         jobTemplate:
           backoffLimit: 1
       repositories:
-        - name: gcs-postgres-repo
+        - name: gcs-elasticsearch-repo
           backend: gcs-backend
-          directory: /postgres
+          directory: /elasticsearch
           encryptionSecret:
            name: encrypt-secret
            namespace: demo
       addon:
-        name: postgres-addon
+        name: elasticsearch-addon
         tasks:
           - name: logical-backup
             params:
-              args: -l defaultdb --exclude-database template1 --exclude-database _dodb --no-role-passwords
+              args: --match=^(?![.])(?!security-auditlog).+

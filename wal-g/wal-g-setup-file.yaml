@@ -1,0 +1,16 @@
+WALG_FILE_PREFIX: "/var/opt/mssql/walg/backup"
+SQLSERVER_BLOB_CERT_FILE: "/var/opt/mssql/tls-certs/proxy-server/server.crt"
+SQLSERVER_BLOB_KEY_FILE:  "/var/opt/mssql/tls-certs/proxy-server/server.key"
+SQLSERVER_BLOB_LOCK_FILE: "./wal-g.lock"
+SQLSERVER_BLOB_HOSTNAME:  "backup.local"
+SQLSERVER_CONNECTION_STRING: "sqlserver://backupuser:backuppass1!@localhost:1433/instance"
+
+WALG_UPLOAD_CONCURRENCY:   8  # how many block upload requests handle concurrently
+WALG_DOWNLOAD_CONCURRENCY: 8  # how many block read requests handle concurrently 
+
+# ------------------------------
+
+- CREATE LOGIN [backupuser] WITH PASSWORD = 'backuppass1!';
+- ALTER SERVER ROLE [sysadmin] ADD MEMBER [backupuser];
+- CREATE CREDENTIAL [https://backup.local/basebackups_005] WITH IDENTITY='SHARED ACCESS SIGNATURE', SECRET = 'does_not_matter';
+- CREATE CREDENTIAL [https://backup.local/wal_005] WITH IDENTITY='SHARED ACCESS SIGNATURE', SECRET = 'does_not_matter';

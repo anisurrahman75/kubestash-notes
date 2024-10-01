@@ -1,7 +1,7 @@
 apiVersion: core.kubestash.com/v1alpha1
 kind: BackupConfiguration
 metadata:
-  name: mssql-db-backup
+  name: mssqlserver-ag-backup
   namespace: demo
 spec:
   target:
@@ -19,26 +19,14 @@ spec:
         namespace: demo
   sessions:
     - name: frequent-backup
-      sessionHistoryLimit: 1
       scheduler:
-        schedule: "*/2 * * * *"
-        successfulJobsHistoryLimit: 1
-        failedJobsHistoryLimit: 1
+        schedule: "*/5 * * * *"
         jobTemplate:
           backoffLimit: 1
       repositories:
-        - name: gcs-mssql-repo
+        - name: gcs-mssqlserver-ag-repo
           backend: gcs-backend
-          directory: /mssql
-          encryptionSecret:
-           name: encrypt-secret
-           namespace: demo
-        # - name: gcs-mssql-repo2
-        #   backend: gcs-backend
-        #   directory: /mssql2
-        #   encryptionSecret:
-        #    name: encrypt-secret
-        #    namespace: demo
+          directory: /mssqlserver-ag
       addon:
         name: mssqlserver-addon
         jobTemplate:
@@ -47,5 +35,3 @@ spec:
               runAsUser: 0
         tasks:
           - name: logical-backup
-            params:
-              databases: agdb1

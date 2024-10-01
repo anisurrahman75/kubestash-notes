@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backup-job-service
+  namespace: demo
+spec:
+  selector:
+    kubestash.com/invoker-name: mssql-db-backup-frequent-backup-1715767080
+    kubestash.com/invoker-namespace: demo
+    kubestash.com/session-name: frequent-backup
+  ports:
+    - protocol: TCP
+      port: 443
+      targetPort: 443
+
