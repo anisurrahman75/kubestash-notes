@@ -1,0 +1,14 @@
+SET name Alice
+SET age 30
+
+LPUSH fruits Apple
+LPUSH fruits Banana
+LPUSH fruits Orange
+
+SADD hobbies Reading
+SADD hobbies Swimming
+SADD hobbies Traveling
+
+ZADD leaderboard 100 Alice
+ZADD leaderboard 200 Bob
+ZADD leaderboard 150 Charlie

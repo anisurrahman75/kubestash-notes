@@ -1,0 +1,5 @@
+EL name
+DEL age
+DEL fruits
+DEL hobbies
+DEL leaderboard

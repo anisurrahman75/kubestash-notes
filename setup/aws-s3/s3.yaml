@@ -7,10 +7,10 @@ spec:
   storage:
     provider: s3
     s3:
-      bucket: kubestash
+      bucket: anisur
       region: us-east-1
-      endpoint: http://s3.us-east-1.amazonaws.com
-      secretName: aws-s3-secret
+      endpoint: s3.amazonaws.com
+      secretName: s3-secret
       prefix: sunny
   usagePolicy:
     allowedNamespaces:

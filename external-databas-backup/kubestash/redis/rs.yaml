@@ -1,0 +1,23 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: RestoreSession
+metadata:
+  name: redis-restoresession
+  namespace: demo
+spec:
+  target:
+    apiGroup: appcatalog.appscode.com
+    kind: AppBinding
+    name: db-redis-appbinding
+    namespace: demo
+  dataSource:
+    repository: gcs-redis-repo
+    snapshot: latest
+    encryptionSecret:
+      name: encrypt-secret
+      namespace: demo
+  addon:
+    name: redis-addon
+    tasks:
+      - name: logical-backup-restore
+        params:
+          args: --tls --insecure
