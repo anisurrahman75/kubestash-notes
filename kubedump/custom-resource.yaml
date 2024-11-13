@@ -1,0 +1,44 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: BackupConfiguration
+metadata:
+  name: custom-resources-backup
+  namespace: demo
+spec:
+  target:
+    apiGroup: kubedb.com
+    kind: Redis
+    namespace: demo
+    name: sample-redis
+  backends:
+    - name: gcs-backend
+      storageRef:
+        namespace: demo
+        name: gcs-storage
+      retentionPolicy:
+        name: demo-retention
+        namespace: demo
+  sessions:
+    - name: frequent-backup
+      sessionHistoryLimit: 1
+      scheduler:
+        schedule: "*/2 * * * *"
+        successfulJobsHistoryLimit: 1
+        failedJobsHistoryLimit: 1
+        jobTemplate:
+          backoffLimit: 1
+      repositories:
+        - name: gcs-redis-application-repo
+          backend: gcs-backend
+          directory: /redis-application
+          encryptionSecret:
+           name: encrypt-secret
+           namespace: demo
+      addon:
+        name: kubedump-addon
+        tasks:
+          - name: manifest-backup
+            params:
+              includeDependants: "true"
+        jobTemplate:
+          spec:
+            serviceAccountName: cluster-resource-reader

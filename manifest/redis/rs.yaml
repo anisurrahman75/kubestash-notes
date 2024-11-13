@@ -5,12 +5,12 @@ metadata:
   namespace: demo
 spec:
   manifestOptions:
-    restoreNamespace: demo
     redis:
       db: true
-      dbName: new-sample-redis
-      authSecret: true
-      authSecretName: new-authsecret-redis
+      restoreNamespace: demo
+      # dbName: new-sample-redis
+      # authSecret: true
+      # authSecretName: new-authsecret-redis
   dataSource:
     snapshot: latest
     repository: gcs-redis-manifest-repo

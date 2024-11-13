@@ -1,0 +1,12 @@
+apiVersion: appcatalog.appscode.com/v1alpha1
+kind: AppBinding
+metadata:
+  name: db-redis-appbinding
+  namespace: demo
+spec:
+  clientConfig:
+    url: rediss://kubestash-test-do-user-165729-0.g.db.ondigitalocean.com:25061
+  secret:
+    name: db-redis-credentials-secret
+  type: redis
+  version: "7.0.0"

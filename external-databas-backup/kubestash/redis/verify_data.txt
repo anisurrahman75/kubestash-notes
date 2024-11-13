@@ -1,0 +1,8 @@
+GET name
+GET age
+
+LRANGE fruits 0 -1
+
+SMEMBERS hobbies
+
+ZRANGE leaderboard 0 -1 WITHSCORES

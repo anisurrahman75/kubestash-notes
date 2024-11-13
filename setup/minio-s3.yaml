@@ -2,7 +2,7 @@ apiVersion: storage.kubestash.com/v1alpha1
 kind: BackupStorage
 metadata:
   name: minio-storage
-  namespace: minio-operator
+  namespace: demo
 spec:
   storage:
     provider: s3
