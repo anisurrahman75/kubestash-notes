@@ -1,0 +1,51 @@
+apiVersion: stash.appscode.com/v1beta1
+kind: BackupBatch
+metadata:
+  name: mysql-batch-backup
+  namespace: demo
+spec:
+  repository:
+    name: gcs-repo
+  schedule: "*/3 * * * *"
+  executionOrder: Parallel
+  members:
+  - target:
+      alias: schema
+      ref:
+        apiVersion: appcatalog.appscode.com/v1alpha1
+        kind: AppBinding
+        name: sample-mysql
+    task:
+      name: mysql-backup-8.0.21
+      params:
+      - name: args
+        value: --set-gtid-purged=OFF --no-data --all-databases
+
+  - target:
+      alias: data
+      ref:
+        apiVersion: appcatalog.appscode.com/v1alpha1
+        kind: AppBinding
+        name: sample-mysql
+    task:
+      name: mysql-backup-8.0.21
+      params:
+      - name: args
+        value: --set-gtid-purged=OFF --no-create-info --all-databases --ignore-table=kubedb_system.kubedb_write_check
+
+  - target:
+      alias: data
+      ref:
+        apiVersion: appcatalog.appscode.com/v1alpha1
+        kind: AppBinding
+        name: sample-mysql
+    task:
+      name: mysql-backup-8.0.21
+      params:
+      - name: args
+        value: --set-gtid-purged=OFF --no-create-info --all-databases --ignore-table=kubedb_system.kubedb_write_check
+
+  retentionPolicy:
+    name: keep-last-5
+    keepLast: 5
+    prune: true
