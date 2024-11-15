@@ -1,0 +1,96 @@
+apiVersion: stash.appscode.com/v1beta1
+kind: BackupConfiguration
+metadata:
+  name: sample-mysql-structure
+  namespace: demo
+spec:
+  schedule: "*/5 * * * *"
+  task:
+    params:
+      - name: args
+        value: --set-gtid-purged=OFF
+      - name: multiDumpArgs
+        value: >-
+          $dump-args=--no-tablespaces --no-data --skip-triggers --skip-opt --single-transaction --create-options --disable-keys --extended-insert --set-charset --quick playground
+          $dump-args=--no-tablespaces --no-create-info --skip-triggers --skip-opt --single-transaction --create-options --disable-keys --extended-insert --set-charset --quick --ignore-table=playground.equipment playground
+          $dump-args=--no-tablespaces --no-data --no-create-info --skip-opt --single-transaction --create-options --disable-keys --extended-insert --set-charset --quick playground
+  repository:
+    name: gcs-repo
+  target:
+    ref:
+      apiVersion: appcatalog.appscode.com/v1alpha1
+      kind: AppBinding
+      name: sample-mysql
+  retentionPolicy:
+    name: keep-last-5
+    keepLast: 5
+    prune: true
+
+# mysqldump -u root -h sample-mysql.demo.svc --port=3306 --set-gtid-purged=OFF --no-tablespaces --no-data --skip-triggers --skip-opt --single-transaction --create-options --disable-keys --extended-insert --set-charset --quick playground && mysqldump -u root -h sample-mysql.demo.svc --port=3306 --set-gtid-purged=OFF --no-tablespaces --no-create-info --skip-triggers --skip-opt --single-transaction --create-options --disable-keys --extended-insert --set-charset --quick --ignore-table=playground.equipment playground && mysqldump -u root -h sample-mysql.demo.svc --port=3306 --set-gtid-purged=OFF --no-tablespaces --no-data --no-create-info --skip-opt --single-transaction --create-options --disable-keys --extended-insert --set-charset --quick playground
+
+# ### Explanation of Commands:
+
+# #### 1. **Schema-only Dump**
+# ```bash
+# mysqldump -h sample-mysql.demo.svc -u root -pts3qkpyOjj9M5Bhw --no-tablespaces --no-data --skip-triggers --skip-opt --single-transaction --create-options --disable-keys --extended-insert --set-charset --quick playground
+# ```
+
+# - **Purpose**: Dumps only the database schema (table structure) without any data.
+# - **Key Flags**:
+#   - `--no-data`: Ensures no row data is included, only schema.
+#   - `--skip-triggers`: Excludes triggers from the dump.
+#   - `--skip-opt`: Disables default optimizations for dumping.
+#   - `--create-options`: Includes table options like `ENGINE`, `CHARSET`, etc.
+#   - `--single-transaction`: Ensures consistency during the dump.
+#   - Other flags (`--disable-keys`, `--set-charset`, `--extended-insert`, `--quick`) are included but don't significantly affect schema-only dumps.
+  
+# **Output**: SQL statements for creating tables (`CREATE TABLE`), indexes, and other schema-related constructs.
+
+# ---
+
+# #### 2. **Data-only Dump (with a Table Ignored)**
+# ```bash
+# mysqldump -h sample-mysql.demo.svc -u root -pts3qkpyOjj9M5Bhw --no-tablespaces --no-create-info --skip-triggers --skip-opt --single-transaction --create-options --disable-keys --extended-insert --set-charset --quick --ignore-table=playground.equipment playground
+# ```
+
+# - **Purpose**: Dumps data for all tables except `equipment` in the `playground` database.
+# - **Key Flags**:
+#   - `--no-create-info`: Skips table creation statements, includes only data (`INSERT` statements).
+#   - `--ignore-table=playground.equipment`: Excludes data for the `equipment` table.
+#   - `--single-transaction`: Ensures consistency for the data during the dump.
+#   - `--quick`: Streams data directly instead of buffering it in memory.
+#   - Other flags (`--disable-keys`, `--set-charset`, `--extended-insert`) optimize data dumping.
+
+# **Output**: `INSERT` statements for all tables in `playground`, excluding the `equipment` table.
+
+# ---
+
+# #### 3. **Empty Dump (No Schema, No Data)**
+# ```bash
+# mysqldump -h sample-mysql.demo.svc -u root -pts3qkpyOjj9M5Bhw --no-tablespaces --no-data --no-create-info --skip-opt --single-transaction --create-options --disable-keys --extended-insert --set-charset --quick playground
+# ```
+
+# - **Purpose**: Dumps neither the schema nor the data.
+# - **Key Flags**:
+#   - `--no-data`: Excludes data.
+#   - `--no-create-info`: Excludes schema (table creation statements).
+#   - Other flags don't apply as nothing is dumped.
+
+# **Output**: Essentially **empty**, since both schema and data are excluded.
+
+# ---
+
+# ### Differences:
+
+# | Feature                     | Command 1: Schema-only                 | Command 2: Data-only                | Command 3: Empty                     |
+# |-----------------------------|-----------------------------------------|-------------------------------------|---------------------------------------|
+# | **Data Dumped**             | No                                     | Yes (excludes `equipment` table)    | No                                   |
+# | **Schema Dumped**           | Yes                                    | No                                  | No                                   |
+# | **Triggers Included**       | No (`--skip-triggers`)                 | No (`--skip-triggers`)              | N/A                                  |
+# | **Ignored Tables**          | None                                   | `equipment` table only              | N/A                                  |
+# | **Output Content**          | `CREATE TABLE` statements, no data     | `INSERT` statements for data only   | None (empty output)                  |
+
+# ### Use Cases:
+# - **Command 1**: Useful when migrating or replicating the database schema.
+# - **Command 2**: Ideal for transferring specific data (excluding some tables).
+# - **Command 3**: Likely a mistake or placeholder for testing dump flags.
