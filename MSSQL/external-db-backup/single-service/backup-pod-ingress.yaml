@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: backup-ingress
+  namespace: demo
+spec:
+  rules:
+  - http:
+      paths:
+      - pathType: Prefix
+        path: /mssqlserver-ag-backup-frequent-backup-1735902788
+        backend:
+          service:
+            name: mssqlserver-ag-backup-frequent-backup-1735902788
+            port:
+              number: 443

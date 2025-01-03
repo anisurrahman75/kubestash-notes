@@ -1,0 +1,52 @@
+version: '3.9'
+
+services:
+  primary:
+    build: .
+    container_name: primary
+    hostname: primary
+    privileged: true
+    environment:
+      SA_PASSWORD: "Pa55w0rd!"
+      ACCEPT_EULA: "Y"
+    ports:
+      - "1433:1433"    # SQL Server port
+      # - "5022:5022"    # Availability Group communication port
+    networks:
+      sqlnet:
+        ipv4_address: 192.168.1.10
+
+  # secondary1:
+  #   build: .
+  #   container_name: secondary1
+  #   privileged: true
+  #   environment:
+  #     SA_PASSWORD: "Pa55w0rd!"
+  #     ACCEPT_EULA: "Y"
+  #   ports:
+  #     - "1434:1433"    # Alternate SQL Server port
+  #     - "5023:5022"    # Alternate AG communication port
+  #   networks:
+  #     sqlnet:
+  #       ipv4_address: 192.168.1.11
+
+  # secondary2:
+  #   build: .
+  #   container_name: secondary2
+  #   privileged: true
+  #   environment:
+  #     SA_PASSWORD: "Pa55w0rd!"
+  #     ACCEPT_EULA: "Y"
+  #   ports:
+  #     - "1435:1433"    # Another alternate SQL Server port
+  #     - "5024:5022"    # Another alternate AG communication port
+  #   networks:
+  #     sqlnet:
+  #       ipv4_address: 192.168.1.12
+
+networks:
+  sqlnet:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24

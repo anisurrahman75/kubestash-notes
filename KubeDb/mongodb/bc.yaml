@@ -1,0 +1,39 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: BackupConfiguration
+metadata:
+  name: mongo-db-backup
+  namespace: demo
+spec:
+  target:
+    apiGroup: kubedb.com
+    kind: MongoDB
+    namespace: demo
+    name: mg-replicaset
+  backends:
+    - name: gcs-backend
+      storageRef:
+        namespace: demo
+        name: gcs-storage
+      retentionPolicy:
+        name: demo-retention
+        namespace: demo
+  sessions:
+    - name: frequent-backup
+      sessionHistoryLimit: 0
+      scheduler:
+        schedule: "*/2 * * * *"
+        successfulJobsHistoryLimit: 0
+        failedJobsHistoryLimit: 0
+        jobTemplate:
+          backoffLimit: 0
+      repositories:
+        - name: gcs-mongo-repo
+          backend: gcs-backend
+          directory: /mongo
+          encryptionSecret:
+           name: encrypt-secret
+           namespace: demo
+      addon:
+        name: mongodb-addon
+        tasks:
+          - name: logical-backup

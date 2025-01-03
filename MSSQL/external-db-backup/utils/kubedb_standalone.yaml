@@ -1,0 +1,253 @@
+apiVersion: apps.k8s.appscode.com/v1
+kind: PetSet
+metadata:
+  creationTimestamp: "2024-11-25T08:38:12Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/component: database
+    app.kubernetes.io/instance: mssql-standalone
+    app.kubernetes.io/managed-by: kubedb.com
+    app.kubernetes.io/name: mssqlservers.kubedb.com
+  name: mssql-standalone
+  namespace: demo
+  ownerReferences:
+  - apiVersion: kubedb.com/v1alpha2
+    blockOwnerDeletion: true
+    controller: true
+    kind: MSSQLServer
+    name: mssql-standalone
+    uid: 7cf91d11-947b-4a3b-8e4a-76e2e7f73892
+  resourceVersion: "104239"
+  uid: 2c9d83c3-63a6-45de-a123-0ef245c68c32
+spec:
+  persistentVolumeClaimRetentionPolicy:
+    whenDeleted: Retain
+    whenScaled: Retain
+  podManagementPolicy: OrderedReady
+  podPlacementPolicy:
+    name: default
+  replicas: 1
+  revisionHistoryLimit: 10
+  selector:
+    matchLabels:
+      app.kubernetes.io/instance: mssql-standalone
+      app.kubernetes.io/managed-by: kubedb.com
+      app.kubernetes.io/name: mssqlservers.kubedb.com
+  serviceName: mssql-standalone-pods
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/component: database
+        app.kubernetes.io/instance: mssql-standalone
+        app.kubernetes.io/managed-by: kubedb.com
+        app.kubernetes.io/name: mssqlservers.kubedb.com
+    spec:
+      containers:
+      - args:
+        - /scripts/standalone-run.sh
+        env:
+        - name: ACCEPT_EULA
+          value: "Y"
+        - name: MSSQL_ENABLE_HADR
+          value: "1"
+        - name: MSSQL_AGENT_ENABLED
+          value: "1"
+        - name: MSSQL_SA_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: username
+              name: mssqlserver-custom-auth
+        - name: MSSQL_SA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: mssqlserver-custom-auth
+        - name: DB_NAME
+          value: mssql-standalone
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: GOVERNING_SERVICE_NAME
+          value: mssql-standalone-pods
+        - name: PRIMARY_HOST
+          value: mssql-standalone
+        - name: REPLICAS
+          value: "1"
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.podIP
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: VERSION
+          value: 2022-cu12
+        image: mcr.microsoft.com/mssql/server:2022-CU12-ubuntu-22.04@sha256:b94071acd4612bfe60a73e265097c2b6388d14d9d493db8f37cf4479a4337480
+        name: mssql
+        ports:
+        - containerPort: 1433
+          name: db
+          protocol: TCP
+        resources:
+          limits:
+            memory: 4Gi
+          requests:
+            cpu: 500m
+            memory: 4Gi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            add:
+            - NET_BIND_SERVICE
+            drop:
+            - ALL
+          runAsGroup: 10001
+          runAsNonRoot: true
+          runAsUser: 10001
+          seccompProfile:
+            type: RuntimeDefault
+        volumeMounts:
+        - mountPath: /var/opt/mssql
+          name: data
+        - mountPath: /var/opt/mssql/mssql.conf
+          name: config
+          subPath: mssql.conf
+        - mountPath: /scripts
+          name: init-scripts
+        - mountPath: /var/opt/mssql/tls
+          name: tls
+        - mountPath: /var/opt/mssql/security/ca-certificates
+          name: security-ca-certificates
+      initContainers:
+      - env:
+        - name: ACCEPT_EULA
+          value: "Y"
+        - name: MSSQL_ENABLE_HADR
+          value: "1"
+        - name: MSSQL_AGENT_ENABLED
+          value: "1"
+        - name: MSSQL_SA_USERNAME
+          valueFrom:
+            secretKeyRef:
+              key: username
+              name: mssqlserver-custom-auth
+        - name: MSSQL_SA_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              key: password
+              name: mssqlserver-custom-auth
+        - name: DB_NAME
+          value: mssql-standalone
+        - name: NAMESPACE
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+        - name: GOVERNING_SERVICE_NAME
+          value: mssql-standalone-pods
+        - name: PRIMARY_HOST
+          value: mssql-standalone
+        - name: REPLICAS
+          value: "1"
+        - name: POD_IP
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: status.podIP
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.name
+        - name: VERSION
+          value: 2022-cu12
+        image: ghcr.io/kubedb/mssql-init:2022-ubuntu-22-v3@sha256:127c3f2d701431c7f78ac4cc8d479414a797bb99f559e4b3a0f604057f6ae9c8
+        name: mssql-init
+        resources:
+          limits:
+            memory: 512Mi
+          requests:
+            cpu: 200m
+            memory: 512Mi
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+            - ALL
+          runAsGroup: 10001
+          runAsNonRoot: true
+          runAsUser: 10001
+          seccompProfile:
+            type: RuntimeDefault
+        volumeMounts:
+        - mountPath: /var/opt/mssql
+          name: data
+        - mountPath: /scripts
+          name: init-scripts
+      securityContext:
+        fsGroup: 10001
+      serviceAccountName: mssql-standalone
+      volumes:
+      - emptyDir: {}
+        name: init-scripts
+      - name: config
+        secret:
+          defaultMode: 511
+          secretName: mssql-standalone-config
+      - name: tls
+        projected:
+          sources:
+          - secret:
+              items:
+              - key: ca.crt
+                path: ca.crt
+              - key: tls.crt
+                path: server.crt
+              - key: tls.key
+                path: server.key
+              name: mssql-standalone-server-cert
+          - secret:
+              items:
+              - key: tls.crt
+                path: client.crt
+              - key: tls.key
+                path: client.key
+              name: mssql-standalone-client-cert
+      - name: security-ca-certificates
+        projected:
+          sources:
+          - secret:
+              items:
+              - key: ca.crt
+                path: ca.crt
+              name: mssql-standalone-server-cert
+  updateStrategy:
+    type: OnDelete
+  volumeClaimTemplates:
+  - metadata:
+      annotations:
+        volume.beta.kubernetes.io/storage-class: standard
+      name: data
+    spec:
+      accessModes:
+      - ReadWriteOnce
+      resources:
+        requests:
+          storage: 1Gi
+      storageClassName: standard
+    status: {}
+status:
+  availableReplicas: 1
+  collisionCount: 0
+  currentReplicas: 1
+  currentRevision: mssql-standalone-6bdcc88f89
+  observedGeneration: 1
+  readyReplicas: 1
+  replicas: 1
+  updateRevision: mssql-standalone-6bdcc88f89
+  updatedReplicas: 1

@@ -1,0 +1,30 @@
+I0102 12:34:56.531854       1 helpers.go:216] Database is accepting connection....
+---QUERY:  CREATE CREDENTIAL [https://mssqlserver-ag-backup-frequent-backup-1735821295.demo.svc/basebackups_005] WITH IDENTITY = 'SHARED ACCESS SIGNATURE', SECRET = 'does_not_matter';
+args: [backup-push --databases agdb1,agdb2 --copy-only]
+WARNING: 2025/01/02 12:34:57.760118 WALG_FAILOVER_STORAGES_CHECK_TIMEOUT is unknown
+WARNING: 2025/01/02 12:34:57.760158 WALG_FAILOVER_STORAGES_CACHE_LIFETIME is unknown
+WARNING: 2025/01/02 12:34:57.760163 We found that some variables in your config file detected as 'Unknown'. 
+  If this is not right, please create issue https://github.com/wal-g/wal-g/issues/new
+INFO: 2025/01/02 12:34:57.771337 running proxy at mssqlserver-ag-backup-frequent-backup-1735821295.demo.svc:443
+INFO: 2025/01/02 12:34:57.988852 database [agdb2] size is 6107136, required blob count 1
+INFO: 2025/01/02 12:34:57.988885 starting backup database [agdb2] to URL = 'https://mssqlserver-ag-backup-frequent-backup-1735821295.demo.svc/basebackups_005/base_20250102T123457Z/agdb2/blob_000'
+INFO: 2025/01/02 12:34:57.988887 SQL: BACKUP DATABASE [agdb2] TO URL = 'https://mssqlserver-ag-backup-frequent-backup-1735821295.demo.svc/basebackups_005/base_20250102T123457Z/agdb2/blob_000' WITH FORMAT, MAXTRANSFERSIZE=4194304, COMPRESSION, COPY_ONLY
+INFO: 2025/01/02 12:34:57.995387 database [agdb1] size is 6049792, required blob count 1
+INFO: 2025/01/02 12:34:57.995409 starting backup database [agdb1] to URL = 'https://mssqlserver-ag-backup-frequent-backup-1735821295.demo.svc/basebackups_005/base_20250102T123457Z/agdb1/blob_000'
+INFO: 2025/01/02 12:34:57.995413 SQL: BACKUP DATABASE [agdb1] TO URL = 'https://mssqlserver-ag-backup-frequent-backup-1735821295.demo.svc/basebackups_005/base_20250102T123457Z/agdb1/blob_000' WITH FORMAT, MAXTRANSFERSIZE=4194304, COMPRESSION, COPY_ONLY
+INFO: 2025/01/02 12:35:26.384394 database [agdb2] backup successfully finished
+INFO: 2025/01/02 12:35:26.905556 database [agdb1] backup successfully finished
+INFO: 2025/01/02 12:35:26.905581 uploading sentinel: {"Server":"mssqlserver-ag-backup-frequent-backup-1735821295-wsrmc","Databases":["agdb1","agdb2"],"StartLocalTime":"2025-01-02T12:34:57.987974Z","StopLocalTime":"2025-01-02T12:35:26.905576Z"}
+INFO: 2025/01/02 12:35:29.399303 backup finished
+INFO: 2025/01/02 12:35:29.399329 Removing sigmask. Shutting down
+INFO: 2025/01/02 12:35:29.399430 stopping proxy
+
+
+
+
+$ sqlcmd -S localhost:1433 -U SA -P Pa55w0rd! -Q "BACKUP DATABASE [demo] TO URL = 'https://neaj/mssqlserver-ag-backup-frequent-backup-1735902788/basebackups_005/base_20250102T123457Z/agdb1/blob_000' WITH FORMAT, MAXTRANSFERSIZE=4194304, COMPRESSION, COPY_ONLY;"
+
+
+# Working Backup Command In Kubernetes:
+
+$ /opt/mssql-tools/bin/sqlcmd -S mssqlserver-ag -U sa -P 'Pa55w0rd' -Q "BACKUP DATABASE [agdb1] TO URL = 'https://mssqlserver-ag-backup-frequent-backup-1735902788.demo.svc/basebackups_005/base_20250102T123457Z/agdb1/blob_000' WITH FORMAT, MAXTRANSFERSIZE=4194304, COMPRESSION, COPY_ONLY;"

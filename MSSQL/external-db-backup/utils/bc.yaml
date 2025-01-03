@@ -1,0 +1,48 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: BackupConfiguration
+metadata:
+  name: mssql-db-backup
+  namespace: demo
+spec:
+  target:
+    apiGroup: appcatalog.appscode.com
+    kind: AppBinding
+    name: mssqlserver-ag
+    namespace: demo
+  backends:
+    - name: gcs-backend
+      storageRef:
+        namespace: demo
+        name: gcs-storage
+      retentionPolicy:
+        name: demo-retention
+        namespace: demo
+  sessions:
+    - name: frequent-backup
+      sessionHistoryLimit: 3
+      scheduler:
+        schedule: "*/5 * * * *"
+        successfulJobsHistoryLimit: 1
+        failedJobsHistoryLimit: 1
+        jobTemplate:
+          backoffLimit: 1
+      repositories:
+        - name: gcs-mysql-repo
+          backend: gcs-backend
+          directory: /mysql
+          encryptionSecret:
+           name: encrypt-secret
+           namespace: demo
+      addon:
+        name: mssqlserver-addon
+        tls:
+          issuerRef:
+            name: mssqlserver-issuer
+            kind: Issuer
+            apiGroup: "cert-manager.io"
+        jobTemplate:
+          spec:
+            securityContext:
+              runAsUser: 0
+        tasks:
+          - name: logical-backup

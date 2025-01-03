@@ -4,6 +4,6 @@ metadata:
   name: test-vol-backup
   namespace: demo
 spec:
-  volumeSnapshotClassName: longhorn
+  volumeSnapshotClassName: longhorn-backup-vsc
   source:
     persistentVolumeClaimName: test-vol

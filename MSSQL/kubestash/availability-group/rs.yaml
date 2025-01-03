@@ -8,7 +8,8 @@ spec:
     apiGroup: kubedb.com
     kind: MSSQLServer
     namespace: demo
-    name: restored-mssqlserver-ag
+    # name: restored-mssqlserver-ag
+    name: mssqlserver-ag
   dataSource:
     repository: gcs-mssqlserver-ag-repo
     snapshot: latest

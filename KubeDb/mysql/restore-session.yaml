@@ -1,0 +1,45 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: RestoreSession
+metadata:
+  name: mysql-restoresession
+  namespace: demo
+spec:
+  target:
+    name: restored-mysql
+    namespace: demo
+    apiGroup: kubedb.com
+    kind: MySQL
+  dataSource:
+    repository: gcs-mysql-repo
+    snapshot: latest
+    encryptionSecret:
+      name: encrypt-secret 
+      namespace: demo
+  addon:
+    name: mysql-addon
+    tasks:
+      - name: logical-backup-restore
+
+---
+
+apiVersion: kubedb.com/v1alpha2
+kind: MySQL
+metadata:
+  name: restored-mysql
+  namespace: demo
+spec:
+  version: "8.0.35"
+  replicas: 3
+  topology:
+    mode: GroupReplication
+  storageType: Durable
+  storage:
+    # storageClassName: "standard"
+    accessModes:
+      - ReadWriteOnce
+    resources:
+      requests:
+        storage: 1Gi
+  init:
+    waitForInitialRestore: true 
+  terminationPolicy: WipeOut

@@ -21,7 +21,7 @@ openssl req -newkey rsa:2048 -nodes -keyout server.key -out server.csr -subj "/C
 # Sign the server certificate using the CA
 openssl x509 -req -in server.csr -CA ca.crt -CAkey ca.key -CAcreateserial -out server.crt -days 365 -extfile altsubj.ext
 
-
+upda
 ### Check Wal-g Proxy Running or not:
 
 curl https://walg-service.demo.svc/basebackups_005/base_20240508T042630Z/demo/foobar

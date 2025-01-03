@@ -6,7 +6,7 @@ metadata:
 spec:
   maxRetentionPeriod: 2mo
   successfulSnapshots:
-    last: 2
+    last: 1
   failedSnapshots:
     last: 1
   usagePolicy:

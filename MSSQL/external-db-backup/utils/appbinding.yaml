@@ -1,0 +1,16 @@
+apiVersion: appcatalog.appscode.com/v1alpha1
+kind: AppBinding
+metadata:
+  name: mssqlserver-ag
+  namespace: demo
+spec:
+  clientConfig:
+    service:
+      scheme: http
+      namespace: demo
+      name: mssqlserver-ag-pods
+      port: 1433
+  secret:
+    name: mssqlserver-custom-auth
+  type: mssql
+  version: "2022-cu12"

@@ -23,8 +23,8 @@ spec:
   fullBackup:
     driver: WalG
     task:
-      params:
-        databases: demo
+      # params:
+      #   databases: demo
     scheduler:
       successfulJobsHistoryLimit: 1
       failedJobsHistoryLimit: 1
@@ -35,7 +35,9 @@ spec:
       spec:
         securityContext:
           runAsUser: 0
-  walBackup:
+  logBackup:
+    failedLogHistoryLimit: 2
+    successfulLogHistoryLimit: 2
     runtimeSettings:
       pod:
         securityContext:

@@ -12,7 +12,7 @@ spec:
     ref:
       name: mssqlserverarchiver-sample
       namespace: demo
-  version: "2022-cu12"
+  version: "2022-cu16"
   replicas: 2
   authSecret:
     name: mssqlserver-custom-auth
@@ -24,21 +24,23 @@ spec:
         - agdb1
         - agdb2
         - demo
-  internalAuth:
-    endpointCert:
-      issuerRef:
-        apiGroup: cert-manager.io
-        name: mssqlserver-issuer
-        kind: Issuer
   tls:
     issuerRef:
       name: mssqlserver-issuer
       kind: Issuer
       apiGroup: "cert-manager.io"
     clientTLS: false
+  podTemplate:
+    spec:
+      containers:
+        - name: mssql
+          env:
+          - name: ACCEPT_EULA
+            value: "Y"
+          - name: MSSQL_PID
+            value: Evaluation  
   storageType: Durable
   storage:
-    storageClassName: "standard"
     accessModes:
       - ReadWriteOnce
     resources:

@@ -1,0 +1,39 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: BackupConfiguration
+metadata:
+  name: postgres-db-backup
+  namespace: demo
+spec:
+  target:
+    apiGroup: kubedb.com
+    kind: Postgres
+    namespace: demo
+    name: sample-postgres
+  backends:
+    - name: gcs-backend
+      storageRef:
+        namespace: demo
+        name: gcs-storage
+      retentionPolicy:
+        name: demo-retention
+        namespace: demo
+  sessions:
+    - name: frequent-backup
+      sessionHistoryLimit: 3
+      scheduler:
+        schedule: "*/1 * * * *"
+        successfulJobsHistoryLimit: 1
+        failedJobsHistoryLimit: 1
+        jobTemplate:
+          backoffLimit: 1
+      repositories:
+        - name: gcs-postgres-repo2
+          backend: gcs-backend
+          directory: /postgres2
+          encryptionSecret:
+           name: encryption-secret
+           namespace: demo
+      addon:
+        name: postgres-addon
+        tasks:
+          - name: logical-backup

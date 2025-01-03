@@ -1,0 +1,28 @@
+apiVersion: stash.appscode.com/v1beta1
+kind: BackupConfiguration
+metadata:
+  name: sample-mysql-structure
+  namespace: demo
+spec:
+  schedule: "*/5 * * * *"
+  task:
+    params:
+      - name: args
+        value: --set-gtid-purged=OFF
+      - name: multiDumpArgs
+        value: >-
+          $args=--no-tablespaces --no-data --skip-triggers --skip-opt --single-transaction --create-options --disable-keys --extended-insert --set-charset --quick --databases playground
+          $args=--no-tablespaces --no-create-info --skip-triggers --skip-opt --single-transaction --create-options --disable-keys --extended-insert --set-charset --quick --ignore-table=playground.equipment --databases playground
+          $args=--no-tablespaces --no-data --no-create-info --skip-opt --single-transaction --create-options --disable-keys --extended-insert --set-charset --quick --databases playground   
+  repository:
+    name: gcs-repo
+  target:
+    ref:
+      apiVersion: appcatalog.appscode.com/v1alpha1
+      kind: AppBinding
+      name: sample-mysql
+  retentionPolicy:
+    name: keep-last-5
+    keepLast: 5
+    prune: true
+

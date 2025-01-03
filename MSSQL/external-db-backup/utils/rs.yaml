@@ -1,0 +1,30 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: RestoreSession
+metadata:
+  name: mysql-restoresession
+  namespace: demo
+spec:
+  target:
+    apiGroup: appcatalog.appscode.com
+    kind: AppBinding
+    name: mssqlserver-ag
+    namespace: demo
+  dataSource:
+    repository: gcs-mysql-repo
+    snapshot: latest
+    encryptionSecret:
+      name: encrypt-secret
+      namespace: demo
+  addon:
+    name: mssqlserver-addon
+    jobTemplate:
+      spec:
+        securityContext:
+          runAsUser: 0
+    tls:
+      issuerRef:
+        name: mssqlserver-issuer
+        kind: Issuer
+        apiGroup: "cert-manager.io"
+    tasks:
+      - name: logical-backup-restore

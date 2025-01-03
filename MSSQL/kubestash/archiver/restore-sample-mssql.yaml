@@ -11,26 +11,29 @@ spec:
       encryptionSecret:
         name: encrypt-secret
         namespace: demo
-      recoveryTimestamp: "2024-08-14T22:43:41.300216Z"
+      recoveryTimestamp: "2024-12-24T06:50:15.657938Z" # "2024-08-14T22:43:41.300216Z" 
       fullDBRepository:
-        name: mssqlserver-ag-full-backup
+        name: mssqlserver-ag-archiver
         namespace: demo
-  version: "2022-cu12"
+  version: "2022-cu16"
   replicas: 2
   topology:
     mode: AvailabilityGroup
-  internalAuth:
-    endpointCert:
-      issuerRef:
-        apiGroup: cert-manager.io
-        name: mssqlserver-issuer
-        kind: Issuer
   tls:
     issuerRef:
       name: mssqlserver-issuer
       kind: Issuer
       apiGroup: "cert-manager.io"
     clientTLS: false
+  podTemplate:
+    spec:
+      containers:
+        - name: mssql
+          env:
+          - name: ACCEPT_EULA
+            value: "Y"
+          - name: MSSQL_PID
+            value: Evaluation  
   storageType: Durable
   storage:
     storageClassName: "standard"
