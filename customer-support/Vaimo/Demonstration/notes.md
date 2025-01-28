@@ -134,10 +134,3 @@ SELECT * FROM equipment;
 
 # // Works - using shell to get && operator
 # exec.Command("sh", "-c", "echo hello && echo world")
-
-
-
-
-
-
-

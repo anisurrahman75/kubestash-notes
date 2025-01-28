@@ -1,29 +1,24 @@
 apiVersion: kubedb.com/v1alpha2
 kind: MSSQLServer
 metadata:
-  name: mssqlserver-ag
+  name: restore-mssqlserver
   namespace: demo
-  labels:
-    archiver: "true"
 spec:
   healthChecker:
-    timeoutSeconds: 100
-  # archiver:
-  #   ref:
-  #     name: mssqlserverarchiver-sample
-  #     namespace: demo
+    timeoutSeconds: 200
+  init:
+    archiver:
+      encryptionSecret:
+        name: encrypt-secret
+        namespace: demo
+      recoveryTimestamp: "2025-01-08T10:42:50.657938Z" # "2024-08-14T22:43:41.300216Z"
+      fullDBRepository:
+        name: sample-mssqlserver-archiver
+        namespace: demo
   version: "2022-cu16"
   replicas: 2
-  authSecret:
-    name: mssqlserver-custom-auth
-    externallyManaged: true
   topology:
     mode: AvailabilityGroup
-    availabilityGroup:
-      databases:
-        - agdb1
-        - agdb2
-        - demo
   tls:
     issuerRef:
       name: mssqlserver-issuer
@@ -41,6 +36,7 @@ spec:
             value: Evaluation  
   storageType: Durable
   storage:
+    storageClassName: "standard"
     accessModes:
       - ReadWriteOnce
     resources:

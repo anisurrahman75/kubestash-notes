@@ -12,7 +12,6 @@ spec:
       secretName: minio-secret
       region: us-east-1
       prefix: sunny
-      # insecureTLS: true
   usagePolicy:
     allowedNamespaces:
       from: All

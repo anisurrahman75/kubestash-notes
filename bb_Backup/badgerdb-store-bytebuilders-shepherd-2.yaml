@@ -1,0 +1,58 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: BackupConfiguration
+metadata:
+  name: badgerdb-store-bytebuilders-shepherd-2
+  namespace: bb
+spec:
+  target:
+    apiGroup:
+    kind: PersistentVolumeClaim
+    name: badgerdb-store-bytebuilders-shepherd-2
+    namespace: bb
+  backends:
+  - name: s3-storage
+    storageRef:
+      namespace: bb
+      name: s3-storage
+    retentionPolicy:
+      name: demo-retention
+      namespace: bb
+  sessions:
+  - name: frequent-backup
+    sessionHistoryLimit: 
+    scheduler: 
+      schedule: "*/30 * * * *"
+    repositories: 
+    - name: badgerdb-store-bytebuilders-shepherd-2
+      backend: s3-storage
+      directory: /badgerdb-store-bytebuilders-shepherd-2
+      encryptionSecret:
+       name: encrypt-secret 
+       namespace: bb
+      deletionPolicy: WipeOut 
+    addon:
+      name: pvc-addon
+      jobTemplate:
+        spec:
+          securityContext: 
+            runAsUser: 0
+          nodeSelector:
+            lke.linode.com/pool-id: "367593"
+            kubernetes.io/hostname: lke25516-367593-000832840000
+          tolerations:
+          - effect: NoExecute
+            key: component
+            operator: Equal
+            value: billing
+          - effect: NoExecute
+            key: node.kubernetes.io/not-ready
+            operator: Exists
+            tolerationSeconds: 300
+          - effect: NoExecute
+            key: node.kubernetes.io/unreachable
+            operator: Exists
+            tolerationSeconds: 300
+      tasks:
+      - name: logical-backup
+        params:
+          exclude: /kubestash-data/lost+found

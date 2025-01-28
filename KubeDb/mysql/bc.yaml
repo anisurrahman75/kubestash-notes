@@ -40,12 +40,12 @@ spec:
           encryptionSecret:
            name: encrypt-secret
            namespace: demo
-        # - name: s3-mysql-repo
-        #   backend: s3-backend
-        #   directory: /mysql-s3
-        #   encryptionSecret:
-        #    name: encrypt-secret
-        #    namespace: demo
+        - name: s3-mysql-repo
+          backend: s3-backend
+          directory: /mysql-s3
+          encryptionSecret:
+           name: encrypt-secret
+           namespace: demo
       addon:
         name: mysql-addon
         tasks:

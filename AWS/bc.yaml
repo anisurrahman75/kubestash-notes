@@ -1,0 +1,42 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: BackupConfiguration
+metadata:
+  name: pvc-backup
+  namespace: demo
+spec:
+  target:
+    apiGroup:
+    kind: PersistentVolumeClaim
+    name: backup-target-pvc
+    namespace: demo
+  backends:
+  - name: s3-storage
+    storageRef:
+      namespace: demo
+      name: s3-storage
+    retentionPolicy:
+      name: demo-retention
+      namespace: demo
+  sessions:
+  - name: frequent-backup
+    sessionHistoryLimit: 
+    scheduler: 
+      schedule: "*/50 * * * *"
+    repositories: 
+    - name: pvc-backup
+      backend: s3-storage
+      directory: /pvc-backup
+      encryptionSecret:
+       name: encrypt-secret 
+       namespace: demo
+      deletionPolicy: WipeOut 
+    addon:
+      name: pvc-addon
+      
+      tasks:
+      - name: logical-backup
+      jobTemplate:
+        spec:
+          serviceAccountName: my-service-account
+          securityContext:
+            runAsUser: 0
