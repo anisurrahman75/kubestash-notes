@@ -2,7 +2,7 @@ apiVersion: storage.kubestash.com/v1alpha1
 kind: RetentionPolicy
 metadata:
   name: demo-retention
-  namespace: bb
+  namespace: demo
 spec:
   maxRetentionPeriod: 2mo
   successfulSnapshots:

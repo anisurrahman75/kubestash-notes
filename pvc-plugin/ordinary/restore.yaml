@@ -11,7 +11,7 @@ spec:
     namespace: demo
   dataSource:
     namespace: demo
-    repository: pvc-demo-gcs
+    repository: pvc-backup
     snapshot: latest
     encryptionSecret:
       name: encrypt-secret # some addon may not support encryption

@@ -9,8 +9,8 @@ spec:
     s3:
       bucket: tapojit
       region: us-west-2
-      # endpoint: https://s3.us-west-2.amazonaws.com
-      # secretName: aws-s3-secret
+      endpoint: https://s3.us-west-2.amazonaws.com
+      secretName: aws-s3-secret
       prefix: sunny
   usagePolicy:
     allowedNamespaces:

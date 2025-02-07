@@ -4,7 +4,7 @@ metadata:
   name: backup-target-pvc
   namespace: demo
 spec:
-  storageClassName: gp2-csi
+  # storageClassName: gp2-csi
   accessModes:
     - ReadWriteOnce
   resources:
