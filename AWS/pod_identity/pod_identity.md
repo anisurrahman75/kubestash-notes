@@ -10,16 +10,20 @@
 ```bash
 $ eksctl create cluster -f cluster_config.yaml
 ```
-# Install Agent inside cluster to every node:
+
+# List Cluser:
 ```bash
-$ aws eks create-addon --cluster-name pod-identity --addon-name eks-pod-identity-agent --addon-version v1.0.0-eksbuild.1
+$ eksctl get cluster --region=$REGION
 ```
 
+# Install Agent inside cluster to every node:
+```bash
+$ ws eks create-addon --cluster-name $CLUSTER_NAME --addon-name eks-pod-identity-agent --addon-version v1.0.0-eksbuild.1 --region=$REGION
+```
 
 # Add ebs-csi driver to cluster
 
 ```bash
-eksctl utils associate-iam-oidc-provider --region us-west-2 --cluster identity --approve
-eksctl create addon --name aws-ebs-csi-driver --cluster identity --region us-west-2 --force
-
+$ eksctl utils associate-iam-oidc-provider --region $REGION --cluster $CLUSTER_NAME --approve
+$ eksctl create addon --name aws-ebs-csi-driver --cluster $CLUSTER_NAME --region $REGION --force
 ```

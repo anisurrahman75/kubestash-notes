@@ -8,11 +8,11 @@ spec:
       image: nginx:latest
       volumeMounts:
         - name: nfs-volume
-          mountPath: /usr/share/nginx/html
+          mountPath: /nfs/data
   volumes:
     - name: nfs-volume
       nfs:
-        server: 10.128.159.142
+        server: 10.244.0.11 
         path: "/"
 
 

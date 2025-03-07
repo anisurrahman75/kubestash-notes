@@ -1,7 +1,7 @@
 apiVersion: core.kubestash.com/v1alpha1
 kind: BackupConfiguration
 metadata:
-  name: cluster-resources-backup
+  name: ace-manifest-backup
   namespace: demo
 spec:
   backends:
@@ -20,15 +20,15 @@ spec:
         jobTemplate:
           backoffLimit: 1
       repositories:
-        - name: gcs-repository2
+        - name: gcs-repository
           backend: gcs-backend
-          directory: /cluster-manifests
+          directory: /ace-manifests
           encryptionSecret:
             name: encrypt-secret
             namespace: demo
-          deletionPolicy: WipeOut
+          deletionPolicy: Delete
       addon:
-        name: kubedump-addon
+        name: ace-addon
         tasks:
           - name: manifest-backup
         jobTemplate:

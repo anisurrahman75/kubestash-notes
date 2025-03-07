@@ -1,0 +1,19 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: RestoreSession
+metadata:
+  name: ace-resore
+  namespace: demo
+spec:
+  dataSource:
+    snapshot: latest
+    repository: gcs-repository
+    encryptionSecret:
+      name: encrypt-secret
+      namespace: demo
+  addon:
+    name: ace-addon
+    tasks:
+      - name: manifest-restore
+    jobTemplate:
+      spec:
+        serviceAccountName: cluster-resource-reader

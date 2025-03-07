@@ -1,0 +1,25 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: RestoreSession
+metadata:
+  name: ace-resore
+  namespace: ace
+spec:
+  target:
+    apiGroup: apps
+    kind: StatefulSet
+    namespace: ace
+    name: ace-nats
+  dataSource:
+    snapshot: latest
+    repository: ace-full
+    encryptionSecret:
+      name: default-encryption-secret
+      namespace: stash
+  addon:
+    name: ace-addon
+    tasks:
+      - name: manifest-restore
+      - name: logical-backup-restore
+    jobTemplate:
+      spec:
+        serviceAccountName: cluster-resource-reader

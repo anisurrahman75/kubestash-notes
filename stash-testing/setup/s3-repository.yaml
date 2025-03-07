@@ -1,0 +1,16 @@
+apiVersion: stash.appscode.com/v1alpha1
+kind: Repository
+metadata:
+  name: s3-repo
+  namespace: demo
+spec:
+  backend:
+    s3:
+      bucket: tapojit
+      region: us-west-2
+      endpoint: s3.us-west-2.amazonaws.com
+      prefix: dedicated-customer
+    storageSecretName: s3-secret
+  usagePolicy:
+    allowedNamespaces:
+      from: All

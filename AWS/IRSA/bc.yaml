@@ -21,7 +21,7 @@ spec:
   - name: frequent-backup
     sessionHistoryLimit: 
     scheduler: 
-      schedule: "*/50 * * * *"
+      schedule: "*/5 * * * *"
     repositories: 
     - name: pvc-backup
       backend: s3-storage
@@ -29,14 +29,15 @@ spec:
       encryptionSecret:
        name: encrypt-secret 
        namespace: demo
-      deletionPolicy: WipeOut 
+      deletionPolicy: Delete 
     addon:
       name: pvc-addon
-      
       tasks:
       - name: logical-backup
+        params:
+          exclude: /kubestash-data/lost+found
       jobTemplate:
         spec:
-          serviceAccountName: my-service-account
-          securityContext:
-            runAsUser: 0
+          serviceAccountName: irsa-test
+          nodeSelector:
+            kubernetes.io/hostname: ip-192-168-52-103.ec2.internal

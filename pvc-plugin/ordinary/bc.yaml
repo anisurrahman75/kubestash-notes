@@ -10,7 +10,7 @@ spec:
     name: backup-target-pvc
     namespace: demo
   backends:
-  - name: s3-storage
+  - name: gcs-storage
     storageRef:
       namespace: demo
       name: s3-storage
@@ -24,12 +24,12 @@ spec:
       schedule: "*/5 * * * *"
     repositories: 
     - name: pvc-backup
-      backend: s3-storage
+      backend: gcs-storage
       directory: /pvc-backup
       encryptionSecret:
        name: encrypt-secret 
        namespace: demo
-      deletionPolicy: WipeOut 
+      deletionPolicy: Delete 
     addon:
       name: pvc-addon
       tasks:

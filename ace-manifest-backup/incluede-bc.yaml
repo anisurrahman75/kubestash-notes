@@ -1,0 +1,44 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: BackupConfiguration
+metadata:
+  name: ace-backup
+  namespace: ace
+spec:
+  target:
+    apiGroup: apps
+    kind: StatefulSet
+    namespace: ace
+    name: ace-nats
+  backends:
+  - name: s3
+    retentionPolicy:
+      name: keep-1mo
+      namespace: stash
+    storageRef:
+      name: default
+      namespace: stash
+  sessions:
+    - name: frequent-backup
+      sessionHistoryLimit: 3
+      scheduler:
+        schedule: "*/5 * * * *"
+        jobTemplate:
+          backoffLimit: 1
+      repositories:
+        - backend: s3
+          deletionPolicy: Retain
+          directory: ace/ace/full-backup
+          encryptionSecret:
+            name: default-encryption-secret
+            namespace: stash
+          name: ace-full
+      addon:
+        name: ace-addon
+        tasks:
+          - name: manifest-backup
+          - name: logical-backup
+            params:
+              paths: /etc/nats-config/accounts/jwt,/nats/jetstream
+        jobTemplate:
+          spec:
+            serviceAccountName: cluster-resource-reader

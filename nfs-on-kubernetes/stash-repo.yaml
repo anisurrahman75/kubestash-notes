@@ -1,0 +1,13 @@
+apiVersion: stash.appscode.com/v1alpha1
+kind: Repository
+metadata:
+  name: local-repo-with-nfs
+  namespace: demo
+spec:
+  backend:
+    local:
+      mountPath: /nfs/data
+      nfs:
+        server: 10.244.0.11 # IP to our NFS server
+        path: "/" # The exported directory
+    storageSecretName: local-secret

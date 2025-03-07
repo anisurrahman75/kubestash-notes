@@ -1,0 +1,20 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Effect": "Allow",// I only need this one
+            "Action": "s3:*",
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow", // For the support of aws-ebs storage class
+            "Action": "sts:*",
+            "Resource": "*"
+        },
+        {
+            "Effect": "Allow",// For the support of aws-ebs storage class 
+            "Action": "ec2:*",
+            "Resource": "*"
+        }
+    ]
+}

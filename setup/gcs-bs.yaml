@@ -8,10 +8,10 @@ spec:
     provider: gcs
     gcs:
       bucket: kubestash-qa
-      prefix: sunny
+      prefix: sunny/
       secretName: gcs-secret 
-  usagePolicy:
-    allowedNamespaces: 
-      from: All
+  # usagePolicy:
+  #   allowedNamespaces: 
+  #     from: All
   default: true # Use this BackupStorage as the default
   deletionPolicy: WipeOut # One of: WipeOut, Delete

@@ -1,0 +1,45 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: backup-target-pvc
+  namespace: demo
+spec:
+  storageClassName: ebs-sc
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-pod
+  namespace: demo
+spec:
+  # serviceAccount: kubestash-kubestash-operator
+  # serviceAccountName: kubestash-kubestash-operator
+  containers:
+  - name: ubuntu
+    image: ubuntu
+    command: ["/bin/sh", "-c"]
+    args: 
+    - |
+      echo "sample_data" > /target/mountpath/data.txt
+      sleep infinity
+    securityContext:
+      # allowPrivilegeEscalation: false
+      readOnlyRootFilesystem: false
+      # capabilities:
+      #   drop:
+      #     - ALL
+    volumeMounts:
+    - name: my-volume
+      mountPath: /target/mountpath
+  volumes:
+  - name: my-volume
+    persistentVolumeClaim:
+      claimName: backup-target-pvc
+
+
+

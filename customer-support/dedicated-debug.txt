@@ -1,0 +1,60 @@
+# Update CRDS
+$ kubectl apply -f https://github.com/stashed/installer/raw/v2024.8.27/crds/stash-catalog-crds.yaml
+$ kubectl apply -f https://github.com/stashed/installer/raw/v2024.8.27/charts/stash-metrics/crds/metrics.appscode.com_metricsconfigurations.yaml
+
+# Upgrade operator
+$ helm install stash oci://ghcr.io/appscode-charts/stash \
+              --version v2024.8.27  \
+              --namespace stash --create-namespace \
+              --set features.enterprise=true \
+              --set-file global.license=$LICENSE_FILE \
+              --wait --burst-limit=10000 --debug
+
+
+
+# Upgrade CLI
+
+$ curl -o kubectl-stash.tar.gz -fsSL https://github.com/stashed/cli/releases/download/v0.35.0/kubectl-stash-linux-amd64.tar.gz \
+        && tar zxvf kubectl-stash.tar.gz \
+        && chmod +x kubectl-stash-linux-amd64 \
+        && sudo mv kubectl-stash-linux-amd64 /usr/local/bin/kubectl-stash \
+        && rm kubectl-stash.tar.gz LICENSE.md
+
+
+
+# Check repository
+$ kubectl stash check <repo-name> --namespace=<namespace>
+$ kubectl stash check <repo-name> --namespace=<namespace> --read-data
+
+## Resolving issue:
+
+> Note: Make sure that you use the latest available restic version. It can contain bugfixes, and improvements to simplify the repair of a repository. It might also contain a fix for your repository problems!
+
+1. Use the latest version of restic
+2. Stop all Backup 
+3. Install Rclone & copy the repository
+4. restic repair index
+5. restic repair snapshots --forget
+6. restic check --read-data
+
+## Rclone Copy CMD:
+
+```yaml
+$ rclone copy s3:tapojit/dedicated-customer/ s3:tapojit/dedicated-customer-2/
+```
+
+
+```bash
+$ restic repair index --read-all-packs
+```
+
+```bash
+$ restic repair snapshots --dry-run
+$ restic repair snapshots --forget
+```
+
+
+
+```bash
+$ restic check --read-data
+```
