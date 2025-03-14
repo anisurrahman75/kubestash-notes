@@ -9,7 +9,7 @@ spec:
     local:
       mountPath: /nfs/data
       nfs:
-        server: 10.128.159.142 # IP to our NFS server
+        server: 10.244.0.14 # IP to our NFS server
         path: "/" # The exported directory
   usagePolicy:
     allowedNamespaces:

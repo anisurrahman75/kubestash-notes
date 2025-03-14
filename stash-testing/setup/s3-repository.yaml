@@ -10,7 +10,7 @@ spec:
       region: us-west-2
       endpoint: s3.us-west-2.amazonaws.com
       prefix: dedicated-customer
-    storageSecretName: s3-secret
+    storageSecretName: aws-s3-secret
   usagePolicy:
     allowedNamespaces:
       from: All

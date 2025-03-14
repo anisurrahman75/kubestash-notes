@@ -12,3 +12,4 @@ spec:
   usagePolicy:
     allowedNamespaces:
       from: All
+  wipeOut: true

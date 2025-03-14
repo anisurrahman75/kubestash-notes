@@ -1,0 +1,32 @@
+apiVersion: stash.appscode.com/v1beta1
+kind: BackupConfiguration
+metadata:
+  name: sts-sts-demo-1
+  namespace: demo
+spec:
+  driver: Restic
+  repository:
+    name: local-repo-with-nfs
+    namespace: demo
+  retentionPolicy:
+    keepLast: 5
+    name: keep-last-5
+    prune: true
+  runtimeSettings: {}
+  schedule: '*/10 * * * *'
+  target:
+    paths:
+    - /source/data-1
+    - /source/data-2
+    ref:
+      apiVersion: apps/v1
+      kind: StatefulSet
+      name: sts-demo
+      namespace: demo
+    volumeMounts:
+    - mountPath: /source/data-1
+      name: source-data-1
+    - mountPath: /source/data-2
+      name: source-data-2
+  task: {}
+  tempDir: {}

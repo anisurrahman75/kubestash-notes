@@ -1,0 +1,83 @@
+{
+  "kind": "BackupConfiguration",
+  "apiVersion": "stash.appscode.com/v1beta1",
+  "metadata": {
+    "name": "ss-backup",
+    "namespace": "demo",
+    "uid": "844db9f7-b0e7-41d1-8112-2be79302a535",
+    "generation": 1,
+    "creationTimestamp": null,
+    "annotations": {
+      "kubectl.kubernetes.io/last-applied-configuration": {
+        "apiVersion": "stash.appscode.com/v1beta1",
+        "kind": "BackupConfiguration",
+        "metadata": {
+          "annotations": {},
+          "name": "ss-backup",
+          "namespace": "demo"
+        },
+        "spec": {
+          "repository": {
+            "name": "gcs-repo",
+            "namespace": "demo"
+          },
+          "retentionPolicy": {
+            "keepLast": 5,
+            "name": "keep-last-5",
+            "prune": true
+          },
+          "schedule": "*/30 * * * *",
+          "target": {
+            "paths": [
+              "/source/data"
+            ],
+            "ref": {
+              "apiVersion": "apps/v1",
+              "kind": "StatefulSet",
+              "name": "stash-demo"
+            },
+            "volumeMounts": [
+              {
+                "mountPath": "/source/data",
+                "name": "source-data"
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
+  "spec": {
+    "task": {},
+    "target": {
+      "ref": {
+        "apiVersion": "apps/v1",
+        "kind": "StatefulSet",
+        "name": "stash-demo"
+      },
+      "paths": [
+        "/source/data"
+      ],
+      "volumeMounts": [
+        {
+          "name": "source-data",
+          "mountPath": "/source/data"
+        }
+      ]
+    },
+    "runtimeSettings": {},
+    "tempDir": {},
+    "schedule": "*/30 * * * *",
+    "driver": "Restic",
+    "repository": {
+      "namespace": "demo",
+      "name": "gcs-repo"
+    },
+    "retentionPolicy": {
+      "name": "keep-last-5",
+      "keepLast": 5,
+      "prune": true
+    }
+  },
+  "status": {}
+}

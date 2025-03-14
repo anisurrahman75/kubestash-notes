@@ -1,11 +1,18 @@
 1. https://docs.aws.amazon.com/eks/latest/userguide/enable-iam-roles-for-service-accounts.html
 2. https://docs.aws.amazon.com/eks/latest/userguide/associate-service-account-role.html
 
+
 # Create Cluster
 ```bash
 $ eksctl create cluster -f cluster-conf.yaml
 ```
+
+## Follow the aws docs, I prefer CLI always, but fot berinners consolse are more firenly...
+
+
+
 # Create an IAM OIDC provider for your cluster
+
 ```bash
 $ export oidc_id=$(aws eks describe-cluster --name $cluster_name --query "cluster.identity.oidc.issuer" --output text | cut -d '/' -f 5)
 $ aws iam list-open-id-connect-providers | grep $oidc_id | cut -d "/" -f4

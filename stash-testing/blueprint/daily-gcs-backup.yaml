@@ -1,0 +1,17 @@
+apiVersion: stash.appscode.com/v1beta1
+kind: BackupBlueprint
+metadata:
+  name: daily-gcs-backup
+spec:
+  # ============== Blueprint for Repository ==========================
+  backend:
+    gcs:
+      bucket: gcs-repo
+      prefix: stash-backup/${TARGET_NAMESPACE}/${TARGET_KIND}/${TARGET_NAME}
+    storageSecretName: gcs-secret
+  # ============== Blueprint for BackupConfiguration =================
+  schedule: "*/5 * * * *"
+  retentionPolicy:
+    name: 'keep-last-5'
+    keepLast: 5
+    prune: true

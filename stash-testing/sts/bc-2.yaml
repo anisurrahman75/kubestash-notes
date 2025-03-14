@@ -1,11 +1,11 @@
 apiVersion: stash.appscode.com/v1beta1
 kind: BackupConfiguration
 metadata:
-  name: ss-backup
+  name: ss-backup-2
   namespace: demo
 spec:
   repository:
-    name: gcs-repo
+    name: s3-repo
     namespace: demo
   schedule: "*/30 * * * *"
   target:

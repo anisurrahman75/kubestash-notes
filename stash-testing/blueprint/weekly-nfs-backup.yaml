@@ -1,0 +1,19 @@
+apiVersion: stash.appscode.com/v1beta1
+kind: BackupBlueprint
+metadata:
+  name: weekly-nfs-backup
+spec:
+  # ============== Blueprint for Repository ==========================
+  backend:
+    local:
+      mountPath: /nfs/data
+      nfs:
+        server: 10.244.0.6 # IP to our NFS server
+        path: "/" # The exported directory
+    storageSecretName: local-secret
+  # ============== Blueprint for BackupConfiguration =================
+  schedule: "*/10 * * * *"
+  retentionPolicy:
+    name: 'keep-last-5'
+    keepLast: 5
+    prune: true

@@ -1,0 +1,58 @@
+I0313 08:23:16.310380       1 cleanup.go:104] "RoleBinding demo/stash-sidecar-statefulset-stash-demo has been deleted" kind="StatefulSet" name="stash-demo" namespace="demo"
+
+
+---------Annotations-----------:
+stash.appscode.com/last-applied-backup-invoker-kind: BackupConfiguration
+
+template:
+    metadata:
+      annotations:
+        stash.appscode.com/last-applied-backup-invoker-hash: "4281173397155664956"
+
+
+# Hash changed after another container insertion
+template:
+    metadata:
+      annotations:
+        stash.appscode.com/last-applied-backup-invoker-hash: "11036207022846775103"
+
+
+
+
+--------------------RBAC:----------------
+
+➤ kubectl get sa -n demo
+NAME                      SECRETS   AGE
+default                   0         7h30m
+stash-netvol-accessor     0         83m
+stash-trigger-ss-backup   0         17s
+
+
+➤ kubectl get sa -n demo stash-trigger-ss-backup -o yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  creationTimestamp: "2025-03-13T12:50:11Z"
+  labels:
+    app.kubernetes.io/component: stash-backup
+    app.kubernetes.io/managed-by: stash.appscode.com
+  name: stash-trigger-ss-backup
+  namespace: demo
+  ownerReferences:
+  - apiVersion: stash.appscode.com/v1beta1
+    blockOwnerDeletion: true
+    controller: true
+    kind: BackupConfiguration
+    name: ss-backup
+    uid: b7e5627b-0c12-46f1-8fc1-9a58afe1378e
+  resourceVersion: "50867"
+  uid: 722b1351-c90c-41b6-84d0-47a254940f25
+
+
+
+➤ kubectl get sa -n demo
+NAME                        SECRETS   AGE
+default                     0         7h44m
+stash-netvol-accessor       0         97m
+stash-trigger-ss-backup     0         2m24s
+stash-trigger-ss-backup-2   0         75s

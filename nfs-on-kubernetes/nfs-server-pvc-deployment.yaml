@@ -28,7 +28,7 @@ spec:
     spec:
       containers:
       - name: nfs-server
-        image: registry.k8s.io/volume-nfs:0.8
+        image: registry.k8s.io/volume-nfs:latest
         ports:
           - name: nfs
             containerPort: 2049
@@ -41,6 +41,9 @@ spec:
         volumeMounts:
           - mountPath: /exports
             name: mypvc
+        env:
+        - name: CONTAINERD_ENABLE_DEPRECATED_PULL_SCHEMA_1_IMAGE
+          value: "1"
       volumes:
         - name: mypvc
           persistentVolumeClaim:
