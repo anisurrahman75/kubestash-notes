@@ -19,3 +19,15 @@ spec:
     name: workload-addon
     tasks:
     - name: logical-backup-restore
+      addonVolumes:
+      - name: ${RESTIC_CACHE_VOLUME}
+        source:
+          # persistentVolumeClaim:
+          #   claimName: backup-target-pvc
+          volumeClaimTemplate:
+            spec:
+              accessModes:
+              - ReadWriteOnce
+              resources:
+                requests:
+                  storage: 1Gi

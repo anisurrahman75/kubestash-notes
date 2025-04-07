@@ -1,0 +1,22 @@
+metadata:
+  annotations: {}
+  labels:
+    app: my-app
+  name: my-service
+  namespace: demo
+spec:
+  clusterIP: 10.96.244.46
+  clusterIPs:
+  - 10.96.244.46
+  internalTrafficPolicy: Cluster
+  ipFamilies:
+  - IPv4
+  ipFamilyPolicy: SingleStack
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: my-app
+  sessionAffinity: None
+  type: ClusterIP

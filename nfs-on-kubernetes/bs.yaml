@@ -9,14 +9,14 @@ spec:
     local:
       mountPath: /nfs/data
       nfs:
-        server: 10.244.0.14 # IP to our NFS server
-        path: "/" # The exported directory
+        server: 10.244.0.76 # IP to our NFS server
+        path: "/non-root" # The exported directory
   usagePolicy:
     allowedNamespaces:
       from: All
   default: false 
   deletionPolicy: WipeOut
-  runtimeSettings:
-    pod:
-      securityContext:
-        runAsUser: 0
+  # runtimeSettings:
+  #   pod:
+  #     securityContext:
+  #       fsGroup: 65534

@@ -2,50 +2,58 @@ apiVersion: core.kubestash.com/v1alpha1
 kind: BackupConfiguration
 metadata:
   name: es-db-backup
+  namespace: demo
 spec:
   target:
     apiGroup: kubedb.com
     kind: Elasticsearch
-    namespace: default
+    namespace: demo
     name: sample-es
   backends:
-  - name: s3-storage
+  - name: gcs-storage
     storageRef:
-      name: s3-storage
-      namespace: default
+      name: gcs-storage
+      namespace: demo
     retentionPolicy:
       name: demo-retention
-      namespace: default
+      namespace: demo
   sessions:
   - name: frequent-backup
-    sessionHistoryLimit: 10
     scheduler:
-      schedule: "*/1 * * * *"
-      successfulJobsHistoryLimit: 1
-      failedJobsHistoryLimit: 1
-      jobTemplate:
-        backoffLimit: 1
+      schedule: "*/3 * * * *"
     repositories:
-    - name: s3-repo-es
-      backend: s3-storage
+    - name: gcs-repo-es
+      backend: gcs-storage
       directory: /sample/kubestashs/elastic
       encryptionSecret:
-        name: encry-secret # some addon may not support encryption
-        namespace: default
+        name: encrypt-secret # some addon may not support encryption
+        namespace: demo
     addon:
-      name: elasticsearch-addon-interim
+      name: elasticsearch-addon
       tasks:
-      - name: LogicalBackup
-        # addonVolumes:
-        # - name: ${INTERIM_VOLUME}
-        #   source:
-        #     volumeClaimTemplate:
-        #       spec:
-        #         accessModes:
-        #         - ReadWriteOnce
-        #         resources:
-        #           requests:
-        #             storage: 10Gi
+      - name: logical-backup
+        addonVolumes:
+        - name: ${INTERIM_VOLUME}
+          source:
+            volumeClaimTemplate:
+              spec:
+                accessModes:
+                - ReadWriteOnce
+                resources:
+                  requests:
+                    storage: 1Gi
+        - name: kubestash-tmp-volume
+          source:
+            persistentVolumeClaim:
+              claimName: backup-target-pvc
+
+            # volumeClaimTemplate:
+            #   spec:
+            #     accessModes:
+            #     - ReadWriteOnce
+            #     resources:
+            #       requests:
+            #         storage: 1Gi
       jobTemplate:
         spec:
           securityContext:

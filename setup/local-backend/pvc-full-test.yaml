@@ -1,0 +1,155 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-bucket
+  namespace: demo
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 2Gi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: accessor-pod
+  namespace: demo
+spec:
+  containers:
+  - name: ubuntu
+    image: ubuntu
+    command: ["/bin/sh", "-c"]
+    args: 
+    - |
+      echo "sample_data" > /target/mountpath/data.txt
+      sleep infinity
+    volumeMounts:
+    - name: my-volume
+      mountPath: /target/mountpath
+  volumes:
+  - name: my-volume
+    persistentVolumeClaim:
+      claimName: pvc-bucket
+---
+apiVersion: storage.kubestash.com/v1alpha1
+kind: BackupStorage
+metadata:
+  name: pvc-storage
+  namespace: demo
+spec:
+  storage:
+    provider: local
+    local:
+      mountPath: /target/mountpath/pvc
+      persistentVolumeClaim:
+        claimName: pvc-bucket
+  usagePolicy:
+    allowedNamespaces:
+      from: All
+  default: false 
+  deletionPolicy: Deleteec2
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nginx
+  namespace: demo
+  labels:
+    app: nginx
+spec:
+  ports:
+  - port: 80
+    name: web
+  clusterIP: None
+  selector:
+    app: nginx
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: kubestash-statefulset
+  namespace: demo
+spec:
+  serviceName: "nginx"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+      - name: nginx
+        command: ["/bin/sh", "-c"]
+        args: 
+        - |
+          echo "sample_data" > /source/data/data.txt
+          echo "config_data" > /source/config/config.cfg
+          sleep 3000
+        image: registry.k8s.io/nginx-slim:0.8
+        ports:
+        - containerPort: 80
+          name: web
+        volumeMounts:
+        - name: source-data
+          mountPath: /source/data
+        - name: source-config
+          mountPath: /source/config  
+  volumeClaimTemplates:
+  - metadata:
+      name: source-data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+  - metadata:
+      name: source-config
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 1Gi
+---
+apiVersion: core.kubestash.com/v1alpha1
+kind: BackupConfiguration
+metadata:
+  name: statefulset-backup
+  namespace: demo
+spec:
+  target:
+    apiGroup: apps
+    kind: StatefulSet
+    namespace: demo
+    name: kubestash-statefulset
+  backends:
+    - name: pvc-storage
+      storageRef:
+        namespace: demo
+        name: pvc-storage
+      retentionPolicy:
+        name: demo-retention
+        namespace: demo
+  sessions:
+    - name: workload-backup
+      scheduler:
+        schedule: "*/5 * * * *"
+        jobTemplate:
+          backoffLimit: 1
+      repositories: 
+        - name: statefulset-demo-pvc
+          backend: pvc-storage
+          directory: /statefulset
+          encryptionSecret:
+           name: encrypt-secret
+           namespace: demo
+          deletionPolicy: Retain 
+      addon:
+        name: workload-addon
+        tasks:
+          - name: logical-backup 
+            params:
+             paths: /source/data,/source/config

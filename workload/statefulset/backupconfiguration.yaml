@@ -17,16 +17,16 @@ spec:
       retentionPolicy:
         name: demo-retention
         namespace: demo
-    - name: nfs-storage
-      storageRef:
-        namespace: demo
-        name: nfs-storage
-      retentionPolicy:
-        name: demo-retention
-        namespace: demo
+    # - name: nfs-storage
+    #   storageRef:
+    #     namespace: demo
+    #     name: nfs-storage
+    #   retentionPolicy:
+    #     name: demo-retention
+    #     namespace: demo
   sessions:
     - name: workload-backup
-      sessionHistoryLimit: 50
+      sessionHistoryLimit: 5
       scheduler: # CronJob specification
         schedule: "*/5 * * * *"
         jobTemplate: # Comes from batch/v1 JobTemplateSpec
@@ -39,20 +39,20 @@ spec:
            name: encrypt-secret # some addon may not support encryption
            namespace: demo
           deletionPolicy: WipeOut
-        - name: statefulset-demo-nfs
-          backend: nfs-storage
-          directory: /statefulset-nfs
-          encryptionSecret:
-           name: encrypt-secret # some addon may not support encryption
-           namespace: demo
-          deletionPolicy: WipeOut  
+        # - name: statefulset-demo-nfs
+        #   backend: nfs-storage
+        #   directory: /statefulset-nfs
+        #   encryptionSecret:
+        #    name: encrypt-secret # some addon may not support encryption
+        #    namespace: demo
+        #   deletionPolicy: WipeOut  
       addon:
         name: workload-addon
         tasks:
-          - name: logical-backup 
+          - name: logical-backup
             params:
              paths: /source/data,/source/config
         jobTemplate:
-          spec: 
-            securityContext: 
+          spec:
+            securityContext:
               runAsUser: 0

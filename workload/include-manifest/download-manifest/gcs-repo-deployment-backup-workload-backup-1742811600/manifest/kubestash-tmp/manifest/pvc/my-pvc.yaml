@@ -1,0 +1,14 @@
+metadata:
+  annotations: {}
+  labels:
+    app: my-app
+  name: my-pvc
+  namespace: demo
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  storageClassName: standard
+  volumeMode: Filesystem

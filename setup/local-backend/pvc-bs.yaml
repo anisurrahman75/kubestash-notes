@@ -7,7 +7,7 @@ spec:
   storage:
     provider: local
     local:
-      mountPath: /target/mountpath/pvc
+      mountPath: /target/mountpath/pvc2
       persistentVolumeClaim:
         claimName: backup-target-pvc
   usagePolicy:
@@ -15,8 +15,8 @@ spec:
       from: All
   default: false 
   deletionPolicy: WipeOut
-  runtimeSettings:
-    pod:
-      securityContext:
-        fsGroup: 65535
+  # runtimeSettings:
+  #   pod:
+  #     securityContext:
+  #       fsGroup: 65535
         

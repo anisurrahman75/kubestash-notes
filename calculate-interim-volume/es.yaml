@@ -2,8 +2,9 @@ apiVersion: kubedb.com/v1alpha2
 kind: Elasticsearch
 metadata:
   name: sample-es
+  namespace: demo
 spec:
-  version: xpack-7.17.10
+  version: xpack-7.17.15
   enableSSL: true
   replicas: 1
   storageType: Durable

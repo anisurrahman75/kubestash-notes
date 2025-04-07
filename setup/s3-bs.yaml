@@ -7,11 +7,11 @@ spec:
   storage:
     provider: s3
     s3:
-      bucket: kubestash
+      bucket: anisur
       region: us-east-1
-      endpoint: us-east-1.linodeobjects.com
-      secretName: s3-secret
-      prefix: sunny
+      endpoint: https://s3.us-east-1.amazonaws.com
+      secretName: aws-s3-secret
+      prefix: kubestash-test
   usagePolicy:
     allowedNamespaces:
       from: All

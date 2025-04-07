@@ -19,8 +19,10 @@ metadata:
   namespace: demo
   labels:
     app: stash-demo
+    # a: b
   annotations:
-    stash.appscode.com/backup-blueprint: weekly-nfs-backup
+    # a: b
+    stash.appscode.com/backup-blueprint: weekly-nfs-backup,daily-gcs-backup
     stash.appscode.com/target-paths: "/source/data-1,/source/data-2"
     stash.appscode.com/volume-mounts: "source-data-1:/source/data-1,source-data-2:/source/data-2"
 spec:

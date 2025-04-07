@@ -13,7 +13,7 @@ spec:
   - name: gcs-storage
     storageRef:
       namespace: demo
-      name: s3-storage
+      name: nfs-storage
     retentionPolicy:
       name: demo-retention
       namespace: demo
@@ -29,8 +29,10 @@ spec:
       encryptionSecret:
        name: encrypt-secret 
        namespace: demo
-      deletionPolicy: Delete 
+      deletionPolicy: Retain
     addon:
       name: pvc-addon
       tasks:
       - name: logical-backup
+        # params:
+        #   exclude: /kubestash-data/lost+found

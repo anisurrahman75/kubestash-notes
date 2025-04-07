@@ -1,0 +1,31 @@
+{
+  "metadata": {
+    "annotations": {
+      "stash.appscode.com/last-applied-backup-invoker-kind": null,
+      "sts-sts-demo-1-stash.appscode.com/last-applied-backup-invoker": null
+    }
+  },
+  "spec": {
+    "template": {
+      "metadata": {
+        "annotations": null
+      },
+      "spec": {
+        "$setElementOrder/containers": [
+          {
+            "name": "busybox"
+          },
+          {
+            "name": "sts-sts-demo-stash"
+          }
+        ],
+        "containers": [
+          {
+            "$patch": "delete",
+            "name": "sts-sts-demo-1-stash"
+          }
+        ]
+      }
+    }
+  }
+}

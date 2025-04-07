@@ -1,0 +1,17 @@
+metadata:
+  annotations: {}
+  labels:
+    app: my-app
+  name: my-rolebinding
+  namespace: demo
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: my-role
+subjects:
+- kind: ServiceAccount
+  name: my-serviceaccount
+  namespace: demo
+- kind: ServiceAccount
+  name: deployment-restore
+  namespace: demo

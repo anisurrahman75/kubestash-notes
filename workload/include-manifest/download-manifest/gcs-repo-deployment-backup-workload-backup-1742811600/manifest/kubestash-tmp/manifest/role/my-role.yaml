@@ -1,0 +1,15 @@
+metadata:
+  annotations: {}
+  labels:
+    app: my-app
+  name: my-role
+  namespace: demo
+rules:
+- apiGroups:
+  - '*'
+  resources:
+  - '*'
+  verbs:
+  - create
+  - list
+  - get

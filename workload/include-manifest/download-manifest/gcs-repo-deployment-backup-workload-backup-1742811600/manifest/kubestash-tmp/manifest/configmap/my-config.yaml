@@ -1,0 +1,10 @@
+data:
+  app.properties: |
+    greeting.message=Hello, World!
+    app.version=1.0.0
+metadata:
+  annotations: {}
+  labels:
+    app: my-app
+  name: my-config
+  namespace: demo
