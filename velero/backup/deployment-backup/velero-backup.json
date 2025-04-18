@@ -1,0 +1,131 @@
+{
+  "kind": "Backup",
+  "apiVersion": "velero.io/v1",
+  "metadata": {
+    "name": "deployment-backup",
+    "namespace": "velero",
+    "uid": "e9ab1944-98f7-47c0-bdbe-ae1a57f25551",
+    "resourceVersion": "70104",
+    "generation": 5,
+    "creationTimestamp": "2025-04-18T09:05:41Z",
+    "labels": {
+      "velero.io/storage-location": "gcs-backup"
+    },
+    "annotations": {
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"velero.io/v1\",\"kind\":\"Backup\",\"metadata\":{\"annotations\":{},\"name\":\"deployment-backup\",\"namespace\":\"velero\"},\"spec\":{\"defaultVolumesToFsBackup\":false,\"excludedResources\":[\"persistentvolumes\",\"persistentvolumeclaims\"],\"includeClusterResources\":true,\"includedNamespaces\":[\"demo\"],\"labelSelector\":{\"matchLabels\":{\"app\":\"my-app\"}},\"snapshotVolumes\":false,\"storageLocation\":\"gcs-backup\"}}\n",
+      "velero.io/resource-timeout": "10m0s",
+      "velero.io/source-cluster-k8s-gitversion": "v1.32.0",
+      "velero.io/source-cluster-k8s-major-version": "1",
+      "velero.io/source-cluster-k8s-minor-version": "32"
+    },
+    "managedFields": [
+      {
+        "manager": "kubectl-client-side-apply",
+        "operation": "Update",
+        "apiVersion": "velero.io/v1",
+        "time": "2025-04-18T09:05:41Z",
+        "fieldsType": "FieldsV1",
+        "fieldsV1": {
+          "f:metadata": {
+            "f:annotations": {
+              ".": {},
+              "f:kubectl.kubernetes.io/last-applied-configuration": {}
+            }
+          },
+          "f:spec": {
+            ".": {},
+            "f:defaultVolumesToFsBackup": {},
+            "f:excludedResources": {},
+            "f:includeClusterResources": {},
+            "f:includedNamespaces": {},
+            "f:labelSelector": {},
+            "f:snapshotVolumes": {},
+            "f:storageLocation": {}
+          }
+        }
+      },
+      {
+        "manager": "velero-server",
+        "operation": "Update",
+        "apiVersion": "velero.io/v1",
+        "time": "2025-04-18T09:05:53Z",
+        "fieldsType": "FieldsV1",
+        "fieldsV1": {
+          "f:metadata": {
+            "f:annotations": {
+              "f:velero.io/resource-timeout": {},
+              "f:velero.io/source-cluster-k8s-gitversion": {},
+              "f:velero.io/source-cluster-k8s-major-version": {},
+              "f:velero.io/source-cluster-k8s-minor-version": {}
+            },
+            "f:labels": {
+              ".": {},
+              "f:velero.io/storage-location": {}
+            }
+          },
+          "f:spec": {
+            "f:csiSnapshotTimeout": {},
+            "f:itemOperationTimeout": {},
+            "f:snapshotMoveData": {},
+            "f:ttl": {},
+            "f:volumeSnapshotLocations": {}
+          },
+          "f:status": {
+            ".": {},
+            "f:expiration": {},
+            "f:formatVersion": {},
+            "f:hookStatus": {},
+            "f:phase": {},
+            "f:progress": {
+              ".": {},
+              "f:itemsBackedUp": {},
+              "f:totalItems": {}
+            },
+            "f:startTimestamp": {},
+            "f:version": {}
+          }
+        }
+      }
+    ]
+  },
+  "spec": {
+    "metadata": {},
+    "includedNamespaces": [
+      "demo"
+    ],
+    "excludedResources": [
+      "persistentvolumes",
+      "persistentvolumeclaims"
+    ],
+    "labelSelector": {
+      "matchLabels": {
+        "app": "my-app"
+      }
+    },
+    "snapshotVolumes": false,
+    "ttl": "720h0m0s",
+    "includeClusterResources": true,
+    "hooks": {},
+    "storageLocation": "gcs-backup",
+    "volumeSnapshotLocations": [
+      "gcs-snapshot"
+    ],
+    "defaultVolumesToFsBackup": false,
+    "csiSnapshotTimeout": "10m0s",
+    "itemOperationTimeout": "4h0m0s",
+    "snapshotMoveData": false
+  },
+  "status": {
+    "version": 1,
+    "formatVersion": "1.1.0",
+    "expiration": "2025-05-18T09:05:41Z",
+    "phase": "Completed",
+    "startTimestamp": "2025-04-18T09:05:41Z",
+    "completionTimestamp": "2025-04-18T09:05:56Z",
+    "progress": {
+      "totalItems": 12,
+      "itemsBackedUp": 12
+    },
+    "hookStatus": {}
+  }
+}

@@ -19,6 +19,9 @@ az aks create -g $RG -n $CLUSTER_NAME \
 --os-sku Ubuntu
 ```
 
+## Get the cluster credentials
+az aks get-credentials -g $RG -n $CLUSTER_NAME
+
 ## Set up the identity
 
 # Get the OIDC Issuer URL

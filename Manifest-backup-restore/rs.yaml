@@ -1,0 +1,39 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: RestoreSession
+metadata:
+  name: deployment-restore
+  namespace: demo
+spec:
+  manifestOptions:
+    workload:
+      restoreNamespace: demo
+  dataSource:
+    repository: gcs-repo
+    snapshot: latest
+    encryptionSecret:
+      name: encrypt-secret
+      namespace: demo
+  addon:
+    name: workload-addon
+    tasks:
+      - name: manifest-restore
+        params:
+          includeClusterResources: "true"
+          overrideResources: "true"
+      - name: logical-backup-restore
+    jobTemplate:
+         spec:
+           serviceAccountName: cluster-resource-reader
+
+
+
+
+
+
+
+
+##  PVC Resore:
+
+# ------------Inside GetPodSpec-------------
+# MultiContainer:  true
+# TaskSingleton: true

@@ -1,0 +1,19 @@
+apiVersion: velero.io/v1
+kind: Backup
+metadata:
+  name: deployment-backup
+  namespace: velero
+spec:
+  defaultVolumesToFsBackup: false  # Disables file-system backups for volumes
+  includeClusterResources: true    # Set to `false` if you don't need cluster-scoped resources
+  includedNamespaces:
+  - demo                           # Focus on the "demo" namespace
+  labelSelector:
+    matchLabels:
+      app: my-app                  # Target resources with label `app=my-app`
+  snapshotVolumes: false           # Disable volume snapshots
+  storageLocation: gcs-backup
+  # Optional: Explicitly exclude PV/PVC if you don't want their API metadata either
+  excludedResources:
+  - persistentvolumes
+  - persistentvolumeclaims

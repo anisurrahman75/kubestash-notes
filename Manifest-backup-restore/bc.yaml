@@ -1,0 +1,42 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: BackupConfiguration
+metadata:
+  name: deployment-backup
+  namespace: demo
+spec:
+  target:
+    apiGroup: apps
+    kind: Deployment
+    name: my-deployment
+    namespace: demo
+  backends:
+    - name: gcs-storage
+      storageRef:
+        namespace: demo
+        name: gcs-storage
+      retentionPolicy:
+        name: demo-retention
+        namespace: demo
+  sessions:
+    - name: workload-backup
+      scheduler:
+        schedule: "*/5 * * * *"
+      repositories:
+        - name: gcs-repo
+          backend: gcs-storage
+          directory: /manifest/deployment
+          encryptionSecret:
+            name: encrypt-secret
+            namespace: demo
+      addon:
+        name: workload-addon
+        tasks:
+          - name: manifest-backup
+            params:
+              includeClusterResources: "true"
+          - name: logical-backup
+            params:
+              paths: /data
+        jobTemplate:
+         spec:
+           serviceAccountName: cluster-resource-reader

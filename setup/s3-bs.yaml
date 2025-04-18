@@ -2,15 +2,15 @@ apiVersion: storage.kubestash.com/v1alpha1
 kind: BackupStorage
 metadata:
   name: s3-storage
-  namespace: demo
+  namespace: stash
 spec:
   storage:
     provider: s3
     s3:
-      bucket: anisur
-      region: us-east-1
-      endpoint: https://s3.us-east-1.amazonaws.com
-      secretName: aws-s3-secret
+      bucket: capa-testfmofet
+      region: us-east-2
+      endpoint: https://s3.us-east-2.amazonaws.com
+      # secretName: aws-s3-secret
       prefix: kubestash-test
   usagePolicy:
     allowedNamespaces:

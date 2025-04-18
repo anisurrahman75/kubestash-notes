@@ -1,9 +1,11 @@
 ```bash
-$ velero backup create my-specific-backup \
-    --include-resources deployments,pods,pvc,pv,configmaps,secrets,services,clusterroles,clusterrolebindings,serviceaccounts \
-    --selector app=my-app \
-    --namespace default \
-    --include-cluster-resources=true \
-    --snapshot-volumes=false \
-    --wait
+$ velero backup create deployment-backup \
+      --selector app=my-app \
+      --include-namespaces=demo \
+      --include-cluster-resources=true \
+      --snapshot-volumes=false \
+      --default-volumes-to-fs-backup=true \
+      --storage-location=gcs-backup \
+      --wait
   ```
+

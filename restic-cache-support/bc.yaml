@@ -1,0 +1,57 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: BackupConfiguration
+metadata:
+  name: statefulset-backup
+  namespace: demo
+spec:
+  target:
+    apiGroup: apps
+    kind: StatefulSet
+    namespace: demo
+    name: kubestash-statefulset
+  backends:
+    - name: s3-storage
+      storageRef:
+        namespace: demo
+        name: s3-storage
+      retentionPolicy:
+        name: demo-retention
+        namespace: demo
+  sessions:
+    - name: workload-backup
+      scheduler: # CronJob specification
+        schedule: "*/2 * * * *"
+        jobTemplate: # Comes from batch/v1 JobTemplateSpec
+          backoffLimit: 1
+      repositories: # volume & volumeMount strategy.
+        - name: statefulset-demo-s3
+          backend: s3-storage
+          directory: /statefulset
+          encryptionSecret:
+           name: encrypt-secret # some addon may not support encryption
+           namespace: demo
+          deletionPolicy: Retain 
+      addon:
+        name: workload-addon
+        tasks:
+          - name: logical-backup 
+            params:
+             paths: /source/data,/source/config
+            addonVolumes:
+            - name: ${RESTIC_CACHE_VOLUME}
+              source:
+                persistentVolumeClaim:
+                  claimName: backup-target-pvc
+                # volumeClaimTemplate:
+                #   spec:
+                #     accessModes:
+                #     - ReadWriteOnce
+                #     resources:
+                #       requests:
+                #         storage: 1Gi
+
+        # jobTemplate:
+        #   spec: 
+        #     securityContext: 
+        #       # fsGroup: 65535
+        #       runAsUser: 0

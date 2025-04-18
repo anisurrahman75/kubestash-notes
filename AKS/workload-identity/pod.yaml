@@ -1,0 +1,120 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    azure.workload.identity/client-id: "494ca9d0-0f85-4e16-936f-5e60a3a31e61"
+  labels:
+    azure.workload.identity/use: "true"
+  name: identity-test
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: playground-pod
+  labels:
+    azure.workload.identity/use: "true"
+spec:
+  serviceAccountName: identity-test
+  containers:
+    - name: playground-container
+      image: anisurrahman75/playground:latest
+      imagePullPolicy: Always
+      env:
+        - name: EXAMPLE_ENV_VAR
+          value: "example_value"
+
+
+
+
+          /*
+Copyright AppsCode Inc. and Contributors
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+package cloud
+
+import (
+	"context"
+	"fmt"
+	core "k8s.io/api/core/v1"
+	kmapi "kmodules.xyz/client-go/api/v1"
+	"kmodules.xyz/client-go/meta"
+	"sigs.k8s.io/controller-runtime/pkg/client"
+)
+
+const (
+	AWSIRSARoleAnnotation        = "eks.amazonaws.com/role-arn"
+	AKSManagedIdentityAnnotation = "azure.workload.identity/client-id"
+)
+
+func GetCloudOIDCAnnotationFromOperator(ctx context.Context, kc client.Client) (map[string]string, error) {
+	sa, err := getServiceAccount(ctx, kc, kmapi.ObjectReference{
+		Name:      meta.PodServiceAccount(),
+		Namespace: meta.PodNamespace(),
+	})
+	if err != nil {
+		return nil, fmt.Errorf("failed to get service account: %w", err)
+	}
+
+	annotations := make(map[string]string)
+	setValueIfPresent(sa, AWSIRSARoleAnnotation, annotations)
+	setValueIfPresent(sa, AKSManagedIdentityAnnotation, annotations)
+
+	return annotations, nil
+}
+
+func setValueIfPresent(sa *core.ServiceAccount, key string, out map[string]string) {
+	if val, ok := sa.Annotations[key]; ok && val != "" {
+		out[key] = val
+	}
+}
+
+func getServiceAccount(ctx context.Context, c client.Client, ref kmapi.ObjectReference) (*core.ServiceAccount, error) {
+	sa := &core.ServiceAccount{}
+	if err := c.Get(ctx, ref.ObjectKey(), sa); err != nil {
+		return nil, err
+	}
+	return sa, nil
+}
+
+
+
+package cloud
+
+import (
+	"context"
+	"fmt"
+	kmapi "kmodules.xyz/client-go/api/v1"
+	"kmodules.xyz/client-go/meta"
+	"sigs.k8s.io/controller-runtime/pkg/client"
+)
+
+const (
+	AKSWorkloadIdentityLabel = "azure.workload.identity/use"
+)
+
+func GetCloudOIDCLabelsFromOperator(ctx context.Context, kc client.Client) (map[string]string, error) {
+	sa, err := getServiceAccount(ctx, kc, kmapi.ObjectReference{
+		Name:      meta.PodServiceAccount(),
+		Namespace: meta.PodNamespace(),
+	})
+	if err != nil {
+		return nil, fmt.Errorf("failed to get service account: %w", err)
+	}
+
+	labels := make(map[string]string)
+	setValueIfPresent(sa, AKSWorkloadIdentityLabel, labels)
+
+	return labels, nil
+}

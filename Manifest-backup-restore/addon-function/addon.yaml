@@ -1,0 +1,124 @@
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Addon
+metadata:
+  name: workload-addon
+spec:
+  backupTasks:
+  - name: logical-backup
+    function: workload-backup
+    driver: Restic
+    executor: Job
+    singleton: false
+    parameters:
+    - name: paths
+      usage: List of file paths to backup.
+      required: true
+    - name: exclude
+      usage: List of patterns for the files that should be ignored during backup.
+      required: false
+    - name: enableCache
+      usage: Enable or disable caching. Disabling caching may impact backup performance.
+      required: false
+      default: "true"
+    - name: scratchDir
+      usage: Directory for holding temporary files and restic cache.
+      required: false
+      default: /kubestash-tmp
+    volumeTemplate:
+    - name: kubestash-tmp-volume
+      usage: Holds temporary files and restic cache.
+      source:
+        emptyDir: {}
+    volumeMounts:
+    - name: kubestash-tmp-volume
+      mountPath: /kubestash-tmp
+  - name: volume-snapshot
+    function: volumesnapshot-backup
+    singleton: true
+    driver: VolumeSnapshotter
+    parameters:
+    - name: volumeSnapshotClassName
+      usage: The VolumeSnapshotClassName to be used by volumeSnapshot
+      required: false
+  - driver: Restic
+    executor: Job
+    function: manifest-backup
+    name: manifest-backup
+    parameters:
+      - default: "true"
+        name: enableCache
+        required: false
+        usage: Enable or disable caching. Disabling caching may impact backup performance.
+      - default: /kubestash-tmp
+        name: scratchDir
+        required: false
+        usage: Directory for holding temporary files and restic cache.
+      - default: "false"
+        name: IncludeClusterResources
+        usage: Specify whether to backup cluster scoped resources
+    singleton: true
+    volumeMounts:
+      - mountPath: /kubestash-tmp
+        name: kubestash-tmp-volume
+    volumeTemplate:
+      - name: kubestash-tmp-volume
+        source:
+          emptyDir: { }
+        usage: Holds temporary files and restic cache.
+  restoreTasks:
+  - name: logical-backup-restore
+    function: workload-restore
+    driver: Restic
+    executor: Job
+    singleton: false
+    parameters:
+    - name: exclude
+      usage: List of patterns for the files that should be ignored during restore.
+      required: false
+    - name: include
+      usage: List of patterns for the files that should be restored.
+      required: false
+    - name: enableCache
+      usage: Enable or disable caching. Disabling caching may impact backup performance.
+      required: false
+      default: "true"
+    - name: scratchDir
+      usage: Directory for holding temporary files and restic cache.
+      required: false
+      default: /kubestash-tmp
+    volumeTemplate:
+    - name: kubestash-tmp-volume
+      usage: Holds temporary files and restic cache.
+      source:
+        emptyDir: {}
+    volumeMounts:
+    - name: kubestash-tmp-volume
+      mountPath: /kubestash-tmp
+  - driver: Restic
+    executor: Job
+    function: manifest-restore
+    name: manifest-restore
+    parameters:
+      - default: "true"
+        name: enableCache
+        required: false
+        usage: Enable or disable caching. Disabling caching may impact backup performance.
+      - default: /kubestash-tmp
+        name: scratchDir
+        required: false
+        usage: Directory for holding temporary files and restic cache.
+      - default: "false"
+        name: IncludeClusterResources
+        usage: Specify whether to restore cluster scoped resources
+      - default: "false"
+        name: OverrideResources
+        usage: Specify whether to override resources while restoring
+    singleton: true
+    volumeMounts:
+      - mountPath: /kubestash-tmp
+        name: kubestash-tmp-volume
+    volumeTemplate:
+      - name: kubestash-tmp-volume
+        source:
+          emptyDir: { }
+        usage: Holds temporary files and restic cache.
