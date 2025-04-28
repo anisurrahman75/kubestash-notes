@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  annotations:
+    meta.helm.sh/release-name: kubedb
+    meta.helm.sh/release-namespace: kubedb
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  labels:
+    app.kubernetes.io/instance: kubedb
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: kubedb-webhook-server
+    app.kubernetes.io/version: v0.29.1
+    helm.sh/chart: kubedb-webhook-server-v0.29.0
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:meta.helm.sh/release-name: {}
+          f:meta.helm.sh/release-namespace: {}
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/managed-by: {}
+          f:app.kubernetes.io/name: {}
+          f:app.kubernetes.io/version: {}
+          f:helm.sh/chart: {}
+    manager: helm
+    operation: Update
+    time: "2025-04-28T11:28:31Z"
+  name: kubedb-kubedb-webhook-server
+  namespace: kubedb
+  resourceVersion: "59142"
+  uid: 1fd06878-4bdd-473a-ac43-06b79d3af55a

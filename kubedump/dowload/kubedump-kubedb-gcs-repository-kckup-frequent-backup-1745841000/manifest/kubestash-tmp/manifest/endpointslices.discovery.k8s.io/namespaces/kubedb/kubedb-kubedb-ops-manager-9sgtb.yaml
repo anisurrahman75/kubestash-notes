@@ -1,0 +1,72 @@
+addressType: IPv4
+apiVersion: discovery.k8s.io/v1
+endpoints:
+- addresses:
+  - 10.244.0.20
+  conditions:
+    ready: true
+    serving: true
+    terminating: false
+  nodeName: kind-control-plane
+  targetRef:
+    kind: Pod
+    name: kubedb-kubedb-ops-manager-0
+    namespace: kubedb
+    uid: a47b01a6-24be-4929-96bc-b156395bf109
+kind: EndpointSlice
+metadata:
+  annotations:
+    endpoints.kubernetes.io/last-change-trigger-time: "2025-04-28T11:29:40Z"
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  generateName: kubedb-kubedb-ops-manager-
+  generation: 3
+  labels:
+    app.kubernetes.io/instance: kubedb
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: kubedb-ops-manager
+    app.kubernetes.io/version: v0.40.1
+    endpointslice.kubernetes.io/managed-by: endpointslice-controller.k8s.io
+    helm.sh/chart: kubedb-ops-manager-v0.40.0
+    kubernetes.io/service-name: kubedb-kubedb-ops-manager
+  managedFields:
+  - apiVersion: discovery.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:addressType: {}
+      f:endpoints: {}
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:endpoints.kubernetes.io/last-change-trigger-time: {}
+        f:generateName: {}
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/managed-by: {}
+          f:app.kubernetes.io/name: {}
+          f:app.kubernetes.io/version: {}
+          f:endpointslice.kubernetes.io/managed-by: {}
+          f:helm.sh/chart: {}
+          f:kubernetes.io/service-name: {}
+        f:ownerReferences:
+          .: {}
+          k:{"uid":"a96c2655-a913-49a4-99b3-79ac647ee48a"}: {}
+      f:ports: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2025-04-28T11:29:40Z"
+  name: kubedb-kubedb-ops-manager-9sgtb
+  namespace: kubedb
+  ownerReferences:
+  - apiVersion: v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Service
+    name: kubedb-kubedb-ops-manager
+    uid: a96c2655-a913-49a4-99b3-79ac647ee48a
+  resourceVersion: "59668"
+  uid: e87203fd-7d50-4dc7-ac79-3dce4ce6f154
+ports:
+- name: metrics
+  port: 8080
+  protocol: TCP

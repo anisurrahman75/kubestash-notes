@@ -1,0 +1,78 @@
+addressType: IPv4
+apiVersion: discovery.k8s.io/v1
+endpoints:
+- addresses:
+  - 10.244.0.20
+  conditions:
+    ready: true
+    serving: true
+    terminating: false
+  hostname: kubedb-kubedb-ops-manager-0
+  nodeName: kind-control-plane
+  targetRef:
+    kind: Pod
+    name: kubedb-kubedb-ops-manager-0
+    namespace: kubedb
+    uid: a47b01a6-24be-4929-96bc-b156395bf109
+kind: EndpointSlice
+metadata:
+  annotations:
+    endpoints.kubernetes.io/last-change-trigger-time: "2025-04-28T11:29:40Z"
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  generateName: kubedb-kubedb-ops-manager-headless-
+  generation: 3
+  labels:
+    app.kubernetes.io/instance: kubedb
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: kubedb-ops-manager
+    app.kubernetes.io/version: v0.40.1
+    endpointslice.kubernetes.io/managed-by: endpointslice-controller.k8s.io
+    helm.sh/chart: kubedb-ops-manager-v0.40.0
+    kubernetes.io/service-name: kubedb-kubedb-ops-manager-headless
+    service.kubernetes.io/headless: ""
+  managedFields:
+  - apiVersion: discovery.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:addressType: {}
+      f:endpoints: {}
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:endpoints.kubernetes.io/last-change-trigger-time: {}
+        f:generateName: {}
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/managed-by: {}
+          f:app.kubernetes.io/name: {}
+          f:app.kubernetes.io/version: {}
+          f:endpointslice.kubernetes.io/managed-by: {}
+          f:helm.sh/chart: {}
+          f:kubernetes.io/service-name: {}
+          f:service.kubernetes.io/headless: {}
+        f:ownerReferences:
+          .: {}
+          k:{"uid":"5c60551e-d644-4c4d-a3e5-411d9158a386"}: {}
+      f:ports: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2025-04-28T11:29:40Z"
+  name: kubedb-kubedb-ops-manager-headless-j8nx5
+  namespace: kubedb
+  ownerReferences:
+  - apiVersion: v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Service
+    name: kubedb-kubedb-ops-manager-headless
+    uid: 5c60551e-d644-4c4d-a3e5-411d9158a386
+  resourceVersion: "59669"
+  uid: 86124c1d-253d-4f6e-b241-ee0d2ddf8ed7
+ports:
+- name: probes
+  port: 8081
+  protocol: TCP
+- name: metrics
+  port: 8080
+  protocol: TCP

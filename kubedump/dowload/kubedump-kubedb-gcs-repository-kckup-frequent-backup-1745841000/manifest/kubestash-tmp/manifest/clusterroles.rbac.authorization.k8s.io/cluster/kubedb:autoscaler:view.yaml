@@ -1,0 +1,37 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    helm.sh/hook: pre-install,pre-upgrade
+    helm.sh/hook-delete-policy: before-hook-creation
+  creationTimestamp: "2025-04-28T11:27:32Z"
+  labels:
+    rbac.authorization.k8s.io/aggregate-to-view: "true"
+  managedFields:
+  - apiVersion: rbac.authorization.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:helm.sh/hook: {}
+          f:helm.sh/hook-delete-policy: {}
+        f:labels:
+          .: {}
+          f:rbac.authorization.k8s.io/aggregate-to-view: {}
+      f:rules: {}
+    manager: helm
+    operation: Update
+    time: "2025-04-28T11:27:32Z"
+  name: kubedb:autoscaler:view
+  resourceVersion: "58877"
+  uid: 558e6877-2b4f-499b-aa25-f6566acbdb57
+rules:
+- apiGroups:
+  - autoscaling.kubedb.com
+  resources:
+  - '*'
+  verbs:
+  - get
+  - list
+  - watch

@@ -1,0 +1,43 @@
+apiVersion: events.k8s.io/v1
+deprecatedCount: 1
+deprecatedFirstTimestamp: "2025-04-28T11:28:31Z"
+deprecatedLastTimestamp: "2025-04-28T11:28:31Z"
+deprecatedSource:
+  component: statefulset-controller
+eventTime: null
+kind: Event
+metadata:
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:reportingComponent: {}
+      f:source:
+        f:component: {}
+      f:type: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2025-04-28T11:28:31Z"
+  name: kubedb-kubedb-provisioner.183a77f7aa1339b9
+  namespace: kubedb
+  resourceVersion: "59338"
+  uid: 9800d7ed-4313-4be2-93b2-8f76f8a75fb8
+note: create Pod kubedb-kubedb-provisioner-0 in StatefulSet kubedb-kubedb-provisioner
+  successful
+reason: SuccessfulCreate
+regarding:
+  apiVersion: apps/v1
+  kind: StatefulSet
+  name: kubedb-kubedb-provisioner
+  namespace: kubedb
+  resourceVersion: "59216"
+  uid: 8c2406b9-0e2d-493a-bce6-c06bf3412b6a
+reportingController: statefulset-controller
+type: Normal

@@ -1,0 +1,1 @@
+{"apiVersion":"v1","kind":"ServiceAccount","metadata":{"creationTimestamp":"2025-04-16T10:55:01Z","name":"endpointslicemirroring-controller","namespace":"kube-system","resourceVersion":"326","uid":"4ce32296-d1a3-489e-abb7-0b9639431738"}}

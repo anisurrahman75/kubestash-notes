@@ -1,0 +1,19 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: RestoreSession
+metadata:
+  name: cluster-restore
+  namespace: demo
+spec:
+  dataSource:
+    repository: kubedump-gcs-repository
+    snapshot: latest
+    encryptionSecret:
+      name: encrypt-secret
+      namespace: demo
+  addon:
+    name: kubedump-addon
+    tasks:
+      - name: manifest-restore
+    jobTemplate:
+          spec:
+            serviceAccountName: cluster-resource-reader-writter

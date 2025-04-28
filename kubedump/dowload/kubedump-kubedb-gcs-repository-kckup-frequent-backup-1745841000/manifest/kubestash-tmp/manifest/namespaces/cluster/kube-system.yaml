@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: "2025-04-25T10:16:38Z"
+  labels:
+    kubernetes.io/metadata.name: kube-system
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:labels:
+          .: {}
+          f:kubernetes.io/metadata.name: {}
+    manager: kube-apiserver
+    operation: Update
+    time: "2025-04-25T10:16:38Z"
+  name: kube-system
+  resourceVersion: "6"
+  uid: f26099f8-3ede-4e35-81c6-803c83347ec8
+spec:
+  finalizers:
+  - kubernetes
+status:
+  phase: Active

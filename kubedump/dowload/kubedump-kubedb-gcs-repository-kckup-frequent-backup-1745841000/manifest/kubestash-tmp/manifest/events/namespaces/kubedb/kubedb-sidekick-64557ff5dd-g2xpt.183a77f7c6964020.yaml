@@ -1,0 +1,47 @@
+apiVersion: v1
+count: 1
+eventTime: null
+firstTimestamp: "2025-04-28T11:28:31Z"
+involvedObject:
+  apiVersion: v1
+  fieldPath: spec.containers{operator}
+  kind: Pod
+  name: kubedb-sidekick-64557ff5dd-g2xpt
+  namespace: kubedb
+  resourceVersion: "59322"
+  uid: 12eb5a56-97d4-446e-896d-52b21d229995
+kind: Event
+lastTimestamp: "2025-04-28T11:28:31Z"
+message: Pulling image "ghcr.io/appscode/sidekick:v0.0.11"
+metadata:
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:reportingComponent: {}
+      f:reportingInstance: {}
+      f:source:
+        f:component: {}
+        f:host: {}
+      f:type: {}
+    manager: kubelet
+    operation: Update
+    time: "2025-04-28T11:28:31Z"
+  name: kubedb-sidekick-64557ff5dd-g2xpt.183a77f7c6964020
+  namespace: kubedb
+  resourceVersion: "59492"
+  uid: 13023493-7080-4a81-8637-0c287645abe5
+reason: Pulling
+reportingComponent: kubelet
+reportingInstance: kind-control-plane
+source:
+  component: kubelet
+  host: kind-control-plane
+type: Normal

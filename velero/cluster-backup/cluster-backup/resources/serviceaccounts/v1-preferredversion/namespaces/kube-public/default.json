@@ -1,0 +1,1 @@
+{"apiVersion":"v1","kind":"ServiceAccount","metadata":{"creationTimestamp":"2025-04-16T10:55:04Z","name":"default","namespace":"kube-public","resourceVersion":"385","uid":"c7e7f7fe-9c74-4cf6-884c-83bb8dc9ddf9"}}

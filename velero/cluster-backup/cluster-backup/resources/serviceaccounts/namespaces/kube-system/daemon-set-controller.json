@@ -1,0 +1,1 @@
+{"apiVersion":"v1","kind":"ServiceAccount","metadata":{"creationTimestamp":"2025-04-16T10:55:02Z","name":"daemon-set-controller","namespace":"kube-system","resourceVersion":"332","uid":"91567d85-f0c2-4953-bff3-9c915dd6b9b8"}}

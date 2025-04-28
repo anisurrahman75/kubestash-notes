@@ -1,0 +1,40 @@
+action: Binding
+apiVersion: events.k8s.io/v1
+deprecatedFirstTimestamp: null
+deprecatedLastTimestamp: null
+deprecatedSource: {}
+eventTime: "2025-04-28T11:27:34.321935Z"
+kind: Event
+metadata:
+  creationTimestamp: "2025-04-28T11:27:34Z"
+  managedFields:
+  - apiVersion: events.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:action: {}
+      f:eventTime: {}
+      f:note: {}
+      f:reason: {}
+      f:regarding: {}
+      f:reportingController: {}
+      f:reportingInstance: {}
+      f:type: {}
+    manager: kube-scheduler
+    operation: Update
+    time: "2025-04-28T11:27:34Z"
+  name: kubedb-kubedb-crd-manager-lgvb2.183a77ea6ea6b682
+  namespace: kubedb
+  resourceVersion: "58973"
+  uid: 5fe2c654-94bc-4933-9bbd-9d41d7401047
+note: Successfully assigned kubedb/kubedb-kubedb-crd-manager-lgvb2 to kind-control-plane
+reason: Scheduled
+regarding:
+  apiVersion: v1
+  kind: Pod
+  name: kubedb-kubedb-crd-manager-lgvb2
+  namespace: kubedb
+  resourceVersion: "58968"
+  uid: 204d0c39-138b-49f5-b55d-b5b885cbe06b
+reportingController: default-scheduler
+reportingInstance: default-scheduler-kind-control-plane
+type: Normal

@@ -1,0 +1,78 @@
+addressType: IPv4
+apiVersion: discovery.k8s.io/v1
+endpoints:
+- addresses:
+  - 10.244.0.18
+  conditions:
+    ready: true
+    serving: true
+    terminating: false
+  hostname: kubedb-kubedb-provisioner-0
+  nodeName: kind-control-plane
+  targetRef:
+    kind: Pod
+    name: kubedb-kubedb-provisioner-0
+    namespace: kubedb
+    uid: 01f9b29a-b271-4d4f-9da0-5644489a6660
+kind: EndpointSlice
+metadata:
+  annotations:
+    endpoints.kubernetes.io/last-change-trigger-time: "2025-04-28T11:30:11Z"
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  generateName: kubedb-kubedb-provisioner-headless-
+  generation: 3
+  labels:
+    app.kubernetes.io/instance: kubedb
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: kubedb-provisioner
+    app.kubernetes.io/version: v0.53.1
+    endpointslice.kubernetes.io/managed-by: endpointslice-controller.k8s.io
+    helm.sh/chart: kubedb-provisioner-v0.53.0
+    kubernetes.io/service-name: kubedb-kubedb-provisioner-headless
+    service.kubernetes.io/headless: ""
+  managedFields:
+  - apiVersion: discovery.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:addressType: {}
+      f:endpoints: {}
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:endpoints.kubernetes.io/last-change-trigger-time: {}
+        f:generateName: {}
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/managed-by: {}
+          f:app.kubernetes.io/name: {}
+          f:app.kubernetes.io/version: {}
+          f:endpointslice.kubernetes.io/managed-by: {}
+          f:helm.sh/chart: {}
+          f:kubernetes.io/service-name: {}
+          f:service.kubernetes.io/headless: {}
+        f:ownerReferences:
+          .: {}
+          k:{"uid":"44b4fe8d-227d-4af0-9e24-bc4876dac4f3"}: {}
+      f:ports: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2025-04-28T11:30:11Z"
+  name: kubedb-kubedb-provisioner-headless-l7dgb
+  namespace: kubedb
+  ownerReferences:
+  - apiVersion: v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Service
+    name: kubedb-kubedb-provisioner-headless
+    uid: 44b4fe8d-227d-4af0-9e24-bc4876dac4f3
+  resourceVersion: "59721"
+  uid: 5b4b6732-9dc9-46e8-b656-8ce49512cae9
+ports:
+- name: probes
+  port: 8081
+  protocol: TCP
+- name: metrics
+  port: 8080
+  protocol: TCP

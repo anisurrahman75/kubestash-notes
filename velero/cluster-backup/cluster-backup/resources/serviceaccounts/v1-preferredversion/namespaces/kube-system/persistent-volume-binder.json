@@ -1,0 +1,1 @@
+{"apiVersion":"v1","kind":"ServiceAccount","metadata":{"creationTimestamp":"2025-04-16T10:55:00Z","name":"persistent-volume-binder","namespace":"kube-system","resourceVersion":"299","uid":"0b3cd0ef-c2a8-4c53-b790-37a0356c0ba4"}}

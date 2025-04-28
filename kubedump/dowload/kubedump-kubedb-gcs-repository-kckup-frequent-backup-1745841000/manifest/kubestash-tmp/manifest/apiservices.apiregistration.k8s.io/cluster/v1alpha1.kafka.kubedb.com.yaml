@@ -1,0 +1,37 @@
+apiVersion: apiregistration.k8s.io/v1
+kind: APIService
+metadata:
+  creationTimestamp: "2025-04-25T12:56:32Z"
+  labels:
+    kube-aggregator.kubernetes.io/automanaged: "true"
+  managedFields:
+  - apiVersion: apiregistration.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:labels:
+          .: {}
+          f:kube-aggregator.kubernetes.io/automanaged: {}
+      f:spec:
+        f:group: {}
+        f:groupPriorityMinimum: {}
+        f:version: {}
+        f:versionPriority: {}
+    manager: kube-apiserver
+    operation: Update
+    time: "2025-04-25T12:56:32Z"
+  name: v1alpha1.kafka.kubedb.com
+  resourceVersion: "20471"
+  uid: 1c1afc30-3299-4f7c-ba27-21d79ad41e79
+spec:
+  group: kafka.kubedb.com
+  groupPriorityMinimum: 1000
+  version: v1alpha1
+  versionPriority: 100
+status:
+  conditions:
+  - lastTransitionTime: "2025-04-25T12:56:32Z"
+    message: Local APIServices are always available
+    reason: Local
+    status: "True"
+    type: Available

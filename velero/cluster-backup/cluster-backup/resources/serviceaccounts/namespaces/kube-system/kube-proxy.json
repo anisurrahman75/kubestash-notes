@@ -1,0 +1,1 @@
+{"apiVersion":"v1","kind":"ServiceAccount","metadata":{"creationTimestamp":"2025-04-16T10:54:59Z","name":"kube-proxy","namespace":"kube-system","resourceVersion":"271","uid":"b481f01d-56e5-43bb-ae9b-3ae2815e0f30"}}

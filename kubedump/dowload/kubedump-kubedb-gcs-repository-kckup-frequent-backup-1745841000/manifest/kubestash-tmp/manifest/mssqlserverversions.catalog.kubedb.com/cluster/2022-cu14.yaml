@@ -1,0 +1,102 @@
+apiVersion: catalog.kubedb.com/v1alpha1
+kind: MSSQLServerVersion
+metadata:
+  annotations:
+    meta.helm.sh/release-name: kubedb
+    meta.helm.sh/release-namespace: kubedb
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/instance: kubedb
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: kubedb-catalog
+    app.kubernetes.io/version: v2025.3.24
+    helm.sh/chart: kubedb-catalog-v2025.3.24
+  managedFields:
+  - apiVersion: catalog.kubedb.com/v1alpha1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:meta.helm.sh/release-name: {}
+          f:meta.helm.sh/release-namespace: {}
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/managed-by: {}
+          f:app.kubernetes.io/name: {}
+          f:app.kubernetes.io/version: {}
+          f:helm.sh/chart: {}
+      f:spec:
+        .: {}
+        f:archiver:
+          .: {}
+          f:addon:
+            .: {}
+            f:name: {}
+            f:tasks:
+              .: {}
+              f:fullBackup:
+                .: {}
+                f:name: {}
+              f:fullBackupRestore:
+                .: {}
+                f:name: {}
+              f:manifestBackup:
+                .: {}
+                f:name: {}
+              f:manifestRestore:
+                .: {}
+                f:name: {}
+          f:walg:
+            .: {}
+            f:image: {}
+        f:coordinator:
+          .: {}
+          f:image: {}
+        f:db:
+          .: {}
+          f:image: {}
+        f:exporter:
+          .: {}
+          f:image: {}
+        f:initContainer:
+          .: {}
+          f:image: {}
+        f:securityContext:
+          .: {}
+          f:runAsUser: {}
+        f:version: {}
+    manager: helm
+    operation: Update
+    time: "2025-04-28T11:28:31Z"
+  name: 2022-cu14
+  resourceVersion: "59365"
+  uid: 18d30d12-ce5b-498c-ace6-d12f42bf6f7a
+spec:
+  archiver:
+    addon:
+      name: mssqlserver-addon
+      tasks:
+        fullBackup:
+          name: logical-backup
+        fullBackupRestore:
+          name: logical-backup-restore
+        manifestBackup:
+          name: manifest-backup
+        manifestRestore:
+          name: manifest-restore
+    walg:
+      image: ghcr.io/kubedb/mssqlserver-archiver:v0.7.0
+  coordinator:
+    image: ghcr.io/kubedb/mssql-coordinator:v0.8.0
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-CU14-ubuntu-22.04
+  exporter:
+    image: ghcr.io/kubedb/mssql-exporter:1.1.0
+  initContainer:
+    image: ghcr.io/kubedb/mssql-init:2022-ubuntu-22-v3
+  securityContext:
+    runAsUser: 10001
+  version: "2022"

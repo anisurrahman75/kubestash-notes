@@ -1,0 +1,147 @@
+apiVersion: catalog.kubedb.com/v1alpha1
+kind: MongoDBVersion
+metadata:
+  annotations:
+    meta.helm.sh/release-name: kubedb
+    meta.helm.sh/release-namespace: kubedb
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/instance: kubedb
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: kubedb-catalog
+    app.kubernetes.io/version: v2025.3.24
+    helm.sh/chart: kubedb-catalog-v2025.3.24
+  managedFields:
+  - apiVersion: catalog.kubedb.com/v1alpha1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:meta.helm.sh/release-name: {}
+          f:meta.helm.sh/release-namespace: {}
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/managed-by: {}
+          f:app.kubernetes.io/name: {}
+          f:app.kubernetes.io/version: {}
+          f:helm.sh/chart: {}
+      f:spec:
+        .: {}
+        f:archiver:
+          .: {}
+          f:addon:
+            .: {}
+            f:name: {}
+            f:tasks:
+              .: {}
+              f:fullBackup:
+                .: {}
+                f:name: {}
+              f:fullBackupRestore:
+                .: {}
+                f:name: {}
+              f:manifestBackup:
+                .: {}
+                f:name: {}
+              f:manifestRestore:
+                .: {}
+                f:name: {}
+              f:volumeSnapshot:
+                .: {}
+                f:name: {}
+          f:walg:
+            .: {}
+            f:image: {}
+        f:db:
+          .: {}
+          f:image: {}
+        f:distribution: {}
+        f:exporter:
+          .: {}
+          f:image: {}
+        f:gitSyncer:
+          .: {}
+          f:image: {}
+        f:initContainer:
+          .: {}
+          f:image: {}
+        f:podSecurityPolicies:
+          .: {}
+          f:databasePolicyName: {}
+        f:replicationModeDetector:
+          .: {}
+          f:image: {}
+        f:securityContext:
+          .: {}
+          f:runAsGroup: {}
+          f:runAsUser: {}
+        f:stash:
+          .: {}
+          f:addon:
+            .: {}
+            f:backupTask:
+              .: {}
+              f:name: {}
+            f:restoreTask:
+              .: {}
+              f:name: {}
+        f:ui: {}
+        f:updateConstraints:
+          .: {}
+          f:allowlist: {}
+        f:version: {}
+    manager: helm
+    operation: Update
+    time: "2025-04-28T11:28:31Z"
+  name: 4.4.26
+  resourceVersion: "59390"
+  uid: 19cedddf-442d-44e8-93ac-711500ad9953
+spec:
+  archiver:
+    addon:
+      name: mongodb-addon
+      tasks:
+        fullBackup:
+          name: logical-backup
+        fullBackupRestore:
+          name: logical-backup-restore
+        manifestBackup:
+          name: manifest-backup
+        manifestRestore:
+          name: manifest-restore
+        volumeSnapshot:
+          name: volume-snapshot
+    walg:
+      image: ghcr.io/kubedb/wal-g:v2024.12.18_mongo
+  db:
+    image: ghcr.io/appscode-images/mongo:4.4.26
+  distribution: Official
+  exporter:
+    image: ghcr.io/kubedb/mongodb_exporter:v0.40.0
+  gitSyncer:
+    image: registry.k8s.io/git-sync/git-sync:v4.2.1
+  initContainer:
+    image: ghcr.io/kubedb/mongodb-init:4.2-v9
+  podSecurityPolicies:
+    databasePolicyName: ""
+  replicationModeDetector:
+    image: ghcr.io/kubedb/replication-mode-detector:v0.40.0
+  securityContext:
+    runAsGroup: 999
+    runAsUser: 999
+  stash:
+    addon:
+      backupTask:
+        name: mongodb-backup-4.4.6
+      restoreTask:
+        name: mongodb-restore-4.4.6
+  ui:
+  - name: mongo-ui
+    version: v2024.4.27
+  updateConstraints:
+    allowlist:
+    - '>= 4.4.26, < 6.0.0'
+  version: 4.4.26

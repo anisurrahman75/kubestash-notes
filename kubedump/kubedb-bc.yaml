@@ -1,0 +1,39 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: BackupConfiguration
+metadata:
+  name: kubedb-backup
+  namespace: demo
+spec:
+  backends:
+    - name: gcs-backend
+      storageRef:
+        namespace: demo
+        name: gcs-storage
+      retentionPolicy:
+        name: demo-retention
+        namespace: demo
+  sessions:
+    - name: frequent-backup
+      sessionHistoryLimit: 1
+      scheduler:
+        schedule: "*/5 * * * *"
+        jobTemplate:
+          backoffLimit: 1
+      repositories:
+        - name: kubedump-kubedb-gcs-repository
+          backend: gcs-backend
+          directory: /kubedb-manifests
+          encryptionSecret:
+            name: encrypt-secret
+            namespace: demo
+          deletionPolicy: Retain
+      addon:
+        name: kubedump-addon
+        tasks:
+          - name: manifest-backup
+            params:
+              IncludeClusterResources: "true"
+              IncludeNamespaces: "kubedb"
+        jobTemplate:
+          spec:
+            serviceAccountName: cluster-resource-reader-writter

@@ -1,0 +1,43 @@
+apiVersion: v1
+count: 1
+eventTime: null
+firstTimestamp: "2025-04-28T11:28:31Z"
+involvedObject:
+  apiVersion: apps/v1
+  kind: Deployment
+  name: kubedb-kubedb-webhook-server
+  namespace: kubedb
+  resourceVersion: "59212"
+  uid: d4257e78-24b4-4743-9778-80d449db0537
+kind: Event
+lastTimestamp: "2025-04-28T11:28:31Z"
+message: Scaled up replica set kubedb-kubedb-webhook-server-5954c556dd from 0 to 1
+metadata:
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:reportingComponent: {}
+      f:source:
+        f:component: {}
+      f:type: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2025-04-28T11:28:31Z"
+  name: kubedb-kubedb-webhook-server.183a77f7a7b21d41
+  namespace: kubedb
+  resourceVersion: "59269"
+  uid: d5521096-428b-498e-91e6-3fcddc5e6aa2
+reason: ScalingReplicaSet
+reportingComponent: deployment-controller
+reportingInstance: ""
+source:
+  component: deployment-controller
+type: Normal

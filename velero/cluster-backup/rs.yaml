@@ -1,0 +1,7 @@
+apiVersion: velero.io/v1
+kind: Restore
+metadata:
+  name: cluster-backup-restore
+  namespace: velero
+spec:
+  backupName: cluster-backup

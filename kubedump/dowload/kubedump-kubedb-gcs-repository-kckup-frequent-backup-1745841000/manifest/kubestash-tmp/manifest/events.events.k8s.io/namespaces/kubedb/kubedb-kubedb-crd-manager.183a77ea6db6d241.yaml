@@ -1,0 +1,42 @@
+apiVersion: events.k8s.io/v1
+deprecatedCount: 1
+deprecatedFirstTimestamp: "2025-04-28T11:27:34Z"
+deprecatedLastTimestamp: "2025-04-28T11:27:34Z"
+deprecatedSource:
+  component: job-controller
+eventTime: null
+kind: Event
+metadata:
+  creationTimestamp: "2025-04-28T11:27:34Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:reportingComponent: {}
+      f:source:
+        f:component: {}
+      f:type: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2025-04-28T11:27:34Z"
+  name: kubedb-kubedb-crd-manager.183a77ea6db6d241
+  namespace: kubedb
+  resourceVersion: "58969"
+  uid: 02596c73-6eaf-4bfa-91a7-2a86b598be87
+note: 'Created pod: kubedb-kubedb-crd-manager-lgvb2'
+reason: SuccessfulCreate
+regarding:
+  apiVersion: batch/v1
+  kind: Job
+  name: kubedb-kubedb-crd-manager
+  namespace: kubedb
+  resourceVersion: "58967"
+  uid: f0a15959-e575-4a50-8244-c2e3c18d192c
+reportingController: job-controller
+type: Normal

@@ -1,0 +1,1 @@
+{"apiVersion":"v1","kind":"ServiceAccount","metadata":{"creationTimestamp":"2025-04-16T10:55:01Z","name":"resourcequota-controller","namespace":"kube-system","resourceVersion":"327","uid":"b3b91aed-050e-42fd-9f2c-46680b165ea8"}}

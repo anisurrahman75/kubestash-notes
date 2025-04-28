@@ -1,0 +1,1 @@
+{"apiVersion":"v1","kind":"ServiceAccount","metadata":{"creationTimestamp":"2025-04-16T10:54:59Z","name":"coredns","namespace":"kube-system","resourceVersion":"257","uid":"60e8834e-9515-432d-8402-534118a37df8"}}

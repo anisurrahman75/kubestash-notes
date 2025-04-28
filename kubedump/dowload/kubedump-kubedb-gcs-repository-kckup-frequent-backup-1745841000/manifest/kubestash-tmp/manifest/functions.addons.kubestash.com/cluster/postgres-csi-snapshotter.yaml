@@ -1,0 +1,47 @@
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Function
+metadata:
+  annotations:
+    meta.helm.sh/release-name: kubedb
+    meta.helm.sh/release-namespace: kubedb
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/instance: kubedb
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: kubedb-kubestash-catalog
+    app.kubernetes.io/version: v2025.3.24
+    helm.sh/chart: kubedb-kubestash-catalog-v2025.3.24
+  managedFields:
+  - apiVersion: addons.kubestash.com/v1alpha1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:meta.helm.sh/release-name: {}
+          f:meta.helm.sh/release-namespace: {}
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/managed-by: {}
+          f:app.kubernetes.io/name: {}
+          f:app.kubernetes.io/version: {}
+          f:helm.sh/chart: {}
+      f:spec:
+        .: {}
+        f:args: {}
+        f:image: {}
+    manager: helm
+    operation: Update
+    time: "2025-04-28T11:28:31Z"
+  name: postgres-csi-snapshotter
+  resourceVersion: "59295"
+  uid: 41de3eb8-bde0-4d4f-a14f-0edec08f46aa
+spec:
+  args:
+  - backup
+  - --namespace=${namespace:=default}
+  - --volume-snapshot-class-name=${volumeSnapshotClassName:=}
+  - --backupsession=${backupSession:=}
+  image: ghcr.io/kubedb/postgres-csi-snapshotter-plugin:v0.14.0

@@ -1,0 +1,1 @@
+{"apiVersion":"v1","kind":"ServiceAccount","metadata":{"creationTimestamp":"2025-04-16T10:54:59Z","name":"replication-controller","namespace":"kube-system","resourceVersion":"282","uid":"d6deed3c-4c69-4bd2-8444-159d0793a8a7"}}

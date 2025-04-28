@@ -1,0 +1,42 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: "2025-04-25T11:10:55Z"
+  labels:
+    app.kubernetes.io/component: kubestash-cleaner
+    app.kubernetes.io/managed-by: kubestash.com
+    kubestash.com/invoker-kind: BackupStorage
+    kubestash.com/invoker-name: gcs-storage
+    kubestash.com/invoker-namespace: demo
+  managedFields:
+  - apiVersion: rbac.authorization.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/component: {}
+          f:app.kubernetes.io/managed-by: {}
+          f:kubestash.com/invoker-kind: {}
+          f:kubestash.com/invoker-name: {}
+          f:kubestash.com/invoker-namespace: {}
+      f:rules: {}
+    manager: kubestash
+    operation: Update
+    time: "2025-04-25T11:10:55Z"
+  name: kubestash-backend-job
+  resourceVersion: "4958"
+  uid: 9cf1c9de-3e56-47f4-81bf-ed02b0e51adb
+rules:
+- apiGroups:
+  - storage.kubestash.com
+  resources:
+  - '*'
+  verbs:
+  - '*'
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - get

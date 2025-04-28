@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: "2025-04-25T10:16:38Z"
+  labels:
+    kubernetes.io/metadata.name: kube-node-lease
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:labels:
+          .: {}
+          f:kubernetes.io/metadata.name: {}
+    manager: kube-apiserver
+    operation: Update
+    time: "2025-04-25T10:16:38Z"
+  name: kube-node-lease
+  resourceVersion: "68"
+  uid: 6d9b30a3-f2e9-4080-9fb8-ba05736a053e
+spec:
+  finalizers:
+  - kubernetes
+status:
+  phase: Active

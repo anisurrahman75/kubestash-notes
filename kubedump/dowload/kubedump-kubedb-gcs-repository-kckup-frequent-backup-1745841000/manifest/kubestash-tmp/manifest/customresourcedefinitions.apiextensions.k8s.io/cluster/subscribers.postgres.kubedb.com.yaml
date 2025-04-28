@@ -1,0 +1,258 @@
+apiVersion: apiextensions.k8s.io/v1
+kind: CustomResourceDefinition
+metadata:
+  creationTimestamp: "2025-04-25T12:57:10Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/name: kubedb
+    velero.io/backup-name: kubedb-backup
+    velero.io/restore-name: kubedb-backup-restore
+  managedFields:
+  - apiVersion: apiextensions.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/name: {}
+      f:spec:
+        f:conversion:
+          .: {}
+          f:strategy: {}
+        f:group: {}
+        f:names:
+          f:categories: {}
+          f:kind: {}
+          f:listKind: {}
+          f:plural: {}
+          f:shortNames: {}
+          f:singular: {}
+        f:scope: {}
+        f:versions: {}
+    manager: kubedb-crd-manager
+    operation: Update
+    time: "2025-04-25T12:18:15Z"
+  - apiVersion: apiextensions.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        f:acceptedNames:
+          f:categories: {}
+          f:kind: {}
+          f:listKind: {}
+          f:plural: {}
+          f:shortNames: {}
+          f:singular: {}
+        f:conditions:
+          k:{"type":"Established"}:
+            .: {}
+            f:lastTransitionTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"NamesAccepted"}:
+            .: {}
+            f:lastTransitionTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+    manager: kube-apiserver
+    operation: Update
+    subresource: status
+    time: "2025-04-25T12:18:16Z"
+  name: subscribers.postgres.kubedb.com
+  resourceVersion: "20788"
+  uid: 0e184a2e-0cd6-436a-bcd0-939b8943411c
+spec:
+  conversion:
+    strategy: None
+  group: postgres.kubedb.com
+  names:
+    categories:
+    - pgstore
+    - kubedb
+    - appscode
+    kind: Subscriber
+    listKind: SubscriberList
+    plural: subscribers
+    shortNames:
+    - sub
+    singular: subscriber
+  scope: Namespaced
+  versions:
+  - additionalPrinterColumns:
+    - jsonPath: .status.phase
+      name: Status
+      type: string
+    - jsonPath: .metadata.creationTimestamp
+      name: Age
+      type: date
+    name: v1alpha1
+    schema:
+      openAPIV3Schema:
+        properties:
+          apiVersion:
+            type: string
+          kind:
+            type: string
+          metadata:
+            type: object
+          spec:
+            properties:
+              databaseName:
+                type: string
+              databaseRef:
+                properties:
+                  name:
+                    default: ""
+                    type: string
+                type: object
+                x-kubernetes-map-type: atomic
+              deletionPolicy:
+                default: Delete
+                enum:
+                - Delete
+                - Retain
+                type: string
+              disable:
+                type: boolean
+              name:
+                type: string
+              parameters:
+                properties:
+                  binary:
+                    type: boolean
+                  connect:
+                    type: boolean
+                  copyData:
+                    type: boolean
+                  createSlot:
+                    type: boolean
+                  enabled:
+                    type: boolean
+                  slotName:
+                    type: string
+                  streaming:
+                    type: boolean
+                  synchronousCommit:
+                    type: string
+                  tableCreationPolicy:
+                    type: string
+                type: object
+              publisher:
+                properties:
+                  external:
+                    properties:
+                      databaseName:
+                        type: string
+                      publications:
+                        items:
+                          type: string
+                        type: array
+                      serverRef:
+                        properties:
+                          name:
+                            type: string
+                          namespace:
+                            type: string
+                        required:
+                        - name
+                        type: object
+                    required:
+                    - databaseName
+                    - publications
+                    - serverRef
+                    type: object
+                  managed:
+                    properties:
+                      namespace:
+                        type: string
+                      refs:
+                        items:
+                          properties:
+                            name:
+                              default: ""
+                              type: string
+                          type: object
+                          x-kubernetes-map-type: atomic
+                        type: array
+                    required:
+                    - refs
+                    type: object
+                type: object
+            required:
+            - databaseName
+            - databaseRef
+            - name
+            - publisher
+            type: object
+          status:
+            properties:
+              conditions:
+                items:
+                  properties:
+                    lastTransitionTime:
+                      format: date-time
+                      type: string
+                    message:
+                      type: string
+                    observedGeneration:
+                      format: int64
+                      type: integer
+                    reason:
+                      type: string
+                    severity:
+                      type: string
+                    status:
+                      type: string
+                    type:
+                      type: string
+                  required:
+                  - lastTransitionTime
+                  - status
+                  - type
+                  type: object
+                type: array
+              observedGeneration:
+                format: int64
+                type: integer
+              phase:
+                enum:
+                - Pending
+                - InProgress
+                - Current
+                - Failed
+                type: string
+            type: object
+        type: object
+    served: true
+    storage: true
+    subresources:
+      status: {}
+status:
+  acceptedNames:
+    categories:
+    - pgstore
+    - kubedb
+    - appscode
+    kind: Subscriber
+    listKind: SubscriberList
+    plural: subscribers
+    shortNames:
+    - sub
+    singular: subscriber
+  conditions:
+  - lastTransitionTime: "2025-04-25T12:57:10Z"
+    message: no conflicts found
+    reason: NoConflicts
+    status: "True"
+    type: NamesAccepted
+  - lastTransitionTime: "2025-04-25T12:57:10Z"
+    message: the initial names have been accepted
+    reason: InitialNamesAccepted
+    status: "True"
+    type: Established
+  storedVersions:
+  - v1alpha1

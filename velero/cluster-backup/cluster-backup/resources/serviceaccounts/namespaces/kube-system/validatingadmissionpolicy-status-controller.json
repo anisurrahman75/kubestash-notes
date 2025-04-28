@@ -1,0 +1,1 @@
+{"apiVersion":"v1","kind":"ServiceAccount","metadata":{"creationTimestamp":"2025-04-16T10:55:00Z","name":"validatingadmissionpolicy-status-controller","namespace":"kube-system","resourceVersion":"305","uid":"dda35d98-42f0-4a8f-9816-dd733ed74f38"}}

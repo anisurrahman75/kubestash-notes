@@ -1,0 +1,1 @@
+{"apiVersion":"v1","kind":"ServiceAccount","metadata":{"creationTimestamp":"2025-04-16T10:55:01Z","name":"token-cleaner","namespace":"kube-system","resourceVersion":"323","uid":"cf0a783b-1533-4aa6-a5a9-094835835484"}}

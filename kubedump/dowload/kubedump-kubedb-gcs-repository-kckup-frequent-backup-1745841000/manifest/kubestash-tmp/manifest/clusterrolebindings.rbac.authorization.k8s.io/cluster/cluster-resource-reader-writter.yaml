@@ -1,0 +1,31 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"rbac.authorization.k8s.io/v1","kind":"ClusterRoleBinding","metadata":{"annotations":{},"name":"cluster-resource-reader-writter"},"roleRef":{"apiGroup":"rbac.authorization.k8s.io","kind":"ClusterRole","name":"cluster-resource-reader-writter"},"subjects":[{"kind":"ServiceAccount","name":"cluster-resource-reader-writter","namespace":"demo"}]}
+  creationTimestamp: "2025-04-25T10:39:16Z"
+  managedFields:
+  - apiVersion: rbac.authorization.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:kubectl.kubernetes.io/last-applied-configuration: {}
+      f:roleRef: {}
+      f:subjects: {}
+    manager: kubectl-client-side-apply
+    operation: Update
+    time: "2025-04-25T10:39:16Z"
+  name: cluster-resource-reader-writter
+  resourceVersion: "2414"
+  uid: 3167d3c7-4a75-4774-8c13-62b3a8bef91c
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-resource-reader-writter
+subjects:
+- kind: ServiceAccount
+  name: cluster-resource-reader-writter
+  namespace: demo

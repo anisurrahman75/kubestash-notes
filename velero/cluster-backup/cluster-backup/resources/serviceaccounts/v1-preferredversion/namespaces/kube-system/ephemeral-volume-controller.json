@@ -1,0 +1,1 @@
+{"apiVersion":"v1","kind":"ServiceAccount","metadata":{"creationTimestamp":"2025-04-16T10:55:01Z","name":"ephemeral-volume-controller","namespace":"kube-system","resourceVersion":"324","uid":"2d44f0f9-aed7-46c6-b9bf-ff496e13d675"}}

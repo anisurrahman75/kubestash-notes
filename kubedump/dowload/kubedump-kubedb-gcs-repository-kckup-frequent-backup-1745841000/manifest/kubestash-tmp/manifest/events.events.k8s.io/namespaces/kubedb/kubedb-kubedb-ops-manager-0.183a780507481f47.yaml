@@ -1,0 +1,47 @@
+apiVersion: events.k8s.io/v1
+deprecatedCount: 1
+deprecatedFirstTimestamp: "2025-04-28T11:29:28Z"
+deprecatedLastTimestamp: "2025-04-28T11:29:28Z"
+deprecatedSource:
+  component: kubelet
+  host: kind-control-plane
+eventTime: null
+kind: Event
+metadata:
+  creationTimestamp: "2025-04-28T11:29:28Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:reportingComponent: {}
+      f:reportingInstance: {}
+      f:source:
+        f:component: {}
+        f:host: {}
+      f:type: {}
+    manager: kubelet
+    operation: Update
+    time: "2025-04-28T11:29:28Z"
+  name: kubedb-kubedb-ops-manager-0.183a780507481f47
+  namespace: kubedb
+  resourceVersion: "59651"
+  uid: 7405e2ca-5829-4b9e-af8c-c664b4569e72
+note: Started container operator
+reason: Started
+regarding:
+  apiVersion: v1
+  fieldPath: spec.containers{operator}
+  kind: Pod
+  name: kubedb-kubedb-ops-manager-0
+  namespace: kubedb
+  resourceVersion: "59324"
+  uid: a47b01a6-24be-4929-96bc-b156395bf109
+reportingController: kubelet
+reportingInstance: kind-control-plane
+type: Normal

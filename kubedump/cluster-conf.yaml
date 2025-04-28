@@ -14,23 +14,25 @@ spec:
         namespace: demo
   sessions:
     - name: frequent-backup
-      sessionHistoryLimit: 3
+      sessionHistoryLimit: 1
       scheduler:
         schedule: "*/5 * * * *"
         jobTemplate:
           backoffLimit: 1
       repositories:
-        - name: gcs-repository2
+        - name: kubedump-gcs-repository
           backend: gcs-backend
           directory: /cluster-manifests
           encryptionSecret:
             name: encrypt-secret
             namespace: demo
-          deletionPolicy: WipeOut
+          deletionPolicy: Retain
       addon:
         name: kubedump-addon
         tasks:
           - name: manifest-backup
+            params:
+              IncludeClusterResources: "true"
         jobTemplate:
           spec:
-            serviceAccountName: cluster-resource-reader
+            serviceAccountName: cluster-resource-reader-writter

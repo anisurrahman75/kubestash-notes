@@ -1,0 +1,1 @@
+{"apiVersion":"v1","kind":"ServiceAccount","metadata":{"creationTimestamp":"2025-04-16T10:55:00Z","name":"attachdetach-controller","namespace":"kube-system","resourceVersion":"318","uid":"9a8fae3d-d570-4be1-9eb6-057e34faa5de"}}

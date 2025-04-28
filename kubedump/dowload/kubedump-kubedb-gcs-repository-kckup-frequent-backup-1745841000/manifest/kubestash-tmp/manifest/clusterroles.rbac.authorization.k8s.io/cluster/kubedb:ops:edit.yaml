@@ -1,0 +1,40 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  annotations:
+    helm.sh/hook: pre-install,pre-upgrade
+    helm.sh/hook-delete-policy: before-hook-creation
+  creationTimestamp: "2025-04-28T11:27:33Z"
+  labels:
+    rbac.authorization.k8s.io/aggregate-to-edit: "true"
+  managedFields:
+  - apiVersion: rbac.authorization.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:helm.sh/hook: {}
+          f:helm.sh/hook-delete-policy: {}
+        f:labels:
+          .: {}
+          f:rbac.authorization.k8s.io/aggregate-to-edit: {}
+      f:rules: {}
+    manager: helm
+    operation: Update
+    time: "2025-04-28T11:27:33Z"
+  name: kubedb:ops:edit
+  resourceVersion: "58934"
+  uid: 1e7e46d5-3bbd-42d9-9121-79b0ee742fb6
+rules:
+- apiGroups:
+  - ops.kubedb.com
+  - postgres.kubedb.com
+  resources:
+  - '*'
+  verbs:
+  - create
+  - delete
+  - deletecollection
+  - patch
+  - update

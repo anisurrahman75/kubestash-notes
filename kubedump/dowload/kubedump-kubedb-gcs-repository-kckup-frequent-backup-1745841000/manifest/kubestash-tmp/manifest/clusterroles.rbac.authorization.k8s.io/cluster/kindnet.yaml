@@ -1,0 +1,40 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: "2025-04-25T10:16:42Z"
+  managedFields:
+  - apiVersion: rbac.authorization.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:rules: {}
+    manager: kubectl-create
+    operation: Update
+    time: "2025-04-25T10:16:42Z"
+  name: kindnet
+  resourceVersion: "244"
+  uid: 2121882e-b42b-4bcb-9961-12d8303bf5cb
+rules:
+- apiGroups:
+  - policy
+  resourceNames:
+  - kindnet
+  resources:
+  - podsecuritypolicies
+  verbs:
+  - use
+- apiGroups:
+  - ""
+  resources:
+  - nodes
+  - pods
+  - namespaces
+  verbs:
+  - list
+  - watch
+- apiGroups:
+  - networking.k8s.io
+  resources:
+  - networkpolicies
+  verbs:
+  - list
+  - watch

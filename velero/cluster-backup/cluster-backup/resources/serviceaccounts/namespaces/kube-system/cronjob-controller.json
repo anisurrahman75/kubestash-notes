@@ -1,0 +1,1 @@
+{"apiVersion":"v1","kind":"ServiceAccount","metadata":{"creationTimestamp":"2025-04-16T10:55:02Z","name":"cronjob-controller","namespace":"kube-system","resourceVersion":"330","uid":"f7693883-faef-405f-b790-4431d4a847a8"}}

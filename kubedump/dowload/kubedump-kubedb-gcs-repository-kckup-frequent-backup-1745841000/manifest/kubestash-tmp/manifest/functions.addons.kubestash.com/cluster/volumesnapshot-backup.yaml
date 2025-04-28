@@ -1,0 +1,47 @@
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Function
+metadata:
+  annotations:
+    meta.helm.sh/release-name: kubestash
+    meta.helm.sh/release-namespace: kubestash
+  creationTimestamp: "2025-04-25T10:31:48Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/instance: kubestash
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: kubestash-catalog
+    app.kubernetes.io/version: v2025.3.24
+    helm.sh/chart: kubestash-catalog-v2025.3.24
+  managedFields:
+  - apiVersion: addons.kubestash.com/v1alpha1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:meta.helm.sh/release-name: {}
+          f:meta.helm.sh/release-namespace: {}
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/managed-by: {}
+          f:app.kubernetes.io/name: {}
+          f:app.kubernetes.io/version: {}
+          f:helm.sh/chart: {}
+      f:spec:
+        .: {}
+        f:args: {}
+        f:image: {}
+    manager: helm
+    operation: Update
+    time: "2025-04-25T10:31:48Z"
+  name: volumesnapshot-backup
+  resourceVersion: "1714"
+  uid: 7b8b7669-eebf-414a-b4e2-cb8d186b1c6c
+spec:
+  args:
+  - backup
+  - --namespace=${namespace:=default}
+  - --backupsession=${backupSession:=}
+  - --volume-snapshot-class-name=${volumeSnapshotClassName:=}
+  image: ghcr.io/kubestash/volume-snapshotter:v0.16.0

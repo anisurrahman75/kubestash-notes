@@ -1,0 +1,48 @@
+apiVersion: v1
+kind: Endpoints
+metadata:
+  annotations:
+    endpoints.kubernetes.io/last-change-trigger-time: "2025-04-28T11:30:11Z"
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  labels:
+    app.kubernetes.io/instance: kubedb
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: kubedb-provisioner
+    app.kubernetes.io/version: v0.53.1
+    helm.sh/chart: kubedb-provisioner-v0.53.0
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:endpoints.kubernetes.io/last-change-trigger-time: {}
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/managed-by: {}
+          f:app.kubernetes.io/name: {}
+          f:app.kubernetes.io/version: {}
+          f:helm.sh/chart: {}
+      f:subsets: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2025-04-28T11:30:11Z"
+  name: kubedb-kubedb-provisioner
+  namespace: kubedb
+  resourceVersion: "59724"
+  uid: 6e9262ef-9923-494c-8ffa-3b6961f0e29c
+subsets:
+- addresses:
+  - ip: 10.244.0.18
+    nodeName: kind-control-plane
+    targetRef:
+      kind: Pod
+      name: kubedb-kubedb-provisioner-0
+      namespace: kubedb
+      uid: 01f9b29a-b271-4d4f-9da0-5644489a6660
+  ports:
+  - name: metrics
+    port: 8080
+    protocol: TCP

@@ -1,0 +1,1 @@
+{"apiVersion":"v1","kind":"ServiceAccount","metadata":{"creationTimestamp":"2025-04-16T10:54:59Z","name":"root-ca-cert-publisher","namespace":"kube-system","resourceVersion":"281","uid":"c9faf52e-0103-4806-afa9-7c5f0b219359"}}

@@ -1,0 +1,665 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  annotations:
+    meta.helm.sh/release-name: kubedb
+    meta.helm.sh/release-namespace: kubedb
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/component: kubedb-provisioner
+    app.kubernetes.io/instance: kubedb
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: kubedb-webhook-server
+    app.kubernetes.io/version: v0.29.1
+    helm.sh/chart: kubedb-webhook-server-v0.29.0
+  managedFields:
+  - apiVersion: admissionregistration.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:meta.helm.sh/release-name: {}
+          f:meta.helm.sh/release-namespace: {}
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/component: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/managed-by: {}
+          f:app.kubernetes.io/name: {}
+          f:app.kubernetes.io/version: {}
+          f:helm.sh/chart: {}
+      f:webhooks:
+        .: {}
+        k:{"name":"connectclusterwebhook.validators.kafka.kubedb.com"}:
+          .: {}
+          f:admissionReviewVersions: {}
+          f:clientConfig:
+            .: {}
+            f:caBundle: {}
+            f:service:
+              .: {}
+              f:name: {}
+              f:namespace: {}
+              f:path: {}
+              f:port: {}
+          f:failurePolicy: {}
+          f:matchPolicy: {}
+          f:name: {}
+          f:namespaceSelector: {}
+          f:objectSelector: {}
+          f:rules: {}
+          f:sideEffects: {}
+          f:timeoutSeconds: {}
+        k:{"name":"connectorwebhook.validators.kafka.kubedb.com"}:
+          .: {}
+          f:admissionReviewVersions: {}
+          f:clientConfig:
+            .: {}
+            f:caBundle: {}
+            f:service:
+              .: {}
+              f:name: {}
+              f:namespace: {}
+              f:path: {}
+              f:port: {}
+          f:failurePolicy: {}
+          f:matchPolicy: {}
+          f:name: {}
+          f:namespaceSelector: {}
+          f:objectSelector: {}
+          f:rules: {}
+          f:sideEffects: {}
+          f:timeoutSeconds: {}
+        k:{"name":"elasticsearchwebhook.validators.kubedb.com"}:
+          .: {}
+          f:admissionReviewVersions: {}
+          f:clientConfig:
+            .: {}
+            f:caBundle: {}
+            f:service:
+              .: {}
+              f:name: {}
+              f:namespace: {}
+              f:path: {}
+              f:port: {}
+          f:failurePolicy: {}
+          f:matchPolicy: {}
+          f:name: {}
+          f:namespaceSelector: {}
+          f:objectSelector: {}
+          f:rules: {}
+          f:sideEffects: {}
+          f:timeoutSeconds: {}
+        k:{"name":"kafkawebhook.validators.kubedb.com"}:
+          .: {}
+          f:admissionReviewVersions: {}
+          f:clientConfig:
+            .: {}
+            f:caBundle: {}
+            f:service:
+              .: {}
+              f:name: {}
+              f:namespace: {}
+              f:path: {}
+              f:port: {}
+          f:failurePolicy: {}
+          f:matchPolicy: {}
+          f:name: {}
+          f:namespaceSelector: {}
+          f:objectSelector: {}
+          f:rules: {}
+          f:sideEffects: {}
+          f:timeoutSeconds: {}
+        k:{"name":"mariadbwebhook.validators.kubedb.com"}:
+          .: {}
+          f:admissionReviewVersions: {}
+          f:clientConfig:
+            .: {}
+            f:caBundle: {}
+            f:service:
+              .: {}
+              f:name: {}
+              f:namespace: {}
+              f:path: {}
+              f:port: {}
+          f:failurePolicy: {}
+          f:matchPolicy: {}
+          f:name: {}
+          f:namespaceSelector: {}
+          f:objectSelector: {}
+          f:rules: {}
+          f:sideEffects: {}
+          f:timeoutSeconds: {}
+        k:{"name":"mongodbwebhook.validators.kubedb.com"}:
+          .: {}
+          f:admissionReviewVersions: {}
+          f:clientConfig:
+            .: {}
+            f:caBundle: {}
+            f:service:
+              .: {}
+              f:name: {}
+              f:namespace: {}
+              f:path: {}
+              f:port: {}
+          f:failurePolicy: {}
+          f:matchPolicy: {}
+          f:name: {}
+          f:namespaceSelector: {}
+          f:objectSelector: {}
+          f:rules: {}
+          f:sideEffects: {}
+          f:timeoutSeconds: {}
+        k:{"name":"mssqlserverwebhook.validators.kubedb.com"}:
+          .: {}
+          f:admissionReviewVersions: {}
+          f:clientConfig:
+            .: {}
+            f:caBundle: {}
+            f:service:
+              .: {}
+              f:name: {}
+              f:namespace: {}
+              f:path: {}
+              f:port: {}
+          f:failurePolicy: {}
+          f:matchPolicy: {}
+          f:name: {}
+          f:namespaceSelector: {}
+          f:objectSelector: {}
+          f:rules: {}
+          f:sideEffects: {}
+          f:timeoutSeconds: {}
+        k:{"name":"mysqlwebhook.validators.kubedb.com"}:
+          .: {}
+          f:admissionReviewVersions: {}
+          f:clientConfig:
+            .: {}
+            f:caBundle: {}
+            f:service:
+              .: {}
+              f:name: {}
+              f:namespace: {}
+              f:path: {}
+              f:port: {}
+          f:failurePolicy: {}
+          f:matchPolicy: {}
+          f:name: {}
+          f:namespaceSelector: {}
+          f:objectSelector: {}
+          f:rules: {}
+          f:sideEffects: {}
+          f:timeoutSeconds: {}
+        k:{"name":"postgreswebhook.validators.kubedb.com"}:
+          .: {}
+          f:admissionReviewVersions: {}
+          f:clientConfig:
+            .: {}
+            f:caBundle: {}
+            f:service:
+              .: {}
+              f:name: {}
+              f:namespace: {}
+              f:path: {}
+              f:port: {}
+          f:failurePolicy: {}
+          f:matchPolicy: {}
+          f:name: {}
+          f:namespaceSelector: {}
+          f:objectSelector: {}
+          f:rules: {}
+          f:sideEffects: {}
+          f:timeoutSeconds: {}
+        k:{"name":"redissentinelwebhook.validators.kubedb.com"}:
+          .: {}
+          f:admissionReviewVersions: {}
+          f:clientConfig:
+            .: {}
+            f:caBundle: {}
+            f:service:
+              .: {}
+              f:name: {}
+              f:namespace: {}
+              f:path: {}
+              f:port: {}
+          f:failurePolicy: {}
+          f:matchPolicy: {}
+          f:name: {}
+          f:namespaceSelector: {}
+          f:objectSelector: {}
+          f:rules: {}
+          f:sideEffects: {}
+          f:timeoutSeconds: {}
+        k:{"name":"rediswebhook.validators.kubedb.com"}:
+          .: {}
+          f:admissionReviewVersions: {}
+          f:clientConfig:
+            .: {}
+            f:caBundle: {}
+            f:service:
+              .: {}
+              f:name: {}
+              f:namespace: {}
+              f:path: {}
+              f:port: {}
+          f:failurePolicy: {}
+          f:matchPolicy: {}
+          f:name: {}
+          f:namespaceSelector: {}
+          f:objectSelector: {}
+          f:rules: {}
+          f:sideEffects: {}
+          f:timeoutSeconds: {}
+        k:{"name":"restproxywebhook.validators.kafka.kubedb.com"}:
+          .: {}
+          f:admissionReviewVersions: {}
+          f:clientConfig:
+            .: {}
+            f:caBundle: {}
+            f:service:
+              .: {}
+              f:name: {}
+              f:namespace: {}
+              f:path: {}
+              f:port: {}
+          f:failurePolicy: {}
+          f:matchPolicy: {}
+          f:name: {}
+          f:namespaceSelector: {}
+          f:objectSelector: {}
+          f:rules: {}
+          f:sideEffects: {}
+          f:timeoutSeconds: {}
+        k:{"name":"schemaregistrywebhook.validators.kafka.kubedb.com"}:
+          .: {}
+          f:admissionReviewVersions: {}
+          f:clientConfig:
+            .: {}
+            f:caBundle: {}
+            f:service:
+              .: {}
+              f:name: {}
+              f:namespace: {}
+              f:path: {}
+              f:port: {}
+          f:failurePolicy: {}
+          f:matchPolicy: {}
+          f:name: {}
+          f:namespaceSelector: {}
+          f:objectSelector: {}
+          f:rules: {}
+          f:sideEffects: {}
+          f:timeoutSeconds: {}
+    manager: helm
+    operation: Update
+    time: "2025-04-28T11:28:31Z"
+  name: validators.kubedb.com
+  resourceVersion: "59489"
+  uid: 6c070dc0-9591-4703-aa53-fd396a5ab274
+webhooks:
+- admissionReviewVersions:
+  - v1beta1
+  clientConfig:
+    caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lRUC9EMzRpUkhFL3JvUnlGVC9zUVF0VEFOQmdrcWhraUc5dzBCQVFzRkFEQU4KTVFzd0NRWURWUVFERXdKallUQWVGdzB5TlRBME1qZ3hNVEkzTWpWYUZ3MHpOVEEwTWpZeE1USTNNalZhTUEweApDekFKQmdOVkJBTVRBbU5oTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFwSW90CkJ2NTV1QTF2R0pwUHBQeVBVRTBjVFhKV3orakNRZ2QzaFlITmxVUVZUVC9pNmd4aDE3Rkg4RStkdGE2SlpFNnoKNFVsamhHVkFlODZMNXl0cUFGMk0yRHNWQVJpKzVVRjR3c3c3WGtPZ3RGdmlKSXFRK0pGVjMyKzU1UFJjVjJJKwpBb3FBb2hSZGFEc1d3SGZabDVDdGhJMnYwcGZyS3hFU2pOUVV2RnJxbUl2Z01tcCtRNzh2cXB2NURaTjV2dFFQCktTbnRDalVWdk5SNGFYZGljbHovNnhJazVUSjBPT05vWFNGekRRU2ROZTZSN3lISkRWWGV2SklOVTE4LzhFS3cKVG81Sno0QU9iVmJjVUowbmdTL0xveHExc2l1blhZZ2pVWUErYTNZaUJDeUpwVDdRKzE5NFlLRXpOT3JkWHVudgo1a1IzSVI3cGNJbXAvSDQwMlFJREFRQUJvMkV3WHpBT0JnTlZIUThCQWY4RUJBTUNBcVF3SFFZRFZSMGxCQll3CkZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUUKRktxTVR4aEZpVExNeEFCRG15amNLcVgyNVI5d01BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQkxGVVR1Wnd2RAp3T1NiMDJjWWdOU1d0Q0QxdVNvWWhkblhONE9NN3IzbWk4MW9NdDVydUZTVUNrSFlGc2l4TXIrTVpJQW52eTVkCkMvM0p3bTU5bjVYU0ZWMFF2cmlKUC9BMWI3NDI4ZTRZNS9oWWJqN3RsUWR6KzYzYk03ZWovbXpKRkhlZmNOT2wKQm5TOGQ0ZzlEeTFEQkV2elpaT1dqdWJXWVFJOHBBN2tJbnZ3TzN4WDlFTE4rbHNsalAxSEN0R1VNZGsyZWEzSApneWtIR2xpdWFwaHpQbnMwRWlLOGNJaTBEMTVLUUFrU00xNk1KdGN5aU41bEUxYTNlZHk0Nml5bFZ4ZFdjVzhCClRzMGd2b0ROeno3TUUrVnNDSmhoWEppRHlwTjdDd0Y0VjlOSEcvL01QWjc3Wng5czFRSzBMZjFrYVFvSFQrY0gKZ0VxeWorUFZ4Z21iCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    service:
+      name: kubedb-kubedb-webhook-server
+      namespace: kubedb
+      path: /validate-kubedb-com-v1-elasticsearch
+      port: 443
+  failurePolicy: Ignore
+  matchPolicy: Equivalent
+  name: elasticsearchwebhook.validators.kubedb.com
+  namespaceSelector: {}
+  objectSelector: {}
+  rules:
+  - apiGroups:
+    - kubedb.com
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+    resources:
+    - elasticsearches
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10
+- admissionReviewVersions:
+  - v1beta1
+  clientConfig:
+    caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lRUC9EMzRpUkhFL3JvUnlGVC9zUVF0VEFOQmdrcWhraUc5dzBCQVFzRkFEQU4KTVFzd0NRWURWUVFERXdKallUQWVGdzB5TlRBME1qZ3hNVEkzTWpWYUZ3MHpOVEEwTWpZeE1USTNNalZhTUEweApDekFKQmdOVkJBTVRBbU5oTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFwSW90CkJ2NTV1QTF2R0pwUHBQeVBVRTBjVFhKV3orakNRZ2QzaFlITmxVUVZUVC9pNmd4aDE3Rkg4RStkdGE2SlpFNnoKNFVsamhHVkFlODZMNXl0cUFGMk0yRHNWQVJpKzVVRjR3c3c3WGtPZ3RGdmlKSXFRK0pGVjMyKzU1UFJjVjJJKwpBb3FBb2hSZGFEc1d3SGZabDVDdGhJMnYwcGZyS3hFU2pOUVV2RnJxbUl2Z01tcCtRNzh2cXB2NURaTjV2dFFQCktTbnRDalVWdk5SNGFYZGljbHovNnhJazVUSjBPT05vWFNGekRRU2ROZTZSN3lISkRWWGV2SklOVTE4LzhFS3cKVG81Sno0QU9iVmJjVUowbmdTL0xveHExc2l1blhZZ2pVWUErYTNZaUJDeUpwVDdRKzE5NFlLRXpOT3JkWHVudgo1a1IzSVI3cGNJbXAvSDQwMlFJREFRQUJvMkV3WHpBT0JnTlZIUThCQWY4RUJBTUNBcVF3SFFZRFZSMGxCQll3CkZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUUKRktxTVR4aEZpVExNeEFCRG15amNLcVgyNVI5d01BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQkxGVVR1Wnd2RAp3T1NiMDJjWWdOU1d0Q0QxdVNvWWhkblhONE9NN3IzbWk4MW9NdDVydUZTVUNrSFlGc2l4TXIrTVpJQW52eTVkCkMvM0p3bTU5bjVYU0ZWMFF2cmlKUC9BMWI3NDI4ZTRZNS9oWWJqN3RsUWR6KzYzYk03ZWovbXpKRkhlZmNOT2wKQm5TOGQ0ZzlEeTFEQkV2elpaT1dqdWJXWVFJOHBBN2tJbnZ3TzN4WDlFTE4rbHNsalAxSEN0R1VNZGsyZWEzSApneWtIR2xpdWFwaHpQbnMwRWlLOGNJaTBEMTVLUUFrU00xNk1KdGN5aU41bEUxYTNlZHk0Nml5bFZ4ZFdjVzhCClRzMGd2b0ROeno3TUUrVnNDSmhoWEppRHlwTjdDd0Y0VjlOSEcvL01QWjc3Wng5czFRSzBMZjFrYVFvSFQrY0gKZ0VxeWorUFZ4Z21iCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    service:
+      name: kubedb-kubedb-webhook-server
+      namespace: kubedb
+      path: /validate-kubedb-com-v1-kafka
+      port: 443
+  failurePolicy: Ignore
+  matchPolicy: Equivalent
+  name: kafkawebhook.validators.kubedb.com
+  namespaceSelector: {}
+  objectSelector: {}
+  rules:
+  - apiGroups:
+    - kubedb.com
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+    resources:
+    - kafkas
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10
+- admissionReviewVersions:
+  - v1beta1
+  clientConfig:
+    caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lRUC9EMzRpUkhFL3JvUnlGVC9zUVF0VEFOQmdrcWhraUc5dzBCQVFzRkFEQU4KTVFzd0NRWURWUVFERXdKallUQWVGdzB5TlRBME1qZ3hNVEkzTWpWYUZ3MHpOVEEwTWpZeE1USTNNalZhTUEweApDekFKQmdOVkJBTVRBbU5oTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFwSW90CkJ2NTV1QTF2R0pwUHBQeVBVRTBjVFhKV3orakNRZ2QzaFlITmxVUVZUVC9pNmd4aDE3Rkg4RStkdGE2SlpFNnoKNFVsamhHVkFlODZMNXl0cUFGMk0yRHNWQVJpKzVVRjR3c3c3WGtPZ3RGdmlKSXFRK0pGVjMyKzU1UFJjVjJJKwpBb3FBb2hSZGFEc1d3SGZabDVDdGhJMnYwcGZyS3hFU2pOUVV2RnJxbUl2Z01tcCtRNzh2cXB2NURaTjV2dFFQCktTbnRDalVWdk5SNGFYZGljbHovNnhJazVUSjBPT05vWFNGekRRU2ROZTZSN3lISkRWWGV2SklOVTE4LzhFS3cKVG81Sno0QU9iVmJjVUowbmdTL0xveHExc2l1blhZZ2pVWUErYTNZaUJDeUpwVDdRKzE5NFlLRXpOT3JkWHVudgo1a1IzSVI3cGNJbXAvSDQwMlFJREFRQUJvMkV3WHpBT0JnTlZIUThCQWY4RUJBTUNBcVF3SFFZRFZSMGxCQll3CkZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUUKRktxTVR4aEZpVExNeEFCRG15amNLcVgyNVI5d01BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQkxGVVR1Wnd2RAp3T1NiMDJjWWdOU1d0Q0QxdVNvWWhkblhONE9NN3IzbWk4MW9NdDVydUZTVUNrSFlGc2l4TXIrTVpJQW52eTVkCkMvM0p3bTU5bjVYU0ZWMFF2cmlKUC9BMWI3NDI4ZTRZNS9oWWJqN3RsUWR6KzYzYk03ZWovbXpKRkhlZmNOT2wKQm5TOGQ0ZzlEeTFEQkV2elpaT1dqdWJXWVFJOHBBN2tJbnZ3TzN4WDlFTE4rbHNsalAxSEN0R1VNZGsyZWEzSApneWtIR2xpdWFwaHpQbnMwRWlLOGNJaTBEMTVLUUFrU00xNk1KdGN5aU41bEUxYTNlZHk0Nml5bFZ4ZFdjVzhCClRzMGd2b0ROeno3TUUrVnNDSmhoWEppRHlwTjdDd0Y0VjlOSEcvL01QWjc3Wng5czFRSzBMZjFrYVFvSFQrY0gKZ0VxeWorUFZ4Z21iCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    service:
+      name: kubedb-kubedb-webhook-server
+      namespace: kubedb
+      path: /validate-kafka-kubedb-com-v1alpha1-connectcluster
+      port: 443
+  failurePolicy: Ignore
+  matchPolicy: Equivalent
+  name: connectclusterwebhook.validators.kafka.kubedb.com
+  namespaceSelector: {}
+  objectSelector: {}
+  rules:
+  - apiGroups:
+    - kafka.kubedb.com
+    apiVersions:
+    - '*'
+    operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+    resources:
+    - connectclusters
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10
+- admissionReviewVersions:
+  - v1beta1
+  clientConfig:
+    caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lRUC9EMzRpUkhFL3JvUnlGVC9zUVF0VEFOQmdrcWhraUc5dzBCQVFzRkFEQU4KTVFzd0NRWURWUVFERXdKallUQWVGdzB5TlRBME1qZ3hNVEkzTWpWYUZ3MHpOVEEwTWpZeE1USTNNalZhTUEweApDekFKQmdOVkJBTVRBbU5oTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFwSW90CkJ2NTV1QTF2R0pwUHBQeVBVRTBjVFhKV3orakNRZ2QzaFlITmxVUVZUVC9pNmd4aDE3Rkg4RStkdGE2SlpFNnoKNFVsamhHVkFlODZMNXl0cUFGMk0yRHNWQVJpKzVVRjR3c3c3WGtPZ3RGdmlKSXFRK0pGVjMyKzU1UFJjVjJJKwpBb3FBb2hSZGFEc1d3SGZabDVDdGhJMnYwcGZyS3hFU2pOUVV2RnJxbUl2Z01tcCtRNzh2cXB2NURaTjV2dFFQCktTbnRDalVWdk5SNGFYZGljbHovNnhJazVUSjBPT05vWFNGekRRU2ROZTZSN3lISkRWWGV2SklOVTE4LzhFS3cKVG81Sno0QU9iVmJjVUowbmdTL0xveHExc2l1blhZZ2pVWUErYTNZaUJDeUpwVDdRKzE5NFlLRXpOT3JkWHVudgo1a1IzSVI3cGNJbXAvSDQwMlFJREFRQUJvMkV3WHpBT0JnTlZIUThCQWY4RUJBTUNBcVF3SFFZRFZSMGxCQll3CkZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUUKRktxTVR4aEZpVExNeEFCRG15amNLcVgyNVI5d01BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQkxGVVR1Wnd2RAp3T1NiMDJjWWdOU1d0Q0QxdVNvWWhkblhONE9NN3IzbWk4MW9NdDVydUZTVUNrSFlGc2l4TXIrTVpJQW52eTVkCkMvM0p3bTU5bjVYU0ZWMFF2cmlKUC9BMWI3NDI4ZTRZNS9oWWJqN3RsUWR6KzYzYk03ZWovbXpKRkhlZmNOT2wKQm5TOGQ0ZzlEeTFEQkV2elpaT1dqdWJXWVFJOHBBN2tJbnZ3TzN4WDlFTE4rbHNsalAxSEN0R1VNZGsyZWEzSApneWtIR2xpdWFwaHpQbnMwRWlLOGNJaTBEMTVLUUFrU00xNk1KdGN5aU41bEUxYTNlZHk0Nml5bFZ4ZFdjVzhCClRzMGd2b0ROeno3TUUrVnNDSmhoWEppRHlwTjdDd0Y0VjlOSEcvL01QWjc3Wng5czFRSzBMZjFrYVFvSFQrY0gKZ0VxeWorUFZ4Z21iCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    service:
+      name: kubedb-kubedb-webhook-server
+      namespace: kubedb
+      path: /validate-kafka-kubedb-com-v1alpha1-connector
+      port: 443
+  failurePolicy: Ignore
+  matchPolicy: Equivalent
+  name: connectorwebhook.validators.kafka.kubedb.com
+  namespaceSelector: {}
+  objectSelector: {}
+  rules:
+  - apiGroups:
+    - kafka.kubedb.com
+    apiVersions:
+    - '*'
+    operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+    resources:
+    - connectors
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10
+- admissionReviewVersions:
+  - v1beta1
+  clientConfig:
+    caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lRUC9EMzRpUkhFL3JvUnlGVC9zUVF0VEFOQmdrcWhraUc5dzBCQVFzRkFEQU4KTVFzd0NRWURWUVFERXdKallUQWVGdzB5TlRBME1qZ3hNVEkzTWpWYUZ3MHpOVEEwTWpZeE1USTNNalZhTUEweApDekFKQmdOVkJBTVRBbU5oTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFwSW90CkJ2NTV1QTF2R0pwUHBQeVBVRTBjVFhKV3orakNRZ2QzaFlITmxVUVZUVC9pNmd4aDE3Rkg4RStkdGE2SlpFNnoKNFVsamhHVkFlODZMNXl0cUFGMk0yRHNWQVJpKzVVRjR3c3c3WGtPZ3RGdmlKSXFRK0pGVjMyKzU1UFJjVjJJKwpBb3FBb2hSZGFEc1d3SGZabDVDdGhJMnYwcGZyS3hFU2pOUVV2RnJxbUl2Z01tcCtRNzh2cXB2NURaTjV2dFFQCktTbnRDalVWdk5SNGFYZGljbHovNnhJazVUSjBPT05vWFNGekRRU2ROZTZSN3lISkRWWGV2SklOVTE4LzhFS3cKVG81Sno0QU9iVmJjVUowbmdTL0xveHExc2l1blhZZ2pVWUErYTNZaUJDeUpwVDdRKzE5NFlLRXpOT3JkWHVudgo1a1IzSVI3cGNJbXAvSDQwMlFJREFRQUJvMkV3WHpBT0JnTlZIUThCQWY4RUJBTUNBcVF3SFFZRFZSMGxCQll3CkZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUUKRktxTVR4aEZpVExNeEFCRG15amNLcVgyNVI5d01BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQkxGVVR1Wnd2RAp3T1NiMDJjWWdOU1d0Q0QxdVNvWWhkblhONE9NN3IzbWk4MW9NdDVydUZTVUNrSFlGc2l4TXIrTVpJQW52eTVkCkMvM0p3bTU5bjVYU0ZWMFF2cmlKUC9BMWI3NDI4ZTRZNS9oWWJqN3RsUWR6KzYzYk03ZWovbXpKRkhlZmNOT2wKQm5TOGQ0ZzlEeTFEQkV2elpaT1dqdWJXWVFJOHBBN2tJbnZ3TzN4WDlFTE4rbHNsalAxSEN0R1VNZGsyZWEzSApneWtIR2xpdWFwaHpQbnMwRWlLOGNJaTBEMTVLUUFrU00xNk1KdGN5aU41bEUxYTNlZHk0Nml5bFZ4ZFdjVzhCClRzMGd2b0ROeno3TUUrVnNDSmhoWEppRHlwTjdDd0Y0VjlOSEcvL01QWjc3Wng5czFRSzBMZjFrYVFvSFQrY0gKZ0VxeWorUFZ4Z21iCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    service:
+      name: kubedb-kubedb-webhook-server
+      namespace: kubedb
+      path: /validate-kafka-kubedb-com-v1alpha1-restproxy
+      port: 443
+  failurePolicy: Ignore
+  matchPolicy: Equivalent
+  name: restproxywebhook.validators.kafka.kubedb.com
+  namespaceSelector: {}
+  objectSelector: {}
+  rules:
+  - apiGroups:
+    - kafka.kubedb.com
+    apiVersions:
+    - '*'
+    operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+    resources:
+    - restproxies
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10
+- admissionReviewVersions:
+  - v1beta1
+  clientConfig:
+    caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lRUC9EMzRpUkhFL3JvUnlGVC9zUVF0VEFOQmdrcWhraUc5dzBCQVFzRkFEQU4KTVFzd0NRWURWUVFERXdKallUQWVGdzB5TlRBME1qZ3hNVEkzTWpWYUZ3MHpOVEEwTWpZeE1USTNNalZhTUEweApDekFKQmdOVkJBTVRBbU5oTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFwSW90CkJ2NTV1QTF2R0pwUHBQeVBVRTBjVFhKV3orakNRZ2QzaFlITmxVUVZUVC9pNmd4aDE3Rkg4RStkdGE2SlpFNnoKNFVsamhHVkFlODZMNXl0cUFGMk0yRHNWQVJpKzVVRjR3c3c3WGtPZ3RGdmlKSXFRK0pGVjMyKzU1UFJjVjJJKwpBb3FBb2hSZGFEc1d3SGZabDVDdGhJMnYwcGZyS3hFU2pOUVV2RnJxbUl2Z01tcCtRNzh2cXB2NURaTjV2dFFQCktTbnRDalVWdk5SNGFYZGljbHovNnhJazVUSjBPT05vWFNGekRRU2ROZTZSN3lISkRWWGV2SklOVTE4LzhFS3cKVG81Sno0QU9iVmJjVUowbmdTL0xveHExc2l1blhZZ2pVWUErYTNZaUJDeUpwVDdRKzE5NFlLRXpOT3JkWHVudgo1a1IzSVI3cGNJbXAvSDQwMlFJREFRQUJvMkV3WHpBT0JnTlZIUThCQWY4RUJBTUNBcVF3SFFZRFZSMGxCQll3CkZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUUKRktxTVR4aEZpVExNeEFCRG15amNLcVgyNVI5d01BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQkxGVVR1Wnd2RAp3T1NiMDJjWWdOU1d0Q0QxdVNvWWhkblhONE9NN3IzbWk4MW9NdDVydUZTVUNrSFlGc2l4TXIrTVpJQW52eTVkCkMvM0p3bTU5bjVYU0ZWMFF2cmlKUC9BMWI3NDI4ZTRZNS9oWWJqN3RsUWR6KzYzYk03ZWovbXpKRkhlZmNOT2wKQm5TOGQ0ZzlEeTFEQkV2elpaT1dqdWJXWVFJOHBBN2tJbnZ3TzN4WDlFTE4rbHNsalAxSEN0R1VNZGsyZWEzSApneWtIR2xpdWFwaHpQbnMwRWlLOGNJaTBEMTVLUUFrU00xNk1KdGN5aU41bEUxYTNlZHk0Nml5bFZ4ZFdjVzhCClRzMGd2b0ROeno3TUUrVnNDSmhoWEppRHlwTjdDd0Y0VjlOSEcvL01QWjc3Wng5czFRSzBMZjFrYVFvSFQrY0gKZ0VxeWorUFZ4Z21iCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    service:
+      name: kubedb-kubedb-webhook-server
+      namespace: kubedb
+      path: /validate-kafka-kubedb-com-v1alpha1-schemaregistry
+      port: 443
+  failurePolicy: Ignore
+  matchPolicy: Equivalent
+  name: schemaregistrywebhook.validators.kafka.kubedb.com
+  namespaceSelector: {}
+  objectSelector: {}
+  rules:
+  - apiGroups:
+    - kafka.kubedb.com
+    apiVersions:
+    - '*'
+    operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+    resources:
+    - schemaregistries
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10
+- admissionReviewVersions:
+  - v1beta1
+  clientConfig:
+    caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lRUC9EMzRpUkhFL3JvUnlGVC9zUVF0VEFOQmdrcWhraUc5dzBCQVFzRkFEQU4KTVFzd0NRWURWUVFERXdKallUQWVGdzB5TlRBME1qZ3hNVEkzTWpWYUZ3MHpOVEEwTWpZeE1USTNNalZhTUEweApDekFKQmdOVkJBTVRBbU5oTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFwSW90CkJ2NTV1QTF2R0pwUHBQeVBVRTBjVFhKV3orakNRZ2QzaFlITmxVUVZUVC9pNmd4aDE3Rkg4RStkdGE2SlpFNnoKNFVsamhHVkFlODZMNXl0cUFGMk0yRHNWQVJpKzVVRjR3c3c3WGtPZ3RGdmlKSXFRK0pGVjMyKzU1UFJjVjJJKwpBb3FBb2hSZGFEc1d3SGZabDVDdGhJMnYwcGZyS3hFU2pOUVV2RnJxbUl2Z01tcCtRNzh2cXB2NURaTjV2dFFQCktTbnRDalVWdk5SNGFYZGljbHovNnhJazVUSjBPT05vWFNGekRRU2ROZTZSN3lISkRWWGV2SklOVTE4LzhFS3cKVG81Sno0QU9iVmJjVUowbmdTL0xveHExc2l1blhZZ2pVWUErYTNZaUJDeUpwVDdRKzE5NFlLRXpOT3JkWHVudgo1a1IzSVI3cGNJbXAvSDQwMlFJREFRQUJvMkV3WHpBT0JnTlZIUThCQWY4RUJBTUNBcVF3SFFZRFZSMGxCQll3CkZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUUKRktxTVR4aEZpVExNeEFCRG15amNLcVgyNVI5d01BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQkxGVVR1Wnd2RAp3T1NiMDJjWWdOU1d0Q0QxdVNvWWhkblhONE9NN3IzbWk4MW9NdDVydUZTVUNrSFlGc2l4TXIrTVpJQW52eTVkCkMvM0p3bTU5bjVYU0ZWMFF2cmlKUC9BMWI3NDI4ZTRZNS9oWWJqN3RsUWR6KzYzYk03ZWovbXpKRkhlZmNOT2wKQm5TOGQ0ZzlEeTFEQkV2elpaT1dqdWJXWVFJOHBBN2tJbnZ3TzN4WDlFTE4rbHNsalAxSEN0R1VNZGsyZWEzSApneWtIR2xpdWFwaHpQbnMwRWlLOGNJaTBEMTVLUUFrU00xNk1KdGN5aU41bEUxYTNlZHk0Nml5bFZ4ZFdjVzhCClRzMGd2b0ROeno3TUUrVnNDSmhoWEppRHlwTjdDd0Y0VjlOSEcvL01QWjc3Wng5czFRSzBMZjFrYVFvSFQrY0gKZ0VxeWorUFZ4Z21iCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    service:
+      name: kubedb-kubedb-webhook-server
+      namespace: kubedb
+      path: /validate-kubedb-com-v1-mariadb
+      port: 443
+  failurePolicy: Ignore
+  matchPolicy: Equivalent
+  name: mariadbwebhook.validators.kubedb.com
+  namespaceSelector: {}
+  objectSelector: {}
+  rules:
+  - apiGroups:
+    - kubedb.com
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+    resources:
+    - mariadbs
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10
+- admissionReviewVersions:
+  - v1beta1
+  clientConfig:
+    caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lRUC9EMzRpUkhFL3JvUnlGVC9zUVF0VEFOQmdrcWhraUc5dzBCQVFzRkFEQU4KTVFzd0NRWURWUVFERXdKallUQWVGdzB5TlRBME1qZ3hNVEkzTWpWYUZ3MHpOVEEwTWpZeE1USTNNalZhTUEweApDekFKQmdOVkJBTVRBbU5oTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFwSW90CkJ2NTV1QTF2R0pwUHBQeVBVRTBjVFhKV3orakNRZ2QzaFlITmxVUVZUVC9pNmd4aDE3Rkg4RStkdGE2SlpFNnoKNFVsamhHVkFlODZMNXl0cUFGMk0yRHNWQVJpKzVVRjR3c3c3WGtPZ3RGdmlKSXFRK0pGVjMyKzU1UFJjVjJJKwpBb3FBb2hSZGFEc1d3SGZabDVDdGhJMnYwcGZyS3hFU2pOUVV2RnJxbUl2Z01tcCtRNzh2cXB2NURaTjV2dFFQCktTbnRDalVWdk5SNGFYZGljbHovNnhJazVUSjBPT05vWFNGekRRU2ROZTZSN3lISkRWWGV2SklOVTE4LzhFS3cKVG81Sno0QU9iVmJjVUowbmdTL0xveHExc2l1blhZZ2pVWUErYTNZaUJDeUpwVDdRKzE5NFlLRXpOT3JkWHVudgo1a1IzSVI3cGNJbXAvSDQwMlFJREFRQUJvMkV3WHpBT0JnTlZIUThCQWY4RUJBTUNBcVF3SFFZRFZSMGxCQll3CkZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUUKRktxTVR4aEZpVExNeEFCRG15amNLcVgyNVI5d01BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQkxGVVR1Wnd2RAp3T1NiMDJjWWdOU1d0Q0QxdVNvWWhkblhONE9NN3IzbWk4MW9NdDVydUZTVUNrSFlGc2l4TXIrTVpJQW52eTVkCkMvM0p3bTU5bjVYU0ZWMFF2cmlKUC9BMWI3NDI4ZTRZNS9oWWJqN3RsUWR6KzYzYk03ZWovbXpKRkhlZmNOT2wKQm5TOGQ0ZzlEeTFEQkV2elpaT1dqdWJXWVFJOHBBN2tJbnZ3TzN4WDlFTE4rbHNsalAxSEN0R1VNZGsyZWEzSApneWtIR2xpdWFwaHpQbnMwRWlLOGNJaTBEMTVLUUFrU00xNk1KdGN5aU41bEUxYTNlZHk0Nml5bFZ4ZFdjVzhCClRzMGd2b0ROeno3TUUrVnNDSmhoWEppRHlwTjdDd0Y0VjlOSEcvL01QWjc3Wng5czFRSzBMZjFrYVFvSFQrY0gKZ0VxeWorUFZ4Z21iCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    service:
+      name: kubedb-kubedb-webhook-server
+      namespace: kubedb
+      path: /validate-kubedb-com-v1-mongodb
+      port: 443
+  failurePolicy: Ignore
+  matchPolicy: Equivalent
+  name: mongodbwebhook.validators.kubedb.com
+  namespaceSelector: {}
+  objectSelector: {}
+  rules:
+  - apiGroups:
+    - kubedb.com
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+    resources:
+    - mongodbs
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10
+- admissionReviewVersions:
+  - v1beta1
+  clientConfig:
+    caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lRUC9EMzRpUkhFL3JvUnlGVC9zUVF0VEFOQmdrcWhraUc5dzBCQVFzRkFEQU4KTVFzd0NRWURWUVFERXdKallUQWVGdzB5TlRBME1qZ3hNVEkzTWpWYUZ3MHpOVEEwTWpZeE1USTNNalZhTUEweApDekFKQmdOVkJBTVRBbU5oTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFwSW90CkJ2NTV1QTF2R0pwUHBQeVBVRTBjVFhKV3orakNRZ2QzaFlITmxVUVZUVC9pNmd4aDE3Rkg4RStkdGE2SlpFNnoKNFVsamhHVkFlODZMNXl0cUFGMk0yRHNWQVJpKzVVRjR3c3c3WGtPZ3RGdmlKSXFRK0pGVjMyKzU1UFJjVjJJKwpBb3FBb2hSZGFEc1d3SGZabDVDdGhJMnYwcGZyS3hFU2pOUVV2RnJxbUl2Z01tcCtRNzh2cXB2NURaTjV2dFFQCktTbnRDalVWdk5SNGFYZGljbHovNnhJazVUSjBPT05vWFNGekRRU2ROZTZSN3lISkRWWGV2SklOVTE4LzhFS3cKVG81Sno0QU9iVmJjVUowbmdTL0xveHExc2l1blhZZ2pVWUErYTNZaUJDeUpwVDdRKzE5NFlLRXpOT3JkWHVudgo1a1IzSVI3cGNJbXAvSDQwMlFJREFRQUJvMkV3WHpBT0JnTlZIUThCQWY4RUJBTUNBcVF3SFFZRFZSMGxCQll3CkZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUUKRktxTVR4aEZpVExNeEFCRG15amNLcVgyNVI5d01BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQkxGVVR1Wnd2RAp3T1NiMDJjWWdOU1d0Q0QxdVNvWWhkblhONE9NN3IzbWk4MW9NdDVydUZTVUNrSFlGc2l4TXIrTVpJQW52eTVkCkMvM0p3bTU5bjVYU0ZWMFF2cmlKUC9BMWI3NDI4ZTRZNS9oWWJqN3RsUWR6KzYzYk03ZWovbXpKRkhlZmNOT2wKQm5TOGQ0ZzlEeTFEQkV2elpaT1dqdWJXWVFJOHBBN2tJbnZ3TzN4WDlFTE4rbHNsalAxSEN0R1VNZGsyZWEzSApneWtIR2xpdWFwaHpQbnMwRWlLOGNJaTBEMTVLUUFrU00xNk1KdGN5aU41bEUxYTNlZHk0Nml5bFZ4ZFdjVzhCClRzMGd2b0ROeno3TUUrVnNDSmhoWEppRHlwTjdDd0Y0VjlOSEcvL01QWjc3Wng5czFRSzBMZjFrYVFvSFQrY0gKZ0VxeWorUFZ4Z21iCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    service:
+      name: kubedb-kubedb-webhook-server
+      namespace: kubedb
+      path: /validate-kubedb-com-v1alpha2-mssqlserver
+      port: 443
+  failurePolicy: Ignore
+  matchPolicy: Equivalent
+  name: mssqlserverwebhook.validators.kubedb.com
+  namespaceSelector: {}
+  objectSelector: {}
+  rules:
+  - apiGroups:
+    - kubedb.com
+    apiVersions:
+    - '*'
+    operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+    resources:
+    - mssqlservers
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10
+- admissionReviewVersions:
+  - v1beta1
+  clientConfig:
+    caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lRUC9EMzRpUkhFL3JvUnlGVC9zUVF0VEFOQmdrcWhraUc5dzBCQVFzRkFEQU4KTVFzd0NRWURWUVFERXdKallUQWVGdzB5TlRBME1qZ3hNVEkzTWpWYUZ3MHpOVEEwTWpZeE1USTNNalZhTUEweApDekFKQmdOVkJBTVRBbU5oTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFwSW90CkJ2NTV1QTF2R0pwUHBQeVBVRTBjVFhKV3orakNRZ2QzaFlITmxVUVZUVC9pNmd4aDE3Rkg4RStkdGE2SlpFNnoKNFVsamhHVkFlODZMNXl0cUFGMk0yRHNWQVJpKzVVRjR3c3c3WGtPZ3RGdmlKSXFRK0pGVjMyKzU1UFJjVjJJKwpBb3FBb2hSZGFEc1d3SGZabDVDdGhJMnYwcGZyS3hFU2pOUVV2RnJxbUl2Z01tcCtRNzh2cXB2NURaTjV2dFFQCktTbnRDalVWdk5SNGFYZGljbHovNnhJazVUSjBPT05vWFNGekRRU2ROZTZSN3lISkRWWGV2SklOVTE4LzhFS3cKVG81Sno0QU9iVmJjVUowbmdTL0xveHExc2l1blhZZ2pVWUErYTNZaUJDeUpwVDdRKzE5NFlLRXpOT3JkWHVudgo1a1IzSVI3cGNJbXAvSDQwMlFJREFRQUJvMkV3WHpBT0JnTlZIUThCQWY4RUJBTUNBcVF3SFFZRFZSMGxCQll3CkZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUUKRktxTVR4aEZpVExNeEFCRG15amNLcVgyNVI5d01BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQkxGVVR1Wnd2RAp3T1NiMDJjWWdOU1d0Q0QxdVNvWWhkblhONE9NN3IzbWk4MW9NdDVydUZTVUNrSFlGc2l4TXIrTVpJQW52eTVkCkMvM0p3bTU5bjVYU0ZWMFF2cmlKUC9BMWI3NDI4ZTRZNS9oWWJqN3RsUWR6KzYzYk03ZWovbXpKRkhlZmNOT2wKQm5TOGQ0ZzlEeTFEQkV2elpaT1dqdWJXWVFJOHBBN2tJbnZ3TzN4WDlFTE4rbHNsalAxSEN0R1VNZGsyZWEzSApneWtIR2xpdWFwaHpQbnMwRWlLOGNJaTBEMTVLUUFrU00xNk1KdGN5aU41bEUxYTNlZHk0Nml5bFZ4ZFdjVzhCClRzMGd2b0ROeno3TUUrVnNDSmhoWEppRHlwTjdDd0Y0VjlOSEcvL01QWjc3Wng5czFRSzBMZjFrYVFvSFQrY0gKZ0VxeWorUFZ4Z21iCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    service:
+      name: kubedb-kubedb-webhook-server
+      namespace: kubedb
+      path: /validate-kubedb-com-v1-mysql
+      port: 443
+  failurePolicy: Ignore
+  matchPolicy: Equivalent
+  name: mysqlwebhook.validators.kubedb.com
+  namespaceSelector: {}
+  objectSelector: {}
+  rules:
+  - apiGroups:
+    - kubedb.com
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+    resources:
+    - mysqls
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10
+- admissionReviewVersions:
+  - v1beta1
+  clientConfig:
+    caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lRUC9EMzRpUkhFL3JvUnlGVC9zUVF0VEFOQmdrcWhraUc5dzBCQVFzRkFEQU4KTVFzd0NRWURWUVFERXdKallUQWVGdzB5TlRBME1qZ3hNVEkzTWpWYUZ3MHpOVEEwTWpZeE1USTNNalZhTUEweApDekFKQmdOVkJBTVRBbU5oTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFwSW90CkJ2NTV1QTF2R0pwUHBQeVBVRTBjVFhKV3orakNRZ2QzaFlITmxVUVZUVC9pNmd4aDE3Rkg4RStkdGE2SlpFNnoKNFVsamhHVkFlODZMNXl0cUFGMk0yRHNWQVJpKzVVRjR3c3c3WGtPZ3RGdmlKSXFRK0pGVjMyKzU1UFJjVjJJKwpBb3FBb2hSZGFEc1d3SGZabDVDdGhJMnYwcGZyS3hFU2pOUVV2RnJxbUl2Z01tcCtRNzh2cXB2NURaTjV2dFFQCktTbnRDalVWdk5SNGFYZGljbHovNnhJazVUSjBPT05vWFNGekRRU2ROZTZSN3lISkRWWGV2SklOVTE4LzhFS3cKVG81Sno0QU9iVmJjVUowbmdTL0xveHExc2l1blhZZ2pVWUErYTNZaUJDeUpwVDdRKzE5NFlLRXpOT3JkWHVudgo1a1IzSVI3cGNJbXAvSDQwMlFJREFRQUJvMkV3WHpBT0JnTlZIUThCQWY4RUJBTUNBcVF3SFFZRFZSMGxCQll3CkZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUUKRktxTVR4aEZpVExNeEFCRG15amNLcVgyNVI5d01BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQkxGVVR1Wnd2RAp3T1NiMDJjWWdOU1d0Q0QxdVNvWWhkblhONE9NN3IzbWk4MW9NdDVydUZTVUNrSFlGc2l4TXIrTVpJQW52eTVkCkMvM0p3bTU5bjVYU0ZWMFF2cmlKUC9BMWI3NDI4ZTRZNS9oWWJqN3RsUWR6KzYzYk03ZWovbXpKRkhlZmNOT2wKQm5TOGQ0ZzlEeTFEQkV2elpaT1dqdWJXWVFJOHBBN2tJbnZ3TzN4WDlFTE4rbHNsalAxSEN0R1VNZGsyZWEzSApneWtIR2xpdWFwaHpQbnMwRWlLOGNJaTBEMTVLUUFrU00xNk1KdGN5aU41bEUxYTNlZHk0Nml5bFZ4ZFdjVzhCClRzMGd2b0ROeno3TUUrVnNDSmhoWEppRHlwTjdDd0Y0VjlOSEcvL01QWjc3Wng5czFRSzBMZjFrYVFvSFQrY0gKZ0VxeWorUFZ4Z21iCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    service:
+      name: kubedb-kubedb-webhook-server
+      namespace: kubedb
+      path: /validate-kubedb-com-v1-postgres
+      port: 443
+  failurePolicy: Ignore
+  matchPolicy: Equivalent
+  name: postgreswebhook.validators.kubedb.com
+  namespaceSelector: {}
+  objectSelector: {}
+  rules:
+  - apiGroups:
+    - kubedb.com
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+    resources:
+    - postgreses
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10
+- admissionReviewVersions:
+  - v1beta1
+  clientConfig:
+    caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lRUC9EMzRpUkhFL3JvUnlGVC9zUVF0VEFOQmdrcWhraUc5dzBCQVFzRkFEQU4KTVFzd0NRWURWUVFERXdKallUQWVGdzB5TlRBME1qZ3hNVEkzTWpWYUZ3MHpOVEEwTWpZeE1USTNNalZhTUEweApDekFKQmdOVkJBTVRBbU5oTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFwSW90CkJ2NTV1QTF2R0pwUHBQeVBVRTBjVFhKV3orakNRZ2QzaFlITmxVUVZUVC9pNmd4aDE3Rkg4RStkdGE2SlpFNnoKNFVsamhHVkFlODZMNXl0cUFGMk0yRHNWQVJpKzVVRjR3c3c3WGtPZ3RGdmlKSXFRK0pGVjMyKzU1UFJjVjJJKwpBb3FBb2hSZGFEc1d3SGZabDVDdGhJMnYwcGZyS3hFU2pOUVV2RnJxbUl2Z01tcCtRNzh2cXB2NURaTjV2dFFQCktTbnRDalVWdk5SNGFYZGljbHovNnhJazVUSjBPT05vWFNGekRRU2ROZTZSN3lISkRWWGV2SklOVTE4LzhFS3cKVG81Sno0QU9iVmJjVUowbmdTL0xveHExc2l1blhZZ2pVWUErYTNZaUJDeUpwVDdRKzE5NFlLRXpOT3JkWHVudgo1a1IzSVI3cGNJbXAvSDQwMlFJREFRQUJvMkV3WHpBT0JnTlZIUThCQWY4RUJBTUNBcVF3SFFZRFZSMGxCQll3CkZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUUKRktxTVR4aEZpVExNeEFCRG15amNLcVgyNVI5d01BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQkxGVVR1Wnd2RAp3T1NiMDJjWWdOU1d0Q0QxdVNvWWhkblhONE9NN3IzbWk4MW9NdDVydUZTVUNrSFlGc2l4TXIrTVpJQW52eTVkCkMvM0p3bTU5bjVYU0ZWMFF2cmlKUC9BMWI3NDI4ZTRZNS9oWWJqN3RsUWR6KzYzYk03ZWovbXpKRkhlZmNOT2wKQm5TOGQ0ZzlEeTFEQkV2elpaT1dqdWJXWVFJOHBBN2tJbnZ3TzN4WDlFTE4rbHNsalAxSEN0R1VNZGsyZWEzSApneWtIR2xpdWFwaHpQbnMwRWlLOGNJaTBEMTVLUUFrU00xNk1KdGN5aU41bEUxYTNlZHk0Nml5bFZ4ZFdjVzhCClRzMGd2b0ROeno3TUUrVnNDSmhoWEppRHlwTjdDd0Y0VjlOSEcvL01QWjc3Wng5czFRSzBMZjFrYVFvSFQrY0gKZ0VxeWorUFZ4Z21iCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    service:
+      name: kubedb-kubedb-webhook-server
+      namespace: kubedb
+      path: /validate-kubedb-com-v1-redis
+      port: 443
+  failurePolicy: Ignore
+  matchPolicy: Equivalent
+  name: rediswebhook.validators.kubedb.com
+  namespaceSelector: {}
+  objectSelector: {}
+  rules:
+  - apiGroups:
+    - kubedb.com
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+    resources:
+    - redises
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10
+- admissionReviewVersions:
+  - v1beta1
+  clientConfig:
+    caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lRUC9EMzRpUkhFL3JvUnlGVC9zUVF0VEFOQmdrcWhraUc5dzBCQVFzRkFEQU4KTVFzd0NRWURWUVFERXdKallUQWVGdzB5TlRBME1qZ3hNVEkzTWpWYUZ3MHpOVEEwTWpZeE1USTNNalZhTUEweApDekFKQmdOVkJBTVRBbU5oTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFwSW90CkJ2NTV1QTF2R0pwUHBQeVBVRTBjVFhKV3orakNRZ2QzaFlITmxVUVZUVC9pNmd4aDE3Rkg4RStkdGE2SlpFNnoKNFVsamhHVkFlODZMNXl0cUFGMk0yRHNWQVJpKzVVRjR3c3c3WGtPZ3RGdmlKSXFRK0pGVjMyKzU1UFJjVjJJKwpBb3FBb2hSZGFEc1d3SGZabDVDdGhJMnYwcGZyS3hFU2pOUVV2RnJxbUl2Z01tcCtRNzh2cXB2NURaTjV2dFFQCktTbnRDalVWdk5SNGFYZGljbHovNnhJazVUSjBPT05vWFNGekRRU2ROZTZSN3lISkRWWGV2SklOVTE4LzhFS3cKVG81Sno0QU9iVmJjVUowbmdTL0xveHExc2l1blhZZ2pVWUErYTNZaUJDeUpwVDdRKzE5NFlLRXpOT3JkWHVudgo1a1IzSVI3cGNJbXAvSDQwMlFJREFRQUJvMkV3WHpBT0JnTlZIUThCQWY4RUJBTUNBcVF3SFFZRFZSMGxCQll3CkZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUUKRktxTVR4aEZpVExNeEFCRG15amNLcVgyNVI5d01BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQkxGVVR1Wnd2RAp3T1NiMDJjWWdOU1d0Q0QxdVNvWWhkblhONE9NN3IzbWk4MW9NdDVydUZTVUNrSFlGc2l4TXIrTVpJQW52eTVkCkMvM0p3bTU5bjVYU0ZWMFF2cmlKUC9BMWI3NDI4ZTRZNS9oWWJqN3RsUWR6KzYzYk03ZWovbXpKRkhlZmNOT2wKQm5TOGQ0ZzlEeTFEQkV2elpaT1dqdWJXWVFJOHBBN2tJbnZ3TzN4WDlFTE4rbHNsalAxSEN0R1VNZGsyZWEzSApneWtIR2xpdWFwaHpQbnMwRWlLOGNJaTBEMTVLUUFrU00xNk1KdGN5aU41bEUxYTNlZHk0Nml5bFZ4ZFdjVzhCClRzMGd2b0ROeno3TUUrVnNDSmhoWEppRHlwTjdDd0Y0VjlOSEcvL01QWjc3Wng5czFRSzBMZjFrYVFvSFQrY0gKZ0VxeWorUFZ4Z21iCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    service:
+      name: kubedb-kubedb-webhook-server
+      namespace: kubedb
+      path: /validate-kubedb-com-v1-redissentinel
+      port: 443
+  failurePolicy: Ignore
+  matchPolicy: Equivalent
+  name: redissentinelwebhook.validators.kubedb.com
+  namespaceSelector: {}
+  objectSelector: {}
+  rules:
+  - apiGroups:
+    - kubedb.com
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+    resources:
+    - redissentinels
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10

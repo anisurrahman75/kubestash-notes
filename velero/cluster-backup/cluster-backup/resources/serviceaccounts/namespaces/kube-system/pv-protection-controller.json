@@ -1,0 +1,1 @@
+{"apiVersion":"v1","kind":"ServiceAccount","metadata":{"creationTimestamp":"2025-04-16T10:55:00Z","name":"pv-protection-controller","namespace":"kube-system","resourceVersion":"319","uid":"48c47997-a91b-457b-b671-1dd6d675a9db"}}

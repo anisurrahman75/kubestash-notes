@@ -1,0 +1,43 @@
+apiVersion: events.k8s.io/v1
+deprecatedCount: 1
+deprecatedFirstTimestamp: "2025-04-28T11:28:31Z"
+deprecatedLastTimestamp: "2025-04-28T11:28:31Z"
+deprecatedSource:
+  component: statefulset-controller
+eventTime: null
+kind: Event
+metadata:
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:reportingComponent: {}
+      f:source:
+        f:component: {}
+      f:type: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2025-04-28T11:28:31Z"
+  name: kubedb-kubedb-ops-manager.183a77f7aa1067c7
+  namespace: kubedb
+  resourceVersion: "59329"
+  uid: 8c1bdce0-5cd2-4243-9467-b3c93b558375
+note: create Pod kubedb-kubedb-ops-manager-0 in StatefulSet kubedb-kubedb-ops-manager
+  successful
+reason: SuccessfulCreate
+regarding:
+  apiVersion: apps/v1
+  kind: StatefulSet
+  name: kubedb-kubedb-ops-manager
+  namespace: kubedb
+  resourceVersion: "59215"
+  uid: 15a40438-febb-436e-affb-84ed48d5a24a
+reportingController: statefulset-controller
+type: Normal

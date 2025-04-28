@@ -1,0 +1,47 @@
+apiVersion: v1
+count: 1
+eventTime: null
+firstTimestamp: "2025-04-28T11:28:49Z"
+involvedObject:
+  apiVersion: v1
+  fieldPath: spec.containers{operator}
+  kind: Pod
+  name: kubedb-petset-57f469fc58-lsnj6
+  namespace: kubedb
+  resourceVersion: "59287"
+  uid: 36260d49-98bf-4259-a798-50f1e20e59be
+kind: Event
+lastTimestamp: "2025-04-28T11:28:49Z"
+message: 'Created container: operator'
+metadata:
+  creationTimestamp: "2025-04-28T11:28:49Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:reportingComponent: {}
+      f:reportingInstance: {}
+      f:source:
+        f:component: {}
+        f:host: {}
+      f:type: {}
+    manager: kubelet
+    operation: Update
+    time: "2025-04-28T11:28:49Z"
+  name: kubedb-petset-57f469fc58-lsnj6.183a77fc0cd14759
+  namespace: kubedb
+  resourceVersion: "59561"
+  uid: ca7d84f9-da13-4fc7-b8ad-24c32f864865
+reason: Created
+reportingComponent: kubelet
+reportingInstance: kind-control-plane
+source:
+  component: kubelet
+  host: kind-control-plane
+type: Normal

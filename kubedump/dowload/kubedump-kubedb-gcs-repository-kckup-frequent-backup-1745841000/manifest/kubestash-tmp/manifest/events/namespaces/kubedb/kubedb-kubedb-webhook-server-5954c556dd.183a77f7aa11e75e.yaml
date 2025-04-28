@@ -1,0 +1,43 @@
+apiVersion: v1
+count: 1
+eventTime: null
+firstTimestamp: "2025-04-28T11:28:31Z"
+involvedObject:
+  apiVersion: apps/v1
+  kind: ReplicaSet
+  name: kubedb-kubedb-webhook-server-5954c556dd
+  namespace: kubedb
+  resourceVersion: "59226"
+  uid: 8bc07d7c-8151-4985-a6cb-deecf8768115
+kind: Event
+lastTimestamp: "2025-04-28T11:28:31Z"
+message: 'Created pod: kubedb-kubedb-webhook-server-5954c556dd-dc2m5'
+metadata:
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:reportingComponent: {}
+      f:source:
+        f:component: {}
+      f:type: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2025-04-28T11:28:31Z"
+  name: kubedb-kubedb-webhook-server-5954c556dd.183a77f7aa11e75e
+  namespace: kubedb
+  resourceVersion: "59336"
+  uid: fa9ea52d-86c3-4f2c-9b9e-18a7d80d6368
+reason: SuccessfulCreate
+reportingComponent: replicaset-controller
+reportingInstance: ""
+source:
+  component: replicaset-controller
+type: Normal

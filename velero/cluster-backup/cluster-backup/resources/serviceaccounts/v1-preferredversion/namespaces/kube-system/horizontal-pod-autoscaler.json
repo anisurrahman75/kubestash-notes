@@ -1,0 +1,1 @@
+{"apiVersion":"v1","kind":"ServiceAccount","metadata":{"creationTimestamp":"2025-04-16T10:55:01Z","name":"horizontal-pod-autoscaler","namespace":"kube-system","resourceVersion":"321","uid":"075af4fc-186c-43d7-b7e9-fbfd08d3bcf9"}}

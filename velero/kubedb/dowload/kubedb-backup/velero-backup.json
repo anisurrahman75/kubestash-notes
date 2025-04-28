@@ -1,0 +1,120 @@
+{
+  "kind": "Backup",
+  "apiVersion": "velero.io/v1",
+  "metadata": {
+    "name": "kubedb-backup",
+    "namespace": "velero",
+    "uid": "4b4990e5-a16d-4742-84e7-502c07dc0ae2",
+    "resourceVersion": "15505",
+    "generation": 6,
+    "creationTimestamp": "2025-04-25T12:25:27Z",
+    "labels": {
+      "velero.io/storage-location": "gcs-backup"
+    },
+    "annotations": {
+      "kubectl.kubernetes.io/last-applied-configuration": "{\"apiVersion\":\"velero.io/v1\",\"kind\":\"Backup\",\"metadata\":{\"annotations\":{},\"name\":\"kubedb-backup\",\"namespace\":\"velero\"},\"spec\":{\"defaultVolumesToFsBackup\":false,\"includeClusterResources\":true,\"includedNamespaces\":[\"kubedb\"],\"snapshotVolumes\":false,\"storageLocation\":\"gcs-backup\"}}\n",
+      "velero.io/resource-timeout": "10m0s",
+      "velero.io/source-cluster-k8s-gitversion": "v1.32.0",
+      "velero.io/source-cluster-k8s-major-version": "1",
+      "velero.io/source-cluster-k8s-minor-version": "32"
+    },
+    "managedFields": [
+      {
+        "manager": "kubectl-client-side-apply",
+        "operation": "Update",
+        "apiVersion": "velero.io/v1",
+        "time": "2025-04-25T12:25:27Z",
+        "fieldsType": "FieldsV1",
+        "fieldsV1": {
+          "f:metadata": {
+            "f:annotations": {
+              ".": {},
+              "f:kubectl.kubernetes.io/last-applied-configuration": {}
+            }
+          },
+          "f:spec": {
+            ".": {},
+            "f:defaultVolumesToFsBackup": {},
+            "f:includeClusterResources": {},
+            "f:includedNamespaces": {},
+            "f:snapshotVolumes": {},
+            "f:storageLocation": {}
+          }
+        }
+      },
+      {
+        "manager": "velero-server",
+        "operation": "Update",
+        "apiVersion": "velero.io/v1",
+        "time": "2025-04-25T12:25:44Z",
+        "fieldsType": "FieldsV1",
+        "fieldsV1": {
+          "f:metadata": {
+            "f:annotations": {
+              "f:velero.io/resource-timeout": {},
+              "f:velero.io/source-cluster-k8s-gitversion": {},
+              "f:velero.io/source-cluster-k8s-major-version": {},
+              "f:velero.io/source-cluster-k8s-minor-version": {}
+            },
+            "f:labels": {
+              ".": {},
+              "f:velero.io/storage-location": {}
+            }
+          },
+          "f:spec": {
+            "f:csiSnapshotTimeout": {},
+            "f:itemOperationTimeout": {},
+            "f:snapshotMoveData": {},
+            "f:ttl": {},
+            "f:volumeSnapshotLocations": {}
+          },
+          "f:status": {
+            ".": {},
+            "f:expiration": {},
+            "f:formatVersion": {},
+            "f:hookStatus": {},
+            "f:phase": {},
+            "f:progress": {
+              ".": {},
+              "f:itemsBackedUp": {},
+              "f:totalItems": {}
+            },
+            "f:startTimestamp": {},
+            "f:version": {}
+          }
+        }
+      }
+    ]
+  },
+  "spec": {
+    "metadata": {},
+    "includedNamespaces": [
+      "kubedb"
+    ],
+    "snapshotVolumes": false,
+    "ttl": "720h0m0s",
+    "includeClusterResources": true,
+    "hooks": {},
+    "storageLocation": "gcs-backup",
+    "volumeSnapshotLocations": [
+      "gcs-snapshot"
+    ],
+    "defaultVolumesToFsBackup": false,
+    "csiSnapshotTimeout": "10m0s",
+    "itemOperationTimeout": "4h0m0s",
+    "snapshotMoveData": false
+  },
+  "status": {
+    "version": 1,
+    "formatVersion": "1.1.0",
+    "expiration": "2025-05-25T12:25:27Z",
+    "phase": "Completed",
+    "startTimestamp": "2025-04-25T12:25:27Z",
+    "completionTimestamp": "2025-04-25T12:25:47Z",
+    "progress": {
+      "totalItems": 806,
+      "itemsBackedUp": 806
+    },
+    "hookStatus": {}
+  }
+}

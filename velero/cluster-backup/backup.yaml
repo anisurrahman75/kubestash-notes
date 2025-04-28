@@ -1,0 +1,10 @@
+apiVersion: velero.io/v1
+kind: Backup
+metadata:
+  name: cluster-backup
+  namespace: velero
+spec:
+  defaultVolumesToFsBackup: false  
+  includeClusterResources: true  
+  snapshotVolumes: false         
+  storageLocation: gcs-backup

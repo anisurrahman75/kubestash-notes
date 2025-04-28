@@ -1,0 +1,1 @@
+{"apiVersion":"v1","kind":"ServiceAccount","metadata":{"creationTimestamp":"2025-04-16T10:55:04Z","name":"default","namespace":"kube-node-lease","resourceVersion":"384","uid":"3d8915f8-2ee9-401b-b658-679932eb88d5"}}

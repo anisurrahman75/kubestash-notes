@@ -1,0 +1,473 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  annotations:
+    meta.helm.sh/release-name: kubedb
+    meta.helm.sh/release-namespace: kubedb
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/component: kubedb-autoscaler
+    app.kubernetes.io/instance: kubedb
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: kubedb-webhook-server
+    app.kubernetes.io/version: v0.29.1
+    helm.sh/chart: kubedb-webhook-server-v0.29.0
+  managedFields:
+  - apiVersion: admissionregistration.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:meta.helm.sh/release-name: {}
+          f:meta.helm.sh/release-namespace: {}
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/component: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/managed-by: {}
+          f:app.kubernetes.io/name: {}
+          f:app.kubernetes.io/version: {}
+          f:helm.sh/chart: {}
+      f:webhooks:
+        .: {}
+        k:{"name":"elasticsearchautoscalerwebhook.validators.autoscaling.kubedb.com"}:
+          .: {}
+          f:admissionReviewVersions: {}
+          f:clientConfig:
+            .: {}
+            f:caBundle: {}
+            f:service:
+              .: {}
+              f:name: {}
+              f:namespace: {}
+              f:path: {}
+              f:port: {}
+          f:failurePolicy: {}
+          f:matchPolicy: {}
+          f:name: {}
+          f:namespaceSelector: {}
+          f:objectSelector: {}
+          f:rules: {}
+          f:sideEffects: {}
+          f:timeoutSeconds: {}
+        k:{"name":"kafkaautoscalerwebhook.validators.autoscaling.kubedb.com"}:
+          .: {}
+          f:admissionReviewVersions: {}
+          f:clientConfig:
+            .: {}
+            f:caBundle: {}
+            f:service:
+              .: {}
+              f:name: {}
+              f:namespace: {}
+              f:path: {}
+              f:port: {}
+          f:failurePolicy: {}
+          f:matchPolicy: {}
+          f:name: {}
+          f:namespaceSelector: {}
+          f:objectSelector: {}
+          f:rules: {}
+          f:sideEffects: {}
+          f:timeoutSeconds: {}
+        k:{"name":"mariadbautoscalerwebhook.validators.autoscaling.kubedb.com"}:
+          .: {}
+          f:admissionReviewVersions: {}
+          f:clientConfig:
+            .: {}
+            f:caBundle: {}
+            f:service:
+              .: {}
+              f:name: {}
+              f:namespace: {}
+              f:path: {}
+              f:port: {}
+          f:failurePolicy: {}
+          f:matchPolicy: {}
+          f:name: {}
+          f:namespaceSelector: {}
+          f:objectSelector: {}
+          f:rules: {}
+          f:sideEffects: {}
+          f:timeoutSeconds: {}
+        k:{"name":"mongodbautoscalerwebhook.validators.autoscaling.kubedb.com"}:
+          .: {}
+          f:admissionReviewVersions: {}
+          f:clientConfig:
+            .: {}
+            f:caBundle: {}
+            f:service:
+              .: {}
+              f:name: {}
+              f:namespace: {}
+              f:path: {}
+              f:port: {}
+          f:failurePolicy: {}
+          f:matchPolicy: {}
+          f:name: {}
+          f:namespaceSelector: {}
+          f:objectSelector: {}
+          f:rules: {}
+          f:sideEffects: {}
+          f:timeoutSeconds: {}
+        k:{"name":"mssqlserverautoscalerwebhook.validators.autoscaling.kubedb.com"}:
+          .: {}
+          f:admissionReviewVersions: {}
+          f:clientConfig:
+            .: {}
+            f:caBundle: {}
+            f:service:
+              .: {}
+              f:name: {}
+              f:namespace: {}
+              f:path: {}
+              f:port: {}
+          f:failurePolicy: {}
+          f:matchPolicy: {}
+          f:name: {}
+          f:namespaceSelector: {}
+          f:objectSelector: {}
+          f:rules: {}
+          f:sideEffects: {}
+          f:timeoutSeconds: {}
+        k:{"name":"mysqlautoscalerwebhook.validators.autoscaling.kubedb.com"}:
+          .: {}
+          f:admissionReviewVersions: {}
+          f:clientConfig:
+            .: {}
+            f:caBundle: {}
+            f:service:
+              .: {}
+              f:name: {}
+              f:namespace: {}
+              f:path: {}
+              f:port: {}
+          f:failurePolicy: {}
+          f:matchPolicy: {}
+          f:name: {}
+          f:namespaceSelector: {}
+          f:objectSelector: {}
+          f:rules: {}
+          f:sideEffects: {}
+          f:timeoutSeconds: {}
+        k:{"name":"postgresautoscalerwebhook.validators.autoscaling.kubedb.com"}:
+          .: {}
+          f:admissionReviewVersions: {}
+          f:clientConfig:
+            .: {}
+            f:caBundle: {}
+            f:service:
+              .: {}
+              f:name: {}
+              f:namespace: {}
+              f:path: {}
+              f:port: {}
+          f:failurePolicy: {}
+          f:matchPolicy: {}
+          f:name: {}
+          f:namespaceSelector: {}
+          f:objectSelector: {}
+          f:rules: {}
+          f:sideEffects: {}
+          f:timeoutSeconds: {}
+        k:{"name":"redisautoscalerwebhook.validators.autoscaling.kubedb.com"}:
+          .: {}
+          f:admissionReviewVersions: {}
+          f:clientConfig:
+            .: {}
+            f:caBundle: {}
+            f:service:
+              .: {}
+              f:name: {}
+              f:namespace: {}
+              f:path: {}
+              f:port: {}
+          f:failurePolicy: {}
+          f:matchPolicy: {}
+          f:name: {}
+          f:namespaceSelector: {}
+          f:objectSelector: {}
+          f:rules: {}
+          f:sideEffects: {}
+          f:timeoutSeconds: {}
+        k:{"name":"redissentinelautoscalerwebhook.validators.autoscaling.kubedb.com"}:
+          .: {}
+          f:admissionReviewVersions: {}
+          f:clientConfig:
+            .: {}
+            f:caBundle: {}
+            f:service:
+              .: {}
+              f:name: {}
+              f:namespace: {}
+              f:path: {}
+              f:port: {}
+          f:failurePolicy: {}
+          f:matchPolicy: {}
+          f:name: {}
+          f:namespaceSelector: {}
+          f:objectSelector: {}
+          f:rules: {}
+          f:sideEffects: {}
+          f:timeoutSeconds: {}
+    manager: helm
+    operation: Update
+    time: "2025-04-28T11:28:31Z"
+  name: validators.autoscaling.kubedb.com
+  resourceVersion: "59487"
+  uid: 9a11fe58-7c58-4200-baba-5584ce07a520
+webhooks:
+- admissionReviewVersions:
+  - v1beta1
+  clientConfig:
+    caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lRUC9EMzRpUkhFL3JvUnlGVC9zUVF0VEFOQmdrcWhraUc5dzBCQVFzRkFEQU4KTVFzd0NRWURWUVFERXdKallUQWVGdzB5TlRBME1qZ3hNVEkzTWpWYUZ3MHpOVEEwTWpZeE1USTNNalZhTUEweApDekFKQmdOVkJBTVRBbU5oTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFwSW90CkJ2NTV1QTF2R0pwUHBQeVBVRTBjVFhKV3orakNRZ2QzaFlITmxVUVZUVC9pNmd4aDE3Rkg4RStkdGE2SlpFNnoKNFVsamhHVkFlODZMNXl0cUFGMk0yRHNWQVJpKzVVRjR3c3c3WGtPZ3RGdmlKSXFRK0pGVjMyKzU1UFJjVjJJKwpBb3FBb2hSZGFEc1d3SGZabDVDdGhJMnYwcGZyS3hFU2pOUVV2RnJxbUl2Z01tcCtRNzh2cXB2NURaTjV2dFFQCktTbnRDalVWdk5SNGFYZGljbHovNnhJazVUSjBPT05vWFNGekRRU2ROZTZSN3lISkRWWGV2SklOVTE4LzhFS3cKVG81Sno0QU9iVmJjVUowbmdTL0xveHExc2l1blhZZ2pVWUErYTNZaUJDeUpwVDdRKzE5NFlLRXpOT3JkWHVudgo1a1IzSVI3cGNJbXAvSDQwMlFJREFRQUJvMkV3WHpBT0JnTlZIUThCQWY4RUJBTUNBcVF3SFFZRFZSMGxCQll3CkZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUUKRktxTVR4aEZpVExNeEFCRG15amNLcVgyNVI5d01BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQkxGVVR1Wnd2RAp3T1NiMDJjWWdOU1d0Q0QxdVNvWWhkblhONE9NN3IzbWk4MW9NdDVydUZTVUNrSFlGc2l4TXIrTVpJQW52eTVkCkMvM0p3bTU5bjVYU0ZWMFF2cmlKUC9BMWI3NDI4ZTRZNS9oWWJqN3RsUWR6KzYzYk03ZWovbXpKRkhlZmNOT2wKQm5TOGQ0ZzlEeTFEQkV2elpaT1dqdWJXWVFJOHBBN2tJbnZ3TzN4WDlFTE4rbHNsalAxSEN0R1VNZGsyZWEzSApneWtIR2xpdWFwaHpQbnMwRWlLOGNJaTBEMTVLUUFrU00xNk1KdGN5aU41bEUxYTNlZHk0Nml5bFZ4ZFdjVzhCClRzMGd2b0ROeno3TUUrVnNDSmhoWEppRHlwTjdDd0Y0VjlOSEcvL01QWjc3Wng5czFRSzBMZjFrYVFvSFQrY0gKZ0VxeWorUFZ4Z21iCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    service:
+      name: kubedb-kubedb-webhook-server
+      namespace: kubedb
+      path: /validate-autoscaling-kubedb-com-v1alpha1-elasticsearchautoscaler
+      port: 443
+  failurePolicy: Ignore
+  matchPolicy: Equivalent
+  name: elasticsearchautoscalerwebhook.validators.autoscaling.kubedb.com
+  namespaceSelector: {}
+  objectSelector: {}
+  rules:
+  - apiGroups:
+    - autoscaling.kubedb.com
+    apiVersions:
+    - '*'
+    operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+    resources:
+    - elasticsearchautoscalers
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10
+- admissionReviewVersions:
+  - v1beta1
+  clientConfig:
+    caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lRUC9EMzRpUkhFL3JvUnlGVC9zUVF0VEFOQmdrcWhraUc5dzBCQVFzRkFEQU4KTVFzd0NRWURWUVFERXdKallUQWVGdzB5TlRBME1qZ3hNVEkzTWpWYUZ3MHpOVEEwTWpZeE1USTNNalZhTUEweApDekFKQmdOVkJBTVRBbU5oTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFwSW90CkJ2NTV1QTF2R0pwUHBQeVBVRTBjVFhKV3orakNRZ2QzaFlITmxVUVZUVC9pNmd4aDE3Rkg4RStkdGE2SlpFNnoKNFVsamhHVkFlODZMNXl0cUFGMk0yRHNWQVJpKzVVRjR3c3c3WGtPZ3RGdmlKSXFRK0pGVjMyKzU1UFJjVjJJKwpBb3FBb2hSZGFEc1d3SGZabDVDdGhJMnYwcGZyS3hFU2pOUVV2RnJxbUl2Z01tcCtRNzh2cXB2NURaTjV2dFFQCktTbnRDalVWdk5SNGFYZGljbHovNnhJazVUSjBPT05vWFNGekRRU2ROZTZSN3lISkRWWGV2SklOVTE4LzhFS3cKVG81Sno0QU9iVmJjVUowbmdTL0xveHExc2l1blhZZ2pVWUErYTNZaUJDeUpwVDdRKzE5NFlLRXpOT3JkWHVudgo1a1IzSVI3cGNJbXAvSDQwMlFJREFRQUJvMkV3WHpBT0JnTlZIUThCQWY4RUJBTUNBcVF3SFFZRFZSMGxCQll3CkZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUUKRktxTVR4aEZpVExNeEFCRG15amNLcVgyNVI5d01BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQkxGVVR1Wnd2RAp3T1NiMDJjWWdOU1d0Q0QxdVNvWWhkblhONE9NN3IzbWk4MW9NdDVydUZTVUNrSFlGc2l4TXIrTVpJQW52eTVkCkMvM0p3bTU5bjVYU0ZWMFF2cmlKUC9BMWI3NDI4ZTRZNS9oWWJqN3RsUWR6KzYzYk03ZWovbXpKRkhlZmNOT2wKQm5TOGQ0ZzlEeTFEQkV2elpaT1dqdWJXWVFJOHBBN2tJbnZ3TzN4WDlFTE4rbHNsalAxSEN0R1VNZGsyZWEzSApneWtIR2xpdWFwaHpQbnMwRWlLOGNJaTBEMTVLUUFrU00xNk1KdGN5aU41bEUxYTNlZHk0Nml5bFZ4ZFdjVzhCClRzMGd2b0ROeno3TUUrVnNDSmhoWEppRHlwTjdDd0Y0VjlOSEcvL01QWjc3Wng5czFRSzBMZjFrYVFvSFQrY0gKZ0VxeWorUFZ4Z21iCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    service:
+      name: kubedb-kubedb-webhook-server
+      namespace: kubedb
+      path: /validate-autoscaling-kubedb-com-v1alpha1-kafkaautoscaler
+      port: 443
+  failurePolicy: Ignore
+  matchPolicy: Equivalent
+  name: kafkaautoscalerwebhook.validators.autoscaling.kubedb.com
+  namespaceSelector: {}
+  objectSelector: {}
+  rules:
+  - apiGroups:
+    - autoscaling.kubedb.com
+    apiVersions:
+    - '*'
+    operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+    resources:
+    - kafkaautoscalers
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10
+- admissionReviewVersions:
+  - v1beta1
+  clientConfig:
+    caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lRUC9EMzRpUkhFL3JvUnlGVC9zUVF0VEFOQmdrcWhraUc5dzBCQVFzRkFEQU4KTVFzd0NRWURWUVFERXdKallUQWVGdzB5TlRBME1qZ3hNVEkzTWpWYUZ3MHpOVEEwTWpZeE1USTNNalZhTUEweApDekFKQmdOVkJBTVRBbU5oTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFwSW90CkJ2NTV1QTF2R0pwUHBQeVBVRTBjVFhKV3orakNRZ2QzaFlITmxVUVZUVC9pNmd4aDE3Rkg4RStkdGE2SlpFNnoKNFVsamhHVkFlODZMNXl0cUFGMk0yRHNWQVJpKzVVRjR3c3c3WGtPZ3RGdmlKSXFRK0pGVjMyKzU1UFJjVjJJKwpBb3FBb2hSZGFEc1d3SGZabDVDdGhJMnYwcGZyS3hFU2pOUVV2RnJxbUl2Z01tcCtRNzh2cXB2NURaTjV2dFFQCktTbnRDalVWdk5SNGFYZGljbHovNnhJazVUSjBPT05vWFNGekRRU2ROZTZSN3lISkRWWGV2SklOVTE4LzhFS3cKVG81Sno0QU9iVmJjVUowbmdTL0xveHExc2l1blhZZ2pVWUErYTNZaUJDeUpwVDdRKzE5NFlLRXpOT3JkWHVudgo1a1IzSVI3cGNJbXAvSDQwMlFJREFRQUJvMkV3WHpBT0JnTlZIUThCQWY4RUJBTUNBcVF3SFFZRFZSMGxCQll3CkZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUUKRktxTVR4aEZpVExNeEFCRG15amNLcVgyNVI5d01BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQkxGVVR1Wnd2RAp3T1NiMDJjWWdOU1d0Q0QxdVNvWWhkblhONE9NN3IzbWk4MW9NdDVydUZTVUNrSFlGc2l4TXIrTVpJQW52eTVkCkMvM0p3bTU5bjVYU0ZWMFF2cmlKUC9BMWI3NDI4ZTRZNS9oWWJqN3RsUWR6KzYzYk03ZWovbXpKRkhlZmNOT2wKQm5TOGQ0ZzlEeTFEQkV2elpaT1dqdWJXWVFJOHBBN2tJbnZ3TzN4WDlFTE4rbHNsalAxSEN0R1VNZGsyZWEzSApneWtIR2xpdWFwaHpQbnMwRWlLOGNJaTBEMTVLUUFrU00xNk1KdGN5aU41bEUxYTNlZHk0Nml5bFZ4ZFdjVzhCClRzMGd2b0ROeno3TUUrVnNDSmhoWEppRHlwTjdDd0Y0VjlOSEcvL01QWjc3Wng5czFRSzBMZjFrYVFvSFQrY0gKZ0VxeWorUFZ4Z21iCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    service:
+      name: kubedb-kubedb-webhook-server
+      namespace: kubedb
+      path: /validate-autoscaling-kubedb-com-v1alpha1-mariadbautoscaler
+      port: 443
+  failurePolicy: Ignore
+  matchPolicy: Equivalent
+  name: mariadbautoscalerwebhook.validators.autoscaling.kubedb.com
+  namespaceSelector: {}
+  objectSelector: {}
+  rules:
+  - apiGroups:
+    - autoscaling.kubedb.com
+    apiVersions:
+    - '*'
+    operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+    resources:
+    - mariadbautoscalers
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10
+- admissionReviewVersions:
+  - v1beta1
+  clientConfig:
+    caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lRUC9EMzRpUkhFL3JvUnlGVC9zUVF0VEFOQmdrcWhraUc5dzBCQVFzRkFEQU4KTVFzd0NRWURWUVFERXdKallUQWVGdzB5TlRBME1qZ3hNVEkzTWpWYUZ3MHpOVEEwTWpZeE1USTNNalZhTUEweApDekFKQmdOVkJBTVRBbU5oTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFwSW90CkJ2NTV1QTF2R0pwUHBQeVBVRTBjVFhKV3orakNRZ2QzaFlITmxVUVZUVC9pNmd4aDE3Rkg4RStkdGE2SlpFNnoKNFVsamhHVkFlODZMNXl0cUFGMk0yRHNWQVJpKzVVRjR3c3c3WGtPZ3RGdmlKSXFRK0pGVjMyKzU1UFJjVjJJKwpBb3FBb2hSZGFEc1d3SGZabDVDdGhJMnYwcGZyS3hFU2pOUVV2RnJxbUl2Z01tcCtRNzh2cXB2NURaTjV2dFFQCktTbnRDalVWdk5SNGFYZGljbHovNnhJazVUSjBPT05vWFNGekRRU2ROZTZSN3lISkRWWGV2SklOVTE4LzhFS3cKVG81Sno0QU9iVmJjVUowbmdTL0xveHExc2l1blhZZ2pVWUErYTNZaUJDeUpwVDdRKzE5NFlLRXpOT3JkWHVudgo1a1IzSVI3cGNJbXAvSDQwMlFJREFRQUJvMkV3WHpBT0JnTlZIUThCQWY4RUJBTUNBcVF3SFFZRFZSMGxCQll3CkZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUUKRktxTVR4aEZpVExNeEFCRG15amNLcVgyNVI5d01BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQkxGVVR1Wnd2RAp3T1NiMDJjWWdOU1d0Q0QxdVNvWWhkblhONE9NN3IzbWk4MW9NdDVydUZTVUNrSFlGc2l4TXIrTVpJQW52eTVkCkMvM0p3bTU5bjVYU0ZWMFF2cmlKUC9BMWI3NDI4ZTRZNS9oWWJqN3RsUWR6KzYzYk03ZWovbXpKRkhlZmNOT2wKQm5TOGQ0ZzlEeTFEQkV2elpaT1dqdWJXWVFJOHBBN2tJbnZ3TzN4WDlFTE4rbHNsalAxSEN0R1VNZGsyZWEzSApneWtIR2xpdWFwaHpQbnMwRWlLOGNJaTBEMTVLUUFrU00xNk1KdGN5aU41bEUxYTNlZHk0Nml5bFZ4ZFdjVzhCClRzMGd2b0ROeno3TUUrVnNDSmhoWEppRHlwTjdDd0Y0VjlOSEcvL01QWjc3Wng5czFRSzBMZjFrYVFvSFQrY0gKZ0VxeWorUFZ4Z21iCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    service:
+      name: kubedb-kubedb-webhook-server
+      namespace: kubedb
+      path: /validate-autoscaling-kubedb-com-v1alpha1-mongodbautoscaler
+      port: 443
+  failurePolicy: Ignore
+  matchPolicy: Equivalent
+  name: mongodbautoscalerwebhook.validators.autoscaling.kubedb.com
+  namespaceSelector: {}
+  objectSelector: {}
+  rules:
+  - apiGroups:
+    - autoscaling.kubedb.com
+    apiVersions:
+    - '*'
+    operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+    resources:
+    - mongodbautoscalers
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10
+- admissionReviewVersions:
+  - v1beta1
+  clientConfig:
+    caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lRUC9EMzRpUkhFL3JvUnlGVC9zUVF0VEFOQmdrcWhraUc5dzBCQVFzRkFEQU4KTVFzd0NRWURWUVFERXdKallUQWVGdzB5TlRBME1qZ3hNVEkzTWpWYUZ3MHpOVEEwTWpZeE1USTNNalZhTUEweApDekFKQmdOVkJBTVRBbU5oTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFwSW90CkJ2NTV1QTF2R0pwUHBQeVBVRTBjVFhKV3orakNRZ2QzaFlITmxVUVZUVC9pNmd4aDE3Rkg4RStkdGE2SlpFNnoKNFVsamhHVkFlODZMNXl0cUFGMk0yRHNWQVJpKzVVRjR3c3c3WGtPZ3RGdmlKSXFRK0pGVjMyKzU1UFJjVjJJKwpBb3FBb2hSZGFEc1d3SGZabDVDdGhJMnYwcGZyS3hFU2pOUVV2RnJxbUl2Z01tcCtRNzh2cXB2NURaTjV2dFFQCktTbnRDalVWdk5SNGFYZGljbHovNnhJazVUSjBPT05vWFNGekRRU2ROZTZSN3lISkRWWGV2SklOVTE4LzhFS3cKVG81Sno0QU9iVmJjVUowbmdTL0xveHExc2l1blhZZ2pVWUErYTNZaUJDeUpwVDdRKzE5NFlLRXpOT3JkWHVudgo1a1IzSVI3cGNJbXAvSDQwMlFJREFRQUJvMkV3WHpBT0JnTlZIUThCQWY4RUJBTUNBcVF3SFFZRFZSMGxCQll3CkZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUUKRktxTVR4aEZpVExNeEFCRG15amNLcVgyNVI5d01BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQkxGVVR1Wnd2RAp3T1NiMDJjWWdOU1d0Q0QxdVNvWWhkblhONE9NN3IzbWk4MW9NdDVydUZTVUNrSFlGc2l4TXIrTVpJQW52eTVkCkMvM0p3bTU5bjVYU0ZWMFF2cmlKUC9BMWI3NDI4ZTRZNS9oWWJqN3RsUWR6KzYzYk03ZWovbXpKRkhlZmNOT2wKQm5TOGQ0ZzlEeTFEQkV2elpaT1dqdWJXWVFJOHBBN2tJbnZ3TzN4WDlFTE4rbHNsalAxSEN0R1VNZGsyZWEzSApneWtIR2xpdWFwaHpQbnMwRWlLOGNJaTBEMTVLUUFrU00xNk1KdGN5aU41bEUxYTNlZHk0Nml5bFZ4ZFdjVzhCClRzMGd2b0ROeno3TUUrVnNDSmhoWEppRHlwTjdDd0Y0VjlOSEcvL01QWjc3Wng5czFRSzBMZjFrYVFvSFQrY0gKZ0VxeWorUFZ4Z21iCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    service:
+      name: kubedb-kubedb-webhook-server
+      namespace: kubedb
+      path: /validate-autoscaling-kubedb-com-v1alpha1-mssqlserverautoscaler
+      port: 443
+  failurePolicy: Ignore
+  matchPolicy: Equivalent
+  name: mssqlserverautoscalerwebhook.validators.autoscaling.kubedb.com
+  namespaceSelector: {}
+  objectSelector: {}
+  rules:
+  - apiGroups:
+    - autoscaling.kubedb.com
+    apiVersions:
+    - '*'
+    operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+    resources:
+    - mssqlserverautoscalers
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10
+- admissionReviewVersions:
+  - v1beta1
+  clientConfig:
+    caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lRUC9EMzRpUkhFL3JvUnlGVC9zUVF0VEFOQmdrcWhraUc5dzBCQVFzRkFEQU4KTVFzd0NRWURWUVFERXdKallUQWVGdzB5TlRBME1qZ3hNVEkzTWpWYUZ3MHpOVEEwTWpZeE1USTNNalZhTUEweApDekFKQmdOVkJBTVRBbU5oTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFwSW90CkJ2NTV1QTF2R0pwUHBQeVBVRTBjVFhKV3orakNRZ2QzaFlITmxVUVZUVC9pNmd4aDE3Rkg4RStkdGE2SlpFNnoKNFVsamhHVkFlODZMNXl0cUFGMk0yRHNWQVJpKzVVRjR3c3c3WGtPZ3RGdmlKSXFRK0pGVjMyKzU1UFJjVjJJKwpBb3FBb2hSZGFEc1d3SGZabDVDdGhJMnYwcGZyS3hFU2pOUVV2RnJxbUl2Z01tcCtRNzh2cXB2NURaTjV2dFFQCktTbnRDalVWdk5SNGFYZGljbHovNnhJazVUSjBPT05vWFNGekRRU2ROZTZSN3lISkRWWGV2SklOVTE4LzhFS3cKVG81Sno0QU9iVmJjVUowbmdTL0xveHExc2l1blhZZ2pVWUErYTNZaUJDeUpwVDdRKzE5NFlLRXpOT3JkWHVudgo1a1IzSVI3cGNJbXAvSDQwMlFJREFRQUJvMkV3WHpBT0JnTlZIUThCQWY4RUJBTUNBcVF3SFFZRFZSMGxCQll3CkZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUUKRktxTVR4aEZpVExNeEFCRG15amNLcVgyNVI5d01BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQkxGVVR1Wnd2RAp3T1NiMDJjWWdOU1d0Q0QxdVNvWWhkblhONE9NN3IzbWk4MW9NdDVydUZTVUNrSFlGc2l4TXIrTVpJQW52eTVkCkMvM0p3bTU5bjVYU0ZWMFF2cmlKUC9BMWI3NDI4ZTRZNS9oWWJqN3RsUWR6KzYzYk03ZWovbXpKRkhlZmNOT2wKQm5TOGQ0ZzlEeTFEQkV2elpaT1dqdWJXWVFJOHBBN2tJbnZ3TzN4WDlFTE4rbHNsalAxSEN0R1VNZGsyZWEzSApneWtIR2xpdWFwaHpQbnMwRWlLOGNJaTBEMTVLUUFrU00xNk1KdGN5aU41bEUxYTNlZHk0Nml5bFZ4ZFdjVzhCClRzMGd2b0ROeno3TUUrVnNDSmhoWEppRHlwTjdDd0Y0VjlOSEcvL01QWjc3Wng5czFRSzBMZjFrYVFvSFQrY0gKZ0VxeWorUFZ4Z21iCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    service:
+      name: kubedb-kubedb-webhook-server
+      namespace: kubedb
+      path: /validate-autoscaling-kubedb-com-v1alpha1-mysqlautoscaler
+      port: 443
+  failurePolicy: Ignore
+  matchPolicy: Equivalent
+  name: mysqlautoscalerwebhook.validators.autoscaling.kubedb.com
+  namespaceSelector: {}
+  objectSelector: {}
+  rules:
+  - apiGroups:
+    - autoscaling.kubedb.com
+    apiVersions:
+    - '*'
+    operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+    resources:
+    - mysqlautoscalers
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10
+- admissionReviewVersions:
+  - v1beta1
+  clientConfig:
+    caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lRUC9EMzRpUkhFL3JvUnlGVC9zUVF0VEFOQmdrcWhraUc5dzBCQVFzRkFEQU4KTVFzd0NRWURWUVFERXdKallUQWVGdzB5TlRBME1qZ3hNVEkzTWpWYUZ3MHpOVEEwTWpZeE1USTNNalZhTUEweApDekFKQmdOVkJBTVRBbU5oTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFwSW90CkJ2NTV1QTF2R0pwUHBQeVBVRTBjVFhKV3orakNRZ2QzaFlITmxVUVZUVC9pNmd4aDE3Rkg4RStkdGE2SlpFNnoKNFVsamhHVkFlODZMNXl0cUFGMk0yRHNWQVJpKzVVRjR3c3c3WGtPZ3RGdmlKSXFRK0pGVjMyKzU1UFJjVjJJKwpBb3FBb2hSZGFEc1d3SGZabDVDdGhJMnYwcGZyS3hFU2pOUVV2RnJxbUl2Z01tcCtRNzh2cXB2NURaTjV2dFFQCktTbnRDalVWdk5SNGFYZGljbHovNnhJazVUSjBPT05vWFNGekRRU2ROZTZSN3lISkRWWGV2SklOVTE4LzhFS3cKVG81Sno0QU9iVmJjVUowbmdTL0xveHExc2l1blhZZ2pVWUErYTNZaUJDeUpwVDdRKzE5NFlLRXpOT3JkWHVudgo1a1IzSVI3cGNJbXAvSDQwMlFJREFRQUJvMkV3WHpBT0JnTlZIUThCQWY4RUJBTUNBcVF3SFFZRFZSMGxCQll3CkZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUUKRktxTVR4aEZpVExNeEFCRG15amNLcVgyNVI5d01BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQkxGVVR1Wnd2RAp3T1NiMDJjWWdOU1d0Q0QxdVNvWWhkblhONE9NN3IzbWk4MW9NdDVydUZTVUNrSFlGc2l4TXIrTVpJQW52eTVkCkMvM0p3bTU5bjVYU0ZWMFF2cmlKUC9BMWI3NDI4ZTRZNS9oWWJqN3RsUWR6KzYzYk03ZWovbXpKRkhlZmNOT2wKQm5TOGQ0ZzlEeTFEQkV2elpaT1dqdWJXWVFJOHBBN2tJbnZ3TzN4WDlFTE4rbHNsalAxSEN0R1VNZGsyZWEzSApneWtIR2xpdWFwaHpQbnMwRWlLOGNJaTBEMTVLUUFrU00xNk1KdGN5aU41bEUxYTNlZHk0Nml5bFZ4ZFdjVzhCClRzMGd2b0ROeno3TUUrVnNDSmhoWEppRHlwTjdDd0Y0VjlOSEcvL01QWjc3Wng5czFRSzBMZjFrYVFvSFQrY0gKZ0VxeWorUFZ4Z21iCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    service:
+      name: kubedb-kubedb-webhook-server
+      namespace: kubedb
+      path: /validate-autoscaling-kubedb-com-v1alpha1-postgresautoscaler
+      port: 443
+  failurePolicy: Ignore
+  matchPolicy: Equivalent
+  name: postgresautoscalerwebhook.validators.autoscaling.kubedb.com
+  namespaceSelector: {}
+  objectSelector: {}
+  rules:
+  - apiGroups:
+    - autoscaling.kubedb.com
+    apiVersions:
+    - '*'
+    operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+    resources:
+    - postgresautoscalers
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10
+- admissionReviewVersions:
+  - v1beta1
+  clientConfig:
+    caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lRUC9EMzRpUkhFL3JvUnlGVC9zUVF0VEFOQmdrcWhraUc5dzBCQVFzRkFEQU4KTVFzd0NRWURWUVFERXdKallUQWVGdzB5TlRBME1qZ3hNVEkzTWpWYUZ3MHpOVEEwTWpZeE1USTNNalZhTUEweApDekFKQmdOVkJBTVRBbU5oTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFwSW90CkJ2NTV1QTF2R0pwUHBQeVBVRTBjVFhKV3orakNRZ2QzaFlITmxVUVZUVC9pNmd4aDE3Rkg4RStkdGE2SlpFNnoKNFVsamhHVkFlODZMNXl0cUFGMk0yRHNWQVJpKzVVRjR3c3c3WGtPZ3RGdmlKSXFRK0pGVjMyKzU1UFJjVjJJKwpBb3FBb2hSZGFEc1d3SGZabDVDdGhJMnYwcGZyS3hFU2pOUVV2RnJxbUl2Z01tcCtRNzh2cXB2NURaTjV2dFFQCktTbnRDalVWdk5SNGFYZGljbHovNnhJazVUSjBPT05vWFNGekRRU2ROZTZSN3lISkRWWGV2SklOVTE4LzhFS3cKVG81Sno0QU9iVmJjVUowbmdTL0xveHExc2l1blhZZ2pVWUErYTNZaUJDeUpwVDdRKzE5NFlLRXpOT3JkWHVudgo1a1IzSVI3cGNJbXAvSDQwMlFJREFRQUJvMkV3WHpBT0JnTlZIUThCQWY4RUJBTUNBcVF3SFFZRFZSMGxCQll3CkZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUUKRktxTVR4aEZpVExNeEFCRG15amNLcVgyNVI5d01BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQkxGVVR1Wnd2RAp3T1NiMDJjWWdOU1d0Q0QxdVNvWWhkblhONE9NN3IzbWk4MW9NdDVydUZTVUNrSFlGc2l4TXIrTVpJQW52eTVkCkMvM0p3bTU5bjVYU0ZWMFF2cmlKUC9BMWI3NDI4ZTRZNS9oWWJqN3RsUWR6KzYzYk03ZWovbXpKRkhlZmNOT2wKQm5TOGQ0ZzlEeTFEQkV2elpaT1dqdWJXWVFJOHBBN2tJbnZ3TzN4WDlFTE4rbHNsalAxSEN0R1VNZGsyZWEzSApneWtIR2xpdWFwaHpQbnMwRWlLOGNJaTBEMTVLUUFrU00xNk1KdGN5aU41bEUxYTNlZHk0Nml5bFZ4ZFdjVzhCClRzMGd2b0ROeno3TUUrVnNDSmhoWEppRHlwTjdDd0Y0VjlOSEcvL01QWjc3Wng5czFRSzBMZjFrYVFvSFQrY0gKZ0VxeWorUFZ4Z21iCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    service:
+      name: kubedb-kubedb-webhook-server
+      namespace: kubedb
+      path: /validate-autoscaling-kubedb-com-v1alpha1-redisautoscaler
+      port: 443
+  failurePolicy: Ignore
+  matchPolicy: Equivalent
+  name: redisautoscalerwebhook.validators.autoscaling.kubedb.com
+  namespaceSelector: {}
+  objectSelector: {}
+  rules:
+  - apiGroups:
+    - autoscaling.kubedb.com
+    apiVersions:
+    - '*'
+    operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+    resources:
+    - redisautoscalers
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10
+- admissionReviewVersions:
+  - v1beta1
+  clientConfig:
+    caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lRUC9EMzRpUkhFL3JvUnlGVC9zUVF0VEFOQmdrcWhraUc5dzBCQVFzRkFEQU4KTVFzd0NRWURWUVFERXdKallUQWVGdzB5TlRBME1qZ3hNVEkzTWpWYUZ3MHpOVEEwTWpZeE1USTNNalZhTUEweApDekFKQmdOVkJBTVRBbU5oTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUFwSW90CkJ2NTV1QTF2R0pwUHBQeVBVRTBjVFhKV3orakNRZ2QzaFlITmxVUVZUVC9pNmd4aDE3Rkg4RStkdGE2SlpFNnoKNFVsamhHVkFlODZMNXl0cUFGMk0yRHNWQVJpKzVVRjR3c3c3WGtPZ3RGdmlKSXFRK0pGVjMyKzU1UFJjVjJJKwpBb3FBb2hSZGFEc1d3SGZabDVDdGhJMnYwcGZyS3hFU2pOUVV2RnJxbUl2Z01tcCtRNzh2cXB2NURaTjV2dFFQCktTbnRDalVWdk5SNGFYZGljbHovNnhJazVUSjBPT05vWFNGekRRU2ROZTZSN3lISkRWWGV2SklOVTE4LzhFS3cKVG81Sno0QU9iVmJjVUowbmdTL0xveHExc2l1blhZZ2pVWUErYTNZaUJDeUpwVDdRKzE5NFlLRXpOT3JkWHVudgo1a1IzSVI3cGNJbXAvSDQwMlFJREFRQUJvMkV3WHpBT0JnTlZIUThCQWY4RUJBTUNBcVF3SFFZRFZSMGxCQll3CkZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUUKRktxTVR4aEZpVExNeEFCRG15amNLcVgyNVI5d01BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQkxGVVR1Wnd2RAp3T1NiMDJjWWdOU1d0Q0QxdVNvWWhkblhONE9NN3IzbWk4MW9NdDVydUZTVUNrSFlGc2l4TXIrTVpJQW52eTVkCkMvM0p3bTU5bjVYU0ZWMFF2cmlKUC9BMWI3NDI4ZTRZNS9oWWJqN3RsUWR6KzYzYk03ZWovbXpKRkhlZmNOT2wKQm5TOGQ0ZzlEeTFEQkV2elpaT1dqdWJXWVFJOHBBN2tJbnZ3TzN4WDlFTE4rbHNsalAxSEN0R1VNZGsyZWEzSApneWtIR2xpdWFwaHpQbnMwRWlLOGNJaTBEMTVLUUFrU00xNk1KdGN5aU41bEUxYTNlZHk0Nml5bFZ4ZFdjVzhCClRzMGd2b0ROeno3TUUrVnNDSmhoWEppRHlwTjdDd0Y0VjlOSEcvL01QWjc3Wng5czFRSzBMZjFrYVFvSFQrY0gKZ0VxeWorUFZ4Z21iCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    service:
+      name: kubedb-kubedb-webhook-server
+      namespace: kubedb
+      path: /validate-autoscaling-kubedb-com-v1alpha1-redissentinelautoscaler
+      port: 443
+  failurePolicy: Ignore
+  matchPolicy: Equivalent
+  name: redissentinelautoscalerwebhook.validators.autoscaling.kubedb.com
+  namespaceSelector: {}
+  objectSelector: {}
+  rules:
+  - apiGroups:
+    - autoscaling.kubedb.com
+    apiVersions:
+    - '*'
+    operations:
+    - CREATE
+    - UPDATE
+    - DELETE
+    resources:
+    - redissentinelautoscalers
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10

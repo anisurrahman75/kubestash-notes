@@ -1,0 +1,43 @@
+apiVersion: v1
+count: 1
+eventTime: null
+firstTimestamp: "2025-04-28T11:28:31Z"
+involvedObject:
+  apiVersion: apps/v1
+  kind: Deployment
+  name: kubedb-petset
+  namespace: kubedb
+  resourceVersion: "59211"
+  uid: 59e5508f-27e2-438d-a039-329f8ddf6ff6
+kind: Event
+lastTimestamp: "2025-04-28T11:28:31Z"
+message: Scaled up replica set kubedb-petset-57f469fc58 from 0 to 1
+metadata:
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:reportingComponent: {}
+      f:source:
+        f:component: {}
+      f:type: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2025-04-28T11:28:31Z"
+  name: kubedb-petset.183a77f7a7a9e57c
+  namespace: kubedb
+  resourceVersion: "59234"
+  uid: 713bb4b2-1162-4644-91c6-dd2bd6bc2b05
+reason: ScalingReplicaSet
+reportingComponent: deployment-controller
+reportingInstance: ""
+source:
+  component: deployment-controller
+type: Normal

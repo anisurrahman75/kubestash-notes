@@ -1,0 +1,44 @@
+apiVersion: v1
+count: 1
+eventTime: null
+firstTimestamp: "2025-04-28T11:28:31Z"
+involvedObject:
+  apiVersion: apps/v1
+  kind: StatefulSet
+  name: kubedb-kubedb-ops-manager
+  namespace: kubedb
+  resourceVersion: "59215"
+  uid: 15a40438-febb-436e-affb-84ed48d5a24a
+kind: Event
+lastTimestamp: "2025-04-28T11:28:31Z"
+message: create Pod kubedb-kubedb-ops-manager-0 in StatefulSet kubedb-kubedb-ops-manager
+  successful
+metadata:
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:reportingComponent: {}
+      f:source:
+        f:component: {}
+      f:type: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2025-04-28T11:28:31Z"
+  name: kubedb-kubedb-ops-manager.183a77f7aa1067c7
+  namespace: kubedb
+  resourceVersion: "59329"
+  uid: 8c1bdce0-5cd2-4243-9467-b3c93b558375
+reason: SuccessfulCreate
+reportingComponent: statefulset-controller
+reportingInstance: ""
+source:
+  component: statefulset-controller
+type: Normal

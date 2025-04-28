@@ -1,0 +1,47 @@
+apiVersion: v1
+count: 1
+eventTime: null
+firstTimestamp: "2025-04-28T11:29:28Z"
+involvedObject:
+  apiVersion: v1
+  fieldPath: spec.containers{operator}
+  kind: Pod
+  name: kubedb-kubedb-ops-manager-0
+  namespace: kubedb
+  resourceVersion: "59324"
+  uid: a47b01a6-24be-4929-96bc-b156395bf109
+kind: Event
+lastTimestamp: "2025-04-28T11:29:28Z"
+message: 'Created container: operator'
+metadata:
+  creationTimestamp: "2025-04-28T11:29:28Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:reportingComponent: {}
+      f:reportingInstance: {}
+      f:source:
+        f:component: {}
+        f:host: {}
+      f:type: {}
+    manager: kubelet
+    operation: Update
+    time: "2025-04-28T11:29:28Z"
+  name: kubedb-kubedb-ops-manager-0.183a78050131b2f0
+  namespace: kubedb
+  resourceVersion: "59650"
+  uid: acc0abd5-39d3-438c-a5d6-793d7b644f36
+reason: Created
+reportingComponent: kubelet
+reportingInstance: kind-control-plane
+source:
+  component: kubelet
+  host: kind-control-plane
+type: Normal

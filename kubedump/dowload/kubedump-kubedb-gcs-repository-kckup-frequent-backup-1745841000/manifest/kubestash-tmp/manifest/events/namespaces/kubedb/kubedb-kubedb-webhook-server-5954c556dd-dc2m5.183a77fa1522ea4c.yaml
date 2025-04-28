@@ -1,0 +1,48 @@
+apiVersion: v1
+count: 1
+eventTime: null
+firstTimestamp: "2025-04-28T11:28:41Z"
+involvedObject:
+  apiVersion: v1
+  fieldPath: spec.containers{operator}
+  kind: Pod
+  name: kubedb-kubedb-webhook-server-5954c556dd-dc2m5
+  namespace: kubedb
+  resourceVersion: "59283"
+  uid: be643667-f42a-4f36-8779-352512231b02
+kind: Event
+lastTimestamp: "2025-04-28T11:28:41Z"
+message: 'Successfully pulled image "ghcr.io/kubedb/kubedb-webhook-server:v0.29.1"
+  in 9.938s (9.938s including waiting). Image size: 54701418 bytes.'
+metadata:
+  creationTimestamp: "2025-04-28T11:28:41Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:reportingComponent: {}
+      f:reportingInstance: {}
+      f:source:
+        f:component: {}
+        f:host: {}
+      f:type: {}
+    manager: kubelet
+    operation: Update
+    time: "2025-04-28T11:28:41Z"
+  name: kubedb-kubedb-webhook-server-5954c556dd-dc2m5.183a77fa1522ea4c
+  namespace: kubedb
+  resourceVersion: "59530"
+  uid: 6d26db83-3f21-4d2f-8ea8-cb269639bad9
+reason: Pulled
+reportingComponent: kubelet
+reportingInstance: kind-control-plane
+source:
+  component: kubelet
+  host: kind-control-plane
+type: Normal

@@ -1,0 +1,40 @@
+action: Binding
+apiVersion: v1
+eventTime: "2025-04-28T11:28:31.177298Z"
+firstTimestamp: null
+involvedObject:
+  apiVersion: v1
+  kind: Pod
+  name: kubedb-kubedb-ops-manager-0
+  namespace: kubedb
+  resourceVersion: "59279"
+  uid: a47b01a6-24be-4929-96bc-b156395bf109
+kind: Event
+lastTimestamp: null
+message: Successfully assigned kubedb/kubedb-kubedb-ops-manager-0 to kind-control-plane
+metadata:
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  managedFields:
+  - apiVersion: events.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:action: {}
+      f:eventTime: {}
+      f:note: {}
+      f:reason: {}
+      f:regarding: {}
+      f:reportingController: {}
+      f:reportingInstance: {}
+      f:type: {}
+    manager: kube-scheduler
+    operation: Update
+    time: "2025-04-28T11:28:31Z"
+  name: kubedb-kubedb-ops-manager-0.183a77f7ab7e6cb0
+  namespace: kubedb
+  resourceVersion: "59334"
+  uid: ab4e7879-a98e-40c5-a6e3-92f539d23d05
+reason: Scheduled
+reportingComponent: default-scheduler
+reportingInstance: default-scheduler-kind-control-plane
+source: {}
+type: Normal

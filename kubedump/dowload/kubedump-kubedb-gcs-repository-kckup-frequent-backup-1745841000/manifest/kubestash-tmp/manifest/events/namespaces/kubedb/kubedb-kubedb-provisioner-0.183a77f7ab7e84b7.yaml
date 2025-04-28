@@ -1,0 +1,40 @@
+action: Binding
+apiVersion: v1
+eventTime: "2025-04-28T11:28:31.177307Z"
+firstTimestamp: null
+involvedObject:
+  apiVersion: v1
+  kind: Pod
+  name: kubedb-kubedb-provisioner-0
+  namespace: kubedb
+  resourceVersion: "59278"
+  uid: 01f9b29a-b271-4d4f-9da0-5644489a6660
+kind: Event
+lastTimestamp: null
+message: Successfully assigned kubedb/kubedb-kubedb-provisioner-0 to kind-control-plane
+metadata:
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  managedFields:
+  - apiVersion: events.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:action: {}
+      f:eventTime: {}
+      f:note: {}
+      f:reason: {}
+      f:regarding: {}
+      f:reportingController: {}
+      f:reportingInstance: {}
+      f:type: {}
+    manager: kube-scheduler
+    operation: Update
+    time: "2025-04-28T11:28:31Z"
+  name: kubedb-kubedb-provisioner-0.183a77f7ab7e84b7
+  namespace: kubedb
+  resourceVersion: "59335"
+  uid: 27a0f23e-c81a-4cd8-b768-8b0ebd9589e9
+reason: Scheduled
+reportingComponent: default-scheduler
+reportingInstance: default-scheduler-kind-control-plane
+source: {}
+type: Normal

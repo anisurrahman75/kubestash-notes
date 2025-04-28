@@ -1,0 +1,58 @@
+apiVersion: catalog.kubedb.com/v1alpha1
+kind: SchemaRegistryVersion
+metadata:
+  annotations:
+    meta.helm.sh/release-name: kubedb
+    meta.helm.sh/release-namespace: kubedb
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/instance: kubedb
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: kubedb-catalog
+    app.kubernetes.io/version: v2025.3.24
+    helm.sh/chart: kubedb-catalog-v2025.3.24
+  managedFields:
+  - apiVersion: catalog.kubedb.com/v1alpha1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:meta.helm.sh/release-name: {}
+          f:meta.helm.sh/release-namespace: {}
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/managed-by: {}
+          f:app.kubernetes.io/name: {}
+          f:app.kubernetes.io/version: {}
+          f:helm.sh/chart: {}
+      f:spec:
+        .: {}
+        f:distribution: {}
+        f:inMemory:
+          .: {}
+          f:image: {}
+        f:registry:
+          .: {}
+          f:image: {}
+        f:securityContext:
+          .: {}
+          f:runAsUser: {}
+        f:version: {}
+    manager: helm
+    operation: Update
+    time: "2025-04-28T11:28:31Z"
+  name: 2.5.11.final
+  resourceVersion: "59483"
+  uid: c8210df2-c829-4f2a-805a-591092b4aeeb
+spec:
+  distribution: Apicurio
+  inMemory:
+    image: apicurio/apicurio-registry-mem:2.5.11.Final
+  registry:
+    image: apicurio/apicurio-registry-kafkasql:2.5.11.Final
+  securityContext:
+    runAsUser: 1001
+  version: 2.5.11

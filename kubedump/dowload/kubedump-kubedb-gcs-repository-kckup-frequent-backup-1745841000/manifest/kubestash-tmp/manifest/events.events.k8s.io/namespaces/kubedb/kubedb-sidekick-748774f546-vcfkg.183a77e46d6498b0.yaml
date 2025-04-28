@@ -1,0 +1,47 @@
+apiVersion: events.k8s.io/v1
+deprecatedCount: 1
+deprecatedFirstTimestamp: "2025-04-28T11:27:08Z"
+deprecatedLastTimestamp: "2025-04-28T11:27:08Z"
+deprecatedSource:
+  component: kubelet
+  host: kind-control-plane
+eventTime: null
+kind: Event
+metadata:
+  creationTimestamp: "2025-04-28T11:27:08Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:reportingComponent: {}
+      f:reportingInstance: {}
+      f:source:
+        f:component: {}
+        f:host: {}
+      f:type: {}
+    manager: kubelet
+    operation: Update
+    time: "2025-04-28T11:27:08Z"
+  name: kubedb-sidekick-748774f546-vcfkg.183a77e46d6498b0
+  namespace: kubedb
+  resourceVersion: "58715"
+  uid: 9e8dbbba-13f1-401b-a49f-8fcbc9fdc1ec
+note: Stopping container sidekick
+reason: Killing
+regarding:
+  apiVersion: v1
+  fieldPath: spec.containers{sidekick}
+  kind: Pod
+  name: kubedb-sidekick-748774f546-vcfkg
+  namespace: kubedb
+  resourceVersion: "21111"
+  uid: 31dade81-2f54-458e-add8-08a5457fa847
+reportingController: kubelet
+reportingInstance: kind-control-plane
+type: Normal

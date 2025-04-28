@@ -1,0 +1,40 @@
+action: Binding
+apiVersion: v1
+eventTime: "2025-04-28T11:28:31.177763Z"
+firstTimestamp: null
+involvedObject:
+  apiVersion: v1
+  kind: Pod
+  name: kubedb-sidekick-64557ff5dd-g2xpt
+  namespace: kubedb
+  resourceVersion: "59276"
+  uid: 12eb5a56-97d4-446e-896d-52b21d229995
+kind: Event
+lastTimestamp: null
+message: Successfully assigned kubedb/kubedb-sidekick-64557ff5dd-g2xpt to kind-control-plane
+metadata:
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  managedFields:
+  - apiVersion: events.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:action: {}
+      f:eventTime: {}
+      f:note: {}
+      f:reason: {}
+      f:regarding: {}
+      f:reportingController: {}
+      f:reportingInstance: {}
+      f:type: {}
+    manager: kube-scheduler
+    operation: Update
+    time: "2025-04-28T11:28:31Z"
+  name: kubedb-sidekick-64557ff5dd-g2xpt.183a77f7ab857644
+  namespace: kubedb
+  resourceVersion: "59340"
+  uid: 68720137-341e-420f-94ec-8e5ebf4c718a
+reason: Scheduled
+reportingComponent: default-scheduler
+reportingInstance: default-scheduler-kind-control-plane
+source: {}
+type: Normal

@@ -1,0 +1,45 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  annotations:
+    meta.helm.sh/release-name: kubestash
+    meta.helm.sh/release-namespace: kubestash
+  creationTimestamp: "2025-04-25T10:31:48Z"
+  labels:
+    app.kubernetes.io/instance: kubestash
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: kubestash-operator
+    app.kubernetes.io/version: v0.17.0
+    helm.sh/chart: kubestash-operator-v0.17.0
+  managedFields:
+  - apiVersion: rbac.authorization.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:meta.helm.sh/release-name: {}
+          f:meta.helm.sh/release-namespace: {}
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/managed-by: {}
+          f:app.kubernetes.io/name: {}
+          f:app.kubernetes.io/version: {}
+          f:helm.sh/chart: {}
+      f:roleRef: {}
+      f:subjects: {}
+    manager: helm
+    operation: Update
+    time: "2025-04-25T10:31:48Z"
+  name: kubestash-kubestash-operator
+  resourceVersion: "1690"
+  uid: 8b2d28f5-81d7-4410-9043-3c10414e7492
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kubestash-kubestash-operator
+subjects:
+- kind: ServiceAccount
+  name: kubestash-kubestash-operator
+  namespace: kubestash

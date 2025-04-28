@@ -1,0 +1,24 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  creationTimestamp: "2025-04-25T10:16:39Z"
+  managedFields:
+  - apiVersion: rbac.authorization.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:roleRef: {}
+      f:subjects: {}
+    manager: kubeadm
+    operation: Update
+    time: "2025-04-25T10:16:39Z"
+  name: kubeadm:cluster-admins
+  resourceVersion: "202"
+  uid: 4af42259-f168-42d0-8a97-08cbded4fc15
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: kubeadm:cluster-admins

@@ -1,0 +1,47 @@
+apiVersion: events.k8s.io/v1
+deprecatedCount: 1
+deprecatedFirstTimestamp: "2025-04-28T11:27:43Z"
+deprecatedLastTimestamp: "2025-04-28T11:27:43Z"
+deprecatedSource:
+  component: kubelet
+  host: kind-control-plane
+eventTime: null
+kind: Event
+metadata:
+  creationTimestamp: "2025-04-28T11:27:43Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:reportingComponent: {}
+      f:reportingInstance: {}
+      f:source:
+        f:component: {}
+        f:host: {}
+      f:type: {}
+    manager: kubelet
+    operation: Update
+    time: "2025-04-28T11:27:43Z"
+  name: kubedb-kubedb-crd-manager-lgvb2.183a77ec88052ae8
+  namespace: kubedb
+  resourceVersion: "58988"
+  uid: 58decf16-a2e8-45b2-89e3-58e22645b4df
+note: Started container kubedb-crd-manager
+reason: Started
+regarding:
+  apiVersion: v1
+  fieldPath: spec.initContainers{kubedb-crd-manager}
+  kind: Pod
+  name: kubedb-kubedb-crd-manager-lgvb2
+  namespace: kubedb
+  resourceVersion: "58972"
+  uid: 204d0c39-138b-49f5-b55d-b5b885cbe06b
+reportingController: kubelet
+reportingInstance: kind-control-plane
+type: Normal

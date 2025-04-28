@@ -1,0 +1,12 @@
+apiVersion: velero.io/v1
+kind: Backup
+metadata:
+  name: kubedb-backup
+  namespace: velero
+spec:
+  defaultVolumesToFsBackup: false  
+  includeClusterResources: true  
+  snapshotVolumes: false
+  includedNamespaces:
+    - kubedb
+  storageLocation: gcs-backup

@@ -1,0 +1,40 @@
+action: Binding
+apiVersion: events.k8s.io/v1
+deprecatedFirstTimestamp: null
+deprecatedLastTimestamp: null
+deprecatedSource: {}
+eventTime: "2025-04-28T11:28:31.177529Z"
+kind: Event
+metadata:
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  managedFields:
+  - apiVersion: events.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:action: {}
+      f:eventTime: {}
+      f:note: {}
+      f:reason: {}
+      f:regarding: {}
+      f:reportingController: {}
+      f:reportingInstance: {}
+      f:type: {}
+    manager: kube-scheduler
+    operation: Update
+    time: "2025-04-28T11:28:31Z"
+  name: kubedb-kubedb-autoscaler-0.183a77f7ab81e07e
+  namespace: kubedb
+  resourceVersion: "59333"
+  uid: 3f542f47-a662-4d77-bffa-bd97a9a47de9
+note: Successfully assigned kubedb/kubedb-kubedb-autoscaler-0 to kind-control-plane
+reason: Scheduled
+regarding:
+  apiVersion: v1
+  kind: Pod
+  name: kubedb-kubedb-autoscaler-0
+  namespace: kubedb
+  resourceVersion: "59277"
+  uid: 5ba97215-8a73-4492-9516-073c5cd70b49
+reportingController: default-scheduler
+reportingInstance: default-scheduler-kind-control-plane
+type: Normal

@@ -1,0 +1,47 @@
+apiVersion: v1
+count: 1
+eventTime: null
+firstTimestamp: "2025-04-28T11:27:08Z"
+involvedObject:
+  apiVersion: v1
+  fieldPath: spec.containers{operator}
+  kind: Pod
+  name: kubedb-petset-operator-865cdffc89-pk4hx
+  namespace: kubedb
+  resourceVersion: "20966"
+  uid: fbf280a4-d3d0-4a5d-a30e-6c20d42cd9b9
+kind: Event
+lastTimestamp: "2025-04-28T11:27:08Z"
+message: Stopping container operator
+metadata:
+  creationTimestamp: "2025-04-28T11:27:08Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:reportingComponent: {}
+      f:reportingInstance: {}
+      f:source:
+        f:component: {}
+        f:host: {}
+      f:type: {}
+    manager: kubelet
+    operation: Update
+    time: "2025-04-28T11:27:08Z"
+  name: kubedb-petset-operator-865cdffc89-pk4hx.183a77e46beb0ae1
+  namespace: kubedb
+  resourceVersion: "58713"
+  uid: 2aafeac3-1903-4401-ab52-91774795d65b
+reason: Killing
+reportingComponent: kubelet
+reportingInstance: kind-control-plane
+source:
+  component: kubelet
+  host: kind-control-plane
+type: Normal

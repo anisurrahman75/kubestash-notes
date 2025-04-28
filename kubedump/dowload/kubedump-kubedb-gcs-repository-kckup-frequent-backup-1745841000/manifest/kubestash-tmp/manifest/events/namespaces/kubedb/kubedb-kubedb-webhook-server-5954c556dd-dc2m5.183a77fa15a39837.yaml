@@ -1,0 +1,47 @@
+apiVersion: v1
+count: 1
+eventTime: null
+firstTimestamp: "2025-04-28T11:28:41Z"
+involvedObject:
+  apiVersion: v1
+  fieldPath: spec.containers{operator}
+  kind: Pod
+  name: kubedb-kubedb-webhook-server-5954c556dd-dc2m5
+  namespace: kubedb
+  resourceVersion: "59283"
+  uid: be643667-f42a-4f36-8779-352512231b02
+kind: Event
+lastTimestamp: "2025-04-28T11:28:41Z"
+message: 'Created container: operator'
+metadata:
+  creationTimestamp: "2025-04-28T11:28:41Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:reportingComponent: {}
+      f:reportingInstance: {}
+      f:source:
+        f:component: {}
+        f:host: {}
+      f:type: {}
+    manager: kubelet
+    operation: Update
+    time: "2025-04-28T11:28:41Z"
+  name: kubedb-kubedb-webhook-server-5954c556dd-dc2m5.183a77fa15a39837
+  namespace: kubedb
+  resourceVersion: "59531"
+  uid: 69886fc7-dfa0-489b-a452-d4fb13340704
+reason: Created
+reportingComponent: kubelet
+reportingInstance: kind-control-plane
+source:
+  component: kubelet
+  host: kind-control-plane
+type: Normal

@@ -1,0 +1,47 @@
+apiVersion: events.k8s.io/v1
+deprecatedCount: 1
+deprecatedFirstTimestamp: "2025-04-28T11:29:13Z"
+deprecatedLastTimestamp: "2025-04-28T11:29:13Z"
+deprecatedSource:
+  component: kubelet
+  host: kind-control-plane
+eventTime: null
+kind: Event
+metadata:
+  creationTimestamp: "2025-04-28T11:29:13Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:reportingComponent: {}
+      f:reportingInstance: {}
+      f:source:
+        f:component: {}
+        f:host: {}
+      f:type: {}
+    manager: kubelet
+    operation: Update
+    time: "2025-04-28T11:29:13Z"
+  name: kubedb-kubedb-provisioner-0.183a78016da571e0
+  namespace: kubedb
+  resourceVersion: "59621"
+  uid: 3d6ba8ba-05d3-4f27-bfa8-96b3116a33ba
+note: Pulling image "ghcr.io/kubedb/kubedb-provisioner:v0.53.1"
+reason: Pulling
+regarding:
+  apiVersion: v1
+  fieldPath: spec.containers{operator}
+  kind: Pod
+  name: kubedb-kubedb-provisioner-0
+  namespace: kubedb
+  resourceVersion: "59321"
+  uid: 01f9b29a-b271-4d4f-9da0-5644489a6660
+reportingController: kubelet
+reportingInstance: kind-control-plane
+type: Normal

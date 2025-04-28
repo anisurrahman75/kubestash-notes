@@ -1,0 +1,1 @@
+{"apiVersion":"v1","kind":"ServiceAccount","metadata":{"creationTimestamp":"2025-04-16T10:54:59Z","name":"ttl-after-finished-controller","namespace":"kube-system","resourceVersion":"277","uid":"0a032443-a55c-4422-8bc4-300c01d559ca"}}

@@ -1,0 +1,47 @@
+apiVersion: events.k8s.io/v1
+deprecatedCount: 1
+deprecatedFirstTimestamp: "2025-04-28T11:27:08Z"
+deprecatedLastTimestamp: "2025-04-28T11:27:08Z"
+deprecatedSource:
+  component: kubelet
+  host: kind-control-plane
+eventTime: null
+kind: Event
+metadata:
+  creationTimestamp: "2025-04-28T11:27:08Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:reportingComponent: {}
+      f:reportingInstance: {}
+      f:source:
+        f:component: {}
+        f:host: {}
+      f:type: {}
+    manager: kubelet
+    operation: Update
+    time: "2025-04-28T11:27:08Z"
+  name: kubedb-petset-webhook-server-68c566d7c7-vcmqv.183a77e4708a8f45
+  namespace: kubedb
+  resourceVersion: "58719"
+  uid: a1dcb4ee-6b20-4922-88c5-49803c3d0a2a
+note: Stopping container kube-rbac-proxy
+reason: Killing
+regarding:
+  apiVersion: v1
+  fieldPath: spec.containers{kube-rbac-proxy}
+  kind: Pod
+  name: kubedb-petset-webhook-server-68c566d7c7-vcmqv
+  namespace: kubedb
+  resourceVersion: "21586"
+  uid: a594eedb-136f-485b-852b-5af32850d7a3
+reportingController: kubelet
+reportingInstance: kind-control-plane
+type: Normal

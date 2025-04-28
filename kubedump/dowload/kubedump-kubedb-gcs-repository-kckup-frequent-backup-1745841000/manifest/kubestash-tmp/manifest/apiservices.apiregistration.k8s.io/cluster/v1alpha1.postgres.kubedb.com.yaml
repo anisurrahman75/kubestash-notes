@@ -1,0 +1,37 @@
+apiVersion: apiregistration.k8s.io/v1
+kind: APIService
+metadata:
+  creationTimestamp: "2025-04-25T12:57:05Z"
+  labels:
+    kube-aggregator.kubernetes.io/automanaged: "true"
+  managedFields:
+  - apiVersion: apiregistration.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:labels:
+          .: {}
+          f:kube-aggregator.kubernetes.io/automanaged: {}
+      f:spec:
+        f:group: {}
+        f:groupPriorityMinimum: {}
+        f:version: {}
+        f:versionPriority: {}
+    manager: kube-apiserver
+    operation: Update
+    time: "2025-04-25T12:57:05Z"
+  name: v1alpha1.postgres.kubedb.com
+  resourceVersion: "20720"
+  uid: a0ac5dd7-ca8f-439b-a997-63214fc37e04
+spec:
+  group: postgres.kubedb.com
+  groupPriorityMinimum: 1000
+  version: v1alpha1
+  versionPriority: 100
+status:
+  conditions:
+  - lastTransitionTime: "2025-04-25T12:57:05Z"
+    message: Local APIServices are always available
+    reason: Local
+    status: "True"
+    type: Available

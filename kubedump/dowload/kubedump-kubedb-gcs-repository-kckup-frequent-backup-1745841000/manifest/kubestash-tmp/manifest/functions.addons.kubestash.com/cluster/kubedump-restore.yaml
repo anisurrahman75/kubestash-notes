@@ -1,0 +1,43 @@
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Function
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"addons.kubestash.com/v1alpha1","kind":"Function","metadata":{"annotations":{},"name":"kubedump-restore"},"spec":{"args":["restore","--namespace=${namespace:=default}","--restoresession=${restoreSession:=}","--snapshot=${snapshot:=}","--enable-cache=${enableCache:=}","--scratch-dir=${scratchDir:=}","--include-cluster-resources=${IncludeClusterResources:=}","--include-namespaces=${IncludeNamespaces:=}","--include-resources=${IncludeResources:=}","--exclude-resources=${ExcludeResources:=}","--exclude-namespaces=${ExcludeNamespaces:=}","--override-resources=${OverrideResources:=}","--storage-class-mappings=${StorageClassMappings:=}","--restore-pvs=${RestorePVs:=}"],"image":"ghcr.io/anisurrahman75/kubedump:kubedump-restore_linux_amd64116"}}
+  creationTimestamp: "2025-04-25T10:37:33Z"
+  generation: 2
+  managedFields:
+  - apiVersion: addons.kubestash.com/v1alpha1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:kubectl.kubernetes.io/last-applied-configuration: {}
+      f:spec:
+        .: {}
+        f:args: {}
+        f:image: {}
+    manager: kubectl-client-side-apply
+    operation: Update
+    time: "2025-04-25T11:06:54Z"
+  name: kubedump-restore
+  resourceVersion: "4600"
+  uid: 796555fb-307b-41e6-ae96-63295e255447
+spec:
+  args:
+  - restore
+  - --namespace=${namespace:=default}
+  - --restoresession=${restoreSession:=}
+  - --snapshot=${snapshot:=}
+  - --enable-cache=${enableCache:=}
+  - --scratch-dir=${scratchDir:=}
+  - --include-cluster-resources=${IncludeClusterResources:=}
+  - --include-namespaces=${IncludeNamespaces:=}
+  - --include-resources=${IncludeResources:=}
+  - --exclude-resources=${ExcludeResources:=}
+  - --exclude-namespaces=${ExcludeNamespaces:=}
+  - --override-resources=${OverrideResources:=}
+  - --storage-class-mappings=${StorageClassMappings:=}
+  - --restore-pvs=${RestorePVs:=}
+  image: ghcr.io/anisurrahman75/kubedump:kubedump-restore_linux_amd64116

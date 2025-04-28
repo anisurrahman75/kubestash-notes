@@ -1,0 +1,32 @@
+apiVersion: core.kubestash.com/v1alpha1
+kind: RestoreSession
+metadata:
+  name: cluster-restore
+  namespace: demo
+spec:
+  dataSource:
+    repository: kubedump-kubedb-gcs-repository
+    snapshot: latest
+    encryptionSecret:
+      name: encrypt-secret
+      namespace: demo
+  addon:
+    name: kubedump-addon
+    tasks:
+      - name: manifest-restore
+        params:
+          IncludeClusterResources: "true"
+    jobTemplate:
+      spec:
+        serviceAccountName: cluster-resource-reader-writter
+
+
+# ➤ kubectl get pods -n kubedb
+# NAME                                            READY   STATUS    RESTARTS   AGE
+# kubedb-kubedb-autoscaler-757dfb664b-r8grn       1/1     Running   0          6m53s
+# kubedb-kubedb-ops-manager-777684fddd-ljrgp      1/1     Running   0          6m53s
+# kubedb-kubedb-provisioner-6cf7f76b6c-hrld4      1/1     Running   0          6m53s
+# kubedb-kubedb-webhook-server-64bcf5d86c-nkb4v   1/1     Running   0          6m53s
+# kubedb-petset-operator-865cdffc89-6rc8z         1/1     Running   0          6m53s
+# kubedb-petset-webhook-server-76579f6f95-qhw64   2/2     Running   0          6m53s
+# kubedb-sidekick-748774f546-tnfqd                1/1     Running   0          6m53s

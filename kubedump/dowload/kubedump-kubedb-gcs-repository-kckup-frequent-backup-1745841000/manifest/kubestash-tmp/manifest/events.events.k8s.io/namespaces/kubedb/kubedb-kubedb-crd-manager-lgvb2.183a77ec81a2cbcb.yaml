@@ -1,0 +1,48 @@
+apiVersion: events.k8s.io/v1
+deprecatedCount: 1
+deprecatedFirstTimestamp: "2025-04-28T11:27:43Z"
+deprecatedLastTimestamp: "2025-04-28T11:27:43Z"
+deprecatedSource:
+  component: kubelet
+  host: kind-control-plane
+eventTime: null
+kind: Event
+metadata:
+  creationTimestamp: "2025-04-28T11:27:43Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:reportingComponent: {}
+      f:reportingInstance: {}
+      f:source:
+        f:component: {}
+        f:host: {}
+      f:type: {}
+    manager: kubelet
+    operation: Update
+    time: "2025-04-28T11:27:43Z"
+  name: kubedb-kubedb-crd-manager-lgvb2.183a77ec81a2cbcb
+  namespace: kubedb
+  resourceVersion: "58986"
+  uid: 5aa67427-1ccc-44e2-880c-f54f8de801e9
+note: 'Successfully pulled image "ghcr.io/kubedb/kubedb-crd-manager:v0.8.0" in 8.505s
+  (8.505s including waiting). Image size: 57842027 bytes.'
+reason: Pulled
+regarding:
+  apiVersion: v1
+  fieldPath: spec.initContainers{kubedb-crd-manager}
+  kind: Pod
+  name: kubedb-kubedb-crd-manager-lgvb2
+  namespace: kubedb
+  resourceVersion: "58972"
+  uid: 204d0c39-138b-49f5-b55d-b5b885cbe06b
+reportingController: kubelet
+reportingInstance: kind-control-plane
+type: Normal

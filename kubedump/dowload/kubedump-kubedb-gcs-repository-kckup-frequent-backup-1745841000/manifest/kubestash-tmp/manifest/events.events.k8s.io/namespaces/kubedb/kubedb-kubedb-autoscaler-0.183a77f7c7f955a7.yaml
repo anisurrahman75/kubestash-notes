@@ -1,0 +1,47 @@
+apiVersion: events.k8s.io/v1
+deprecatedCount: 1
+deprecatedFirstTimestamp: "2025-04-28T11:28:31Z"
+deprecatedLastTimestamp: "2025-04-28T11:28:31Z"
+deprecatedSource:
+  component: kubelet
+  host: kind-control-plane
+eventTime: null
+kind: Event
+metadata:
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:reportingComponent: {}
+      f:reportingInstance: {}
+      f:source:
+        f:component: {}
+        f:host: {}
+      f:type: {}
+    manager: kubelet
+    operation: Update
+    time: "2025-04-28T11:28:31Z"
+  name: kubedb-kubedb-autoscaler-0.183a77f7c7f955a7
+  namespace: kubedb
+  resourceVersion: "59495"
+  uid: 03a0fa21-71e1-42d7-8cec-4e171d4c7fd7
+note: Container image "ghcr.io/appscode/kubectl-nonroot:1.31" already present on machine
+reason: Pulled
+regarding:
+  apiVersion: v1
+  fieldPath: spec.initContainers{wait}
+  kind: Pod
+  name: kubedb-kubedb-autoscaler-0
+  namespace: kubedb
+  resourceVersion: "59323"
+  uid: 5ba97215-8a73-4492-9516-073c5cd70b49
+reportingController: kubelet
+reportingInstance: kind-control-plane
+type: Normal

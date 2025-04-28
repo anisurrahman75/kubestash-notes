@@ -1,0 +1,1 @@
+{"apiVersion":"v1","kind":"ServiceAccount","metadata":{"creationTimestamp":"2025-04-16T10:55:03Z","name":"clusterrole-aggregation-controller","namespace":"kube-system","resourceVersion":"342","uid":"48a53937-6abf-4c89-a817-13dc791b7daa"}}

@@ -1,0 +1,79 @@
+apiVersion: flowcontrol.apiserver.k8s.io/v1
+kind: FlowSchema
+metadata:
+  annotations:
+    apf.kubernetes.io/autoupdate-spec: "true"
+  creationTimestamp: "2025-04-25T10:16:38Z"
+  generation: 1
+  managedFields:
+  - apiVersion: flowcontrol.apiserver.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        f:conditions:
+          k:{"type":"Dangling"}:
+            .: {}
+            f:lastTransitionTime: {}
+            f:message: {}
+            f:reason: {}
+            f:status: {}
+            f:type: {}
+    manager: api-priority-and-fairness-config-consumer-v1
+    operation: Apply
+    subresource: status
+    time: "2025-04-25T10:16:38Z"
+  - apiVersion: flowcontrol.apiserver.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:apf.kubernetes.io/autoupdate-spec: {}
+      f:spec:
+        f:distinguisherMethod:
+          .: {}
+          f:type: {}
+        f:matchingPrecedence: {}
+        f:priorityLevelConfiguration:
+          f:name: {}
+        f:rules: {}
+    manager: api-priority-and-fairness-config-producer-v1
+    operation: Update
+    time: "2025-04-25T10:16:38Z"
+  name: kube-scheduler
+  resourceVersion: "52"
+  uid: 971e4bfc-5557-4003-b6df-4b9ba6d6f5e9
+spec:
+  distinguisherMethod:
+    type: ByNamespace
+  matchingPrecedence: 800
+  priorityLevelConfiguration:
+    name: workload-high
+  rules:
+  - nonResourceRules:
+    - nonResourceURLs:
+      - '*'
+      verbs:
+      - '*'
+    resourceRules:
+    - apiGroups:
+      - '*'
+      clusterScope: true
+      namespaces:
+      - '*'
+      resources:
+      - '*'
+      verbs:
+      - '*'
+    subjects:
+    - kind: User
+      user:
+        name: system:kube-scheduler
+status:
+  conditions:
+  - lastTransitionTime: "2025-04-25T10:16:38Z"
+    message: This FlowSchema references the PriorityLevelConfiguration object named
+      "workload-high" and it exists
+    reason: Found
+    status: "False"
+    type: Dangling

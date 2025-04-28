@@ -1,0 +1,47 @@
+apiVersion: events.k8s.io/v1
+deprecatedCount: 1
+deprecatedFirstTimestamp: "2025-04-28T11:30:12Z"
+deprecatedLastTimestamp: "2025-04-28T11:30:12Z"
+deprecatedSource:
+  component: kubelet
+  host: kind-control-plane
+eventTime: null
+kind: Event
+metadata:
+  creationTimestamp: "2025-04-28T11:30:12Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:reportingComponent: {}
+      f:reportingInstance: {}
+      f:source:
+        f:component: {}
+        f:host: {}
+      f:type: {}
+    manager: kubelet
+    operation: Update
+    time: "2025-04-28T11:30:12Z"
+  name: kubedb-kubedb-autoscaler-0.183a780f47a65154
+  namespace: kubedb
+  resourceVersion: "59729"
+  uid: d99cb362-7ee3-44d9-9c25-86850fedcfe1
+note: Started container operator
+reason: Started
+regarding:
+  apiVersion: v1
+  fieldPath: spec.containers{operator}
+  kind: Pod
+  name: kubedb-kubedb-autoscaler-0
+  namespace: kubedb
+  resourceVersion: "59323"
+  uid: 5ba97215-8a73-4492-9516-073c5cd70b49
+reportingController: kubelet
+reportingInstance: kind-control-plane
+type: Normal

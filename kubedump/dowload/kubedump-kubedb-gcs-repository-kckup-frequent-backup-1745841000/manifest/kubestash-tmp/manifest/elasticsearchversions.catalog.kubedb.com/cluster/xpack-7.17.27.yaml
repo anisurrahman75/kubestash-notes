@@ -1,0 +1,114 @@
+apiVersion: catalog.kubedb.com/v1alpha1
+kind: ElasticsearchVersion
+metadata:
+  annotations:
+    meta.helm.sh/release-name: kubedb
+    meta.helm.sh/release-namespace: kubedb
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/instance: kubedb
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: kubedb-catalog
+    app.kubernetes.io/version: v2025.3.24
+    helm.sh/chart: kubedb-catalog-v2025.3.24
+  managedFields:
+  - apiVersion: catalog.kubedb.com/v1alpha1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:meta.helm.sh/release-name: {}
+          f:meta.helm.sh/release-namespace: {}
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/managed-by: {}
+          f:app.kubernetes.io/name: {}
+          f:app.kubernetes.io/version: {}
+          f:helm.sh/chart: {}
+      f:spec:
+        .: {}
+        f:authPlugin: {}
+        f:dashboard:
+          .: {}
+          f:image: {}
+        f:dashboardInitContainer:
+          .: {}
+          f:yqImage: {}
+        f:db:
+          .: {}
+          f:image: {}
+        f:distribution: {}
+        f:exporter:
+          .: {}
+          f:image: {}
+        f:initContainer:
+          .: {}
+          f:image: {}
+          f:yqImage: {}
+        f:podSecurityPolicies:
+          .: {}
+          f:databasePolicyName: {}
+        f:securityContext:
+          .: {}
+          f:runAsAnyNonRoot: {}
+          f:runAsUser: {}
+        f:stash:
+          .: {}
+          f:addon:
+            .: {}
+            f:backupTask:
+              .: {}
+              f:name: {}
+              f:params: {}
+            f:restoreTask:
+              .: {}
+              f:name: {}
+              f:params: {}
+        f:updateConstraints:
+          .: {}
+          f:allowlist: {}
+        f:version: {}
+    manager: helm
+    operation: Update
+    time: "2025-04-28T11:28:31Z"
+  name: xpack-7.17.27
+  resourceVersion: "59267"
+  uid: 3bc00beb-962b-4633-a907-0ebcf6a71df5
+spec:
+  authPlugin: X-Pack
+  dashboard:
+    image: ghcr.io/appscode-images/kibana:7.17.27
+  dashboardInitContainer:
+    yqImage: ghcr.io/kubedb/elasticsearch-dashboard-init:7.17.27-xpack-v2025.02.28
+  db:
+    image: ghcr.io/appscode-images/elastic:7.17.27
+  distribution: ElasticStack
+  exporter:
+    image: prometheuscommunity/elasticsearch-exporter:v1.7.0
+  initContainer:
+    image: tianon/toybox:0.8.11
+    yqImage: ghcr.io/kubedb/elasticsearch-init:7.17.27-xpack-v2025.02.28
+  podSecurityPolicies:
+    databasePolicyName: ""
+  securityContext:
+    runAsAnyNonRoot: true
+    runAsUser: 1000
+  stash:
+    addon:
+      backupTask:
+        name: elasticsearch-backup-8.2.0
+        params:
+        - name: args
+          value: --match=^(?![.])(?!apm-agent-configuration)(?!kubedb-system).+
+      restoreTask:
+        name: elasticsearch-restore-8.2.0
+        params:
+        - name: args
+          value: --match=^(?![.])(?!apm-agent-configuration)(?!kubedb-system).+
+  updateConstraints:
+    allowlist:
+    - '>= 7.17.27, < 9.0.0'
+  version: 7.17.27

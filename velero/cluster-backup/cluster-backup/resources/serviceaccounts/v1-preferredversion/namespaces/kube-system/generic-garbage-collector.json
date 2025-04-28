@@ -1,0 +1,1 @@
+{"apiVersion":"v1","kind":"ServiceAccount","metadata":{"creationTimestamp":"2025-04-16T10:54:59Z","name":"generic-garbage-collector","namespace":"kube-system","resourceVersion":"279","uid":"046f6d61-9284-44da-aae1-191455b68364"}}

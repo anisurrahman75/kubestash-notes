@@ -1,0 +1,75 @@
+addressType: IPv4
+apiVersion: discovery.k8s.io/v1
+endpoints:
+- addresses:
+  - 10.244.0.17
+  conditions:
+    ready: true
+    serving: true
+    terminating: false
+  nodeName: kind-control-plane
+  targetRef:
+    kind: Pod
+    name: kubedb-petset-57f469fc58-lsnj6
+    namespace: kubedb
+    uid: 36260d49-98bf-4259-a798-50f1e20e59be
+kind: EndpointSlice
+metadata:
+  annotations:
+    endpoints.kubernetes.io/last-change-trigger-time: "2025-04-28T11:28:51Z"
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  generateName: kubedb-petset-
+  generation: 2
+  labels:
+    app.kubernetes.io/instance: kubedb
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: petset
+    app.kubernetes.io/version: v0.0.10
+    endpointslice.kubernetes.io/managed-by: endpointslice-controller.k8s.io
+    helm.sh/chart: petset-v2025.3.14
+    kubernetes.io/service-name: kubedb-petset
+  managedFields:
+  - apiVersion: discovery.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:addressType: {}
+      f:endpoints: {}
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:endpoints.kubernetes.io/last-change-trigger-time: {}
+        f:generateName: {}
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/managed-by: {}
+          f:app.kubernetes.io/name: {}
+          f:app.kubernetes.io/version: {}
+          f:endpointslice.kubernetes.io/managed-by: {}
+          f:helm.sh/chart: {}
+          f:kubernetes.io/service-name: {}
+        f:ownerReferences:
+          .: {}
+          k:{"uid":"dce8dda3-66bf-4a2b-ba16-06183c4757f5"}: {}
+      f:ports: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2025-04-28T11:28:51Z"
+  name: kubedb-petset-bv45c
+  namespace: kubedb
+  ownerReferences:
+  - apiVersion: v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Service
+    name: kubedb-petset
+    uid: dce8dda3-66bf-4a2b-ba16-06183c4757f5
+  resourceVersion: "59567"
+  uid: 0c173c60-b64b-4f14-829c-05f262153cbd
+ports:
+- name: metrics
+  port: 8443
+  protocol: TCP
+- name: https
+  port: 9443
+  protocol: TCP

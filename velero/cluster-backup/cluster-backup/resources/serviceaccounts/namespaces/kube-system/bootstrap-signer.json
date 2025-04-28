@@ -1,0 +1,1 @@
+{"apiVersion":"v1","kind":"ServiceAccount","metadata":{"creationTimestamp":"2025-04-16T10:55:03Z","name":"bootstrap-signer","namespace":"kube-system","resourceVersion":"341","uid":"087de992-26aa-4efa-8e5c-cfbeded5d34b"}}

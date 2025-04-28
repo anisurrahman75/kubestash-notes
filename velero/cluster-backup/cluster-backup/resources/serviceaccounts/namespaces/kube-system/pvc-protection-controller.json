@@ -1,0 +1,1 @@
+{"apiVersion":"v1","kind":"ServiceAccount","metadata":{"creationTimestamp":"2025-04-16T10:54:59Z","name":"pvc-protection-controller","namespace":"kube-system","resourceVersion":"280","uid":"d0a85744-07f5-495d-b73b-537877bda790"}}

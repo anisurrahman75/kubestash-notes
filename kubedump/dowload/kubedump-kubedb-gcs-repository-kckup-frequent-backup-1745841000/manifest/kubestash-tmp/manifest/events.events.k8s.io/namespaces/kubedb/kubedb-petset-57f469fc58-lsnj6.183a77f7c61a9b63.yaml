@@ -1,0 +1,47 @@
+apiVersion: events.k8s.io/v1
+deprecatedCount: 1
+deprecatedFirstTimestamp: "2025-04-28T11:28:31Z"
+deprecatedLastTimestamp: "2025-04-28T11:28:31Z"
+deprecatedSource:
+  component: kubelet
+  host: kind-control-plane
+eventTime: null
+kind: Event
+metadata:
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:reportingComponent: {}
+      f:reportingInstance: {}
+      f:source:
+        f:component: {}
+        f:host: {}
+      f:type: {}
+    manager: kubelet
+    operation: Update
+    time: "2025-04-28T11:28:31Z"
+  name: kubedb-petset-57f469fc58-lsnj6.183a77f7c61a9b63
+  namespace: kubedb
+  resourceVersion: "59491"
+  uid: 096876e5-e9be-48a1-a383-4c34bb74be23
+note: Pulling image "ghcr.io/appscode/petset:v0.0.10"
+reason: Pulling
+regarding:
+  apiVersion: v1
+  fieldPath: spec.containers{operator}
+  kind: Pod
+  name: kubedb-petset-57f469fc58-lsnj6
+  namespace: kubedb
+  resourceVersion: "59287"
+  uid: 36260d49-98bf-4259-a798-50f1e20e59be
+reportingController: kubelet
+reportingInstance: kind-control-plane
+type: Normal

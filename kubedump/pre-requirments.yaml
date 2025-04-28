@@ -1,49 +1,166 @@
+apiVersion: addons.kubestash.com/v1alpha1
+kind: Function
+metadata:
+  name: kubedump-backup
+spec:
+  args:
+  - backup
+  - --namespace=${namespace:=default}
+  - --backupsession=${backupSession:=}
+  - --enable-cache=${enableCache:=}
+  - --scratch-dir=${scratchDir:=}
+  - --sanitize=${sanitize:=false}
+  - --and-label-selectors=${ANDedLabelSelector:=}
+  - --or-label-selectors=${ORedLabelSelector:=}
+  - --include-cluster-resources=${IncludeClusterResources:=}
+  - --include-namespaces=${IncludeNamespaces:=}
+  - --include-resources=${IncludeResources:=}
+  - --exclude-resources=${ExcludeResources:=}
+  - --exclude-namespaces=${ExcludeNamespaces:=}
+  image: ghcr.io/anisurrahman75/kubedump:kubedump-restore_linux_amd64116
+
+---
 
 apiVersion: addons.kubestash.com/v1alpha1
 kind: Function
 metadata:
-  name: kubedump-kubernetes-resources-backup
-spec: 
-  image: anisurrahman75/kubedump:kubedump-implementation_linux_amd64
+  name: kubedump-restore
+spec:
   args:
-  - backup
-  - --scratch-dir=/tmp
-  - --enable-cache=${ENABLE_CACHE:=true}
-  - --sanitize=${sanitize:=true}
-  - --label-selector=${labelSelector:=}
-  - --include-dependants=${includeDependants:=false}
+  - restore
   - --namespace=${namespace:=default}
-  - --backupsession=${backupSession:=}
+  - --restoresession=${restoreSession:=}
+  - --snapshot=${snapshot:=}
+  - --enable-cache=${enableCache:=}
+  - --scratch-dir=${scratchDir:=}
+  - --include-cluster-resources=${IncludeClusterResources:=}
+  - --include-namespaces=${IncludeNamespaces:=}
+  - --include-resources=${IncludeResources:=}
+  - --exclude-resources=${ExcludeResources:=}
+  - --exclude-namespaces=${ExcludeNamespaces:=}
+  - --override-resources=${OverrideResources:=}
+  - --storage-class-mappings=${StorageClassMappings:=}
+  - --restore-pvs=${RestorePVs:=}
+  image: ghcr.io/anisurrahman75/kubedump:kubedump-restore_linux_amd64116
 
 ---
 
 apiVersion: addons.kubestash.com/v1alpha1
 kind: Addon
 metadata:
-  name: kubedump-kubernetes-resources-addon
+  name: kubedump-addon
 spec:
   backupTasks:
-    - name: kubernetes-resources-backup
-      function: kubedump-kubernetes-resources-backup
-      singleton: true
-      driver: Restic
-      parameters:
-      - name: labelSelector
-      - name: includeDependants
+  - name: manifest-backup
+    function: kubedump-backup
+    driver: Restic
+    executor: Job
+    singleton: true
+    parameters:
+    - name: enableCache
+      usage: Enable or disable caching. Disabling caching may impact backup performance.
+      required: false
+      default: "true"
+    - name: scratchDir
+      usage: Directory for holding temporary files and restic cache.
+      required: false
+      default: /kubestash-tmp    
+    - default: "true"
+      name: sanitize
+      required: false
+      usage: Specify whether to remove the decorators from the resource YAML.
+    - name: labelSelector
+      default: ""
+      usage: Specify a label selector to filter the resources.
+      required: false
+    - name: IncludeClusterResources
+      default: "false"
+      usage: "Specify whether to backup cluster scoped resources"
+      required: false
+    - name: IncludeNamespaces
+      default: ""
+      usage: Namespaces to include in backup (comma-separated, e.g., 'default,kube-system')
+      required: false
+    - name: ExcludeNamespaces
+      default: ""
+      usage: Namespaces to exclude from backup (comma-separated, e.g., 'kube-public,temp')
+      required: false
+    - name: IncludeResources
+      default: ""
+      usage: Resource types to include (comma-separated, e.g., 'pods,deployments')
+      required: false
+    - name: ExcludeResources
+      default: ""
+      usage: Resource types to exclude (comma-separated, e.g., 'secrets,configmaps')
+      required: false
+    - name: ANDedLabelSelector
+      default: ""
+      usage: A set of labels, all of which need to be matched to filter the resources
+      required: false
+    - name: ORedLabelSelector
+      default: ""
+      usage: A set of labels, a subset of which need to be matched to filter the resources
+      required: false
+    volumeTemplate:
+    - name: kubestash-tmp-volume
+      usage: Holds temporary files and restic cache.
+      source:
+        emptyDir: {}
+    volumeMounts:
+    - name: kubestash-tmp-volume
+      mountPath: /kubestash-tmp
+  restoreTasks:
+  - name: manifest-restore
+    function: kubedump-restore
+    driver: Restic
+    executor: Job
+    parameters:
+      - default: "true"
+        name: enableCache
+        required: false
+        usage: Enable or disable caching. Disabling caching may impact backup performance.
+      - default: /kubestash-tmp
+        name: scratchDir
+        required: false
+        usage: Directory for holding temporary files and restic cache.
+      - name: IncludeClusterResources
         default: "false"
-      - name: sanitize
-        default: "true"
-
----
-
-apiVersion: storage.kubestash.com/v1alpha1
-kind: RetentionPolicy
-metadata:
-  name: kubedump-rp
-spec:
-  maxRetentionPeriod: 2mo
-  successfulSnapshots:
-    last: 10
-  usagePolicy:
-    allowedNamespaces:
-      from: All
+        usage: "Specify whether to restore cluster scoped resources"
+        required: false
+      - name: IncludeNamespaces
+        default: ""
+        usage: Namespaces to include in restore (comma-separated, e.g., 'default,kube-system')
+        required: false
+      - name: ExcludeNamespaces
+        default: ""
+        usage: Namespaces to exclude from restore (comma-separated, e.g., 'kube-public,temp')
+        required: false
+      - name: IncludeResources
+        default: ""
+        usage: Resource types to include (comma-separated, e.g., 'pods,deployments')
+        required: false
+      - name: ExcludeResources
+        default: ""
+        usage: Resource types to exclude (comma-separated, e.g., 'secrets,configmaps')
+        required: false
+      - default: "false"
+        name: OverrideResources
+        usage: Specify whether to override resources while restoring
+      - name: StorageClassMappings
+        default: ""
+        usage: Storage class mappings for restoring PVCs (comma-separated, e.g., 'old-sc:new-sc')
+        required: false
+      - name: RestorePVs
+        default: "false"
+        usage: Specify whether to restore PVs
+        required: false
+    singleton: true
+    volumeMounts:
+      - mountPath: /kubestash-tmp
+        name: kubestash-tmp-volume
+    volumeTemplate:
+      - name: kubestash-tmp-volume
+        source:
+          emptyDir: { }
+        usage: Holds temporary files and restic cache.
+  

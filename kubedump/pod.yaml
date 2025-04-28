@@ -1,0 +1,115 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    batch.kubernetes.io/controller-uid: e70f8a74-19a4-44b7-a863-d2bd2dde039b
+    batch.kubernetes.io/job-name: default-gcs-backup-kopia-maintain-job-1745413574391
+    job-name: default-gcs-backup-kopia-maintain-job-1745413574391
+    velero.io/repo-name: default-gcs-backup-kopia
+  name: default-gcs-backup-kopia-maintain-job-1745413574391-lnzmg
+  namespace: velero
+  ownerReferences:
+  - apiVersion: batch/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: Job
+    name: default-gcs-backup-kopia-maintain-job-1745413574391
+    uid: e70f8a74-19a4-44b7-a863-d2bd2dde039b
+  resourceVersion: "228056"
+  uid: a31cebd2-871b-4bd2-b5f2-09bfaaa60b54
+spec:
+  containers:
+  - args:
+    - repo-maintenance
+    - --repo-name=default
+    - --repo-type=kopia
+    - --backup-storage-location=gcs-backup
+    - --log-level=info
+    - --log-format=text
+    command:
+    - /velero
+    env:
+    - name: VELERO_SCRATCH_DIR
+      value: /scratch
+    - name: VELERO_NAMESPACE
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.namespace
+    - name: LD_LIBRARY_PATH
+      value: /plugins
+    - name: AWS_SHARED_CREDENTIALS_FILE
+      value: /credentials/cloud
+    - name: GOOGLE_APPLICATION_CREDENTIALS
+      value: /credentials/cloud
+    - name: AZURE_CREDENTIALS_FILE
+      value: /credentials/cloud
+    - name: ALIBABA_CLOUD_CREDENTIALS_FILE
+      value: /credentials/cloud
+    image: anisurrahman75/velero:main-linux-amd64
+    imagePullPolicy: IfNotPresent
+    name: velero-repo-maintenance-container
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: FallbackToLogsOnError
+    volumeMounts:
+    - mountPath: /plugins
+      name: plugins
+    - mountPath: /credentials
+      name: cloud-credentials
+    - mountPath: /scratch
+      name: scratch
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-txnqb
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: kind-control-plane
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Never
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: velero-server
+  serviceAccountName: velero-server
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoSchedule
+    key: os
+    operator: Equal
+    value: windows
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: cloud-credentials
+    secret:
+      defaultMode: 420
+      secretName: velero
+  - emptyDir: {}
+    name: plugins
+  - emptyDir: {}
+    name: scratch
+  - name: kube-api-access-txnqb
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace

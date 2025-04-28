@@ -1,0 +1,48 @@
+apiVersion: v1
+count: 1
+eventTime: null
+firstTimestamp: "2025-04-28T11:27:43Z"
+involvedObject:
+  apiVersion: v1
+  fieldPath: spec.initContainers{kubedb-crd-manager}
+  kind: Pod
+  name: kubedb-kubedb-crd-manager-lgvb2
+  namespace: kubedb
+  resourceVersion: "58972"
+  uid: 204d0c39-138b-49f5-b55d-b5b885cbe06b
+kind: Event
+lastTimestamp: "2025-04-28T11:27:43Z"
+message: 'Successfully pulled image "ghcr.io/kubedb/kubedb-crd-manager:v0.8.0" in
+  8.505s (8.505s including waiting). Image size: 57842027 bytes.'
+metadata:
+  creationTimestamp: "2025-04-28T11:27:43Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:reportingComponent: {}
+      f:reportingInstance: {}
+      f:source:
+        f:component: {}
+        f:host: {}
+      f:type: {}
+    manager: kubelet
+    operation: Update
+    time: "2025-04-28T11:27:43Z"
+  name: kubedb-kubedb-crd-manager-lgvb2.183a77ec81a2cbcb
+  namespace: kubedb
+  resourceVersion: "58986"
+  uid: 5aa67427-1ccc-44e2-880c-f54f8de801e9
+reason: Pulled
+reportingComponent: kubelet
+reportingInstance: kind-control-plane
+source:
+  component: kubelet
+  host: kind-control-plane
+type: Normal

@@ -1,0 +1,1 @@
+{"apiVersion":"v1","kind":"ServiceAccount","metadata":{"creationTimestamp":"2025-04-16T10:55:03Z","name":"endpointslice-controller","namespace":"kube-system","resourceVersion":"343","uid":"fa0cffb5-22e8-461f-aa93-d59ba5536dc2"}}

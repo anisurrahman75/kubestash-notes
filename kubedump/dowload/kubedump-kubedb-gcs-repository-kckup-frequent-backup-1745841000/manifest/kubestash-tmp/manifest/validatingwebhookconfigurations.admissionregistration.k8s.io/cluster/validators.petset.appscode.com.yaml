@@ -1,0 +1,86 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: ValidatingWebhookConfiguration
+metadata:
+  annotations:
+    meta.helm.sh/release-name: kubedb
+    meta.helm.sh/release-namespace: kubedb
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/instance: kubedb
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: petset
+    app.kubernetes.io/version: v0.0.10
+    helm.sh/chart: petset-v2025.3.14
+  managedFields:
+  - apiVersion: admissionregistration.k8s.io/v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:meta.helm.sh/release-name: {}
+          f:meta.helm.sh/release-namespace: {}
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/managed-by: {}
+          f:app.kubernetes.io/name: {}
+          f:app.kubernetes.io/version: {}
+          f:helm.sh/chart: {}
+      f:webhooks:
+        .: {}
+        k:{"name":"petsets.apps.k8s.appscode.com"}:
+          .: {}
+          f:admissionReviewVersions: {}
+          f:clientConfig:
+            .: {}
+            f:caBundle: {}
+            f:service:
+              .: {}
+              f:name: {}
+              f:namespace: {}
+              f:path: {}
+              f:port: {}
+          f:failurePolicy: {}
+          f:matchPolicy: {}
+          f:name: {}
+          f:namespaceSelector: {}
+          f:objectSelector: {}
+          f:rules: {}
+          f:sideEffects: {}
+          f:timeoutSeconds: {}
+    manager: helm
+    operation: Update
+    time: "2025-04-28T11:28:31Z"
+  name: validators.petset.appscode.com
+  resourceVersion: "59486"
+  uid: 45ab2f09-1b53-4c1d-b95c-be30423d2bca
+webhooks:
+- admissionReviewVersions:
+  - v1
+  clientConfig:
+    caBundle: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lRWlpaRHBQNmlzd0h4aWd3bFBTYTFhakFOQmdrcWhraUc5dzBCQVFzRkFEQU4KTVFzd0NRWURWUVFERXdKallUQWVGdzB5TlRBME1qZ3hNVEkzTWpWYUZ3MHpOVEEwTWpZeE1USTNNalZhTUEweApDekFKQmdOVkJBTVRBbU5oTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEFNSUlCQ2dLQ0FRRUF3VXVHClp2aStZdkdERU53T1dyS0o3YTYvNTVKbjV6Q1lIOS94WUpOK0EzdHV1UXRSYXhjTVJJcGU2RExGTFcrR2VieUYKc1dSRE5RQ1JCZEx3bllXbHJEOXNhcU40TFJlVHJPWXk2NU1ZeGJVbjhLMjdTeE9TTFhxdFBCRXA5YTZsVzJxSQpZMmRtWkN1MHRpUTE3K3ZlWEErdCtWTTIyNnpLell5MDNWL29wcWNqTXpwK2Z2NHRMd1lKeVdKS0tiZzd1d2gyCjZrRER0QXBGNG90M1c2SEtGdDd2alpSeHdsU0FnK1FuRzNjbWh6d1lBUkVXekV6R3dUakMxcUp0Z3RsRGhwS2gKM3hDZmNycCt5UCs5Y0V6WXZHeVpTZi9PTVczS2p2VDFuWVA1L2JLVjFONzVCRTBnY2pDdldQNVdndlVtQ2dCZQp5VzNmbzF6UVYrSk14bGxuM3dJREFRQUJvMkV3WHpBT0JnTlZIUThCQWY4RUJBTUNBcVF3SFFZRFZSMGxCQll3CkZBWUlLd1lCQlFVSEF3RUdDQ3NHQVFVRkJ3TUNNQThHQTFVZEV3RUIvd1FGTUFNQkFmOHdIUVlEVlIwT0JCWUUKRkpqVjNTMEpTd2ZkeEFndDkyem11blBkdENOTk1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQjZuNjNOS3NVaApPZHgzRzRjWHl2d2t0WXVRWkMyaDZ3NVFkN0lxUkVCd21HL3hHT2kvOXRRREFaSC9jZXR0OVlaOVhhOTRFOVlKCi9oZ1RXSFA3M3RRNzJDKzBBZlpmcnNOYlY0Ny9UKzNIZjVsRGtzZkhnRU9nNUFEUmVibjdrM3Bvd2NEejBPVmMKcHdaNUpSdmYvVUhDQVRkVU5yTnhLQUZTNVVwTlhyM0kvUnZGU0hLc2FHem9wM3JYdDNkNlhNY2ZsK0FUU0QyTgpuT3RUZzQ1c0hxOHVTT3VZWUszWXEvZDA2K2h4QjVIR3VLamhnR3IveUU1a3Q4UHg5djQvMEYrVEF4V0Q4U1NBCnRSQi9mZ0J2cjA4cFEzRTFlUWVaTCs2Q0FSYm9Fb1grbGRXQitBK1VqbTBidXk3cVRySy90OFI0V09SR0t4UUUKcnlmZm5FY0RjamM4Ci0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    service:
+      name: kubedb-petset
+      namespace: kubedb
+      path: /validate-apps-k8s-appscode-com-v1-petset
+      port: 443
+  failurePolicy: Fail
+  matchPolicy: Equivalent
+  name: petsets.apps.k8s.appscode.com
+  namespaceSelector: {}
+  objectSelector: {}
+  rules:
+  - apiGroups:
+    - apps.k8s.appscode.com
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    - UPDATE
+    resources:
+    - petsets
+    scope: '*'
+  sideEffects: None
+  timeoutSeconds: 10

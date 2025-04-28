@@ -1,0 +1,48 @@
+apiVersion: v1
+data:
+  ca.crt: |
+    -----BEGIN CERTIFICATE-----
+    MIIDBTCCAe2gAwIBAgIIcx/uYv+XkycwDQYJKoZIhvcNAQELBQAwFTETMBEGA1UE
+    AxMKa3ViZXJuZXRlczAeFw0yNTA0MjUxMDExMzNaFw0zNTA0MjMxMDE2MzNaMBUx
+    EzARBgNVBAMTCmt1YmVybmV0ZXMwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEK
+    AoIBAQCfaKsJCWP9NHzeebFVQW2WgrMKEGbD2i4WzbGIZsygpO9pF1wolZzYIH6q
+    677DTJkNWoOXV/osjeEzobyqYPAIKoSgsLwVLvvP1B1IIDl9WcUJhFFQh2SxoI9G
+    iz+Caz/eRknLDHjXbIH0yl6RqK5cWGcylGaW+t6kF3vP2+ABPFY/2L2GKZ1hVX4t
+    +gYzZa+Go7xZ1bdmNsxeCfUoBYjNE+RG7nCL5Bfttd2SKnSPYE+oEQRkJj0qKi4C
+    xV9Fg0JrxvY8InOGJNb8/xb7+VyvgH7hjwFBSWbDgx73VlyH8vEBRWEAY0V1TFs9
+    Y+FE6n/SNAwt33Qf90wj8KBXzgjdAgMBAAGjWTBXMA4GA1UdDwEB/wQEAwICpDAP
+    BgNVHRMBAf8EBTADAQH/MB0GA1UdDgQWBBSc+BzUIkuXFnLf3PMXgBa5cX+8ITAV
+    BgNVHREEDjAMggprdWJlcm5ldGVzMA0GCSqGSIb3DQEBCwUAA4IBAQAWu7Ln0njc
+    6PLl8V14ohxHpp3n8x46k7cR9/VC+ra8GNQYf8OZGDd4/gCOH61mrH5JoamBpLGJ
+    9PLGxXL5nZSKUaoVsqMWsEE6kHo+iLqT/KVjmPnSyRqBIKrXLe+pEXzhbhnHFIi3
+    3Np/zywi/hhAXd5qMz2GyjcCDYnCEYRkFx1ovWfi1+16sOTV9UKLQQ4nr3m0NNcX
+    VFsFFngAWM0CrDtx1rfiDHvA04UOzunRlxyvOHwNKBNsIgj+grqC6zLZZrQINn66
+    d64Q5LgnUdjFzD4u0MPyaLLqTfJuo3kE7WSR8u/W9q+EH1Yx4tKMwW+dKrrRu01R
+    u8s7dWFsPjF4
+    -----END CERTIFICATE-----
+kind: ConfigMap
+metadata:
+  annotations:
+    kubernetes.io/description: Contains a CA bundle that can be used to verify the
+      kube-apiserver when using internal endpoints such as the internal service IP
+      or kubernetes.default.svc. No other usage is guaranteed across distributions
+      of Kubernetes clusters.
+  creationTimestamp: "2025-04-25T11:14:00Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:data:
+        .: {}
+        f:ca.crt: {}
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:kubernetes.io/description: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2025-04-25T11:14:00Z"
+  name: kube-root-ca.crt
+  namespace: kubedb
+  resourceVersion: "5324"
+  uid: 33743091-24e7-411c-b4ce-76dceb432176

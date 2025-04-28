@@ -1,0 +1,448 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    reload: pgbkRxLg
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  generateName: kubedb-kubedb-autoscaler-
+  labels:
+    app.kubernetes.io/instance: kubedb
+    app.kubernetes.io/name: kubedb-autoscaler
+    apps.kubernetes.io/pod-index: "0"
+    controller-revision-hash: kubedb-kubedb-autoscaler-6c84c6d5d9
+    statefulset.kubernetes.io/pod-name: kubedb-kubedb-autoscaler-0
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:reload: {}
+        f:generateName: {}
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/name: {}
+          f:apps.kubernetes.io/pod-index: {}
+          f:controller-revision-hash: {}
+          f:statefulset.kubernetes.io/pod-name: {}
+        f:ownerReferences:
+          .: {}
+          k:{"uid":"e788ada6-69a9-43bb-9451-d3db929befe8"}: {}
+      f:spec:
+        f:containers:
+          k:{"name":"operator"}:
+            .: {}
+            f:args: {}
+            f:env:
+              .: {}
+              k:{"name":"POD_NAME"}:
+                .: {}
+                f:name: {}
+                f:valueFrom:
+                  .: {}
+                  f:fieldRef: {}
+              k:{"name":"POD_NAMESPACE"}:
+                .: {}
+                f:name: {}
+                f:valueFrom:
+                  .: {}
+                  f:fieldRef: {}
+            f:image: {}
+            f:imagePullPolicy: {}
+            f:livenessProbe:
+              .: {}
+              f:failureThreshold: {}
+              f:httpGet:
+                .: {}
+                f:path: {}
+                f:port: {}
+                f:scheme: {}
+              f:initialDelaySeconds: {}
+              f:periodSeconds: {}
+              f:successThreshold: {}
+              f:timeoutSeconds: {}
+            f:name: {}
+            f:ports:
+              .: {}
+              k:{"containerPort":8080,"protocol":"TCP"}:
+                .: {}
+                f:containerPort: {}
+                f:name: {}
+                f:protocol: {}
+              k:{"containerPort":8081,"protocol":"TCP"}:
+                .: {}
+                f:containerPort: {}
+                f:name: {}
+                f:protocol: {}
+            f:readinessProbe:
+              .: {}
+              f:failureThreshold: {}
+              f:httpGet:
+                .: {}
+                f:path: {}
+                f:port: {}
+                f:scheme: {}
+              f:initialDelaySeconds: {}
+              f:periodSeconds: {}
+              f:successThreshold: {}
+              f:timeoutSeconds: {}
+            f:resources: {}
+            f:securityContext:
+              .: {}
+              f:allowPrivilegeEscalation: {}
+              f:capabilities:
+                .: {}
+                f:drop: {}
+              f:readOnlyRootFilesystem: {}
+              f:runAsNonRoot: {}
+              f:runAsUser: {}
+              f:seccompProfile:
+                .: {}
+                f:type: {}
+            f:terminationMessagePath: {}
+            f:terminationMessagePolicy: {}
+            f:volumeMounts:
+              .: {}
+              k:{"mountPath":"/tmp"}:
+                .: {}
+                f:mountPath: {}
+                f:name: {}
+              k:{"mountPath":"/var/run/secrets/appscode/license"}:
+                .: {}
+                f:mountPath: {}
+                f:name: {}
+        f:dnsPolicy: {}
+        f:enableServiceLinks: {}
+        f:hostname: {}
+        f:initContainers:
+          .: {}
+          k:{"name":"wait"}:
+            .: {}
+            f:command: {}
+            f:image: {}
+            f:imagePullPolicy: {}
+            f:name: {}
+            f:resources: {}
+            f:securityContext:
+              .: {}
+              f:allowPrivilegeEscalation: {}
+              f:capabilities:
+                .: {}
+                f:drop: {}
+              f:readOnlyRootFilesystem: {}
+              f:runAsNonRoot: {}
+              f:runAsUser: {}
+              f:seccompProfile:
+                .: {}
+                f:type: {}
+            f:terminationMessagePath: {}
+            f:terminationMessagePolicy: {}
+        f:nodeSelector: {}
+        f:restartPolicy: {}
+        f:schedulerName: {}
+        f:securityContext: {}
+        f:serviceAccount: {}
+        f:serviceAccountName: {}
+        f:subdomain: {}
+        f:terminationGracePeriodSeconds: {}
+        f:volumes:
+          .: {}
+          k:{"name":"license"}:
+            .: {}
+            f:name: {}
+            f:secret:
+              .: {}
+              f:defaultMode: {}
+              f:secretName: {}
+          k:{"name":"tmpdir"}:
+            .: {}
+            f:emptyDir: {}
+            f:name: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2025-04-28T11:28:31Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        f:conditions:
+          k:{"type":"ContainersReady"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Initialized"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"PodReadyToStartContainers"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Ready"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:status: {}
+            f:type: {}
+        f:containerStatuses: {}
+        f:hostIP: {}
+        f:hostIPs: {}
+        f:initContainerStatuses: {}
+        f:phase: {}
+        f:podIP: {}
+        f:podIPs:
+          .: {}
+          k:{"ip":"10.244.0.21"}:
+            .: {}
+            f:ip: {}
+        f:startTime: {}
+    manager: kubelet
+    operation: Update
+    subresource: status
+    time: "2025-04-28T11:30:24Z"
+  name: kubedb-kubedb-autoscaler-0
+  namespace: kubedb
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: StatefulSet
+    name: kubedb-kubedb-autoscaler
+    uid: e788ada6-69a9-43bb-9451-d3db929befe8
+  resourceVersion: "59746"
+  uid: 5ba97215-8a73-4492-9516-073c5cd70b49
+spec:
+  containers:
+  - args:
+    - operator
+    - --v=5
+    - --use-kubeapiserver-fqdn-for-aks=true
+    - --metrics-bind-address=:8080
+    - --health-probe-bind-address=:8081
+    - --update-interval=1m
+    - --prometheus-address=http://prometheus-operated.monitoring.svc:9090
+    - --memory-aggregation-interval=4m0s
+    - --memory-aggregation-interval-count=3
+    - --memory-histogram-decay-half-life=5m0s
+    - --cpu-histogram-decay-half-life=5m0s
+    - --license-file=/var/run/secrets/appscode/license/key.txt
+    env:
+    - name: POD_NAME
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.name
+    - name: POD_NAMESPACE
+      valueFrom:
+        fieldRef:
+          apiVersion: v1
+          fieldPath: metadata.namespace
+    image: ghcr.io/kubedb/kubedb-autoscaler:v0.38.0
+    imagePullPolicy: IfNotPresent
+    livenessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /healthz
+        port: probes
+        scheme: HTTP
+      initialDelaySeconds: 15
+      periodSeconds: 20
+      successThreshold: 1
+      timeoutSeconds: 1
+    name: operator
+    ports:
+    - containerPort: 8080
+      name: metrics
+      protocol: TCP
+    - containerPort: 8081
+      name: probes
+      protocol: TCP
+    readinessProbe:
+      failureThreshold: 3
+      httpGet:
+        path: /readyz
+        port: probes
+        scheme: HTTP
+      initialDelaySeconds: 5
+      periodSeconds: 10
+      successThreshold: 1
+      timeoutSeconds: 1
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      readOnlyRootFilesystem: true
+      runAsNonRoot: true
+      runAsUser: 65534
+      seccompProfile:
+        type: RuntimeDefault
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /tmp
+      name: tmpdir
+    - mountPath: /var/run/secrets/appscode/license
+      name: license
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-944g6
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  hostname: kubedb-kubedb-autoscaler-0
+  initContainers:
+  - command:
+    - /bin/sh
+    - -c
+    - kubectl wait --for=create -n kubedb service -l 'app.kubernetes.io/name=kubedb-webhook-server'
+      --timeout=5m && kubectl wait --for=condition=kubedb.com/conversion=true -n kubedb
+      pods -l 'app.kubernetes.io/instance=kubedb,app.kubernetes.io/name=kubedb-webhook-server'
+      --timeout=5m
+    image: ghcr.io/appscode/kubectl-nonroot:1.31
+    imagePullPolicy: IfNotPresent
+    name: wait
+    resources: {}
+    securityContext:
+      allowPrivilegeEscalation: false
+      capabilities:
+        drop:
+        - ALL
+      readOnlyRootFilesystem: true
+      runAsNonRoot: true
+      runAsUser: 65534
+      seccompProfile:
+        type: RuntimeDefault
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-944g6
+      readOnly: true
+  nodeName: kind-control-plane
+  nodeSelector:
+    kubernetes.io/os: linux
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: kubedb-kubedb-autoscaler
+  serviceAccountName: kubedb-kubedb-autoscaler
+  subdomain: kubedb-kubedb-autoscaler-headless
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - emptyDir: {}
+    name: tmpdir
+  - name: license
+    secret:
+      defaultMode: 420
+      secretName: kubedb-kubedb-autoscaler-license
+  - name: kube-api-access-944g6
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2025-04-28T11:28:31Z"
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2025-04-28T11:29:13Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2025-04-28T11:30:24Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2025-04-28T11:30:24Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2025-04-28T11:28:31Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://b4383980d07ced88b6ccc9a805452d4221e3870dc9493744b34b6574a70c9e3b
+    image: ghcr.io/kubedb/kubedb-autoscaler:v0.38.0
+    imageID: ghcr.io/kubedb/kubedb-autoscaler@sha256:71d682cd10c4503bdc221649dc489082cd4add2b27f9524bda6ee169f199aad9
+    lastState: {}
+    name: operator
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2025-04-28T11:30:12Z"
+    volumeMounts:
+    - mountPath: /tmp
+      name: tmpdir
+    - mountPath: /var/run/secrets/appscode/license
+      name: license
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-944g6
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 172.18.0.2
+  hostIPs:
+  - ip: 172.18.0.2
+  initContainerStatuses:
+  - containerID: containerd://149c34b6be7003fea93bbf2bb34ff78fdab3f82092944af05f27d1f88bcb584e
+    image: ghcr.io/appscode/kubectl-nonroot:1.31
+    imageID: ghcr.io/appscode/kubectl-nonroot@sha256:0b2cf165f415e4257d8d892305cd6fefd040742b45deb1f9938f3ec5546cc2c1
+    lastState: {}
+    name: wait
+    ready: true
+    restartCount: 0
+    started: false
+    state:
+      terminated:
+        containerID: containerd://149c34b6be7003fea93bbf2bb34ff78fdab3f82092944af05f27d1f88bcb584e
+        exitCode: 0
+        finishedAt: "2025-04-28T11:29:12Z"
+        reason: Completed
+        startedAt: "2025-04-28T11:28:31Z"
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-944g6
+      readOnly: true
+      recursiveReadOnly: Disabled
+  phase: Running
+  podIP: 10.244.0.21
+  podIPs:
+  - ip: 10.244.0.21
+  qosClass: BestEffort
+  startTime: "2025-04-28T11:28:31Z"

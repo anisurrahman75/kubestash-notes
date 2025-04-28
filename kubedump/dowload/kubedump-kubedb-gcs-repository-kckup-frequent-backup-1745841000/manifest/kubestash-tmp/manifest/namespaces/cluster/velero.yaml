@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: "2025-04-25T12:17:09Z"
+  labels:
+    kubernetes.io/metadata.name: velero
+    name: velero
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:labels:
+          .: {}
+          f:kubernetes.io/metadata.name: {}
+          f:name: {}
+    manager: helm
+    operation: Update
+    time: "2025-04-25T12:17:09Z"
+  name: velero
+  resourceVersion: "13769"
+  uid: 1fe46bfc-ae43-4dfe-a189-776d24c4aae8
+spec:
+  finalizers:
+  - kubernetes
+status:
+  phase: Active

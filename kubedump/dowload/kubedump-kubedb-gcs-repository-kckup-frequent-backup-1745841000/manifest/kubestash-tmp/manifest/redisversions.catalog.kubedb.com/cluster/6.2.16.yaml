@@ -1,0 +1,93 @@
+apiVersion: catalog.kubedb.com/v1alpha1
+kind: RedisVersion
+metadata:
+  annotations:
+    meta.helm.sh/release-name: kubedb
+    meta.helm.sh/release-namespace: kubedb
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  generation: 1
+  labels:
+    app.kubernetes.io/instance: kubedb
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/name: kubedb-catalog
+    app.kubernetes.io/version: v2025.3.24
+    helm.sh/chart: kubedb-catalog-v2025.3.24
+  managedFields:
+  - apiVersion: catalog.kubedb.com/v1alpha1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:meta.helm.sh/release-name: {}
+          f:meta.helm.sh/release-namespace: {}
+        f:labels:
+          .: {}
+          f:app.kubernetes.io/instance: {}
+          f:app.kubernetes.io/managed-by: {}
+          f:app.kubernetes.io/name: {}
+          f:app.kubernetes.io/version: {}
+          f:helm.sh/chart: {}
+      f:spec:
+        .: {}
+        f:coordinator:
+          .: {}
+          f:image: {}
+        f:db:
+          .: {}
+          f:image: {}
+        f:exporter:
+          .: {}
+          f:image: {}
+        f:initContainer:
+          .: {}
+          f:image: {}
+        f:podSecurityPolicies:
+          .: {}
+          f:databasePolicyName: {}
+        f:securityContext:
+          .: {}
+          f:runAsUser: {}
+        f:stash:
+          .: {}
+          f:addon:
+            .: {}
+            f:backupTask:
+              .: {}
+              f:name: {}
+            f:restoreTask:
+              .: {}
+              f:name: {}
+        f:updateConstraints:
+          .: {}
+          f:allowlist: {}
+        f:version: {}
+    manager: helm
+    operation: Update
+    time: "2025-04-28T11:28:31Z"
+  name: 6.2.16
+  resourceVersion: "59480"
+  uid: 2c9fee80-5ce3-4309-bea8-956f99d69734
+spec:
+  coordinator:
+    image: ghcr.io/kubedb/redis-coordinator:v0.32.0
+  db:
+    image: ghcr.io/appscode-images/redis:6.2.16-bookworm
+  exporter:
+    image: ghcr.io/kubedb/redis_exporter:1.66.0
+  initContainer:
+    image: ghcr.io/kubedb/redis-init:0.9.0
+  podSecurityPolicies:
+    databasePolicyName: ""
+  securityContext:
+    runAsUser: 999
+  stash:
+    addon:
+      backupTask:
+        name: redis-backup-6.2.5
+      restoreTask:
+        name: redis-restore-6.2.5
+  updateConstraints:
+    allowlist:
+    - '>= 6.2.16, < 7.0.16'
+  version: 6.2.16

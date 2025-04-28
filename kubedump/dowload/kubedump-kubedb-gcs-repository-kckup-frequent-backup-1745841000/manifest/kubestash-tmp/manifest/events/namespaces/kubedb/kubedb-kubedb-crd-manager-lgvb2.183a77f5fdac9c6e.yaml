@@ -1,0 +1,48 @@
+apiVersion: v1
+count: 1
+eventTime: null
+firstTimestamp: "2025-04-28T11:28:23Z"
+involvedObject:
+  apiVersion: v1
+  fieldPath: spec.containers{verifier}
+  kind: Pod
+  name: kubedb-kubedb-crd-manager-lgvb2
+  namespace: kubedb
+  resourceVersion: "58972"
+  uid: 204d0c39-138b-49f5-b55d-b5b885cbe06b
+kind: Event
+lastTimestamp: "2025-04-28T11:28:23Z"
+message: Container image "ghcr.io/kubedb/kubedb-crd-manager:v0.8.0" already present
+  on machine
+metadata:
+  creationTimestamp: "2025-04-28T11:28:23Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:reportingComponent: {}
+      f:reportingInstance: {}
+      f:source:
+        f:component: {}
+        f:host: {}
+      f:type: {}
+    manager: kubelet
+    operation: Update
+    time: "2025-04-28T11:28:23Z"
+  name: kubedb-kubedb-crd-manager-lgvb2.183a77f5fdac9c6e
+  namespace: kubedb
+  resourceVersion: "59109"
+  uid: 4ec29e5c-9b72-4913-a544-837f033d7d2a
+reason: Pulled
+reportingComponent: kubelet
+reportingInstance: kind-control-plane
+source:
+  component: kubelet
+  host: kind-control-plane
+type: Normal

@@ -1,0 +1,1 @@
+{"apiVersion":"v1","kind":"ServiceAccount","metadata":{"creationTimestamp":"2025-04-16T10:54:59Z","name":"job-controller","namespace":"kube-system","resourceVersion":"283","uid":"15f24541-bc46-4276-994a-c66244f7a6e7"}}

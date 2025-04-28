@@ -1,0 +1,42 @@
+apiVersion: events.k8s.io/v1
+deprecatedCount: 1
+deprecatedFirstTimestamp: "2025-04-28T11:28:31Z"
+deprecatedLastTimestamp: "2025-04-28T11:28:31Z"
+deprecatedSource:
+  component: deployment-controller
+eventTime: null
+kind: Event
+metadata:
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:reportingComponent: {}
+      f:source:
+        f:component: {}
+      f:type: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2025-04-28T11:28:31Z"
+  name: kubedb-sidekick.183a77f7a7b60f09
+  namespace: kubedb
+  resourceVersion: "59273"
+  uid: bcf7fc9b-c559-4015-965a-3b76261b59f0
+note: Scaled up replica set kubedb-sidekick-64557ff5dd from 0 to 1
+reason: ScalingReplicaSet
+regarding:
+  apiVersion: apps/v1
+  kind: Deployment
+  name: kubedb-sidekick
+  namespace: kubedb
+  resourceVersion: "59213"
+  uid: a5ffcea4-3a05-4f1a-b6d9-81579ced8c68
+reportingController: deployment-controller
+type: Normal

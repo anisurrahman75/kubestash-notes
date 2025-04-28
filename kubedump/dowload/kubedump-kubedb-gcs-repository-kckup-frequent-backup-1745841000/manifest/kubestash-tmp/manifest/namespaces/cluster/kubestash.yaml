@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  creationTimestamp: "2025-04-25T10:31:48Z"
+  labels:
+    kubernetes.io/metadata.name: kubestash
+    name: kubestash
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:labels:
+          .: {}
+          f:kubernetes.io/metadata.name: {}
+          f:name: {}
+    manager: helm
+    operation: Update
+    time: "2025-04-25T10:31:48Z"
+  name: kubestash
+  resourceVersion: "1644"
+  uid: 6fd969c0-37a7-464b-a39f-eae5c9631921
+spec:
+  finalizers:
+  - kubernetes
+status:
+  phase: Active

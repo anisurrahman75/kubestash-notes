@@ -1,0 +1,42 @@
+apiVersion: events.k8s.io/v1
+deprecatedCount: 1
+deprecatedFirstTimestamp: "2025-04-28T11:28:31Z"
+deprecatedLastTimestamp: "2025-04-28T11:28:31Z"
+deprecatedSource:
+  component: replicaset-controller
+eventTime: null
+kind: Event
+metadata:
+  creationTimestamp: "2025-04-28T11:28:31Z"
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:count: {}
+      f:firstTimestamp: {}
+      f:involvedObject: {}
+      f:lastTimestamp: {}
+      f:message: {}
+      f:reason: {}
+      f:reportingComponent: {}
+      f:source:
+        f:component: {}
+      f:type: {}
+    manager: kube-controller-manager
+    operation: Update
+    time: "2025-04-28T11:28:31Z"
+  name: kubedb-petset-57f469fc58.183a77f7aa076cce
+  namespace: kubedb
+  resourceVersion: "59288"
+  uid: 453c3b0c-067a-4b5b-b55f-bb888748c5f4
+note: 'Created pod: kubedb-petset-57f469fc58-lsnj6'
+reason: SuccessfulCreate
+regarding:
+  apiVersion: apps/v1
+  kind: ReplicaSet
+  name: kubedb-petset-57f469fc58
+  namespace: kubedb
+  resourceVersion: "59222"
+  uid: e5fb104b-c2ef-4b29-a460-70d8d10c88a6
+reportingController: replicaset-controller
+type: Normal
