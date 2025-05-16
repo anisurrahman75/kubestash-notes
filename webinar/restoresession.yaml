@@ -1,19 +1,21 @@
 apiVersion: core.kubestash.com/v1alpha1
 kind: RestoreSession
 metadata:
-  name: ace-resore
+  name: sample-restore
   namespace: demo
 spec:
+  target:
+    apiGroup: apps
+    kind: StatefulSet
+    name: sample-restore-sts
+    namespace: demo
   dataSource:
+    repository: s3-demo-repo
     snapshot: latest
-    repository: gcs-repository
     encryptionSecret:
       name: encrypt-secret
       namespace: demo
   addon:
-    name: ace-addon
+    name: workload-addon
     tasks:
-      - name: manifest-restore
-    jobTemplate:
-      spec:
-        serviceAccountName: cluster-resource-reader
+      - name: logical-backup-restore

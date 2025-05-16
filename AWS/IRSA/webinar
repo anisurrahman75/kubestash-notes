@@ -1,0 +1,35 @@
+1. Created CLuster
+2. Add OIDC provider to cluster
+3. Create Web Identiy ROLE for EBS CSI driver in IRSA mode with Sts, ec2 policy only
+4. Create web identity role for kubestash controller in IRSA mode with s3 policy only  Add namespaces to TrustRelation
+
+
+During Webinar:
+
+1. Introduction:
+2. Demo: 
+	a. Describe Setup
+	b. Describe 4 num point
+	c. Install Kubestash, 
+	d. Create bucket, BackupStorage, Sts, BAckupC
+
+
+UI: 
+1. Deploy postgres
+2. Take backup
+
+
+
+
+
+
+
+helm install kubestash oci://ghcr.io/appscode-charts/kubestash \
+        --version v2025.4.30 \
+        --namespace stash --create-namespace \
+        --set-file global.license=$LICENSE_FILE \
+        --wait --burst-limit=10000 --debug
+
+
+kubectl annotate serviceaccount -n stash kubestash-kubestash-operator eks.amazonaws.com/role-arn=arn:aws:iam::453903318604:role/full-s3-access
+

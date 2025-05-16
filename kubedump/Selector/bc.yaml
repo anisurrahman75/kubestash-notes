@@ -1,36 +1,39 @@
 apiVersion: core.kubestash.com/v1alpha1
 kind: BackupConfiguration
 metadata:
-  name: ace-manifest-backup
+  name: selector-resources-backup
   namespace: demo
 spec:
   backends:
-    - name: gcs-backend
+    - name: aws-backend
       storageRef:
         namespace: demo
-        name: gcs-storage
+        name: aws-storage
       retentionPolicy:
         name: demo-retention
         namespace: demo
   sessions:
     - name: frequent-backup
-      sessionHistoryLimit: 3
+      sessionHistoryLimit: 1
       scheduler:
         schedule: "*/5 * * * *"
         jobTemplate:
           backoffLimit: 1
       repositories:
-        - name: gcs-repository
-          backend: gcs-backend
-          directory: /ace-manifests
+        - name: selector-aws-repository
+          backend: aws-backend
+          directory: /cluster-manifests-selector
           encryptionSecret:
             name: encrypt-secret
             namespace: demo
-          deletionPolicy: Delete
+          deletionPolicy: Retain
       addon:
-        name: ace-addon
+        name: kubedump-addon
         tasks:
           - name: manifest-backup
+            params:
+              IncludeClusterResources: "true"
+              IncludeNamespaces: "demo"
         jobTemplate:
           spec:
-            serviceAccountName: cluster-resource-reader
+            serviceAccountName: cluster-resource-reader-writter

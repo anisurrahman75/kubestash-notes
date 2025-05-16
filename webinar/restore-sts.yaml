@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: busybox-2
+  namespace: demo
+spec:
+  ports:
+    - name: http
+      port: 80
+      targetPort: 0
+  selector:
+    app: demo-busybox-2
+  clusterIP: None
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: sample-restore-sts
+  namespace: demo
+  labels:
+    app: demo-busybox-2
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: demo-busybox-2
+  serviceName: busybox-2
+  template:
+    metadata:
+      labels:
+        app: demo-busybox-2
+    spec:
+      containers:
+        - name: busybox
+          image: busybox
+          command: ["/bin/sh", "-c","sleep infinity"]
+          env:
+            - name: POD_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+          volumeMounts:
+            - name: restored-source-data
+              mountPath: "/source/data"
+          imagePullPolicy: IfNotPresent
+  volumeClaimTemplates:
+    - metadata:
+        name: restored-source-data
+      spec:
+        storageClassName: ebs-sc
+        accessModes: [ "ReadWriteOnce" ]
+        resources:
+          requests:
+            storage: 256Mi

@@ -17,7 +17,7 @@ spec:
   - --include-resources=${IncludeResources:=}
   - --exclude-resources=${ExcludeResources:=}
   - --exclude-namespaces=${ExcludeNamespaces:=}
-  image: ghcr.io/anisurrahman75/kubedump:kubedump-restore_linux_amd64116
+  image: ghcr.io/anisurrahman75/kubedump:kubedump-restore_linux_amd64
 
 ---
 
@@ -41,7 +41,7 @@ spec:
   - --override-resources=${OverrideResources:=}
   - --storage-class-mappings=${StorageClassMappings:=}
   - --restore-pvs=${RestorePVs:=}
-  image: ghcr.io/anisurrahman75/kubedump:kubedump-restore_linux_amd64116
+  image: ghcr.io/anisurrahman75/kubedump:kubedump-restore_linux_amd64
 
 ---
 

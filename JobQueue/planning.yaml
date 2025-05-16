@@ -1,0 +1,76 @@
+#---------CRD-----------
+apiVersion: kubestash.com/v1alpha1
+kind: TaskQueue
+metadata:
+  name: kubestash-backup-session
+spec:
+  numConcurrentTasks: 3
+  dropDuplicateTask: true
+  lastSuccessfulTasks: 5
+  lastFailedTasks: 5
+  tasks:
+  - unitOfTask:
+      group: kubestash.com
+      kind: BackupSession
+    key: OwnerRef
+    rules:
+      running: has(self.status.phase) && self.status.phase == 'Running'
+      success: has(self.status.phase) && self.status.phase == 'Successful'
+      failed: has(self.status.phase) && self.status.phase == 'Failed'   
+  - unitOfTask:
+      group: kubestash.com
+      kind: BackupSession
+    key: OwnerRef
+    rules:
+      running: has(self.status.phase) && self.status.phase == 'Running'
+      success: has(self.status.phase) && self.status.phase == 'Successful'
+      failed: has(self.status.phase) && self.status.phase == 'Failed'
+status:
+  queuedTasks: # Contains up to `numConcurrentTasks` BackupSessions
+    - apiVersion: ...
+      kind: ...
+      metadata:
+        name: ...
+        namespace: ...
+      enqueuedAt: "2025-05-05T10:00:00Z"
+
+  runningTasks:
+    - apiVersion: ...
+      kind: ...
+      metadata:
+        name: ...
+        namespace: ...
+      startedAt: "2025-05-05T10:05:00Z"
+
+  successfulTasks:
+    - apiVersion: ...
+      kind: ...
+      metadata:
+        name: ...
+        namespace: ...
+      finishedAt: "2025-05-05T10:10:00Z"
+
+  failedTasks:
+    - apiVersion: ...
+      kind: ...
+      metadata:
+        name: ...
+        namespace: ...
+      finishedAt: "2025-05-05T10:10:00Z"
+---
+
+Workaround:
+  1. KubeStash triggers CronJobs based on the actual backup schedule.
+  2. The CronJob creates a Job, which in turn generate a BackupSession object and pushes it into the TaskQueue.
+  3. The TaskQueue controller dequeues tasks and creates up to `numConcurrentTasks` BackupSessions. 
+    Here, We will use extended APIServer to create `BackupSession` resources.
+  4. The controller watches the BackupSession resources and updates the TaskQueue status accordingly.
+  5. Once a BackupSession reaches a terminal phase (Successful/Failed), it is removed from the queue,
+    and the next task is dequeued and started.
+
+
+Reconciliation:
+  1. When a new BackupSession is enqueued into the TaskQueue.
+  2. When a BackupSession's phase changes (to Successful or Failed).
+  3. On a default interval (every 10 minutes) for reconciliation safety.
+

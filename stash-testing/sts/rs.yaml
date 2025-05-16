@@ -2,16 +2,44 @@ apiVersion: stash.appscode.com/v1beta1
 kind: RestoreSession
 metadata:
   name: ss-restore
-  namespace: dev
+  namespace: demo
 spec:
+  runtimeSettings:
+    container:
+      env:
+      - name: GOGC
+        value: "20"
+      resources:
+        limits:
+          cpu: "1"
+          memory: 1Gi
+        requests:
+          cpu: 200m
+          memory: 1Gi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        runAsGroup: 999
+        runAsNonRoot: true
+        runAsUser: 999
+        seccompProfile:
+          type: RuntimeDefault
+    # pod:
+    #   securityContext:
+    #     runAsGroup: 999
+    #     runAsUser: 999
+    #     seccompProfile:
+    #       type: RuntimeDefault
   repository:
-    name: gcs-repo
+    name: s3-repo
     namespace: demo
   target:
     ref:
       apiVersion: apps/v1
       kind: StatefulSet
-      name: stash-recovered
+      name: stash-demo
     volumeMounts:
     - name:  source-data
       mountPath:  /source/data

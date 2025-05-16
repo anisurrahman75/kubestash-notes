@@ -18,7 +18,7 @@ $ eksctl get cluster --region=$REGION
 
 # Install Agent inside cluster to every node:
 ```bash
-$ ws eks create-addon --cluster-name $CLUSTER_NAME --addon-name eks-pod-identity-agent --addon-version v1.0.0-eksbuild.1 --region=$REGION
+$ aws eks create-addon --cluster-name $CLUSTER_NAME --addon-name eks-pod-identity-agent --addon-version v1.0.0-eksbuild.1 --region=$REGION
 ```
 
 # Add ebs-csi driver to cluster

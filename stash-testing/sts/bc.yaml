@@ -5,8 +5,32 @@ metadata:
   namespace: demo
 spec:
   repository:
-    name: gcs-repo
+    name: s3-repo
     namespace: demo
+  runtimeSettings:
+    container:
+      resources:
+        limits:
+          cpu: 1
+          memory: 1Gi
+        requests:
+          cpu: 200m
+          memory: 1Gi
+      securityContext:
+        allowPrivilegeEscalation: false
+        capabilities:
+          drop:
+          - ALL
+        runAsNonRoot: true
+        runAsUser: 999
+        seccompProfile:
+          type: RuntimeDefault
+    pod:
+      securityContext:  ## will not set as for STS backup. 
+        runAsGroup: 777
+        runAsUser: 777
+        seccompProfile:
+          type: RuntimeDefault
   schedule: "*/30 * * * *"
   target:
     ref:

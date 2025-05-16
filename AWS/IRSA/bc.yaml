@@ -36,8 +36,8 @@ spec:
       - name: logical-backup
         params:
           exclude: /kubestash-data/lost+found
-      jobTemplate:
-        spec:
-          # serviceAccountName: irsa-test
-          nodeSelector:
-            kubernetes.io/hostname: ip-192-168-24-34.ec2.internal
+      # jobTemplate:
+      #   spec:
+      #     # serviceAccountName: irsa-test
+      #     nodeSelector:
+      #       kubernetes.io/hostname: ip-192-168-24-34.ec2.internal

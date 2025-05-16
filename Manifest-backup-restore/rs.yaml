@@ -24,16 +24,3 @@ spec:
     jobTemplate:
          spec:
            serviceAccountName: cluster-resource-reader
-
-
-
-
-
-
-
-
-##  PVC Resore:
-
-# ------------Inside GetPodSpec-------------
-# MultiContainer:  true
-# TaskSingleton: true
