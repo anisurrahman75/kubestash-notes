@@ -1,0 +1,72 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: backup-target-pvc-8
+  namespace: demo
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-pod-8
+  namespace: demo
+spec:
+  containers:
+  - name: ubuntu
+    image: ubuntu
+    command: ["/bin/sh", "-c"]
+    args: 
+    - |
+      echo "sample_data" > /target/mountpath/data.txt
+      sleep infinity
+    volumeMounts:
+    - name: my-volume
+      mountPath: /target/mountpath
+  volumes:
+  - name: my-volume
+    persistentVolumeClaim:
+      claimName: backup-target-pvc-8
+---
+apiVersion: stash.appscode.com/v1alpha1
+kind: Repository
+metadata:
+  name: s3-repo-8
+  namespace: demo
+spec:
+  backend:
+    s3:
+      bucket: tapojit
+      region: us-west-2
+      endpoint: s3.us-west-2.amazonaws.com
+      prefix: backup-target-pvc-8
+    storageSecretName: aws-s3-secret
+  wipeOut: true
+  usagePolicy:
+    allowedNamespaces:
+      from: All
+---
+apiVersion: stash.appscode.com/v1beta1
+kind: BackupConfiguration
+metadata:
+  name: s3-pvc-backup-8
+  namespace: demo
+spec:
+  task:
+    name: pvc-backup
+  repository:
+    name: s3-repo-8
+  schedule: "*/2 * * * *"
+  target:
+    ref:
+      apiVersion: v1
+      kind: PersistentVolumeClaim
+      name: backup-target-pvc-8
+  retentionPolicy:
+    name: keep-last-5
+    keepLast: 5
+    prune: true

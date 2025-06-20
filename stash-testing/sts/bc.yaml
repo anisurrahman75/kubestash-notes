@@ -31,7 +31,7 @@ spec:
         runAsUser: 777
         seccompProfile:
           type: RuntimeDefault
-  schedule: "*/30 * * * *"
+  schedule: "*/5 * * * *"
   target:
     ref:
       apiVersion: apps/v1

@@ -1,0 +1,2 @@
+helm dependency update
+helm template -n stash . --values=./values.yaml --debug > tmp.yaml

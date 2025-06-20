@@ -38,5 +38,3 @@ spec:
   - name: my-volume
     persistentVolumeClaim:
       claimName: backup-target-pvc
-
-

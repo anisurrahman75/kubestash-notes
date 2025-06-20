@@ -3,7 +3,7 @@ kind: TaskQueue
 metadata:
   name: taskqueue-sample
 spec:
-  numberOfConcurrentTasks: 2
+  maxConcurrentTasks: 10
   tasks:
     - type:
         kind: TaskTrigger

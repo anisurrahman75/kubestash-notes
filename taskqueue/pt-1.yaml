@@ -3,6 +3,13 @@ kind: PendingTask
 metadata:
   name: pendingtask-sample-1
 spec:
-  task:
-    apiGroup: apps/v1
-    kind: Pod
+  taskType:
+    kind: TaskTrigger
+    apiGroup: ops.k8s.appscode.com
+  resource:
+    apiVersion: ops.k8s.appscode.com/v1alpha1
+    kind: TaskTrigger
+    metadata:
+      name: tasktrigger-sample-1
+    spec:
+      foo: anisur

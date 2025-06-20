@@ -7,9 +7,9 @@ spec:
   storage:
     provider: s3
     s3:
-      bucket: kubestash-webinar
-      region: us-east-1
-      endpoint: https://s3.us-east-1.amazonaws.com
+      bucket: ace-rasel-test-rgqpsmqzuhqt
+      region: us-west-1
+      endpoint: https://s3.us-west-1.amazonaws.com
       prefix: demo
   usagePolicy:
     allowedNamespaces:

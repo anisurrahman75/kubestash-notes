@@ -1,7 +1,7 @@
 apiVersion: batch.k8s.appscode.com/v1alpha1
 kind: PendingTask
 metadata:
-  name: pendingtask-sample-2
+  name: pendingtask-sample-4
 spec:
   taskType:
     kind: TaskTrigger
@@ -10,6 +10,6 @@ spec:
     apiVersion: ops.k8s.appscode.com/v1alpha1
     kind: TaskTrigger
     metadata:
-      name: tasktrigger-sample-2
+      name: tasktrigger-sample-4
     spec:
       foo: anisur
